@@ -1,5 +1,7 @@
 #include <SFML/Graphics.hpp>
-#include<Windows.h>
+#include <SFML/System.hpp>
+#include <Windows.h>
+#include <iostream>
 //void FixConsoleWindow() {
 //	HWND consoleWindow = GetConsoleWindow();
 //	LONG style = GetWindowLong(consoleWindow, GWL_STYLE);
@@ -18,8 +20,14 @@ int main()
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			switch (event.type) {
+			case sf::Event::Closed:
 				window.close();
+			case sf::Event::TextEntered:
+				if (event.text.unicode < 128) {
+					std::cout << event.text.unicode << std::endl;
+				}
+			}
 		}
 
 		window.clear();
