@@ -147,9 +147,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\HK3-OOP-Crossy-Road\Crossy Road\Crossy Road\Collider.cpp" />
     <ClCompile Include="Crossy Road.cpp" />
+    <ClCompile Include="Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\HK3-OOP-Crossy-Road\Crossy Road\Crossy Road\Collider.h" />
+    <ClInclude Include="Enemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
