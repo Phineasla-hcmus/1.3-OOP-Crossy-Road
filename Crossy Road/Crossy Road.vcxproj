@@ -151,7 +151,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Crossy Road.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Framework\Util\random.cpp" />
+    <ClCompile Include="game.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Framework\Util\random.h" />
+    <ClInclude Include="Framework\Util\res_manager.h" />
+    <ClInclude Include="game.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
