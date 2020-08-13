@@ -8,16 +8,19 @@ using namespace sf;
 
 class Collider
 {
-private:
-	RectangleShape& body;
 public:
-	Collider(RectangleShape& body);
-	~Collider();
-	bool CheckCollision(Collider& other, float push);
-	void Move(float dx, float dy) { body.move(dx, dy); }
-	Vector2f getPosition() { return body.getPosition(); }
-	Vector2f getHalfSize() { return body.getSize() / 2.0f; }
-	Collider GetCollider() { return Collider(body); }
+	Collider(Sprite& sprite, float x, float y, float width, float height);
+	virtual ~Collider();
+	
+	bool checkInterect(const FloatRect& fr);
+	void Update();
+	void Render(RenderTarget& target);
+private:
+	Sprite& sprite;
+	RectangleShape hitbox;
+	float offsetX, offsetY;
+	
+	
 };
 #endif
 

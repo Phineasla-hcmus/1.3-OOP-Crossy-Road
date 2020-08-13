@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{fc87b620-ef77-4f0b-8dbb-30dcc7c11125}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Util">
+      <UniqueIdentifier>{a51a58e2-d30a-4a88-9198-1ac1675b9b2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\ResourceManager">
+      <UniqueIdentifier>{2ae5a20c-924f-48dc-9ddd-320f2b2eccab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\State">
+      <UniqueIdentifier>{ae3f14fc-c0ee-426e-a94d-304822823476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CrossyRoad">
+      <UniqueIdentifier>{f8ccfa66-ec3e-49d3-ae8c-36e7126772d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{20d07a3b-5449-4923-8104-00e2963efc7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Framework\Util\random.cpp">
+      <Filter>Framework\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\game.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Framework\State\state_base.cpp">
+      <Filter>Framework\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Crossy Road\Collider.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Framework\Util\random.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\res_manager.h">
+      <Filter>Framework\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\game.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\State\state_base.h">
+      <Filter>Framework\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Crossy Road\Collider.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
