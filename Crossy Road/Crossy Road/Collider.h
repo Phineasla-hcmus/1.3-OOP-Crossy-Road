@@ -9,18 +9,16 @@ using namespace sf;
 class Collider
 {
 public:
-	Collider(Sprite& sprite, float x, float y, float width, float height);
-	virtual ~Collider();
-	
-	bool checkInterect(const FloatRect& fr);
-	void Update();
-	void Render(RenderTarget& target);
+    Collider(float width, float height);
+
+    bool tryCollideWith(Collider& other);
+    sf::FloatRect getBox() const;
+
+    virtual const sf::Vector2f& getPosition() const = 0;
+    virtual void onCollide(Collider& other) = 0;
+
 private:
-	Sprite& sprite;
-	RectangleShape hitbox;
-	float offsetX, offsetY;
-	
-	
+    sf::Vector2f m_size;
 };
 #endif
 
