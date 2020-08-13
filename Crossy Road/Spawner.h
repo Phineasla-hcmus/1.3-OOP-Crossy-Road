@@ -3,19 +3,10 @@
 #include <vector>
 
 
-namespace SpaceInvaders
-{
-    class World;
-
-    using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
-
-    /**
-        Class to manage the drawing and updating of invaders
-    */
     class Spawner
     {
     public:
-        Spawner(World& world);
+        Spawner();
 
         void drawEnemies(sf::RenderTarget& target);
 
@@ -26,9 +17,7 @@ namespace SpaceInvaders
     private:
     
         std::vector<Enemy> enemies;
-        World& m_world;
 
         bool m_hasAllInvadersBeenAdded = false;
 
     };
-}

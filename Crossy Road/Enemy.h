@@ -5,10 +5,7 @@
 class Enemy : public Collider
 {
 public:
-    enum class Type
-    {
-        Octopus, Crab, Squid,
-    };
+
 
     Enemy(const sf::Vector2f& initialLocation);
 
