@@ -1,11 +1,12 @@
 #include"Framework/game.h"
-#include <SFML/Graphics.hpp>
 int main()
 {
     //sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
     //sf::CircleShape shape(100.f);
     //shape.setFillColor(sf::Color::Green);
-
+    //sf::Image icon;
+    //icon.loadFromFile("D:/GitHub/HK3-OOP-Crossy-Road/Crossy Road/Resource/icon.png");
+    //window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
     //while (window.isOpen())
     //{
     //    sf::Event event;
