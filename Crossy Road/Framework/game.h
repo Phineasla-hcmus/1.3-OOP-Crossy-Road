@@ -4,20 +4,22 @@
 #include<vector>
 #include<SFML/Graphics.hpp>
 #include"State/state_base.h"
-
-class game
+#include"Util/no_copy.h"
+class game : public no_copy
 {
 private:
-	sf::RenderWindow _window;
-	sf::Clock dt_clock;
+	sf::Clock								dt_clock;
+	sf::RenderWindow						_window;
 	std::stack<std::unique_ptr<state_base>> _states;
 	state_base& cur_state() const;
 public:
-	game(const game&)	= delete;
-	game(game&&)		= delete;
 	game();
+	//no_move
+	game(game&&) = delete;
 	void run();
-	void update_dt_clock();
+	void pushState(std::unique_ptr<state_base> state);
+	void popState();
+	sf::Time update_dt_clock();
 };
 #endif // !_main_game
 

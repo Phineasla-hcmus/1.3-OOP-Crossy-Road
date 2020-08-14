@@ -11,6 +11,7 @@ game::game()
 	sf::Image icon;
 	if (icon.loadFromFile("resource/icon.png"))
 		_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+	//push_first_state_here
 }
 
 void game::run()
@@ -19,12 +20,11 @@ void game::run()
 	while (_window.isOpen() && _states.empty() == 0) {
 		auto& state = cur_state();
 		//Frame update
-		update_dt_clock();
-
+		state.update(update_dt_clock());
 	}
 }
 
-void game::update_dt_clock()
+sf::Time game::update_dt_clock()
 {
-	dt_clock.restart().asSeconds();
+	return dt_clock.restart();
 }

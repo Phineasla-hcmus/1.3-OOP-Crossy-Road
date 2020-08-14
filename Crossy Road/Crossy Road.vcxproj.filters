@@ -17,7 +17,7 @@
     <Filter Include="Framework\State">
       <UniqueIdentifier>{ae3f14fc-c0ee-426e-a94d-304822823476}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CrossyRoad">
+    <Filter Include="Main Game">
       <UniqueIdentifier>{f8ccfa66-ec3e-49d3-ae8c-36e7126772d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -45,6 +45,9 @@
     </ClInclude>
     <ClInclude Include="Framework\State\state_base.h">
       <Filter>Framework\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\no_copy.h">
+      <Filter>Framework\Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
