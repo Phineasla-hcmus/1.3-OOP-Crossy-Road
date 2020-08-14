@@ -151,22 +151,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <ClCompile Include="Crossy Road\Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
+=======
+    <ClCompile Include="Collidable.cpp" />
+>>>>>>> Stashed changes
     <ClCompile Include="Framework\game.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Framework\Util\random.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="Spawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crossy Road\Collider.h" />
     <ClInclude Include="Enemy.h" />
+=======
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="Player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Collidable.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="Framework\game.h" />
     <ClInclude Include="Framework\State\state_base.h" />
     <ClInclude Include="Framework\Util\random.h" />
     <ClInclude Include="Framework\Util\res_manager.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="Spawner.h" />
+=======
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="Player.h" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

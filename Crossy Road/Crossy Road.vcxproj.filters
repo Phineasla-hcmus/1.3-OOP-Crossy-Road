@@ -20,8 +20,13 @@
     <Filter Include="CrossyRoad">
       <UniqueIdentifier>{f8ccfa66-ec3e-49d3-ae8c-36e7126772d2}</UniqueIdentifier>
     </Filter>
+<<<<<<< Updated upstream
     <Filter Include="Components">
       <UniqueIdentifier>{20d07a3b-5449-4923-8104-00e2963efc7e}</UniqueIdentifier>
+=======
+    <Filter Include="Framework\Sprite">
+      <UniqueIdentifier>{f8ed6491-968a-4438-abba-b509f5253b1d}</UniqueIdentifier>
+>>>>>>> Stashed changes
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +40,7 @@
     <ClCompile Include="Framework\State\state_base.cpp">
       <Filter>Framework\State</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
     <ClCompile Include="Crossy Road\Collider.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -44,6 +50,18 @@
     <ClCompile Include="Spawner.cpp">
       <Filter>CrossyRoad</Filter>
     </ClCompile>
+=======
+    <ClCompile Include="Object.cpp">
+      <Filter>Framework\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collidable.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Util\random.h">
@@ -67,5 +85,15 @@
     <ClInclude Include="Spawner.h">
       <Filter>CrossyRoad</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Framework\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collidable.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h" />
   </ItemGroup>
 </Project>
