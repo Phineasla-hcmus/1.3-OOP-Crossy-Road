@@ -156,12 +156,14 @@
     <ClCompile Include="Framework\State\state_base.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Framework\Util\random.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\game.h" />
     <ClInclude Include="Framework\State\state_base.h" />
     <ClInclude Include="Framework\Util\random.h" />
     <ClInclude Include="Framework\Util\res_manager.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

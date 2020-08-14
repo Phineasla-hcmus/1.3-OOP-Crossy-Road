@@ -20,6 +20,9 @@
     <Filter Include="CrossyRoad">
       <UniqueIdentifier>{f8ccfa66-ec3e-49d3-ae8c-36e7126772d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{e819082e-89b2-4682-bf5e-0d533eba9017}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Util\random.cpp">
@@ -31,6 +34,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp">
       <Filter>Framework\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -45,6 +51,9 @@
     </ClInclude>
     <ClInclude Include="Framework\State\state_base.h">
       <Filter>Framework\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
