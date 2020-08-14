@@ -1,4 +1,5 @@
 #include "Object.h"
+<<<<<<< Updated upstream
 
 
 
@@ -38,3 +39,32 @@ void Object::onCollide(Collidable& other)
 {
     m_isAlive = false;
 }
+=======
+Object::Object(const sf::Vector2f& initLocation)
+	:Collider(100, 50)
+	,m_initialPosition(initLocation)
+	,m_location(initLocation)
+{
+	body.setSize(sf::Vector2f(100.f, 50.f));
+}
+
+void Object::move(float x) {
+	m_location += {x, 0};
+}
+
+
+bool Object::isActive() const {
+	if (body.getGlobalBounds().left < 0.f)
+		return false;
+	return m_isActive;
+}
+const sf::Vector2f& Object::getPosition() const{
+	return m_location;
+}
+
+
+void Object::onCollide(Collider& other) {
+	m_isActive = false;
+}
+
+>>>>>>> Stashed changes

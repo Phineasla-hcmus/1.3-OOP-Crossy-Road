@@ -1,16 +1,17 @@
 #pragma once
-#ifndef SPAWNER_H
-#define SPAWNER_H
 
-#include "Object.h"
+#include "Entity/Projectile.h"
+#include "Entity/Invader.h"
 #include "AnimationRenderer.h"
 #include "DisplayInfo.h"
 
 #include <vector>
 #include <SFML/Audio.hpp>
 
-#include "Framework"
+#include "../Framework/Util/Random.h"
 
+namespace SpaceInvaders 
+{
     class World;
 
     using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
@@ -18,10 +19,10 @@
     /**
         Class to manage the drawing and updating of invaders
     */
-    class Spawner
+    class InvaderManager
     {
     public:
-      Spawner(World& world);
+        InvaderManager(World& world);
 
         //Moves all of the invaders to the left or right, if the clock has reached a certain time
         void tryStepInvaders();
@@ -31,7 +32,7 @@
 
         //Tries to collide the invaders with the projectiles
         //Returns the points of collision
-        CollisionResult tryCollideWithProjectiles(std::vector<PLayer>& projectiles);
+        CollisionResult tryCollideWithProjectiles(std::vector<Projectile>& projectiles);
 
         //This is for firing projectiles from the enemy
         sf::Vector2f getRandomLowestInvaderPoint(Random<>& random);
@@ -51,9 +52,9 @@
 
         //Checks the invaders position to see if all the aliens should move down
         //Or if the game is over
-        bool testInvaderPosition(const Object& invader) const;
+        bool testInvaderPosition(const Invader& invader) const;
 
-        std::vector<Object> m_invaders;
+        std::vector<Invader> m_invaders;
         sf::Clock m_stepTimer;
         sf::Time m_stepGap;
 
@@ -72,6 +73,7 @@
         int m_initY = 4;
         int m_ticks = 0;
 
+        sf::Sound m_stepSounds[4];
+        sf::Sound m_invaderKilledSound;
     };
-
-#endif
+}

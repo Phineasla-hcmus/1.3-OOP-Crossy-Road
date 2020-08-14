@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{f4f69a32-7817-4103-a4d6-e4b3449734b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Resource">
+      <UniqueIdentifier>{b28a18f8-9464-40c0-a621-a10d428f5a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\GUI">
+      <UniqueIdentifier>{f1883f13-52de-45fb-9c6d-4da31fbca67d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\State">
+      <UniqueIdentifier>{ac40fa37-6481-436e-be1a-58a0635f58ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Util">
+      <UniqueIdentifier>{138c0758-9293-47da-a5e0-ee25f7f420d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame">
+      <UniqueIdentifier>{03b1fe04-c0cd-47e3-be45-93bcc0ead53a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\States">
+      <UniqueIdentifier>{98f1a6c1-ca85-4813-9915-5114aea7e689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Entity">
+      <UniqueIdentifier>{222a95ca-79a0-40dd-a0ef-e623705f6344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Framework\Util\Animation.cpp">
+      <Filter>Framework\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ResourceManager\ResourceHolder.cpp">
+      <Filter>Framework\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Util\ToggleKey.cpp">
+      <Filter>Framework\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\GUI\Button.cpp">
+      <Filter>Framework\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\GUI\Textbox.cpp">
+      <Filter>Framework\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\GUI\Widget.cpp">
+      <Filter>Framework\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\GUI\StackMenu.cpp">
+      <Filter>Framework\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\States\StateBase.cpp">
+      <Filter>Framework\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Util\FPSCounter.cpp">
+      <Filter>Framework\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Util\FileUtil.cpp">
+      <Filter>Framework\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\States\StateMainMenu.cpp">
+      <Filter>MainGame\States</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\States\StateHighscores.cpp">
+      <Filter>MainGame\States</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\States\StatePlaying.cpp">
+      <Filter>MainGame\States</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\Entity\Explosion.cpp">
+      <Filter>MainGame\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\Entity\Invader.cpp">
+      <Filter>MainGame\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\Entity\Player.cpp">
+      <Filter>MainGame\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\Entity\Projectile.cpp">
+      <Filter>MainGame\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\Entity\Shield.cpp">
+      <Filter>MainGame\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\Entity\UFO.cpp">
+      <Filter>MainGame\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Arcade\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\StarryBackground.cpp">
+      <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\World.cpp">
+      <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Arcade\Game.cpp">
+      <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Arcade\GameSelection\GameSelect.cpp">
+      <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\InvaderManager.cpp">
+      <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\Collidable.cpp">
+      <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceInvaders\AnimationRenderer.cpp">
+      <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Util\Maths.cpp">
+      <Filter>Framework\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Arcade\GameSelection\StateGameSelect.cpp">
+      <Filter>MainGame\States</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Framework\Util\Animation.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\Random.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ResourceManager\ResourceManager.h">
+      <Filter>Framework\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ResourceManager\ResourceHolder.h">
+      <Filter>Framework\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\FPSCounter.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\FileUtil.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\Maths.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\NonCopyable.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\NonMoveable.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\GUI\Button.h">
+      <Filter>Framework\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\GUI\Textbox.h">
+      <Filter>Framework\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\GUI\Widget.h">
+      <Filter>Framework\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\GUI\StackMenu.h">
+      <Filter>Framework\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\States\StateBase.h">
+      <Filter>Framework\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\Entity\Explosion.h">
+      <Filter>MainGame\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\Entity\Invader.h">
+      <Filter>MainGame\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\Entity\Player.h">
+      <Filter>MainGame\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\Entity\Projectile.h">
+      <Filter>MainGame\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\Entity\Shield.h">
+      <Filter>MainGame\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Arcade\GameSelection\StateGameSelect.h">
+      <Filter>MainGame\States</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\States\StateHighscores.h">
+      <Filter>MainGame\States</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\States\StateMainMenu.h">
+      <Filter>MainGame\States</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\States\StatePlaying.h">
+      <Filter>MainGame\States</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\AnimationRenderer.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\Collidable.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Arcade\Game.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Arcade\GameSelection\GameSelect.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\InvaderManager.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\StarryBackground.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\World.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\Entity\UFO.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\ToggleKey.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceInvaders\DisplayInfo.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

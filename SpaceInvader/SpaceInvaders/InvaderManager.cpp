@@ -1,78 +1,101 @@
-#include "Spawner.h"
+#include "InvaderManager.h"
 
 #include <iostream>
 
-#include "ResourceHolder.h"
+#include "../Framework/ResourceManager/ResourceHolder.h"
 #include "World.h"
 
-//namespace
-//{
-//    const int MAX_INVADERS = 55;
-//}
-Spawner::Spawner(World& world)
-    : m_stepGap(sf::seconds(0.5f))
-    , m_world(world)
-    , m_invaderRenderer(12, 8, Object::WIDTH, Object::HEIGHT,
-        ResourceHolder::get().textures.get("si/invaders"))
+namespace SpaceInvaders
 {
-    //Layout of the invaders 
-    Object::Type types[] = {
-        Object::Type::Bus, Object::Type::Car, Object::Type::Animal,
-        Object::Type::tree
-    };
-    //Add invaders into the std::vector
-    const int GAP = 10;
-    for (int y = 0; y < 5; y++) {
-        for (int x = 0; x < 11; x++) {
-            //calcuate position for invader
-            float invaderX = x * Object::WIDTH + (GAP * x * 3) + Object::WIDTH;
-            float invaderY = y * Object::HEIGHT + (GAP * y) + Object::HEIGHT * 4;
-            m_invaders.emplace_back(sf::Vector2f{ invaderX, invaderY }, types[y]);
-        }
+    namespace
+    {
+        const int MAX_INVADERS = 55;
     }
-}
 
-void Spawner::tryStepInvaders()
-{
-    //Only step if clock is over timer
-    if (m_stepTimer.getElapsedTime() > m_stepGap) {
-        m_invaderRenderer.nextFrame();
-        //Calculate amount to step
-        bool moveDown = false;
-        float step = m_isMovingLeft ? -10.0f : 10.0f;
-        if (m_moveDown) {
-            step *= -1;
+    InvaderManager::InvaderManager(World& world)
+        : m_stepGap(sf::seconds(0.5f))
+        , m_world(world)
+        , m_invaderRenderer(12, 8, Invader::WIDTH, Invader::HEIGHT,
+            ResourceHolder::get().textures.get("si/invaders"))
+    {
+        //Layout of the invaders 
+        Invader::Type types[] = {
+            Invader::Type::Squid, Invader::Type::Crab, Invader::Type::Crab,
+            Invader::Type::Octopus, Invader::Type::Octopus
+        };
+        //Add invaders into the std::vector
+        const int GAP = 10;
+        for (int y = 0; y < 5; y++) {
+            for (int x = 0; x < 11; x++) {
+                //calcuate position for invader
+                float invaderX = x * Invader::WIDTH + (GAP  * x * 3) + Invader::WIDTH;
+                float invaderY = y * Invader::HEIGHT + (GAP * y) + Invader::HEIGHT * 4;
+                m_invaders.emplace_back(sf::Vector2f{ invaderX, invaderY }, types[y]);
+            }
         }
 
+        //load sounds
+        for (int i = 0; i < 4; i++) {
+            m_stepSounds[i].setBuffer(
+                ResourceHolder::get().soundBuffers.get("si/fastinvader" + std::to_string(i + 1)));
+        }
+        m_invaderKilledSound.setBuffer(
+            ResourceHolder::get().soundBuffers.get("si/invaderkilled"));
 
-        //Move the invaders
-        for (auto& invader : m_invaders) {
-            if (!invader.isActive()) continue;
-            invader.move(1.f);
 
+    }
+
+    void InvaderManager::tryStepInvaders()
+    {
+        //Only step if clock is over timer
+        if (m_stepTimer.getElapsedTime() > m_stepGap) {
+            m_invaderRenderer.nextFrame();
+            //Calculate amount to step
+            bool moveDown = false;
+            float step = m_isMovingLeft ? -10.0f : 10.0f;
+            if (m_moveDown) {
+                step *= -1;
+            }
+            m_stepSounds[m_ticks++ % 4].play();
+
+            //Move the invaders
+            for (auto& invader : m_invaders) {
+                if (!invader.isAlive()) continue;
+                invader.move(step, 0.0f);
+                if (m_moveDown) {
+                    invader.move(0, Invader::HEIGHT / 2.0f);
+                }
+                else if (!moveDown) {
+                    //Check invader position to see if all should move down
+                    moveDown = testInvaderPosition(invader);
+                }
+            }
+
+            if (m_moveDown) m_isMovingLeft = !m_isMovingLeft;
+            m_moveDown = moveDown;
             m_stepTimer.restart();
         }
     }
-}
 
-void Spawner::drawInvaders(sf::RenderTarget& target)
-{
-    for (auto& invader : m_invaders) {
-        if (!invader.isActive()) continue;
-        m_invaderRenderer.renderEntity(target, (int)invader.getType(), invader.getPosition());
+    void InvaderManager::drawInvaders(sf::RenderTarget& target)
+    {
+        for (auto& invader : m_invaders) {
+            if (!invader.isAlive()) continue;
+            m_invaderRenderer.renderEntity(target, (int)invader.getType(), invader.getPosition());
+        }
     }
-}
 
-    CollisionResult Spawner::tryCollideWithProjectiles(std::vector<Projectile>& projectiles)
+    CollisionResult InvaderManager::tryCollideWithProjectiles(std::vector<Projectile>& projectiles)
     {
         CollisionResult result;
         std::vector<sf::Vector2f> collisionPoints;
         for (auto& projectile : projectiles) {
             for (auto& invader : m_invaders) {
-                if (!invader.isActive() || !projectile.isActive())
+                if (!invader.isAlive() || !projectile.isActive())
                     continue;
                 if (projectile.tryCollideWith(invader)) {
                     m_aliveInvaders--;
+                    m_invaderKilledSound.play();
                     if (m_aliveInvaders == 0) {
                         m_hasAllInvadersBeenAdded = false;
                     }
@@ -152,3 +175,4 @@ void Spawner::drawInvaders(sf::RenderTarget& target)
             (invader.getPosition().x < 15 && m_isMovingLeft) || //Check invader left
             (invader.getPosition().x + Invader::WIDTH > Display::WIDTH - 15 && !m_isMovingLeft); //Check invader right
     }
+}
