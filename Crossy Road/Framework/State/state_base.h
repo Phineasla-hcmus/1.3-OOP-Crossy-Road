@@ -8,7 +8,6 @@ private:
 public:
 	state_base();
 	virtual ~state_base();
-
 	virtual void update(sf::Time delta_time) = 0;
 	virtual void render() = 0;
 

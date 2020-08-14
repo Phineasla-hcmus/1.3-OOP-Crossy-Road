@@ -1,4 +1,8 @@
 #include "game.h"
+state_base& game::cur_state() const
+{
+	return *_states.top();
+}
 game::game()
 	: _window(sf::VideoMode(1280, 720), "Crossy Road")
 {
@@ -11,4 +15,16 @@ game::game()
 
 void game::run()
 {
+	//main game loop
+	while (_window.isOpen() && _states.empty() == 0) {
+		auto& state = cur_state();
+		//Frame update
+		update_dt_clock();
+
+	}
+}
+
+void game::update_dt_clock()
+{
+	dt_clock.restart().asSeconds();
 }
