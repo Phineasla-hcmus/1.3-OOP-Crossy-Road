@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <ClCompile Include="Crossy Road\Collider.cpp" />
     <ClCompile Include="Framework\game.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp" />
@@ -163,6 +164,23 @@
     <ClInclude Include="Framework\State\state_base.h" />
     <ClInclude Include="Framework\Util\random.h" />
     <ClInclude Include="Framework\Util\res_manager.h" />
+=======
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Crossy Road.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="Spawner.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="Spawner.h" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
