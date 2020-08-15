@@ -20,6 +20,9 @@
     <Filter Include="Main Game">
       <UniqueIdentifier>{f8ccfa66-ec3e-49d3-ae8c-36e7126772d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\GUI">
+      <UniqueIdentifier>{8c9c8fc5-776d-4c4f-8c8f-c6d3e9a591e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Util\random.cpp">
