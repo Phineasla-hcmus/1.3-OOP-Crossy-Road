@@ -1,99 +1,9 @@
-#include "Game.h"
-
-#include "GameSelection/StateGameSelect.h"
-#include "../SpaceInvaders/DisplayInfo.h"
-
-#include <iostream>
-
-Game::Game()
-    : m_window({ 1280, 720 }, "Hopson Arcade")
-{
-    m_window.setPosition({ m_window.getPosition().x, 0 });
-    m_window.setFramerateLimit(60);
-    pushState<StateGameSelect>(*this);
-
-    sf::Image icon;
-    //icon.loadFromFile("D:/GitHub/SpaceInvader/res/txrs/icon.ico");
-    //m_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-}
-
-//Runs the main loop
-void Game::run()
-{
-    constexpr unsigned TPS = 30; //ticks per seconds
-    const sf::Time     timePerUpdate = sf::seconds(1.0f / float(TPS));
-    unsigned ticks = 0;
-
-    sf::Clock timer;
-    auto lastTime = sf::Time::Zero;
-    auto lag = sf::Time::Zero;
-
-    //Main loop of the game
-    while (m_window.isOpen() && !m_states.empty()) {
-        auto& state = getCurrentState();
-
-        //Get times
-        auto time = timer.getElapsedTime();
-        auto elapsed = time - lastTime;
-        lastTime = time;
-        lag += elapsed;
-
-        //Real time update
-        state.handleInput();
-        state.update(elapsed);
-        counter.update();
-
-        //Fixed time update
-        while (lag >= timePerUpdate)
-        {
-            ticks++;
-            lag -= timePerUpdate;
-            state.fixedUpdate(elapsed);
-        }
-
-        //Render
-        m_window.clear();
-        state.render(m_window);
-        counter.draw(m_window);
-        m_window.display();
-
-
-        //Handle window events
-        handleEvent();
-        tryPop();
-    }
-}
-
-//Tries to pop the current game state
-void Game::tryPop()
-{
-    if (m_shouldPop) {
-        m_shouldPop = false;
-        if (m_shouldExit) {
-            m_states.clear();
-            return;
-        }
-        else if (m_shouldChageState) {
-            m_shouldChageState = false;
-            m_states.pop_back();
-            pushState(std::move(m_change));
-            return;
-        }
-
-        m_states.pop_back();
-        if (!m_states.empty()) {
-            getCurrentState().onOpen();
-        }
-    }
-}
-
-//Handles window events, called every frame
+#include "game.h"
 void Game::handleEvent()
 {
     sf::Event e;
 
     while (m_window.pollEvent(e)) {
-        getCurrentState().handleEvent(e);
         switch (e.type) {
         case sf::Event::Closed:
             m_window.close();
@@ -105,40 +15,47 @@ void Game::handleEvent()
         }
     }
 }
-
-//Returns a reference to the current game state
-StateBase& Game::getCurrentState()
+void Game::Draw(sf::RenderTarget& target)
 {
-    return *m_states.back();
+    spawner.drawEnemies(target); 
 }
-
-void Game::pushState(std::unique_ptr<StateBase> state)
+Game::Game()
+    : m_window({ 1280, 720 }, "Hopson Arcade")
 {
-    m_states.push_back(std::move(state));
-    getCurrentState().onOpen();
+    m_window.setPosition({ m_window.getPosition().x, 0 });
+    m_window.setFramerateLimit(60);
+    obj.setSize(sf::Vector2f(50.f, 50.f));
+    obj.setFillColor(sf::Color::Green);
+
+    sf::Image icon;
+    //icon.loadFromFile("D:/GitHub/SpaceInvader/res/txrs/icon.ico");
+    //m_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
+void Game::run() {
+    constexpr unsigned TPS = 30; //ticks per seconds
+    const sf::Time     timePerUpdate = sf::seconds(1.0f / float(TPS));
+    unsigned ticks = 0;
 
-//Flags a boolean for the game to pop state
-void Game::popState()
-{
-    m_shouldPop = true;
-}
+    sf::Clock timer;
+    auto lastTime = sf::Time::Zero;
+    auto lag = sf::Time::Zero;
 
-void Game::exitGame()
-{
-    m_shouldPop = true;
-    m_shouldExit = true;
-}
+    //Main loop of the game
+    while (m_window.isOpen()) {
 
 
-//on tin
-const sf::RenderWindow& Game::getWindow() const
-{
-    return m_window;
-}
 
-void Game::resizeWindow(unsigned width, unsigned height)
-{
-    m_window.close();
-    m_window.create({ width, height }, "Hopson Arcade");
+        //Render
+        m_window.clear();
+   
+       /* spawner.initAddObject();*/
+        m_window.draw(obj);
+        m_window.display();
+
+
+        //Handle window events
+        handleEvent();
+        /*tryPop();*/
+    }
+
 }

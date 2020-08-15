@@ -17,108 +17,61 @@
     <Filter Include="Framework\State">
       <UniqueIdentifier>{ae3f14fc-c0ee-426e-a94d-304822823476}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\CrossyRoad">
+    <Filter Include="CrossyRoad">
       <UniqueIdentifier>{f8ccfa66-ec3e-49d3-ae8c-36e7126772d2}</UniqueIdentifier>
     </Filter>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     <Filter Include="Components">
-=======
-    <Filter Include="Framework\Components">
->>>>>>> Stashed changes
       <UniqueIdentifier>{20d07a3b-5449-4923-8104-00e2963efc7e}</UniqueIdentifier>
-=======
-    <Filter Include="Framework\Sprite">
-      <UniqueIdentifier>{f8ed6491-968a-4438-abba-b509f5253b1d}</UniqueIdentifier>
->>>>>>> Stashed changes
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\Util\random.cpp">
+      <Filter>Framework\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\game.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp">
       <Filter>Framework\State</Filter>
     </ClCompile>
-<<<<<<< Updated upstream
-    <ClCompile Include="Crossy Road\Collider.cpp">
-      <Filter>Framework\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Framework\State</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationRenderer.cpp">
-      <Filter>Framework\State</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceHolder.cpp">
-      <Filter>Framework\ResourceManager</Filter>
-    </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Framework\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Resource Files</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>CrossyRoad</Filter>
     </ClCompile>
     <ClCompile Include="Spawner.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-=======
-    <ClCompile Include="Object.cpp">
-      <Filter>Framework\Sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectManager.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>CrossyRoad</Filter>
     </ClCompile>
     <ClCompile Include="Collidable.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp" />
->>>>>>> Stashed changes
+    <ClCompile Include="game.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\Util\random.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
     <ClInclude Include="Framework\Util\res_manager.h">
       <Filter>Framework\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\game.h">
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\State\state_base.h">
       <Filter>Framework\State</Filter>
     </ClInclude>
-    <ClInclude Include="Crossy Road\Collider.h">
-      <Filter>Framework\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Framework\State</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationRenderer.h">
-      <Filter>Framework\State</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceHolder.h">
-      <Filter>Framework\ResourceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Framework\ResourceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="DisplayInfo.h">
-      <Filter>Framework\State</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
-      <Filter>Framework\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="Enemy.h">
+      <Filter>CrossyRoad</Filter>
     </ClInclude>
     <ClInclude Include="Spawner.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Random.h">
-      <Filter>Framework\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Framework\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectManager.h">
-      <Filter>Resource Files</Filter>
+      <Filter>CrossyRoad</Filter>
     </ClInclude>
     <ClInclude Include="Collidable.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="game.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
