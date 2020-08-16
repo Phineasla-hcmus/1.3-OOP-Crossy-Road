@@ -6,7 +6,7 @@
 #include "../../Framework/Util/Animation.h"
 #include "../../Framework/Util/Random.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     class UFO : public Collidable
     {

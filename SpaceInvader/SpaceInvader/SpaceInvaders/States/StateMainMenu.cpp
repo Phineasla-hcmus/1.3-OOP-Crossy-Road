@@ -6,7 +6,7 @@
 #include "StatePlaying.h"
 #include "StateHighscores.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     StateMainMenu::StateMainMenu(Game & game)
         : StateBase(game, "Main Menu", Display::WIDTH, Display::HEIGHT)

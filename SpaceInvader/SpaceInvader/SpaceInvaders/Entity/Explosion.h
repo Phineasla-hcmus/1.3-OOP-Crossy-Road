@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     /*
         Represents a single explosion entity

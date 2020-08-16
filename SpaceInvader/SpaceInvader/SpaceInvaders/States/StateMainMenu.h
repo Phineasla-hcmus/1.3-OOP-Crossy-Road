@@ -5,7 +5,7 @@
 #include "../../Framework/Util/Random.h"
 #include "../StarryBackground.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     class StateMainMenu : public StateBase
     {

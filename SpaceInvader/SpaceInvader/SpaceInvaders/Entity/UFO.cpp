@@ -3,7 +3,7 @@
 #include "../DisplayInfo.h"
 #include "../../Framework/ResourceManager/ResourceHolder.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     namespace
     {

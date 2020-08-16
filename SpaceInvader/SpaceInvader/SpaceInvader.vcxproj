@@ -40,8 +40,10 @@
     <ClCompile Include="SpaceInvaders\Entity\Invader.cpp" />
     <ClCompile Include="SpaceInvaders\Entity\Player.cpp" />
     <ClCompile Include="SpaceInvaders\Entity\Projectile.cpp" />
+    <ClCompile Include="SpaceInvaders\Entity\Road.cpp" />
     <ClCompile Include="SpaceInvaders\Entity\Shield.cpp" />
     <ClCompile Include="SpaceInvaders\Entity\UFO.cpp" />
+    <ClCompile Include="SpaceInvaders\Entity\Vehicle.cpp" />
     <ClCompile Include="SpaceInvaders\InvaderManager.cpp" />
     <ClCompile Include="SpaceInvaders\StarryBackground.cpp" />
     <ClCompile Include="SpaceInvaders\States\StateHighscores.cpp" />
@@ -75,8 +77,10 @@
     <ClInclude Include="SpaceInvaders\Entity\Invader.h" />
     <ClInclude Include="SpaceInvaders\Entity\Player.h" />
     <ClInclude Include="SpaceInvaders\Entity\Projectile.h" />
+    <ClInclude Include="SpaceInvaders\Entity\Road.h" />
     <ClInclude Include="SpaceInvaders\Entity\Shield.h" />
     <ClInclude Include="SpaceInvaders\Entity\UFO.h" />
+    <ClInclude Include="SpaceInvaders\Entity\Vehicle.h" />
     <ClInclude Include="SpaceInvaders\InvaderManager.h" />
     <ClInclude Include="SpaceInvaders\StarryBackground.h" />
     <ClInclude Include="SpaceInvaders\States\StateHighscores.h" />

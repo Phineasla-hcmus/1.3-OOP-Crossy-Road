@@ -2,7 +2,7 @@
 
 #include "../DisplayInfo.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     Projectile::Projectile(const sf::Vector2f & position, Type type, Direction direction)
         : Collidable(WIDTH / 1.5, HEIGHT)

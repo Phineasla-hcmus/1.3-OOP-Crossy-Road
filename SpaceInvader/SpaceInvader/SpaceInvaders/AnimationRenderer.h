@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     /*
         Utility class for rendering a large number of entites which share

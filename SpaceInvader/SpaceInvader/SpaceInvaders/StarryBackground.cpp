@@ -2,7 +2,7 @@
 
 #include "DisplayInfo.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     StarryBackground::StarryBackground()
     {

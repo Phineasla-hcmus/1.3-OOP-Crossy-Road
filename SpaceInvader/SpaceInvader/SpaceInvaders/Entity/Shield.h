@@ -5,11 +5,11 @@
 
 #include "../Collidable.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
-    class Projectile;
+   class Projectile;
 
-    class Shield : private Collidable
+    class Shield :private Collidable
     {
         constexpr static int SECT_SIZE = 20;
 

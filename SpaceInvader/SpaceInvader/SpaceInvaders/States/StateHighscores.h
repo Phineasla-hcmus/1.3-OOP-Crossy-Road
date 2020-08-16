@@ -4,7 +4,7 @@
 #include "../../Framework/GUI/StackMenu.h"
 #include "../../Framework/GUI/Widget.h"
 #include "../StarryBackground.h"
-namespace SpaceInvaders
+namespace CrossRoad
 {
     class StateHighscores : public StateBase
     {

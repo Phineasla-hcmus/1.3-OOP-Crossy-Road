@@ -9,8 +9,10 @@
 #include "Entity/Explosion.h"
 #include "Entity/Shield.h"
 #include "Entity/UFO.h"
+#include "Entity//Road.h"
+#include "Entity/Vehicle.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     /**
         The class which manages the world and th interactions between different entites
@@ -33,7 +35,7 @@ namespace SpaceInvaders
     private:
         void playerProjectileInput();
         void enemyProjectileFire();
-        CollisionResult getCollisionResult(float dtt);
+        //CollisionResult getCollisionResult(float dtt);
         void updateProjectiles(float dt, std::vector<sf::Vector2f>& collisionPoints);
 
         AnimationRenderer m_projectileRenderer;
@@ -44,6 +46,13 @@ namespace SpaceInvaders
         std::vector<Projectile> m_projectiles;
         std::vector<Explosion> m_explosions;
         std::vector<Shield> m_shields;
+        std::vector<DRoad> m_road;
+        std::vector<Vehicle*> m_vehicle;
+
+        float vehicleSpawnTimer;
+        float vehicleSpawnTimerMax;
+        int maxVehicles; 
+        
 
         sf::RectangleShape m_explodeShape;
         sf::Clock m_invaderShotClock;

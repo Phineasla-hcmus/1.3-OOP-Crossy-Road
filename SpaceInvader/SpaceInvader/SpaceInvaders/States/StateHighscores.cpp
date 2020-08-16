@@ -10,7 +10,7 @@
 #include <iostream>
 
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     namespace
     {

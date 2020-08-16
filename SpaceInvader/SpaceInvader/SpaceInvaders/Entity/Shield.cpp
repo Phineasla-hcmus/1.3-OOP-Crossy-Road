@@ -6,11 +6,11 @@
 
 #include <iostream>
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
-    Shield::Shield(float x)
-        : Collidable((float)SIZE, (float)SIZE)
-        , m_position(x, Display::HEIGHT - 200)
+    Shield::Shield(float x):
+        Collidable((float)SIZE, (float)SIZE),
+         m_position(x, Display::HEIGHT - 200)
     {
         using Sty = SectorStyle;
         for (float sy = 0; sy < 4; sy++) {
@@ -29,14 +29,14 @@ namespace SpaceInvaders
         }
     }
 
-    void Shield::draw(sf::RenderTarget & target)
+    void Shield::draw(sf::RenderTarget& target)
     {
         for (auto& sect : m_sections) {
             sect.draw(target);
         }
     }
 
-    const sf::Vector2f & Shield::getPosition() const
+    const sf::Vector2f& Shield::getPosition() const
     {
         return m_position;
     }
@@ -106,9 +106,12 @@ namespace SpaceInvaders
         return false;
     }
 
-    Shield::ShieldSection::ShieldSection(float tlX, float tlY, SectorStyle style)
-        : Collidable((float)SECT_SIZE, (float)SECT_SIZE)
-        , m_position({ tlX, tlY })
+    
+
+
+    Shield::ShieldSection::ShieldSection(float tlX, float tlY, SectorStyle style):
+         Collidable((float)SECT_SIZE, (float)SECT_SIZE),
+         m_position({ tlX, tlY })
     {
         for (float y = 0; y < SECT_SIZE; y++) {
             for (float x = 0; x < SECT_SIZE; x++) {
@@ -120,17 +123,17 @@ namespace SpaceInvaders
         }
     }
 
-    void Shield::ShieldSection::draw(sf::RenderTarget & target)
+    void Shield::ShieldSection::draw(sf::RenderTarget& target)
     {
         target.draw(m_pixels.data(), m_pixels.size(), sf::Points);
     }
 
-    const sf::Vector2f & Shield::ShieldSection::getPosition() const
+    const sf::Vector2f& Shield::ShieldSection::getPosition() const
     {
         return m_position;
     }
 
-    sf::Vector2f Shield::ShieldSection::isTouching(const  Projectile & other)
+    sf::Vector2f Shield::ShieldSection::isTouching(const  Projectile& other)
     {
         for (auto& px : m_pixels) {
             if (other.getBox().contains(px.position) && px.color == sf::Color::Green) {
@@ -139,6 +142,9 @@ namespace SpaceInvaders
         }
         return { -1, -1 };
     }
+
+    
+
 
     //Blacks out an area around the inputted point
     void Shield::ShieldSection::destroyArea(int x, int y)
@@ -154,7 +160,7 @@ namespace SpaceInvaders
         }
     }
 
-    void Shield::ShieldSection::calculatePixelCoord(int x, int y, sf::Vertex & pixel, SectorStyle style)
+    void Shield::ShieldSection::calculatePixelCoord(int x, int y, sf::Vertex& pixel, SectorStyle style)
     {
         switch (style) {
         case SectorStyle::Square:

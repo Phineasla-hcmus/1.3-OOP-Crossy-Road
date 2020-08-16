@@ -11,7 +11,7 @@ class ResourceManager
 {
     public:
         ResourceManager (const std::string& folder, const std::string& extention)
-        :   m_folder    ("D:/GitHub/SpaceInvader/res/" + folder + "/")
+        :   m_folder    ("res/" + folder + "/")
         ,   m_extention ("." + extention)
         { }
 

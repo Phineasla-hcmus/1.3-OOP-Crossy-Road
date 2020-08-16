@@ -1,6 +1,6 @@
 #include "Collidable.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     Collidable::Collidable(float width, float height)
         : m_size(width, height)

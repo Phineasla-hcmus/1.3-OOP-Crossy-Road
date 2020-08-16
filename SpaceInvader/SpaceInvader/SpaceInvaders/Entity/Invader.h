@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../Collidable.h"
-namespace SpaceInvaders
+namespace CrossRoad
 {
     /*
         Class to represent a single invader

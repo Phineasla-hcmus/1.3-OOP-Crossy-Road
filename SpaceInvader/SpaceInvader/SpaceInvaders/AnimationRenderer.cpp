@@ -1,6 +1,6 @@
 #include "AnimationRenderer.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     AnimationRenderer::AnimationRenderer(int frameWidth, int frameHeight, float entityWidth, float entityHeight, const sf::Texture & spriteSheet)
         : m_frameWidth(frameWidth)

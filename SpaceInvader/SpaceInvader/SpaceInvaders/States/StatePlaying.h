@@ -5,7 +5,7 @@
 #include "../../Framework/GUI/StackMenu.h"
 
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     /*
         The main state; where all the gameplay happens

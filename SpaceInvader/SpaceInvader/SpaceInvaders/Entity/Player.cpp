@@ -2,40 +2,40 @@
 #include "../DisplayInfo.h"
 #include "../../Framework/ResourceManager/ResourceHolder.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     namespace
     {
         constexpr float BASE_Y = (float)Display::HEIGHT - 40.0f;
+        constexpr float BASE_X = (float)Display::WIDTH - 40.0f;
     }
 
     Player::Player()
         : Collidable(44, 32)
-        , m_deathAnimation(11, 8)
+        , death_Animation(11, 8)
     {
-        m_sprite.setSize({ 44, 32 });
-        m_sprite.setPosition({ Display::WIDTH / 2, BASE_Y });
-        m_sprite.setTexture(&ResourceHolder::get().textures.get("si/player"));
-        m_sprite.setTextureRect({ 0, 0, 11, 8 });
+        people.setSize({ 44, 32 });
+        people.setPosition({ Display::WIDTH / 2, BASE_Y });
+        //people.setTexture(&ResourceHolder::get().textures.get("si/player"));
+        //people.setTextureRect({ 0, 0, 11, 8 });
 
-        for (int i = 0; i < 20; i++) {
-            m_deathAnimation.addFrame(((i % 2) + 1), sf::seconds(0.1f));
-        }
+        /*for (int i = 0; i < 20; i++) {
+            death_Animation.addFrame(((i % 2) + 1), sf::seconds(0.1f));
+        }*/
 
-        m_deathSound.setBuffer(ResourceHolder::get().soundBuffers.get("si/explosion"));
+        //death_Sound.setBuffer(ResourceHolder::get().soundBuffers.get("si/explosion"));
 
     }
 
     void Player::restart()
     {
-        m_velocity *= 0.0f;
-        m_sprite.setTextureRect({ 0, 0, 11, 8 });
-        m_isAlive = true;
-        m_livesLeft--;
-        m_sprite.setPosition({ Display::WIDTH / 2, BASE_Y });
+        v_speed *= 0.0f;
+        //people.setTextureRect({ 0, 0, 11, 8 });
+        is_Alive = true;        
+        people.setPosition({ Display::WIDTH / 2, BASE_Y });
     }
 
-    void Player::input()
+    void Player::inputKeyPress()
     {
         using Key = sf::Keyboard::Key;
         auto keyDown = [](sf::Keyboard::Key k) {
@@ -44,77 +44,70 @@ namespace SpaceInvaders
 
         float speed = 20;
         if (keyDown(Key::A)) {
-            m_velocity.x -= speed;
+            v_speed.x -= speed;
         }
         else if (keyDown(Key::D)) {
-            m_velocity.x += speed;
+            v_speed.x += speed;
+        }
+        else if (keyDown(Key::W)) {
+            v_speed.y -= speed;
+        }
+        else if (keyDown(Key::S)) {
+            v_speed.y += speed;
         }
     }
 
     void Player::update(float dt)
     {
-        if (m_isAlive) {
-            auto w = m_sprite.getGlobalBounds().width;
-            m_sprite.move(m_velocity * dt);
-            m_velocity *= 0.95f;
-            if (m_sprite.getPosition().x <= 0) {
-                m_velocity.x = 1.0f;
-                m_sprite.setPosition(1.0f, BASE_Y);
-            }
-            else if (m_sprite.getPosition().x + w >= Display::WIDTH) {
-                m_velocity.x = -1.0f;
-                m_sprite.setPosition(Display::WIDTH - 1.0f - w, BASE_Y);
-            }
+        if (is_Alive) {
+            auto w = people.getGlobalBounds().width;
+            auto h = people.getGlobalBounds().height;
+            people.move(v_speed * dt);
+            v_speed *= 0.95f;
+            //if player move out of bound
+            
+            //Left
+            if (this->people.getGlobalBounds().left <= 0.f)
+                this->people.setPosition(0.f, this->people.getGlobalBounds().top);
+            //Right
+            if (this->people.getGlobalBounds().left + this->people.getGlobalBounds().width >= 1280)
+                this->people.setPosition(1280- this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
+            //Top
+            if (this->people.getGlobalBounds().top <= 0.f)
+                this->people.setPosition(this->people.getGlobalBounds().left, 0.f);
+            //Bottom
+            if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height >= 720)
+                this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
         }
     }
 
     void Player::draw(sf::RenderTarget& target)
     {
-        if (!m_isAlive) {
-            m_sprite.setTextureRect(m_deathAnimation.getFrame());
+        if (!is_Alive) {
+            people.setTextureRect(death_Animation.getFrame());
         }
-        if (m_livesLeft >= 0) {
-            target.draw(m_sprite);
-        }
+        else
+            target.draw(people);
+        
     }
 
-    sf::Vector2f Player::getGunPosition() const
-    {
-        return
-        {
-            m_sprite.getPosition().x + m_sprite.getGlobalBounds().width / 2,
-            m_sprite.getPosition().y
-        };
-    }
-
+ 
     const sf::Vector2f & Player::getPosition() const
     {
-        return m_sprite.getPosition();
+        return people.getPosition();
     }
 
     void Player::onCollide(Collidable& other)
     {
-        m_isAlive = false;
+        is_Alive = false;
         m_deathTimer.restart();
-        m_deathSound.play();
+        death_Sound.play();
     }
 
-    int Player::getLives() const
-    {
-        return m_livesLeft;
-    }
 
     bool Player::isAlive() const
     {
-        return m_isAlive;
-    }
-
-    void Player::tryRevive()
-    {
-        if (m_deathTimer.getElapsedTime().asSeconds() >= 1.5f) {
-            restart();
-        }
-
-    }
+        return is_Alive;
+    }   
 
 }

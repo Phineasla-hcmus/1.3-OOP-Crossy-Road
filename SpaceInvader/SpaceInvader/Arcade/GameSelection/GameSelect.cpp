@@ -41,5 +41,5 @@ SpaceInvadersSelect::SpaceInvadersSelect(const std::string & name)
 
 std::unique_ptr<StateBase> SpaceInvadersSelect::getInitState(Game& game)
 {
-    return std::make_unique<SpaceInvaders::StateMainMenu>(game);
+    return std::make_unique<CrossRoad::StateMainMenu>(game);
 }

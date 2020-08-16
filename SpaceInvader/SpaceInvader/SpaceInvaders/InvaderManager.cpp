@@ -5,7 +5,7 @@
 #include "../Framework/ResourceManager/ResourceHolder.h"
 #include "World.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     namespace
     {

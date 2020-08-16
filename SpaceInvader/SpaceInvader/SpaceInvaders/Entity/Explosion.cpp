@@ -1,6 +1,6 @@
 #include "Explosion.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     Explosion::Explosion(const sf::Vector2f & position)
         : m_position(position)

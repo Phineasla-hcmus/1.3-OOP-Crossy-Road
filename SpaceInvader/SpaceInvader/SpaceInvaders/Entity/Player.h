@@ -7,7 +7,7 @@
 #include "../Collidable.h"
 #include "../../Framework/Util/Animation.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     /**
         Represents the player
@@ -20,32 +20,25 @@ namespace SpaceInvaders
 
         Player();
 
-        void input();
+        void inputKeyPress();
         void update(float dt);
-        void draw(sf::RenderTarget& target);
-
-        //Gets the coordinates of the gun
-        sf::Vector2f getGunPosition() const;
+        void draw(sf::RenderTarget& target);           
 
         const sf::Vector2f& getPosition() const;
         void onCollide(Collidable& other) override;
-
-        int getLives() const;
+     
         bool isAlive() const;
-
-        void tryRevive();
 
     private:
         void restart();
 
-        sf::RectangleShape m_sprite;
-        Animation m_deathAnimation;
-        sf::Vector2f m_velocity;
+        sf::RectangleShape people;
+        Animation death_Animation;
+        sf::Vector2f v_speed;
         sf::Clock m_deathTimer;
 
-        bool m_isAlive = true;
-        int m_livesLeft = 3;
+        bool is_Alive = true;        
 
-        sf::Sound m_deathSound;
+        sf::Sound death_Sound;
     };
 }

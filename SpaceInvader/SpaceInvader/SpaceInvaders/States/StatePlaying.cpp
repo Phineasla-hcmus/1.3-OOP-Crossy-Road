@@ -9,7 +9,7 @@
 
 #include "StateHighscores.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     StatePlaying::StatePlaying(Game& game)
         : StateBase(game, "Playing the game")
@@ -75,7 +75,7 @@ namespace SpaceInvaders
     {
         m_world.draw(renderer);
 
-        m_lifeDisplay.draw(renderer, m_world.getPlayer().getLives());
+       // m_lifeDisplay.draw(renderer, m_world.getPlayer().getLives());
         m_scoreDisplay.draw(renderer);
         m_highestScoreDisplay.draw(renderer);
 

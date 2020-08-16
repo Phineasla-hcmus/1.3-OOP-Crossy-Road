@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Framework/Util/Random.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
 
     class StarryBackground

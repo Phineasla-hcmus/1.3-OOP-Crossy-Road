@@ -4,7 +4,7 @@
 
 #include "../Collidable.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     class Projectile : public Collidable
     {

@@ -1,6 +1,6 @@
 #include "Invader.h"
 
-namespace SpaceInvaders
+namespace CrossRoad
 {
     Invader::Invader(const sf::Vector2f & initialLocation, Type type)
         : Collidable(WIDTH, HEIGHT)

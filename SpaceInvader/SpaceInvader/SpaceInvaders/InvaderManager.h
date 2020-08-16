@@ -10,7 +10,7 @@
 
 #include "../Framework/Util/Random.h"
 
-namespace SpaceInvaders 
+namespace CrossRoad 
 {
     class World;
 

@@ -1,10 +1,10 @@
 #pragma once
 
-namespace SpaceInvaders 
+namespace CrossRoad 
 {
     namespace Display
     {
-        constexpr unsigned WIDTH = 1000;
-        constexpr unsigned HEIGHT = 800;
+        constexpr unsigned WIDTH = 1280;
+        constexpr unsigned HEIGHT = 720;
     }
 }
