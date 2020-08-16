@@ -24,12 +24,14 @@ namespace CrossRoad
 
         //init road
         float old = 0;
+        int k = 1;
         for (int i = 0; i < 4; ++i) {
             sf::Vector2f pos;
             pos.x = 0;
-            pos.y =old;            
-            m_road.push_back(pos);            
+            pos.y = old;
+            m_road.push_back({ pos,4.f,k });
             old = pos.y + m_road[0].getDistance();
+            k = k * -1;
         }
 
         
