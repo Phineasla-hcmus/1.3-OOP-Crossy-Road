@@ -152,16 +152,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework\game.cpp" />
+    <ClCompile Include="Framework\ResourceManager\resource.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Framework\Util\random.cpp" />
+    <ClCompile Include="Main\State\state_playing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\game.h" />
+    <ClInclude Include="Framework\ResourceManager\resource.h" />
     <ClInclude Include="Framework\State\state_base.h" />
     <ClInclude Include="Framework\Util\no_copy.h" />
     <ClInclude Include="Framework\Util\random.h" />
     <ClInclude Include="Framework\Util\res_manager.h" />
+    <ClInclude Include="Main\State\state_playing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

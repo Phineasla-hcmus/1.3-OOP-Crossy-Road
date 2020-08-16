@@ -23,6 +23,12 @@
     <Filter Include="Framework\GUI">
       <UniqueIdentifier>{8c9c8fc5-776d-4c4f-8c8f-c6d3e9a591e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main Game\State">
+      <UniqueIdentifier>{3a4a6b8d-9d06-4eb0-af62-505d1910e457}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Game\NewFilter1">
+      <UniqueIdentifier>{d18f7482-6175-495a-b658-454cebb20cab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Util\random.cpp">
@@ -34,6 +40,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp">
       <Filter>Framework\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ResourceManager\resource.cpp">
+      <Filter>Framework\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\State\state_playing.cpp">
+      <Filter>Main Game\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +63,12 @@
     </ClInclude>
     <ClInclude Include="Framework\Util\no_copy.h">
       <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ResourceManager\resource.h">
+      <Filter>Framework\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\State\state_playing.h">
+      <Filter>Main Game\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

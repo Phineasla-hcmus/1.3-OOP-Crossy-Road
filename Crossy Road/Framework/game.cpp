@@ -24,6 +24,11 @@ void game::run()
 	}
 }
 
+void game::pushState(std::unique_ptr<state_base> state)
+{
+	_states.push(std::move(state));
+}
+
 sf::Time game::update_dt_clock()
 {
 	return dt_clock.restart();
