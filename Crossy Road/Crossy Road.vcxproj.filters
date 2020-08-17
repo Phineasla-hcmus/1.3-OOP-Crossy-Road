@@ -26,9 +26,6 @@
     <Filter Include="Main Game\State">
       <UniqueIdentifier>{3a4a6b8d-9d06-4eb0-af62-505d1910e457}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Main Game\NewFilter1">
-      <UniqueIdentifier>{d18f7482-6175-495a-b658-454cebb20cab}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Util\random.cpp">

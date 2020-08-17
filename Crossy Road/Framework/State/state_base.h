@@ -11,7 +11,7 @@ public:
 	state_base(game&);
 	virtual ~state_base() = default;
 
-	virtual void handleInput();
+	//virtual void handleInput();
 	virtual void handleEvent(sf::Event e)			= 0;
 	virtual void update(sf::Time delta_time)		= 0;
 	virtual void render(sf::RenderTarget& renderer) = 0;

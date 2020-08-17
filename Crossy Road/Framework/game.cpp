@@ -21,6 +21,29 @@ void game::run()
 		auto& state = cur_state();
 		//Frame update
 		state.update(update_dt_clock());
+
+		//Handle event
+		sf::Event event;
+		while (_window.pollEvent(event)) {
+			state.handleEvent(event);
+			switch (event.type)
+			{
+			case sf::Event::Closed:
+				//maybe need prompt will lose data before exit
+				_window.close();
+				break;
+			default:
+				break;
+			}
+		}
+
+		//Render
+		//1st buffer
+		_window.clear();
+		state.render(_window);
+		//2nd buffer
+		_window.display();
+
 	}
 }
 
