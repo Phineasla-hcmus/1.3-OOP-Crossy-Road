@@ -56,6 +56,11 @@ void game::pushState(std::unique_ptr<state_base> state)
 	_states.push(std::move(state));
 }
 
+const sf::RenderWindow& game::get_window() const
+{
+	return _window;
+}
+
 sf::Time game::update_dt_clock()
 {
 	return dt_clock.restart();

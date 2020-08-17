@@ -19,6 +19,7 @@ public:
 	void run();
 	void pushState(std::unique_ptr<state_base> state);
 	void popState();
+	const sf::RenderWindow& get_window() const;
 	sf::Time update_dt_clock();
 };
 #endif // !_main_game

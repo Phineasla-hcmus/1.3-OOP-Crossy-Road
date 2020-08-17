@@ -1,10 +1,8 @@
 #include"Framework/game.h"
-#include"SFML/Audio.hpp"
 int main()
 {
 	game Game;
 	Game.run();
-	sf::SoundBuffer test;
 }
 
 
