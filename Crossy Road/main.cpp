@@ -1,8 +1,8 @@
 #include"Framework/game.h"
 int main()
 {
-    game Game;
-    Game.run();
+	game Game;
+	Game.run();
 }
 
 

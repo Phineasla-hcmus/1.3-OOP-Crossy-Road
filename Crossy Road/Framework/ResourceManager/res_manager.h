@@ -2,7 +2,7 @@
 #define _resource_manager
 #include<string>
 #include<unordered_map>
-#define DEFAULT_FOLDER_DIR "resourse/"
+#define DEFAULT_FOLDER_DIR "Assets/"
 #define FAILED_FILE_NAME "FAILED"
 template<typename Resource_t>
 class res_manager
