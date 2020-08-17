@@ -110,7 +110,7 @@ namespace CrossRoad {
 			r_vehicle.push_back(v);
 		}
 	}
-	void DRoad::update()
+	void DRoad::update(float dt)
 	{
 		//Updating the timer for enemy spawning
 		if (this->r_vehicle.size() < this->maxVehicle)
@@ -123,7 +123,7 @@ namespace CrossRoad {
 		for (int i = 0; i < this->r_vehicle.size(); i++)
 		{
 
-			this->r_vehicle[i]->vehicle.move(this->speed * this->isFromLeft, 0.f);
+			this->r_vehicle[i]->vehicle.move(double(100*dt * this->isFromLeft), 0.f);
 
 			if (this->isFromLeft == 1 && this->r_vehicle[i]->vehicle.getPosition().x > 1280)
 				this->r_vehicle.erase(this->r_vehicle.begin() + i);

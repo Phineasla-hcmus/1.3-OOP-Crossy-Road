@@ -10,6 +10,7 @@ Game::Game()
 {
     m_window.setPosition({m_window.getPosition().x, 0});
     m_window.setFramerateLimit(60);
+    //m_window.setVerticalSyncEnabled(true);
     pushState<StateGameSelect>(*this);
 
     sf::Image icon;
@@ -20,7 +21,7 @@ Game::Game()
 //Runs the main loop
 void Game::run()
 {
-    constexpr unsigned TPS = 30; //ticks per seconds
+    constexpr unsigned TPS = 60; //ticks per seconds
     const sf::Time     timePerUpdate = sf::seconds(1.0f / float(TPS));
     unsigned ticks = 0;
 
@@ -31,7 +32,6 @@ void Game::run()
     //Main loop of the game
     while (m_window.isOpen() && !m_states.empty()) {
         auto& state = getCurrentState();
-
         //Get times
         auto time = timer.getElapsedTime();
         auto elapsed = time - lastTime;
@@ -39,6 +39,8 @@ void Game::run()
         lag += elapsed;
 
         //Real time update
+        //std::cout << elapsed.asSeconds() << std::endl;
+        
         state.handleInput();
         state.update(elapsed);
         counter.update();
@@ -54,7 +56,8 @@ void Game::run()
         //Render
         m_window.clear();
         state.render(m_window);
-        counter.draw(m_window);
+        //counter.draw(m_window);
+        std::cout << 1.f / elapsed.asSeconds() << std::endl;
         m_window.display();
 
 

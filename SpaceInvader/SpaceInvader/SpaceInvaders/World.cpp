@@ -55,7 +55,7 @@ namespace CrossRoad
     {
         int score = 0;
         for (auto& road : this->m_road)
-            road.update();
+            road.update(dt);
 
         m_player.update(dt);
         if (m_invaders.areInvadersAlive()) {
