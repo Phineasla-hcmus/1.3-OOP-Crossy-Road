@@ -16,5 +16,4 @@ void state_main_menu::update(sf::Time delta_time)
 
 void state_main_menu::draw(sf::RenderTarget& render)
 {
-	_world.draw(render);
 }
