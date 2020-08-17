@@ -11,13 +11,13 @@ constexpr float BASE_Y = 95.0f;
         m_background.setOutlineColor(sf::Color::Cyan);
         m_background.setFillColor({ 100, 100, 100, 230 });
         m_background.setSize(m_baseSize);
-        m_background.setPosition(m_basePosition.x - m_baseSize.x / 10, baseY - 100);
+        m_background.setPosition(m_basePosition.x - m_baseSize.x/2.f , baseY - 100);
 
        
-        m_titleText.setPosition(m_basePosition.x - m_baseSize.x / 10, baseY - 100);
-        m_titleText.setOutlineColor(sf::Color::Red);
+       /* m_titleText.setPosition( m_baseSize.x /20000000000.f, baseY - 100);
+        m_titleText.setOutlineColor(sf::Color::Yellow);
         m_titleText.setOutlineThickness(10);
-        m_titleText.setCharacterSize(1);
+        m_titleText.setCharacterSize(10);*/
     }
 
     StackMenu::StackMenu(const sf::Vector2f& position)
@@ -54,7 +54,7 @@ constexpr float BASE_Y = 95.0f;
 
     void StackMenu::initWidget(Widget& widget)
     {
-        widget.setPosition({ m_basePosition.x - widget.getSize().x / 18,
+        widget.setPosition({ m_basePosition.x - widget.getSize().x / 2.f,
                            m_basePosition.y-70 });
 
 
@@ -66,7 +66,7 @@ constexpr float BASE_Y = 95.0f;
     void StackMenu::setTitle(const std::string& title, const sf::RenderTarget& target)
     {
         m_titleText.setString(title);
-        m_titleText.setPosition(target.getSize().x -m_titleText.getGlobalBounds().width / 18,
+        m_titleText.setPosition(target.getSize().x -m_titleText.getGlobalBounds().width / 2.f,
         m_titleText.getPosition().y-70);
         
     }

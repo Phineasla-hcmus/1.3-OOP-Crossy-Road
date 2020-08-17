@@ -1,10 +1,12 @@
 #include "Widget.h"
+#include"resource.h"
 Widget::Text::Text()
 {
-    setCharacterSize(25);
+    setCharacterSize(30);
     setOutlineColor(sf::Color::Black);
-    setFillColor(sf::Color::White);
-    //setFont(ResourceHolder::get().fonts.get("arcade"));
+    setFillColor(sf::Color::Blue);
+    setFont(resource::get().fonts.get("arcade","TTF"));
+    
 }
 
 bool Widget::Rectangle::isRolledOn(const sf::RenderWindow& window) const

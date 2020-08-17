@@ -1,6 +1,5 @@
 #include "StateBase.h"
 #include"Game.h"
-StateBase::StateBase(Game& game, const char* name, unsigned resizeWindowWidth, unsigned resizeWindowHeight) : m_pGame(&game), m_name(name)
-{
-    m_pGame->resizeWindow(resizeWindowWidth, resizeWindowHeight);
-}
+StateBase::StateBase(Game& game)
+    : m_pGame(&game)
+{}

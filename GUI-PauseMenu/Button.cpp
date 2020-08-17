@@ -44,7 +44,6 @@
                 if (m_button.getGlobalBounds().contains((float)pos.x, (float)pos.y)) {
                     m_function();
                 }
-
             default:
                 break;
             }
@@ -70,9 +69,9 @@
 
     void Button::updateText()
     {
-        m_text.setOrigin(m_text.getGlobalBounds().width ,
-            m_text.getGlobalBounds().height );
-        m_text.move(m_button.getGlobalBounds().width ,
+        m_text.setOrigin(m_text.getGlobalBounds().width +70 ,
+            m_text.getGlobalBounds().height+30 );
+        m_text.move(m_button.getGlobalBounds().width+10 ,
             m_button.getGlobalBounds().height);
     }
 
