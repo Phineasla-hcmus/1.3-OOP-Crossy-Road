@@ -11,7 +11,8 @@ public:
 	state_playing(game&);
 
 	void handleEvent(sf::Event e)			override;
-	void update(sf::Time delta_time)		override;
-	void draw(sf::RenderTarget& renderer)	override;
+	void handleInput()                      override;
+	void update(sf::Time delta_time)		override;	
+	void draw(sf::RenderTarget& renderer)    override;
 };
 #endif // !_state_playing/

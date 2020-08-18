@@ -26,6 +26,7 @@ void game::run()
 		auto time = update_dt_clock();
 		//Frame update
 		//std::cout << 1.f / time.asSeconds() << std::endl;
+		state.handleInput();
 		state.update(time);
 		//Handle event
 		sf::Event event;
