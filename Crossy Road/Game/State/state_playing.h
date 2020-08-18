@@ -75,6 +75,9 @@ public:
 };
 #endif // !_state_playing
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of ff83bed... backup state playing
+=======
 >>>>>>> parent of ff83bed... backup state playing
 =======
 >>>>>>> parent of ff83bed... backup state playing
