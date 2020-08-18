@@ -7,10 +7,10 @@ StateMainMenu::StateMainMenu(Game& game)
     : StateBase(game)
     , m_mainMenu(game.getWindow(), Display::HEIGHT / 2 - 100)
 {
-    m_banner.setSize({ (float)Display::WIDTH+285, 200 });
-    m_banner.setFillColor(sf::Color::Blue);
-    m_banner.setTexture(&resource::get().textures.get("si/logo","png"));
-
+    m_banner.setSize({ 800, 100 });
+    m_banner.setFillColor(sf::Color::Yellow);
+    m_banner.setTexture(&resource::get().textures.get("si/crossyroad","png"));
+    m_banner.setPosition(210, 30);
   
     auto playBtn = makeButton();
     playBtn->setText("Play game");
@@ -41,7 +41,7 @@ StateMainMenu::StateMainMenu(Game& game)
 void StateMainMenu::setPosition(const sf::Vector2f position)
 {
     m_container.setPosition(position);
-    m_thumbnail.setPosition(position);
+   m_thumbnail.setPosition(position);
 }
 void StateMainMenu::handleEvent(sf::Event e)
 {
@@ -49,7 +49,7 @@ void StateMainMenu::handleEvent(sf::Event e)
 }
 void StateMainMenu::draw(sf::RenderTarget& renderer)
 {
-    renderer.draw(m_container);
+   renderer.draw(m_container);
     renderer.draw(m_thumbnail);
 }
 void StateMainMenu::render(sf::RenderTarget& renderer)
