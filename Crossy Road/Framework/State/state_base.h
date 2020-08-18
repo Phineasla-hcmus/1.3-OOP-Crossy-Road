@@ -4,7 +4,7 @@
 #include"../Util/no_copy.h"
 class game;
 class state_base : public no_copy
-{
+{//
 private:
 	game& _game;
 public:
