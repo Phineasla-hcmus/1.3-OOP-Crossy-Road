@@ -35,7 +35,7 @@ namespace CrossRoad
     private:
         const sf::Vector2f m_initialPosition;
         sf::Vector2f m_location;
-        bool m_isAlive = false;
+        bool m_isAlive = true;
         Type m_type;
 
     public:

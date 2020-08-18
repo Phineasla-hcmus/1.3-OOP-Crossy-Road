@@ -64,7 +64,7 @@ namespace CrossRoad
          
         }
         else {
-            m_invaders.initAddInvader();
+//            m_invaders.initAddInvader();
             
         }
         return score;
