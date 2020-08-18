@@ -1,9 +1,10 @@
 #ifndef _state_playing
 #include"../../Framework/State/state_base.h"
-#include"../world.h"
+#include "../World.h"
+
 class state_playing :public state_base {
 private:
-	world	_world;
+	World _world;
 	int		_score			= 0;
 	bool	_is_gameover	= false;
 public:
