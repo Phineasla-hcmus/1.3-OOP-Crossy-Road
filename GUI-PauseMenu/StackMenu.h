@@ -9,16 +9,17 @@ class StackMenu
 public:
     StackMenu(const sf::RenderWindow& window, float baseY);
     StackMenu(const sf::Vector2f& position);
-    StackMenu(StackMenu&& other) ;
-    StackMenu& operator =(StackMenu&& other);
+    // just let 2 function here
+   /* StackMenu(StackMenu&& other) ;
+    StackMenu& operator =(StackMenu&& other);*/ 
     ~StackMenu() = default;
     void addWidget(std::unique_ptr<Widget> w);
-    template<typename T, typename Args>
+    /*template<typename T, typename Args>
     void addWidget(Args&& args) {
         auto w = std::make_unique<T>(std::forward<Args>(args));
         initWidget(*w);
         m_widgets.push_back(std::move(w));
-    }
+    }*/
     void setTitle(const std::string& title, const sf::RenderTarget& target);
     void handleEvent(sf::Event e, const sf::RenderWindow& window);
     void render(sf::RenderTarget& renderer);

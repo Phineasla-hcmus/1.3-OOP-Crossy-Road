@@ -14,7 +14,7 @@ constexpr float BASE_Y = 95.0f;
         m_background.setPosition(m_basePosition.x - m_baseSize.x/2.f , baseY - 100);
 
        
-       /* m_titleText.setPosition( m_baseSize.x /20000000000.f, baseY - 100);
+      /*  m_titleText.setPosition( m_baseSize.x /20000000000.f, baseY - 100);
         m_titleText.setOutlineColor(sf::Color::Yellow);
         m_titleText.setOutlineThickness(10);
         m_titleText.setCharacterSize(10);*/
@@ -29,14 +29,14 @@ constexpr float BASE_Y = 95.0f;
         m_background.setPosition(position);
     }
 
-    StackMenu::StackMenu(StackMenu&& other)
+    /*StackMenu::StackMenu(StackMenu&& other)
         : m_widgets(std::move(other.m_widgets))
         , m_background(std::move(other.m_background))
         , m_basePosition(other.m_basePosition)
         , m_baseSize(other.m_baseSize)
-    {};
+    {};*/
 
-    StackMenu& StackMenu::operator=(StackMenu&& other)
+    /*StackMenu& StackMenu::operator=(StackMenu&& other)
     {
         m_widgets = std::move(other.m_widgets);
         m_background = std::move(other.m_background);
@@ -44,7 +44,7 @@ constexpr float BASE_Y = 95.0f;
         m_baseSize = other.m_baseSize;
 
         return *this;
-    }
+    }*/
 
     void StackMenu::addWidget(std::unique_ptr<Widget> w)
     {
