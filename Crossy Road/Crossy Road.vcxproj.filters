@@ -31,7 +31,7 @@
       <UniqueIdentifier>{f778e61b-6bd5-4fec-84c7-4be3988bfa38}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Game\Entity">
-      <UniqueIdentifier>{27cb123d-b1e9-4a03-a8d8-11cb29439a6d}</UniqueIdentifier>
+      <UniqueIdentifier>{b8c14582-f6cb-45af-a0b3-a390b2da5770}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +53,6 @@
     <ClCompile Include="Game\State\state_playing.cpp">
       <Filter>Source Files\Game\State</Filter>
     </ClCompile>
-    <ClCompile Include="Game\world.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game\State\state_main_menu.cpp">
       <Filter>Source Files\Game\State</Filter>
     </ClCompile>
@@ -71,11 +68,17 @@
     <ClCompile Include="Framework\GUI\TextBox.cpp">
       <Filter>Source Files\Framework\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Game\road.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Entity\vehicle.cpp">
+    <ClCompile Include="Entity\Player.cpp">
       <Filter>Source Files\Game\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Road.cpp">
+      <Filter>Source Files\Game\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Vehicle.cpp">
+      <Filter>Source Files\Game\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\World.cpp">
+      <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,9 +103,6 @@
     <ClInclude Include="Game\State\state_playing.h">
       <Filter>Source Files\Game\State</Filter>
     </ClInclude>
-    <ClInclude Include="Game\world.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\State\state_main_menu.h">
       <Filter>Source Files\Game\State</Filter>
     </ClInclude>
@@ -118,11 +118,17 @@
     <ClInclude Include="Framework\GUI\TextBox.h">
       <Filter>Source Files\Framework\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="Game\road.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Entity\vehicle.h">
+    <ClInclude Include="Entity\Player.h">
       <Filter>Source Files\Game\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Road.h">
+      <Filter>Source Files\Game\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Vehicle.h">
+      <Filter>Source Files\Game\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\World.h">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
