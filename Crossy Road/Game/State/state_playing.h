@@ -14,4 +14,4 @@ public:
 	void update(sf::Time delta_time)		override;
 	void draw(sf::RenderTarget& renderer)	override;
 };
-#endif // !_state_playing
+#endif // !_state_playing/
