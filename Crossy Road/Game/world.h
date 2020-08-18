@@ -1,15 +1,15 @@
-#pragma once
-
+#ifndef _world_h
+#define _world_h
 #include <SFML/Graphics.hpp>
 
 #include "../Entity/Player.h"
 #include "../Entity//Road.h"
 #include "../Entity/Vehicle.h"
-
-
-    /**
-        The class which manages the world and th interactions between different entites
-    */
+constexpr auto x_tile = 16;
+constexpr auto y_tile = 9;
+/*
+    Manages the world and interactions between different entites
+*/
 class World
 {
 public:
@@ -49,3 +49,4 @@ private:
 
     bool m_isGameOver = false;
 };
+#endif

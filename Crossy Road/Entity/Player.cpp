@@ -1,8 +1,5 @@
 #include "Player.h"
 
-
-
-
     Player::Player()       
     {
         people.setSize({ 44, 32 });
