@@ -53,9 +53,25 @@
         private:
             void updateDisplay();
 
+<<<<<<< HEAD
             Widget::Text m_label;
             std::string m_text;
             int m_currentScore;
             float m_centerPosition;
         } m_scoreDisplay, m_highestScoreDisplay;
     };
+=======
+class state_playing :public state_base {
+private:
+	World _world;
+	int		_score			= 0;
+	bool	_is_gameover	= false;
+public:
+	state_playing(game&);
+
+	void handleEvent(sf::Event e)			override;
+	void update(sf::Time delta_time)		override;
+	void draw(sf::RenderTarget& renderer)	override;
+};
+#endif // !_state_playing
+>>>>>>> parent of ff83bed... backup state playing
