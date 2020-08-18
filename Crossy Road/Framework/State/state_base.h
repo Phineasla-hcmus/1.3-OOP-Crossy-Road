@@ -12,9 +12,11 @@ public:
 	virtual ~state_base() = default;
 
 	//virtual void handleInput();
-	virtual void handleEvent(sf::Event)				= 0;
-	virtual void update		(sf::Time delta_time)	= 0;
-	virtual void draw		(sf::RenderTarget&)		= 0;
+	virtual void handleEvent(sf::Event) {};
+	virtual void update(sf::Time delta_time) {};
+	virtual void draw(sf::RenderTarget&) {};
+	virtual void handleInput() {};
+	virtual void render(sf::RenderTarget& renderer) = 0;
 };
 #endif // !_state_base
 
