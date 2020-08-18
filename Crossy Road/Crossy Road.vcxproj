@@ -143,6 +143,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework\game.cpp" />
+    <ClCompile Include="Framework\GUI\Button.cpp" />
+    <ClCompile Include="Framework\GUI\StackMenu.cpp" />
+    <ClCompile Include="Framework\GUI\TextBox.cpp" />
+    <ClCompile Include="Framework\GUI\Widget.cpp" />
     <ClCompile Include="Framework\ResourceManager\resource.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp" />
     <ClCompile Include="Framework\Util\random.cpp" />
@@ -153,6 +157,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\game.h" />
+    <ClInclude Include="Framework\GUI\Button.h" />
+    <ClInclude Include="Framework\GUI\StackMenu.h" />
+    <ClInclude Include="Framework\GUI\TextBox.h" />
+    <ClInclude Include="Framework\GUI\Widget.h" />
     <ClInclude Include="Framework\ResourceManager\resource.h" />
     <ClInclude Include="Framework\ResourceManager\res_manager.h" />
     <ClInclude Include="Framework\State\state_base.h" />

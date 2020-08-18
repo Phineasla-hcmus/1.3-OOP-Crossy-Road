@@ -27,6 +27,9 @@
     <Filter Include="Source Files\Game\State">
       <UniqueIdentifier>{ff2703ce-67ea-4c59-ab69-f8d76449ca1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Framework\GUI">
+      <UniqueIdentifier>{f778e61b-6bd5-4fec-84c7-4be3988bfa38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\ResourceManager\resource.cpp">
@@ -52,6 +55,18 @@
     </ClCompile>
     <ClCompile Include="Game\State\state_main_menu.cpp">
       <Filter>Source Files\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\GUI\Widget.cpp">
+      <Filter>Source Files\Framework\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\GUI\Button.cpp">
+      <Filter>Source Files\Framework\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\GUI\StackMenu.cpp">
+      <Filter>Source Files\Framework\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\GUI\TextBox.cpp">
+      <Filter>Source Files\Framework\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +96,18 @@
     </ClInclude>
     <ClInclude Include="Game\State\state_main_menu.h">
       <Filter>Source Files\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\GUI\Widget.h">
+      <Filter>Source Files\Framework\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\GUI\Button.h">
+      <Filter>Source Files\Framework\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\GUI\StackMenu.h">
+      <Filter>Source Files\Framework\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\GUI\TextBox.h">
+      <Filter>Source Files\Framework\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

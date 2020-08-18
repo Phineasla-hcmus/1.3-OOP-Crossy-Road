@@ -10,11 +10,11 @@ class resource : public no_copy
 {
 private:
 	resource();
-	res_manager<sf::Font>			fonts;			//fonts
-	res_manager<sf::Texture>		textures;		//textures
-	res_manager<sf::SoundBuffer>	sound_buffers;	//sounds
 public:
 	static resource& get();
+	res_manager<sf::Font>			font;			//fonts
+	res_manager<sf::Texture>		textures;		//textures
+	res_manager<sf::SoundBuffer>	sound_buffers;	//sounds
 	//resource
 };
 #endif // !_resource_storage

@@ -1,6 +1,6 @@
 #include "resource.h"
 resource::resource()
-    : fonts("fonts")
+    : font("fonts")
     , textures("textures")
     , sound_buffers("sounds")
 {}
