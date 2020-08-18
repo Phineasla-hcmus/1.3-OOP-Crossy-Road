@@ -12,7 +12,8 @@ private:
     void handleEvent();
     /*void tryPop();*/
     Spawner spawner;
-    sf::RectangleShape obj;
+    Object obj;
+    Object obj2;
     sf::RenderWindow m_window;
 
 public:

@@ -11,10 +11,10 @@ class Object : public Collidable
 public:
     enum class Type
     {
-        Octopus, Crab, Squid,
+        Bus,Car,Tree,Animal
     };
 
-    Object(const sf::Vector2f& initialLocation, Type type);
+    Object(const sf::Vector2f& initialLocation, Type type/*,sf::RectangleShape obj*/);
 
     void move(float x, float y);
 
@@ -33,9 +33,9 @@ public:
 private:
     const sf::Vector2f m_initialPosition;
     sf::Vector2f m_location;
-    bool m_isAlive = false;
+    bool m_isAlive = true;
     Type m_type;
-
+    sf::RectangleShape rect;
 public:
     constexpr static float WIDTH = 48;
     constexpr static float HEIGHT = 32;

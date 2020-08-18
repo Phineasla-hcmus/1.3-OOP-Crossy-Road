@@ -14,12 +14,15 @@ public:
 
     void initAddObject();
 
-
+    void updateStepDelay();
 private:
 
     std::vector<Object> obj;
     sf::RectangleShape m_entity;
     bool m_hasAllInvadersBeenAdded = false;
+    int m_aliveInvaders = 0;
+
+    sf::Time m_stepGap;
 
     int m_initX = 0;
     int m_initY = 4;

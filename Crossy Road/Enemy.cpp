@@ -1,11 +1,12 @@
 #include "Enemy.h"
 
-Object::Object(const sf::Vector2f& initialLocation, Type type)
+Object::Object(const sf::Vector2f& initialLocation, Type type/*,sf::RectangleShape obj*/)
     :   Collidable(WIDTH, HEIGHT)
     , m_location(initialLocation)
     , m_type(type)
     , m_initialPosition(initialLocation)
 {
+
 }
 
 void Object::move(float x, float y)

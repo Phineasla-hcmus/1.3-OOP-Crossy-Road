@@ -8,6 +8,8 @@ void Game::handleEvent()
         case sf::Event::Closed:
             m_window.close();
             break;
+        case sf::Event::KeyPressed:
+            spawner.initAddObject();
 
         default:
             break;
@@ -21,11 +23,13 @@ void Game::Draw(sf::RenderTarget& target)
 }
 Game::Game()
     : m_window({ 1280, 720 }, "Hopson Arcade")
+    ,obj(sf::Vector2f(50.f,50.f),Object::Type::Bus)
+    ,obj2(sf::Vector2f(50.f, 50.f),Object::Type::Tree)
 {
     m_window.setPosition({ m_window.getPosition().x, 0 });
     m_window.setFramerateLimit(60);
-    obj.setSize(sf::Vector2f(50.f, 50.f));
-    obj.setFillColor(sf::Color::Green);
+    /*obj.setSize(sf::Vector2f(50.f, 50.f));
+    obj.setFillColor(sf::Color::Green);*/
 
     sf::Image icon;
     //icon.loadFromFile("D:/GitHub/SpaceInvader/res/txrs/icon.ico");
@@ -41,21 +45,28 @@ void Game::run() {
     auto lag = sf::Time::Zero;
 
     //Main loop of the game
-    while (m_window.isOpen()) {
+    while (m_window.isOpen() ) {
+      
 
+        //Get times
+        auto time = timer.getElapsedTime();
+        auto elapsed = time - lastTime;
+        lastTime = time;
+        lag += elapsed;
 
+        //Real time update
+  
+   
+     
 
+    
         //Render
         m_window.clear();
-   
-       /* spawner.initAddObject();*/
-        m_window.draw(obj);
+     
         m_window.display();
-
 
         //Handle window events
         handleEvent();
-        /*tryPop();*/
+     
     }
-
 }

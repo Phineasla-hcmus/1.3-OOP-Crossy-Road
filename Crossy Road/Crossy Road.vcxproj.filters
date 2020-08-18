@@ -28,9 +28,6 @@
     <ClCompile Include="Framework\Util\random.cpp">
       <Filter>Framework\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\game.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp">
       <Filter>Framework\State</Filter>
@@ -54,9 +51,6 @@
     </ClInclude>
     <ClInclude Include="Framework\Util\res_manager.h">
       <Filter>Framework\ResourceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\game.h">
-      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\State\state_base.h">
       <Filter>Framework\State</Filter>
