@@ -74,4 +74,7 @@ public:
 	void draw(sf::RenderTarget& renderer)	override;
 };
 #endif // !_state_playing
+<<<<<<< HEAD
+>>>>>>> parent of ff83bed... backup state playing
+=======
 >>>>>>> parent of ff83bed... backup state playing
