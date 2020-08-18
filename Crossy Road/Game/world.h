@@ -1,5 +1,5 @@
-#ifndef _world
-#define _world
+#ifndef _world_h
+#define _world_h
 #include <SFML/Graphics.hpp>
 
 #include "../Entity/Player.h"
