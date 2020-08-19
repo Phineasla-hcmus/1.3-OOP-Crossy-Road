@@ -5,7 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include "Player.h"
-
+#include "../Collidable.h"
 
 	
 	class Vehicle {
