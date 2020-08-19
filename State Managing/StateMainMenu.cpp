@@ -3,6 +3,7 @@
 #include<SFML\Graphics.hpp>
 #include"Button.h"
 #include"resource.h"
+#include"PauseMenu.h"
 StateMainMenu::StateMainMenu(Game& game)
     : StateBase(game)
     , m_mainMenu(game.getWindow(), Display::HEIGHT / 2 - 100)
@@ -15,8 +16,8 @@ StateMainMenu::StateMainMenu(Game& game)
     auto playBtn = makeButton();
     playBtn->setText("Play game");
     playBtn->setFunction([&]() {
-       // m_pGame->pushState<StatePlaying>(*m_pGame);
-        m_pGame->exit = true;
+       m_pGame->pushState<PauseMenu>(*m_pGame);
+       // m_pGame->exit = true;
         });
 
     auto LoadGameBtn = makeButton();
