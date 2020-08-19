@@ -3,10 +3,10 @@
 
 #include <functional>
 #include "Widget.h"
-	enum class ButtonSize
-	{
-		Small,
-		Wide,
+enum class ButtonSize
+{
+	Small,
+	Wide, 
 	};
 	class Button : public Widget
 	{
