@@ -33,9 +33,8 @@ private:
 
     float vehicleSpawnTimer;
     float vehicleSpawnTimerMax;
-    int maxVehicles;
-
-    
+    int maxVehicles;   
+    int level;
 
     bool _isGameOver = false;
 };

@@ -2,20 +2,17 @@
 
 #include <SFML/Graphics.hpp>
 
-namespace SpaceInvaders
+class Collision
 {
-    class Collidable
-    {
-    public:
-        Collidable(float width, float height);
+public:
+    Collision(float width, float height);
 
-        bool tryCollideWith(Collidable& other);
-        sf::FloatRect getBox() const;
+    bool tryCollideWith(Collision& other);
+    sf::FloatRect getBox() const;
 
-        virtual const sf::Vector2f& getPosition() const = 0;
-        virtual void onCollide(Collidable& other) = 0;
+    virtual const sf::Vector2f& getPosition() const = 0;
+    virtual void onCollide(Collision& other) = 0;
 
-    private:
-        sf::Vector2f m_size;
-    };
-}
+private:
+    sf::Vector2f m_size;
+};
