@@ -29,12 +29,10 @@
     private:
         void restart();
 
-        sf::RectangleShape people;
-      //  Animation death_Animation;
-        sf::Vector2f v_speed;
-        sf::Clock m_deathTimer;
+        sf::RectangleShape people;     
+        sf::Vector2f v_speed;    
 
         bool is_Alive = true;        
 
-        sf::Sound death_Sound;
+       
     };

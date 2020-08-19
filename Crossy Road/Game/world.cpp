@@ -6,22 +6,22 @@ World::World()
 {
 
     //init road
-    float old = 0;
+    float y_startPos = 10;
     int k = 1;
     for (int i = 0; i < 4; ++i) {
         sf::Vector2f pos;
         pos.x = 0;
-        pos.y = old;
+        pos.y = y_startPos;
         m_road.push_back({ pos,4.f,k });
-        old = pos.y + m_road[0].getDistance();
+        y_startPos = pos.y + m_road[0].getDistance();
         k = k * -1;
     }
 }
 
 void World::input()
 {
-    if (m_player.isAlive()) {
-        m_player.inputKeyPress();
+    if (_people.isAlive()) {
+        _people.inputKeyPress();
 
     }
 }
@@ -32,13 +32,13 @@ int World::update(float dt)
     for (auto& road : this->m_road)
         road.update(dt);
 
-    m_player.update(dt);
+    _people.update(dt);
     return score;
 }
 
 const Player& World::getPlayer() const
 {
-    return m_player;
+    return _people;
 }
 
 bool World::isGameOver() const
@@ -55,7 +55,7 @@ void World::draw(sf::RenderTarget& target)
     for (auto& droad : m_road) {
         droad.draw(target);
     }
-    m_player.draw(target);
+    _people.draw(target);
 
 
 }

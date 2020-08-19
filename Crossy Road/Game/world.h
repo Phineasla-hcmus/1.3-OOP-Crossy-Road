@@ -27,7 +27,7 @@ public:
 
 private:
 
-    Player m_player;
+    Player _people;
 
 
 
@@ -38,13 +38,6 @@ private:
     float vehicleSpawnTimerMax;
     int maxVehicles;
 
-
-    sf::RectangleShape _explodeShape;
-    sf::Clock _invaderShotClock;
-    sf::Clock _playerShotClock;
-    sf::Clock _animalTimer;
-
-   // sf::Sound m_playerShoot;
     
 
     bool _isGameOver = false;

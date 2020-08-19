@@ -2,8 +2,8 @@
 
     Player::Player()       
     {
-        people.setSize({ 44, 32 });
-        people.setPosition({640, 720});
+        people.setSize({ 20, 20 });
+        people.setPosition({640, 720-10});
         
     }
 
@@ -12,7 +12,7 @@
         v_speed *= 0.0f;
         //people.setTextureRect({ 0, 0, 11, 8 });
         is_Alive = true;        
-        people.setPosition({ 640,720 });
+        people.setPosition({ 640,720-10 });
     }
 
     void Player::inputKeyPress()
