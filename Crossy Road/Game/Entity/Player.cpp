@@ -2,8 +2,9 @@
 
     Player::Player()       
     {
-        people.setSize({ 20, 20 });
-        people.setPosition({640, 720-10});
+        sf::Vector2f size_player = { 30.f,30.f };
+        people.setSize(size_player);        
+        people.setPosition(this->origin_pos);
         
     }
 
@@ -12,7 +13,7 @@
         v_speed *= 0.0f;
         //people.setTextureRect({ 0, 0, 11, 8 });
         is_Alive = true;        
-        people.setPosition({ 640,720-10 });
+        people.setPosition(this->origin_pos);
     }
 
     void Player::inputKeyPress()
@@ -22,7 +23,7 @@
             return sf::Keyboard::isKeyPressed(k);
         };
 
-        float speed = 20;
+        float speed = 10;
         if (keyDown(Key::A)) {
             v_speed.x -= speed;
         }

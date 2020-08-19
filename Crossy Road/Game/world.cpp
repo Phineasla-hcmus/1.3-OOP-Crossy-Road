@@ -6,11 +6,11 @@ World::World()
 {
 
     //init road
-    float y_startPos = 10;
+    float y_startPos = 0;
     int k = 1;
     for (int i = 0; i < 4; ++i) {
         sf::Vector2f pos;
-        pos.x = 0;
+        pos.x = 10;
         pos.y = y_startPos;
         m_road.push_back({ pos,4.f,k });
         y_startPos = pos.y + m_road[0].getDistance();
