@@ -19,9 +19,9 @@ StateMainMenu::StateMainMenu(Game& game)
         m_pGame->exit = true;
         });
 
-    auto highscoresBtn = makeButton();
-    highscoresBtn->setText("Load Game");
-    highscoresBtn->setFunction([&]() {
+    auto LoadGameBtn = makeButton();
+    LoadGameBtn->setText("Load Game");
+    LoadGameBtn->setFunction([&]() {
        // m_pGame->pushState<StateHighscores>(*m_pGame);
         m_pGame->exit = true;
         });
@@ -33,9 +33,9 @@ StateMainMenu::StateMainMenu(Game& game)
         });
 
     m_mainMenu.addWidget(std::move(playBtn));
-    m_mainMenu.addWidget(std::move(highscoresBtn));
+    m_mainMenu.addWidget(std::move(LoadGameBtn));
     m_mainMenu.addWidget(std::move(exitBtn));
-    m_mainMenu.setTitle("Choose Action", game.getWindow());
+    m_mainMenu.setTitle("Choose  Action", game.getWindow());
 }
 
 void StateMainMenu::setPosition(const sf::Vector2f position)
