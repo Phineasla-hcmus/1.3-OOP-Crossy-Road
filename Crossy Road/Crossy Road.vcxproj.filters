@@ -35,9 +35,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Framework\ResourceManager\resource.cpp">
-      <Filter>Source Files\Framework\AssetManager</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\State\state_base.cpp">
       <Filter>Source Files\Framework\State</Filter>
     </ClCompile>
@@ -80,14 +77,11 @@
     <ClCompile Include="Framework\game.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\AssetManager\asset.cpp">
+      <Filter>Source Files\Framework\AssetManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Framework\ResourceManager\resource.h">
-      <Filter>Source Files\Framework\AssetManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ResourceManager\res_manager.h">
-      <Filter>Source Files\Framework\AssetManager</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\State\state_base.h">
       <Filter>Source Files\Framework\State</Filter>
     </ClInclude>
@@ -129,6 +123,12 @@
     </ClInclude>
     <ClInclude Include="Framework\game.h">
       <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\AssetManager\asset_manager.h">
+      <Filter>Source Files\Framework\AssetManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\AssetManager\asset.h">
+      <Filter>Source Files\Framework\AssetManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

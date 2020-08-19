@@ -1,5 +1,5 @@
 #include "Widget.h"
-#include "../ResourceManager/resource.h"
+#include "../AssetManager/asset.h"
 Widget::Text::Text()
 	: Text(DEFAULT_FONT, DEFAULT_EXT,
 		TEXT_SIZE,
@@ -10,7 +10,7 @@ Widget::Text::Text(const std::string& font, const std::string& ext, unsigned siz
 	setCharacterSize(size);
 	setOutlineColor(outline);
 	setFillColor(fill);
-	setFont(resource::get().font.get(font, ext));
+	setFont(asset::font().get(font, ext));
 }
 
 bool Widget::Rectangle::isRolledOn(const sf::RenderWindow& window) const
