@@ -5,6 +5,7 @@
 DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& m_player) :player(m_player)
 {
 	srand((unsigned)time(NULL));
+<<<<<<< Updated upstream
 	this->speed = speed;
 	if (isFromLeft > 0)
 		this->isFromLeft = 1;
@@ -12,6 +13,15 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& m_player) :p
 	this->initVar();
 	this->initShape(pos);
 	this->initVehicle();
+=======
+	speed = speed;
+	if (isFromLeft > 0)
+		isFromLeft = 1;
+	else isFromLeft = -1;
+	initVar();
+	initShape(pos);
+	initVehicle();
+>>>>>>> Stashed changes
 }
 	void DRoad::initVar(float width, float distance)
 	{
@@ -93,7 +103,10 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& m_player) :p
 		
 			if ((int)body.getPosition().x == (int)player.getPosition().x|| (int)body.getPosition().y == (int)player.getPosition().y) {
 				std::cout << "Collided!!" << std::endl;
+<<<<<<< Updated upstream
 				system("CLS");
+=======
+>>>>>>> Stashed changes
 			}
 		
 	}
