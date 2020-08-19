@@ -1,45 +1,45 @@
 #include "PauseMenu.h"
-PauseMenu::PauseMenu(sf::RenderWindow& window,sf::Font& font)
-	: font(font)
+#include"Game.h"
+#include"StackMenu.h"
+#include"StateBase.h"
+PauseMenu::PauseMenu(Game& game)
+	: StateBase(game),pause_menu(game.getWindow(), Display::HEIGHT / 2 - 100)
 {
-	//BackGround initialization
-	this->background.setSize(sf::Vector2f(
-		static_cast<float>(window.getSize().x),
-		static_cast<float>(window.getSize().y)));
-	this->background.setFillColor(sf::Color(20, 20, 20, 100));
-	
-	//Container initialization
-	this->container.setSize(sf::Vector2f(
-		static_cast<float>(window.getSize().x) / 4.f,
-		static_cast<float>(window.getSize().y)-100.f));
-	this->container.setFillColor(sf::Color(20, 20, 20, 200));
-	this->container.setPosition(
-		static_cast<float>(window.getSize().x) / 2.f - this->container.getSize().x / 2.f,
-		30.f);
 
-	//text intialization
-	this->menuText.setFont(font);
-	this->menuText.setFillColor(sf::Color(255, 255, 255, 200));
-	this->menuText.setCharacterSize(60);
-	this->menuText.setString("PAUSED");
-	this->menuText.setPosition(
-		this->container.getPosition().x+this->container.getSize().x/2.f-this->menuText.getGlobalBounds().width/2.f,
-		this->container.getPosition().y+40.f);
+	auto ResumeBtn = makeButton();
+	ResumeBtn->setText("Resume     ");
+	ResumeBtn->setFunction([&]() {
+		//m_pGame->pushState<StateMainMenu>(*m_pGame);
+		m_pGame->exit = true;
+		});
+
+	auto SaveGameBtn = makeButton();
+	SaveGameBtn->setText("Save Game");
+	SaveGameBtn->setFunction([&]() {
+		 //m_pGame->pushState<StateMainMenu>(*m_pGame);
+		});
+	auto LoadGameBtn = makeButton();
+	LoadGameBtn->setText("Load Game");
+	LoadGameBtn->setFunction([&]() {
+		});
+
+	this->pause_menu.addWidget(std::move(ResumeBtn));
+	this->pause_menu.addWidget(std::move(SaveGameBtn));
+	this->pause_menu.addWidget(std::move(LoadGameBtn));
+	this->pause_menu.setTitle("   PAUSE  MENU", game.getWindow());
 }
-PauseMenu::~PauseMenu() {
-	auto it = this->buttions.begin();
-	for (it = this->buttions.begin(); it != this->buttions.end(); ++it) {
-		delete it->second;
-	}
-}
+//PauseMenu::~PauseMenu() {
+//	/*auto it = this->buttions.begin();
+//	for (it = this->buttions.begin(); it != this->buttions.end(); ++it) {
+//		delete it->second;
+//	}*/
+//}
 void PauseMenu::update() {
 
 }
 void PauseMenu::render(sf::RenderTarget& target) {
-	target.draw(this->background);
-	target.draw(this->container);
-	for (auto& i : this->buttions) {
-		i.second->render(target);
-	}
-	target.draw(this->menuText);
+	/*target.draw(this->background);
+	target.draw(this->container);*/
+	pause_menu.render(target);
 }
+
