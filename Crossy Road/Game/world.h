@@ -18,11 +18,8 @@ public:
     void input();
     int update(float dt);
     void draw(sf::RenderTarget& target);
-
     const Player& getPlayer() const;
-
     bool isGameOver() const;
-
     void setGameIsOver() { _isGameOver = true; }
 
 private:

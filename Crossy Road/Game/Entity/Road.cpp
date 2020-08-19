@@ -67,7 +67,7 @@
 	void DRoad::initShape(sf::Vector2f position)
 	{
 		lane.setPosition(position);
-		lane.setSize(sf::Vector2f(1280.f, width));
+		lane.setSize(sf::Vector2f(1260.f, width));
 		lane.setFillColor(sf::Color::Cyan);
 		lane.setOutlineColor(sf::Color::White);
 		lane.setOutlineThickness(1.f);
@@ -127,7 +127,7 @@
 
 			if (this->isFromLeft == 1 && this->r_vehicle[i]->vehicle.getPosition().x > 1280)
 				this->r_vehicle.erase(this->r_vehicle.begin() + i);
-			if (this->isFromLeft == -1 && this->r_vehicle[i]->vehicle.getPosition().x < 0)
+			if (this->isFromLeft == -1 && (this->r_vehicle[i]->vehicle.getPosition().x+this->r_vehicle[i]->vehicle.getSize().x) < 0)
 				this->r_vehicle.erase(this->r_vehicle.begin() + i);
 		}
 	}
