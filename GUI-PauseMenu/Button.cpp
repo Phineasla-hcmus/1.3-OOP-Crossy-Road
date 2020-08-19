@@ -4,7 +4,7 @@
     Button::Button(ButtonSize s)
     {
         m_button.setOutlineThickness(1);
-        m_button.setOutlineColor(sf::Color::Blue);
+        m_button.setOutlineColor(sf::Color::Magenta);
         m_button.setFillColor(sf::Color::Yellow);
         switch (s) {
         case ButtonSize::Wide:

@@ -6,8 +6,9 @@
         : m_pModString(&modString)
     {
         m_label.setCharacterSize(15);
-        m_rect.setFillColor({ 52, 152, 219 });
+        m_rect.setFillColor({ 52, 152, 218 });
         m_rect.setSize({ 256, 64 });
+       
     }
     void TextBox::setTexture(const sf::Texture& tex) {
         m_rect.setTexture(&tex);
