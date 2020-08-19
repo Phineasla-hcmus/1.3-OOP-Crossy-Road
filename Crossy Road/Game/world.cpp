@@ -43,7 +43,7 @@ const Player& World::getPlayer() const
 
 bool World::isGameOver() const
 {
-    return m_isGameOver;
+    return _isGameOver;
 }
 
 

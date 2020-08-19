@@ -23,7 +23,7 @@ public:
 
     bool isGameOver() const;
 
-    void setGameIsOver() { m_isGameOver = true; }
+    void setGameIsOver() { _isGameOver = true; }
 
 private:
 
@@ -39,14 +39,14 @@ private:
     int maxVehicles;
 
 
-    sf::RectangleShape m_explodeShape;
-    sf::Clock m_invaderShotClock;
-    sf::Clock m_playerShotClock;
-    sf::Clock m_animTimer;
+    sf::RectangleShape _explodeShape;
+    sf::Clock _invaderShotClock;
+    sf::Clock _playerShotClock;
+    sf::Clock _animalTimer;
 
-    sf::Sound m_playerShoot;
+   // sf::Sound m_playerShoot;
     
 
-    bool m_isGameOver = false;
+    bool _isGameOver = false;
 };
 #endif
