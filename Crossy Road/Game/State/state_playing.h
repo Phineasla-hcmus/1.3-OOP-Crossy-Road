@@ -4,7 +4,7 @@
 
 class state_playing :public state_base {
 private:
-	World _world;
+	World	_world;
 	int		_score			= 0;
 	bool	_is_gameover	= false;
 public:
