@@ -11,11 +11,10 @@
 	}
 
 	Car::Car(sf::Vector2f position) : Vehicle(sf::Color::White, sf::Vector2f(20.f, 20.f)) {
-		srand(unsigned(time(NULL)));
+		
 		this->vehicle.setSize(sf::Vector2f(90.f, 70.f));
 		this->vehicle.setPosition(sf::Vector2f(position.x, position.y - this->vehicle.getSize().y / 2));
-		sf::Clock c;
-		srand(unsigned(c.getElapsedTime().asMicroseconds() * 1000));
+		
 		auto k = rand() % 5;
 		//set color
 
@@ -25,7 +24,7 @@
 			this->vehicle.setFillColor(sf::Color::Blue);
 			break;
 		case 1:
-			this->vehicle.setFillColor(sf::Color::Cyan);
+			this->vehicle.setFillColor(sf::Color::Yellow);
 			break;
 		case 2:
 			this->vehicle.setFillColor(sf::Color::Green);
@@ -49,8 +48,8 @@
 	Bike::Bike(sf::Vector2f position) :Vehicle(sf::Color::Yellow, sf::Vector2f(15.f, 15.f)) {
 		this->vehicle.setSize(sf::Vector2f(90.f, 90.f));
 		this->vehicle.setPosition(sf::Vector2f(position.x, position.y - this->vehicle.getSize().y / 2));
-		sf::Clock c;
-		srand(unsigned(c.getElapsedTime().asMicroseconds() * 1000));
+		
+		
 		auto k = rand() % 5;
 		//set color
 		switch (k)
@@ -59,7 +58,7 @@
 			this->vehicle.setFillColor(sf::Color::Blue);
 			break;
 		case 1:
-			this->vehicle.setFillColor(sf::Color::Cyan);
+			this->vehicle.setFillColor(sf::Color::Yellow);
 			break;
 		case 2:
 			this->vehicle.setFillColor(sf::Color::Green);
