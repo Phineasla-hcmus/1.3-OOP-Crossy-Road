@@ -2,11 +2,11 @@
 #define _world_h
 #include <SFML/Graphics.hpp>
 
-#include "../Entity/Player.h"
-#include "../Entity//Road.h"
-#include "../Entity/Vehicle.h"
-constexpr auto x_tile = 16;
-constexpr auto y_tile = 9;
+#include "Entity/Player.h"
+#include "Entity/Road.h"
+#include "Entity/Vehicle.h"
+constexpr auto x_tile = 14;
+constexpr auto y_tile = 8;
 /*
     Manages the world and interactions between different entites
 */
