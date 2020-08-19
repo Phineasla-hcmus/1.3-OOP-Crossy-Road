@@ -80,6 +80,9 @@
     <ClCompile Include="Framework\AssetManager\asset.cpp">
       <Filter>Source Files\Framework\AssetManager</Filter>
     </ClCompile>
+    <ClCompile Include="Collidable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\State\state_base.h">
@@ -129,6 +132,9 @@
     </ClInclude>
     <ClInclude Include="Framework\AssetManager\asset.h">
       <Filter>Source Files\Framework\AssetManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Collidable.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
