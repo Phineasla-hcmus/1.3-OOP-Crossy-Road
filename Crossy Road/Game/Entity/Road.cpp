@@ -24,41 +24,42 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_p
 	{
 		Vehicle* v;		
 		
-		int distance_rand = 150;
-		if (rand() % 2 == 0) {
-			v = new Car(getCenterRoadPosition());
+		int rand_num = rand() % 2;
+		auto rand_distance = rand() % 200-100;
+		if (rand_num) {
+			v = new Car({ 0.f + rand_distance,getCenterRoadPosition().y });
 		}
-		else v = new Bike({0.f+ rand()% distance_rand,this->getCenterRoadPosition().y });
+		else v = new Bike({0.f+ rand_distance,this->getCenterRoadPosition().y });
 		r_vehicle.push_back(v);
 
-		if (rand() % 2 == 0) {
-			v = new Car({ 256.f + rand() % distance_rand,getCenterRoadPosition().y });
+		if (rand_num) {
+			v = new Car({ 256.f + rand_distance ,getCenterRoadPosition().y });
 		}
-		else v = new Bike({ 256.f + rand() % distance_rand,getCenterRoadPosition().y });
+		else v = new Bike({ 256.f + rand_distance  ,getCenterRoadPosition().y });
 		r_vehicle.push_back(v);
 
-		if (rand() % 2 == 0) {
-			v = new Car({ 512.f + rand() % distance_rand,getCenterRoadPosition().y });
+		if (rand_num) {
+			v = new Car({ 512.f + rand_distance  ,getCenterRoadPosition().y });
 		}
-		else v = new Bike({ 512.f + rand() % distance_rand,getCenterRoadPosition().y });
+		else v = new Bike({ 512.f + rand_distance,getCenterRoadPosition().y });
 		r_vehicle.push_back(v);
 
-		if (rand() % 2 == 0) {
-			v = new Car({ 768.f + rand() % distance_rand,getCenterRoadPosition().y });
+		if (rand_num) {
+			v = new Car({ 768.f + rand_distance ,getCenterRoadPosition().y });
 		}
-		else v = new Bike({ 768.f + rand() % distance_rand,getCenterRoadPosition().y });
+		else v = new Bike({ 768.f + rand_distance ,getCenterRoadPosition().y });
 		r_vehicle.push_back(v);
 
-		if (rand() % 2 == 0) {
-			v = new Car({ 1024.f + rand() % distance_rand,getCenterRoadPosition().y });
+		if (rand_num) {
+			v = new Car({ 1024.f + rand_distance  ,getCenterRoadPosition().y });
 		}
-		else v = new Bike({ 1024.f + rand() % distance_rand,getCenterRoadPosition().y });
+		else v = new Bike({ 1024.f + rand_distance  ,getCenterRoadPosition().y });
 		r_vehicle.push_back(v);
 
-		if (rand() % 2 == 0) {
-			v = new Car({ 1280.f + rand() % distance_rand,getCenterRoadPosition().y });
+		if (rand_num) {
+			v = new Car({ 1280.f + rand_distance  ,getCenterRoadPosition().y });
 		}
-		else v = new Bike({ 1280.f + rand() % distance_rand,getCenterRoadPosition().y });
+		else v = new Bike({ 1280.f + rand_distance  ,getCenterRoadPosition().y });
 		r_vehicle.push_back(v);
 
 	}
@@ -93,14 +94,14 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_p
 		
 		Vehicle* v;
 		if (this->isFromLeft == 1) {
-			if (rand() % 2 == 0) {
+			if (typeid(*this->r_vehicle[0])==typeid(Car)) {
 				v = new Car(getCenterRoadPosition());
 			}
 			else v = new Bike(this->getCenterRoadPosition());
 			r_vehicle.push_back(v);
 		}
 		else {
-			if (rand() % 2 == 0) {
+			if (typeid(*this->r_vehicle[0]) == typeid(Car)) {
 				v = new Car({ 1280,getCenterRoadPosition().y });
 			}
 			else v = new Bike({ 1280,this->getCenterRoadPosition().y });
