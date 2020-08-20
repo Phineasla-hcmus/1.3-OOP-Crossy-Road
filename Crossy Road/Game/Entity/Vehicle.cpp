@@ -78,3 +78,37 @@
 		target.draw(this->vehicle);
 	}
 	
+	Bird::Bird(sf::Vector2f position) :Vehicle(sf::Color::Yellow, sf::Vector2f(15.f, 15.f)) {
+		this->vehicle.setSize(sf::Vector2f(100.f, 50.f));
+		this->vehicle.setPosition(sf::Vector2f(position.x, position.y - this->vehicle.getSize().y / 2));
+
+
+		auto k = rand() % 5;
+		//set color
+		switch (k)
+		{
+		case 0:
+			this->vehicle.setFillColor(sf::Color::Blue);
+			break;
+		case 1:
+			this->vehicle.setFillColor(sf::Color::Yellow);
+			break;
+		case 2:
+			this->vehicle.setFillColor(sf::Color::Green);
+			break;
+		case 3:
+			this->vehicle.setFillColor(sf::Color::Magenta);
+			break;
+		case 4:
+			this->vehicle.setFillColor(sf::Color::Red);
+			break;
+		default:
+			this->vehicle.setFillColor(sf::Color::White);
+			break;
+		}
+	};
+	void Bird::draw(sf::RenderTarget& target) {
+		target.draw(this->vehicle);
+	}
+
+

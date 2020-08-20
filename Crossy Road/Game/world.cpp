@@ -7,12 +7,12 @@ World::World()
     srand((unsigned)time(NULL));
     //init road
     float y_startPos = 0;
-    int k = -1;
+    int k = 1;
     for (int i = 0; i < 4; ++i) {
         sf::Vector2f pos;
         pos.x = 10;
         pos.y = y_startPos;
-        m_road.push_back({ pos,100.f,k ,_people});
+        m_road.push_back({ pos,10000.f,k ,_people});
         y_startPos = pos.y + m_road[0].getDistance();
         k = k * -1;
     }
