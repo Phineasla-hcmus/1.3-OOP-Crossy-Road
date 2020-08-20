@@ -81,7 +81,7 @@
       <Filter>Source Files\Framework\AssetManager</Filter>
     </ClCompile>
     <ClCompile Include="Collidable.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +134,7 @@
       <Filter>Source Files\Framework\AssetManager</Filter>
     </ClInclude>
     <ClInclude Include="Collidable.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

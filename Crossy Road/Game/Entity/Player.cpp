@@ -1,6 +1,6 @@
 #include "Player.h"
 
-    Player::Player()       
+    Player::Player() :Collision(30.f,30.f)
     {
         sf::Vector2f size_player = { 30.f,30.f };
         people.setSize(size_player);        
@@ -71,12 +71,6 @@
         else
             target.draw(people);
         
-    }
-
- 
-    const sf::Vector2f & Player::getPosition() const
-    {
-        return people.getPosition();
     }
 
    

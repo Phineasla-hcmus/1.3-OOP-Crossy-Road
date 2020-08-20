@@ -2,7 +2,7 @@
 #define Player_h
 
 #include <SFML/Graphics.hpp>
-
+#include "../Collidable.h"
 #include <SFML/Audio.hpp>
 
 
@@ -10,7 +10,7 @@
     /**
         Represents the player
     */
-    class Player 
+    class Player :public Collision
     {
     public:
         constexpr static int WIDTH = 44;
@@ -22,8 +22,8 @@
         void update(float dt);
         void draw(sf::RenderTarget& target);           
 
-        const sf::Vector2f& getPosition() const;
-       // void onCollide(Collidable& other) override;
+        const sf::Vector2f& getPosition() const { return people.getPosition(); };
+        void onCollide(Collision& other) override { is_Alive = false; }
      
         bool isAlive() const;
 

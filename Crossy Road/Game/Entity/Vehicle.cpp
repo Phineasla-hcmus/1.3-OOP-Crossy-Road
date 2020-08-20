@@ -1,7 +1,7 @@
 #include "Vehicle.h"
 
 
-	Vehicle::Vehicle(sf::Color color, sf::Vector2f position, sf::Vector2f size)
+	Vehicle::Vehicle(sf::Color color, sf::Vector2f position, sf::Vector2f size):Collision(20.f,20.f)
 	{
 		this->vehicle.setPosition(position);
 		this->vehicle.setSize(size);

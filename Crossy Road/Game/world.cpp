@@ -12,7 +12,7 @@ World::World()
         sf::Vector2f pos;
         pos.x = 10;
         pos.y = y_startPos;
-        m_road.push_back({ pos,100.f,k });
+        m_road.push_back({ pos,100.f,k ,_people});
         y_startPos = pos.y + m_road[0].getDistance();
         k = k * -1;
     }

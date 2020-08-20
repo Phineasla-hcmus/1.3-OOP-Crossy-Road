@@ -1,19 +1,19 @@
 #include "Road.h"
+#include <iostream>
 
 
-
-	DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft)
-	{
-		
-		this->speed = speed;
-		if (isFromLeft > 0)
-			this->isFromLeft = 1;
-		else this->isFromLeft = -1;
-		this->initVar();
-		this->initShape(pos);
-		this->initVehicle();	
-		
-	}
+DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_player(player)
+{
+	this->isFromLeft = isFromLeft;
+	this->m_pos = pos;
+	this->m_speed = speed;
+	if (isFromLeft > 0)
+		this->isFromLeft = 1;
+	else this->isFromLeft = -1;
+	this->initVar();
+	this->initShape(pos);
+	this->initVehicle();
+}
 	void DRoad::initVar(float width, float distance)
 	{
 		this->width = width;
@@ -121,8 +121,8 @@
 		for (int i = 0; i < this->r_vehicle.size(); i++)
 		{
 
-			this->r_vehicle[i]->vehicle.move(double(this->speed*dt*level * this->isFromLeft), 0.f);
-
+			this->r_vehicle[i]->vehicle.move(double(this->m_speed*dt*level * this->isFromLeft), 0.f);
+			this->tryCollideWithPlayer();
 			if (this->isFromLeft == 1 && this->r_vehicle[i]->vehicle.getPosition().x > 1280)
 				this->r_vehicle.erase(this->r_vehicle.begin() + i);
 			if (this->isFromLeft == -1 && (this->r_vehicle[i]->vehicle.getPosition().x+this->r_vehicle[i]->vehicle.getSize().x) < 0)
@@ -132,4 +132,16 @@
 	}
 
 	
+	CollisionResult DRoad::tryCollideWithPlayer() {
+		CollisionResult result;
+		for (int i = 0; i < r_vehicle.size(); ++i) {
+			if (!m_player.isAlive())
+				continue;
 
+			if (m_player.tryCollideWith(*(r_vehicle[i]))) {
+
+				std::cout << "Collided!!" << std::endl;
+			}
+		}
+		return result;
+	}
