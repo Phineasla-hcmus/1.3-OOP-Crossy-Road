@@ -17,7 +17,7 @@
 		sf::RectangleShape vehicle;
 		friend class DRoad;
 	public:
-		Vehicle(sf::Color color = sf::Color::White, sf::Vector2f position = { 0.f,0.f }, sf::Vector2f size = { 1.f,1.f });
+		Vehicle(sf::Color color = sf::Color::White, sf::Vector2f position = { 0.f,0.f }, sf::Vector2f size = { 90.f,90.f });
 		virtual void onCollide(Collision& other) = 0;
 		virtual const sf::Vector2f& getPosition() const = 0;
 		virtual void draw(sf::RenderTarget& target) = 0;

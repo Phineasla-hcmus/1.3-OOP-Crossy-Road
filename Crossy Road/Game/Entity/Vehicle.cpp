@@ -1,7 +1,7 @@
 #include "Vehicle.h"
 
 
-	Vehicle::Vehicle(sf::Color color, sf::Vector2f position, sf::Vector2f size):Collision(20.f,20.f)
+	Vehicle::Vehicle(sf::Color color, sf::Vector2f position, sf::Vector2f size):Collision(size.x,size.y)
 	{
 		this->vehicle.setPosition(position);
 		this->vehicle.setSize(size);
@@ -13,6 +13,7 @@
 	Car::Car(sf::Vector2f position) : Vehicle(sf::Color::White, sf::Vector2f(20.f, 20.f)) {
 		
 		this->vehicle.setSize(sf::Vector2f(90.f, 70.f));
+	
 		this->vehicle.setPosition(sf::Vector2f(position.x, position.y - this->vehicle.getSize().y / 2));
 		
 		auto k = rand() % 5;
