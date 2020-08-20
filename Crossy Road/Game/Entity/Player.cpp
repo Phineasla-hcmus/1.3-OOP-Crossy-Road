@@ -5,13 +5,14 @@
         sf::Vector2f size_player = { 30.f,30.f };
         people.setSize(size_player);        
         people.setPosition(this->origin_pos);
+       // people.setTextureRect({ 0, 0, 11, 8 });
         
     }
 
     void Player::restart()
     {
         v_speed *= 0.0f;
-        //people.setTextureRect({ 0, 0, 11, 8 });
+      //  people.setTextureRect({ 0, 0, 11, 8 });
         is_Alive = true;        
         people.setPosition(this->origin_pos);
     }

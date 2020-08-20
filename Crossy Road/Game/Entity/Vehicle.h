@@ -1,4 +1,8 @@
-#pragma once
+#ifndef Vehicle_h
+#define Vehicle_h
+
+
+
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -37,6 +41,6 @@
 
 	};
 
-
+#endif // !1
 	
 

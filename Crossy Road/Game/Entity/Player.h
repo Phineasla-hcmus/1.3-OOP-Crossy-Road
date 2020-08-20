@@ -1,4 +1,5 @@
-#pragma once
+#ifndef Player_h
+#define Player_h
 
 #include <SFML/Graphics.hpp>
 
@@ -37,3 +38,5 @@
 
        
     };
+
+#endif
