@@ -20,6 +20,7 @@ private:
 	float speed;
 	int isFromLeft = 1;
 	
+	
 
 public:
 	DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player);

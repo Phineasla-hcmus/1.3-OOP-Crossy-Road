@@ -20,18 +20,19 @@ game::game()
 
 void game::run()
 {
+	_window.setKeyRepeatEnabled(false);
 	//main game loop
 	while (_window.isOpen() && _states.empty() == 0) {
 		auto& state = cur_state();
 		auto time = update_dt_clock();
 		//Frame update
 		std::cout << 1.f / time.asSeconds() << std::endl;
-		state.handleInput();
 		state.update(time);
 		//Handle event
 		sf::Event event;
 		while (_window.pollEvent(event)) {
 			state.handleEvent(event);
+			state.handleInput();
 			switch (event.type)
 			{
 			case sf::Event::Closed:
