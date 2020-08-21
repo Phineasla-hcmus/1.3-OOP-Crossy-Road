@@ -20,6 +20,7 @@ game::game()
 
 void game::run()
 {
+	_window.setKeyRepeatEnabled(false);
 	//main game loop
 	while (_window.isOpen() && _states.empty() == 0) {
 		auto& state = cur_state();
@@ -32,6 +33,7 @@ void game::run()
 		sf::Event event;
 		while (_window.pollEvent(event)) {
 			state.handleEvent(event);
+			state.handleInput();
 			switch (event.type)
 			{
 			case sf::Event::Closed:

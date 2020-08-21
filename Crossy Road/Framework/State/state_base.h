@@ -14,8 +14,7 @@ public:
 	//virtual void handleInput();
 	virtual void handleEvent(sf::Event) {};
 	virtual void update		(sf::Time delta_time)	= 0;
-	virtual void draw(sf::RenderTarget&) {};
-	virtual void render(sf::RenderTarget& renderer) {}
+	virtual void draw		(sf::RenderTarget&)		= 0;
 	virtual void handleInput() {}
 };
 #endif // !_state_base

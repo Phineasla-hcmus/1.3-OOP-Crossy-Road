@@ -1,9 +1,10 @@
 #include "World.h"
 #include <time.h>
-
+#include "../Framework/Util/random.h"
 
 World::World()
 {
+    random rand;
     srand((unsigned)time(NULL));
     //init road
     float y_startPos = 0;
