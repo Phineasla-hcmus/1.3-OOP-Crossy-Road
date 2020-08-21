@@ -52,6 +52,21 @@
 
 	};
 
+	class Bird :public Vehicle {
+	private:
+		bool m_Active;
+	public:
+		Bird(sf::Vector2f position = { 0.f,0.f });
+		void onCollide(Collision& other) {
+			m_Active = false;
+		}
+		const sf::Vector2f& getPosition() const {
+			return vehicle.getPosition();
+		}
+		void draw(sf::RenderTarget& target);
+
+	};
+
 #endif // !1
 	
 
