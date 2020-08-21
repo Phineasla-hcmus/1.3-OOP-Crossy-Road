@@ -2,17 +2,18 @@
 
 #include <SFML/Graphics.hpp>
 
-class Collision
-{
-public:
-    Collision(float width, float height);
 
-    bool tryCollideWith(Collision& other);
-    sf::FloatRect getBox() const;
+    class Collision
+    {
+    public:
+        Collision(float width, float height);
 
-    virtual const sf::Vector2f& getPosition() const = 0;
-    virtual void onCollide(Collision& other) = 0;
+        bool tryCollideWith(Collision& other);
+        sf::FloatRect getBox() const;
 
-private:
-    sf::Vector2f m_size;
-};
+        virtual const sf::Vector2f& getPosition() const = 0;
+        virtual void onCollide(Collision& other) = 0;
+
+    private:
+        sf::Vector2f m_size;
+    };
