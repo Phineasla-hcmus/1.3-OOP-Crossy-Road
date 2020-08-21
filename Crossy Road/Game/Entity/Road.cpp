@@ -110,8 +110,9 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_p
 			if (typeid(*this->r_vehicle[0])==typeid(Car)) {
 				v = new Car(getCenterRoadPosition());
 			}
-			else if(typeid(*this->r_vehicle[0]) == typeid(Bike))
+			else if (typeid(*this->r_vehicle[0]) == typeid(Bike)) {
 				v = new Bike(this->getCenterRoadPosition());
+			}
 			else v= new Bird(this->getCenterRoadPosition());
 			r_vehicle.push_back(v);
 		}
@@ -119,8 +120,9 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_p
 			if (typeid(*this->r_vehicle[0]) == typeid(Car)) {
 				v = new Car({ 1280,getCenterRoadPosition().y });
 			}
-			else if(typeid(*this->r_vehicle[0]) == typeid(Bike))
-				v = new Bike({ 1280,this->getCenterRoadPosition().y });
+			else if (typeid(*this->r_vehicle[0]) == typeid(Bike)) { 
+				v = new Bike({ 1280,this->getCenterRoadPosition().y }); 
+			}
 			else v = new Bird({ 1280,this->getCenterRoadPosition().y });
 			r_vehicle.push_back(v);
 		}
