@@ -12,7 +12,7 @@
     void Player::restart()
     {
         v_speed *= 0.0f;
-      //  people.setTextureRect({ 0, 0, 11, 8 });
+      //  people.setTextureRect({ 0, 0, 11, 8 });//
         is_Alive = true;        
         people.setPosition(this->origin_pos);
     }
