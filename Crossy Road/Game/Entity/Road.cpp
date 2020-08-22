@@ -1,4 +1,5 @@
 #include "Road.h"
+#include "../../Framework/Util/random.h"
 #include <iostream>
 
 
@@ -23,9 +24,9 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_p
 	void DRoad::initVehicle()
 	{
 		Vehicle* v;		
-		
-		int rand_num = rand() % 3;
-		auto rand_distance = rand() % 100-50;
+		random rand;
+		int rand_num = rand.int_in_range(0,2);
+		auto rand_distance = rand.int_in_range(-50,50);
 		if (rand_num==1) {
 			v = new Car({ 0.f + rand_distance,getCenterRoadPosition().y });
 		}
