@@ -7,7 +7,7 @@ state_base& game::cur_state() const
 }
 game::game()
 	//set resolution, window's title and disable fullscreen
-	: _window(sf::VideoMode(1280, 720), "Crossy Road", sf::Style::Close)
+	: _window(sf::VideoMode(screen_height, screen_width), "Crossy Road", sf::Style::Close)
 {
 	_window.setFramerateLimit(60);
 	sf::Image icon;

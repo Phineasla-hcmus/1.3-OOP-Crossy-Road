@@ -5,6 +5,10 @@
 #include<SFML/Graphics.hpp>
 #include"State/state_base.h"
 #include"Util/no_copy.h"
+constexpr auto screen_width		= 1280;
+constexpr auto screen_height	= 720;
+constexpr auto num_lane			= 8;
+constexpr auto tile_size		= screen_height / num_lane;
 class game : public no_copy
 {
 private:
