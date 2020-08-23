@@ -7,7 +7,7 @@ state_base& game::cur_state() const
 }
 game::game()
 	//set resolution, window's title and disable fullscreen
-	: _window(sf::VideoMode(screen_height, screen_width), "Crossy Road", sf::Style::Close)
+	: _window(sf::VideoMode(screen_width, screen_height), "Crossy Road", sf::Style::Close)
 {
 	_window.setFramerateLimit(60);
 	sf::Image icon;
@@ -27,7 +27,7 @@ void game::run()
 		auto time = update_dt_clock();
 		//Frame update
 		//std::cout << 1.f / time.asSeconds() << std::endl;
-		state.handleInput();
+		//state.handleInput();
 		state.update(time);
 		//Handle event
 		sf::Event event;
