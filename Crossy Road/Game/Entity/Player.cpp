@@ -1,15 +1,15 @@
 #include "Player.h"
 #include "../world.h"
 
-    Player::Player() :Collision(90.f,90.f)
-    {
-        sf::Vector2f size_player = { 90.f,90.f };
-        people.setSize(size_player);        
-        people.setPosition(this->origin_pos);
-        player_texture.loadFromFile("Assets\\textures\\player_sprite_2.png");
-        people.setTexture(&player_texture);
-        people.setTextureRect(sf::IntRect{ 0,192,64,64 });
-    }
+Player::Player() :Collision(90.f, 90.f)
+{
+    sf::Vector2f size_player = { 90.f,90.f };
+    people.setSize(size_player);
+    people.setPosition(this->origin_pos);
+    player_texture.loadFromFile("Assets\\textures\\player_sprite_2.png");
+    people.setTexture(&player_texture);
+    people.setTextureRect(sf::IntRect{ 0,192,64,64 });
+}
 
     void Player::restart()
     {
@@ -21,6 +21,7 @@
 
     void Player::inputKeyPress()
     {
+
         using Key = sf::Keyboard::Key;
         auto keyDown = [](sf::Keyboard::Key k) {
             return sf::Keyboard::isKeyPressed(k);
@@ -29,9 +30,9 @@
         if (keyDown(Key::A)) {
             clock.restart();
             people.setTextureRect(sf::IntRect{ 0,64,64,64 });
-           /* people.setTextureRect(sf::IntRect{ 64,64,64,64 });*/
+            /* people.setTextureRect(sf::IntRect{ 64,64,64,64 });*/
             v_speed.x -= speed;
-            if (clock.getElapsedTime().asSeconds() > 0.01f) 
+            if (clock.getElapsedTime().asSeconds() > 0.01f)
                 v_speed.x = 0.f;
         }
         else if (keyDown(Key::D)) {
@@ -55,11 +56,11 @@
             if (clock.getElapsedTime().asSeconds() > 0.01f)
                 v_speed.y = 0.f;
         }
-    }
 
+    }
+    
     void Player::update(float dt)
     {
-        if (is_Alive) {
             auto w = people.getGlobalBounds().width;
             auto h = people.getGlobalBounds().height;
             people.move(v_speed );
@@ -81,7 +82,6 @@
             if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height >= 720)
                 this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
         }
-    }
 
     void Player::draw(sf::RenderTarget& target)
     {
@@ -89,6 +89,7 @@
             //people.setTextureRect(death_Animation.getFrame());
         }
         else
+        
             target.draw(people);
         
     }
