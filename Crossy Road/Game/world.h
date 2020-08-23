@@ -28,9 +28,7 @@ private:
 
     Player _people;
 
-    std::vector<DRoad> m_road;
-    std::vector<Vehicle*> m_vehicle;
-
+    std::vector<DRoad> m_road;  
    
     int maxVehicles;   
     static int level;
