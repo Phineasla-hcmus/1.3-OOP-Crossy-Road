@@ -5,6 +5,17 @@ state_base& Game::cur_state() const
 {
 	return *m_states.top();
 }
+void Game::pop()
+{
+	m_pop_pending = false;
+	m_states.pop();
+}
+void Game::swap()
+{
+	m_swap_pending = false;
+	m_states.pop();
+	m_states.push(std::move(m_swap_state));
+}
 Game::Game()
 	//set resolution, window's title and disable fullscreen
 	: m_window(sf::VideoMode(screen_width, screen_height), "Crossy Road", sf::Style::Close)
@@ -26,8 +37,7 @@ void Game::run()
 		auto& state = cur_state();
 		auto time = update_dt_clock();
 		//Frame update
-		//std::cout << 1.f / time.asSeconds() << std::endl;
-		//state.handleInput();
+		//std::cout << 1.f / time.asSeconds() << std::endl;//DEBUG
 		state.update(time);
 		//Handle event
 		sf::Event event;
@@ -37,21 +47,23 @@ void Game::run()
 			switch (event.type)
 			{
 			case sf::Event::Closed:
-				//maybe need prompt "will lose data" before exit
 				m_window.close();
 				break;
 			default:
 				break;
 			}
 		}
-
 		//Render
 		m_window.clear();
-		//1st buffer
 		state.draw(m_window);
-		//2nd buffer
 		m_window.display();
+		//Handle pending pop/swap state
+		if (m_pop_pending)
+			pop();
+		else if (m_swap_pending)
+			swap();
 	}
+	//m_states.empty()==true
 	m_window.close();
 }
 
@@ -62,7 +74,13 @@ void Game::pushState(std::unique_ptr<state_base> state)
 
 void Game::popState()
 {
+	m_swap_pending = true;
+}
 
+void Game::swapState(std::unique_ptr<state_base> swap)
+{
+	m_swap_pending = true;
+	m_swap_state = std::move(swap);
 }
 
 const sf::RenderWindow& Game::get_window() const
@@ -72,5 +90,5 @@ const sf::RenderWindow& Game::get_window() const
 
 sf::Time Game::update_dt_clock()
 {
-	return dt_clock.restart();
+	return m_dt_clock.restart();
 }
