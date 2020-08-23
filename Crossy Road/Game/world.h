@@ -29,8 +29,7 @@ private:
     std::vector<DRoad> m_road;
     std::vector<Vehicle*> m_vehicle;
 
-    float vehicleSpawnTimer;
-    float vehicleSpawnTimerMax;
+   
     int maxVehicles;   
     int level;
 
