@@ -13,7 +13,7 @@ World::World()
         sf::Vector2f pos;
         pos.x = 10;
         pos.y = y_startPos;
-        m_road.push_back({ rand.int_in_range(0,2),pos,100.f,k ,_people});
+        m_road.push_back({ rand.int_in_range(-150,150),rand.int_in_range(0,2),pos,100.f,k ,_people});
         y_startPos = pos.y + m_road[0].getDistance();
         k = k * -1;
     }
