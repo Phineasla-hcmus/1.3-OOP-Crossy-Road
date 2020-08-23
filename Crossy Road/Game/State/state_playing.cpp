@@ -1,4 +1,5 @@
 #include "state_playing.h"
+#include <iostream>
 
 state_playing::state_playing(game& game)
 	: state_base(game)
@@ -43,6 +44,12 @@ void state_playing::update(sf::Time delta_time)
         //    m_highestScoreDisplay.update(m_score);
        // }
     }
+    if (level != _world.getLevel()) {
+        _world.resetRoad();
+        level = _world.getLevel();
+        std::cout << _world.getLevel() << "\n";
+    }
+    
 
     _is_gameover = _world.isGameOver();
 }

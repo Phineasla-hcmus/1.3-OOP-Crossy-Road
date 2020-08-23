@@ -18,8 +18,8 @@ private:
 	Player& m_player;
 	sf::Vector2f m_pos;
 	float speed;
-	int isFromLeft = 1;
-	int num_Vehicle = 4;
+	int isFromLeft ;
+	int num_Vehicle ;
 	
 	typedef Vehicle* (*new_vehicle)(sf::Vector2f origin_pos);
 

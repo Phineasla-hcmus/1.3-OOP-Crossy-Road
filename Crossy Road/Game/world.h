@@ -21,10 +21,9 @@ public:
     const Player& getPlayer() const;
     bool isGameOver() const;
     void setGameIsOver() { _isGameOver = true; }
-    void levelUp() {
-        ++level;
-
-    }
+    void resetRoad();
+    int getLevel()const;
+    static void levelUp();
 private:
 
     Player _people;
@@ -35,6 +34,8 @@ private:
    
     int maxVehicles;   
     static int level;
+    float base_vehicle_speed = 30;
+    float step_vehicle_speed = 0;
 
     bool _isGameOver = false;
 };

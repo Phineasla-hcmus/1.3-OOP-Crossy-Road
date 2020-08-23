@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "../world.h"
 
     Player::Player() :Collision(30.f,30.f)
     {
@@ -54,8 +55,10 @@
             if (this->people.getGlobalBounds().left + this->people.getGlobalBounds().width >= 1280)
                 this->people.setPosition(1280- this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
             //Top
-            //if (this->people.getGlobalBounds().top <= 0.f)
-                //this->people.setPosition(this->people.getGlobalBounds().left, 0.f);
+            if (this->people.getGlobalBounds().top <= 0.f) {
+                this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
+                World::levelUp();
+            }
             //Bottom
             if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height >= 720)
                 this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);

@@ -7,6 +7,7 @@ private:
 	World	_world;
 	int		_score			= 0;
 	bool	_is_gameover	= false;
+	int		level = 1;
 public:
 	state_playing(game&);
 

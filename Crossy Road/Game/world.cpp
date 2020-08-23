@@ -11,7 +11,7 @@ World::World()
     //init road
     float y_startPos = 0;
     int isFromLeft = 1;
-    float speed = 50 + World::level * 10;
+    float speed = base_vehicle_speed + World::level * step_vehicle_speed;
     int numVehicle = (World::level > 5) ? 5 : 4;
     for (int i = 0; i < 4; ++i) {
         sf::Vector2f origin_Pos;
@@ -50,6 +50,36 @@ const Player& World::getPlayer() const
 bool World::isGameOver() const
 {
     return _isGameOver;
+}
+
+void World::resetRoad()
+{
+  //  ++level;
+
+    m_road.clear();
+    random rand;
+    float y_startPos = 0;
+    int isFromLeft = 1;
+    float speed = base_vehicle_speed + World::level * step_vehicle_speed;
+    int numVehicle = (World::level > 5) ? 5 : 4;
+    for (int i = 0; i < 4; ++i) {
+        sf::Vector2f origin_Pos;
+        origin_Pos.x = 10;
+        origin_Pos.y = y_startPos;
+        m_road.push_back({ numVehicle,rand.int_in_range(-150,150),rand.int_in_range(0,2),origin_Pos,speed,isFromLeft ,_people });
+        y_startPos = origin_Pos.y + m_road[0].getDistance();
+        isFromLeft = isFromLeft * -1;
+    }
+}
+
+int World::getLevel() const
+{
+    return level;
+}
+
+void World::levelUp()
+{
+    ++level;
 }
 
 void World::draw(sf::RenderTarget& target)
