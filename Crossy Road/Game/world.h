@@ -21,7 +21,10 @@ public:
     const Player& getPlayer() const;
     bool isGameOver() const;
     void setGameIsOver() { _isGameOver = true; }
+    void levelUp() {
+        ++level;
 
+    }
 private:
 
     Player _people;
@@ -31,7 +34,7 @@ private:
 
    
     int maxVehicles;   
-    int level;
+    static int level;
 
     bool _isGameOver = false;
 };

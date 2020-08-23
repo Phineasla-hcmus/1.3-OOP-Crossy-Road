@@ -3,8 +3,9 @@
 #include <iostream>
 
 
-DRoad::DRoad(int rand_startPos,int rand_typeVehicle,sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_player(player)
+DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_player(player)
 {
+	this->num_Vehicle = num_Vehicle;
 	this->isFromLeft = isFromLeft;
 	this->m_pos = pos;
 	this->m_speed = speed;
@@ -25,7 +26,7 @@ DRoad::DRoad(int rand_startPos,int rand_typeVehicle,sf::Vector2f pos, float spee
 	{	
 		
 		sf::Vector2f origin_pos(rand_startPos, this->getCenterRoadPosition().y);
-		for (int i = 0; i<=num_Vehicle+1; ++i) {
+		for (int i = 0; i<=num_Vehicle+3; ++i) {
 			r_vehicle.push_back(initVehicle_rand(k,origin_pos));
 			origin_pos.x += (1280/num_Vehicle);
 		}
@@ -85,7 +86,7 @@ DRoad::DRoad(int rand_startPos,int rand_typeVehicle,sf::Vector2f pos, float spee
 	void DRoad::update(float dt,int level)
 	{
 		//Updating the timer for enemy spawning
-		if (this->r_vehicle.size() < this->maxVehicle)
+		if (this->r_vehicle.size() < this->num_Vehicle)
 		{
 			this->spawnVehicle();
 

@@ -12,7 +12,7 @@ private:
 	float width;
 	float distance;
 	std::vector<Vehicle*> r_vehicle;	
-	int maxVehicle=4;
+	
 	
 	float m_speed;
 	Player& m_player;
@@ -24,7 +24,7 @@ private:
 	typedef Vehicle* (*new_vehicle)(sf::Vector2f origin_pos);
 
 public:
-	DRoad(int rand_startPos,int rand_typeVehicle,sf::Vector2f pos, float speed, int isFromLeft, Player& player);
+	DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f pos, float speed, int isFromLeft, Player& player);
 	void initVehicle(int k=0, int rand_startPos=0);
 	void initVar(float width = 90, float distance = 90);
 	void initShape(sf::Vector2f position = { 0,0 });
