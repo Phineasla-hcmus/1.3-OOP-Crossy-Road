@@ -9,17 +9,26 @@ constexpr auto screen_width		= 1280;
 constexpr auto screen_height	= 720;
 constexpr auto num_lane			= 8;
 constexpr auto tile_size		= screen_height / num_lane;
-class game : public no_copy
+class Game : public no_copy
 {
 private:
+	struct save {
+		unsigned level;
+		unsigned score;
+		struct road {
+			float speed;
+			int type;
+		} roads[4];
+		//std::array<road, 4> roads;
+	} m_save;
 	sf::Clock								dt_clock;
-	sf::RenderWindow						_window;
-	std::stack<std::unique_ptr<state_base>> _states;
+	sf::RenderWindow						m_window;
+	std::stack<std::unique_ptr<state_base>> m_states;
 	state_base& cur_state() const;
 public:
-	game();
+	Game();
 	//no_move
-	game(game&&) = delete;
+	Game(Game&&) = delete;
 	void run();
 	void pushState(std::unique_ptr<state_base> state);
 	void popState();

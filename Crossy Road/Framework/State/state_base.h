@@ -2,13 +2,13 @@
 #define _state_base
 #include"SFML/Graphics.hpp"
 #include"../Util/no_copy.h"
-class game;
+class Game;
 class state_base : public no_copy
-{//
+{
 private:
-	game& _game;
+	Game& m_game;
 public:
-	state_base(game&);
+	state_base(Game&);
 	virtual ~state_base() = default;
 
 	//virtual void handleInput();

@@ -1,6 +1,6 @@
 #include "state_main_menu.h"
 
-state_main_menu::state_main_menu(game& game)
+state_main_menu::state_main_menu(Game& game)
 	: state_base(game)
 {
 

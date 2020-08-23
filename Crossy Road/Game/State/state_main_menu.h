@@ -4,7 +4,7 @@
 class state_main_menu :public state_base {
 private:
 public:
-	state_main_menu(game&);
+	state_main_menu(Game&);
 
 	void handleEvent(sf::Event e)			override;
 	void update(sf::Time delta_time)		override;

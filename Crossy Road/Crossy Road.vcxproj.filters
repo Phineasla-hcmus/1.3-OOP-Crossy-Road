@@ -74,13 +74,13 @@
     <ClCompile Include="Game\Entity\Player.cpp">
       <Filter>Source Files\Game\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\game.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\AssetManager\asset.cpp">
       <Filter>Source Files\Framework\AssetManager</Filter>
     </ClCompile>
     <ClCompile Include="Game\Collidable.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Game.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -124,9 +124,6 @@
     <ClInclude Include="Game\Entity\Vehicle.h">
       <Filter>Source Files\Game\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\game.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\AssetManager\asset_manager.h">
       <Filter>Source Files\Framework\AssetManager</Filter>
     </ClInclude>
@@ -134,6 +131,9 @@
       <Filter>Source Files\Framework\AssetManager</Filter>
     </ClInclude>
     <ClInclude Include="Game\Collidable.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Game.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
