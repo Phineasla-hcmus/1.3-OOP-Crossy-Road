@@ -26,8 +26,6 @@ private:
 
     Player _people;
 
-
-
     std::vector<DRoad> m_road;
     std::vector<Vehicle*> m_vehicle;
 

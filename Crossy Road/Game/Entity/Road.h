@@ -12,19 +12,20 @@ private:
 	float width;
 	float distance;
 	std::vector<Vehicle*> r_vehicle;	
-	int maxVehicle;
+	int maxVehicle=4;
 	
 	float m_speed;
 	Player& m_player;
 	sf::Vector2f m_pos;
 	float speed;
 	int isFromLeft = 1;
+	int num_Vehicle = 4;
 	
-	
+	typedef Vehicle* (*new_vehicle)(sf::Vector2f origin_pos);
 
 public:
-	DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player);
-	void initVehicle();
+	DRoad(int rand_typeVehicle,sf::Vector2f pos, float speed, int isFromLeft, Player& player);
+	void initVehicle(int k=0);
 	void initVar(float width = 90, float distance = 90);
 	void initShape(sf::Vector2f position = { 0,0 });
 	float getDistance();
@@ -33,5 +34,20 @@ public:
 	sf::Vector2f getCenterRoadPosition();
 	void spawnVehicle();
 	CollisionResult tryCollideWithPlayer();
+
+	static Vehicle* initVehicle_rand(int i,sf::Vector2f origin_pos)
+	{
+		int k = i % 3;
+		new_vehicle vehicle_rand[] =
+		{
+			Car::newVehicle,
+			Bike::newVehicle,  // weighted towards FOO
+			Bird::newVehicle
+		};
+		
+		return vehicle_rand[k](origin_pos);
+	}
 };
+
+
 #endif // !_road_h

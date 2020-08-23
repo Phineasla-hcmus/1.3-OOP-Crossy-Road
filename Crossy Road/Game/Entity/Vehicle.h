@@ -28,13 +28,14 @@
 		bool m_Active;
 	public:
 		Car(sf::Vector2f position = { 0.f,0.f });
-		void draw(sf::RenderTarget& target);
+		virtual void draw(sf::RenderTarget& target);
 		void onCollide(Collision& other) {
 			m_Active = false;
 		}
 		const sf::Vector2f& getPosition() const {
 			return vehicle.getPosition();
 		}
+		static Vehicle* newVehicle(sf::Vector2f origin_pos);
 	};
 
 	class Bike :public Vehicle {
@@ -48,7 +49,8 @@
 		const sf::Vector2f& getPosition() const {
 			return vehicle.getPosition();
 		}
-		void draw(sf::RenderTarget& target);
+		virtual void draw(sf::RenderTarget& target);
+		static Vehicle* newVehicle(sf::Vector2f origin_pos);
 
 	};
 
@@ -64,7 +66,7 @@
 			return vehicle.getPosition();
 		}
 		void draw(sf::RenderTarget& target);
-
+		static Vehicle* newVehicle(sf::Vector2f origin_pos);
 	};
 
 #endif // !1

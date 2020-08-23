@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_player(player)
+DRoad::DRoad(int rand_typeVehicle,sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_player(player)
 {
 	this->isFromLeft = isFromLeft;
 	this->m_pos = pos;
@@ -13,69 +13,21 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_p
 	else this->isFromLeft = -1;
 	this->initVar();
 	this->initShape(pos);
-	this->initVehicle();
+	this->initVehicle(rand_typeVehicle);
 }
 	void DRoad::initVar(float width, float distance)
 	{
 		this->width = width;
 		this->distance = distance;	
-		maxVehicle = 5;
+	
 	}
-	void DRoad::initVehicle()
-	{
-		Vehicle* v;		
-		random rand;
-		int rand_num = rand.int_in_range(0,2);
-		auto rand_distance = rand.int_in_range(-50,50);
-		if (rand_num==1) {
-			v = new Car({ 0.f + rand_distance,getCenterRoadPosition().y });
+	void DRoad::initVehicle(int k)
+	{			
+		sf::Vector2f origin_pos(rand()%100-50, this->getCenterRoadPosition().y);
+		for (int i = 0; i<=num_Vehicle; ++i) {
+			r_vehicle.push_back(initVehicle_rand(k,origin_pos));
+			origin_pos.x += (1280/num_Vehicle);
 		}
-		else if(rand_num==2)
-		v = new Bike({0.f+ rand_distance,this->getCenterRoadPosition().y });
-		else v=new Bird({ 0.f + rand_distance,this->getCenterRoadPosition().y });
-		r_vehicle.push_back(v);
-		
-
-		if (rand_num == 1) {
-			v = new Car({ 256.f + rand_distance,getCenterRoadPosition().y });
-		}
-		else if (rand_num == 2)
-			v = new Bike({ 256.f + rand_distance,this->getCenterRoadPosition().y });
-		else v = new Bird({ 256.f + rand_distance,this->getCenterRoadPosition().y });
-		r_vehicle.push_back(v);
-
-		if (rand_num == 1) {
-			v = new Car({ 512.f + rand_distance,getCenterRoadPosition().y });
-		}
-		else if (rand_num == 2)
-			v = new Bike({ 512.f + rand_distance,this->getCenterRoadPosition().y });
-		else v = new Bird({ 512.f + rand_distance,this->getCenterRoadPosition().y });
-		r_vehicle.push_back(v);
-
-		if (rand_num == 1) {
-			v = new Car({ 768.f + rand_distance,getCenterRoadPosition().y });
-		}
-		else if (rand_num == 2)
-			v = new Bike({ 768.f + rand_distance,this->getCenterRoadPosition().y });
-		else v = new Bird({ 768.f + rand_distance,this->getCenterRoadPosition().y });
-		r_vehicle.push_back(v);
-
-		if (rand_num == 1) {
-			v = new Car({ 1024.f + rand_distance,getCenterRoadPosition().y });
-		}
-		else if (rand_num == 2)
-			v = new Bike({ 1024.f + rand_distance,this->getCenterRoadPosition().y });
-		else v = new Bird({ 1024.f + rand_distance,this->getCenterRoadPosition().y });
-		r_vehicle.push_back(v);
-
-		if (rand_num == 1) {
-			v = new Car({ 1280.f + rand_distance,getCenterRoadPosition().y });
-		}
-		else if (rand_num == 2)
-			v = new Bike({ 1280.f + rand_distance,this->getCenterRoadPosition().y });
-		else v = new Bird({ 1280.f + rand_distance,this->getCenterRoadPosition().y });
-		r_vehicle.push_back(v);
-
 	}
 	void DRoad::initShape(sf::Vector2f position)
 	{
@@ -119,12 +71,12 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_p
 		}
 		else {
 			if (typeid(*this->r_vehicle[0]) == typeid(Car)) {
-				v = new Car({ 1280,getCenterRoadPosition().y });
+				v = new Car({ 1280-90,getCenterRoadPosition().y });
 			}
 			else if (typeid(*this->r_vehicle[0]) == typeid(Bike)) { 
-				v = new Bike({ 1280,this->getCenterRoadPosition().y }); 
+				v = new Bike({ 1280-90,this->getCenterRoadPosition().y }); 
 			}
-			else v = new Bird({ 1280,this->getCenterRoadPosition().y });
+			else v = new Bird({ 1280-90,this->getCenterRoadPosition().y });
 			r_vehicle.push_back(v);
 		}
 	}
