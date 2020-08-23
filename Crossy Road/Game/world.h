@@ -21,7 +21,9 @@ public:
     const Player& getPlayer() const;
     bool isGameOver() const;
     void setGameIsOver() { _isGameOver = true; }
-
+    void resetRoad();
+    int getLevel()const;
+    static void levelUp();
 private:
 
     Player _people;
@@ -29,10 +31,11 @@ private:
     std::vector<DRoad> m_road;
     std::vector<Vehicle*> m_vehicle;
 
-    float vehicleSpawnTimer;
-    float vehicleSpawnTimerMax;
+   
     int maxVehicles;   
-    int level;
+    static int level;
+    float base_vehicle_speed = 30;
+    float step_vehicle_speed = 0;
 
     bool _isGameOver = false;
 };
