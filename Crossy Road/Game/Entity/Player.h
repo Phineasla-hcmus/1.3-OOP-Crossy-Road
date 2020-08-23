@@ -33,7 +33,7 @@
         sf::RectangleShape people;     
         sf::Vector2f v_speed;   
         sf::Vector2f origin_pos = { 640, 720 - 10 };
-        float speed = 45;
+        float speed = 45.f;
         bool is_Alive = true;        
 
        
