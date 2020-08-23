@@ -1,9 +1,9 @@
 #include "Player.h"
 #include "../world.h"
 
-    Player::Player() :Collision(30.f,30.f)
+    Player::Player() :Collision(90.f,90.f)
     {
-        sf::Vector2f size_player = { 30.f,30.f };
+        sf::Vector2f size_player = { 90.f,90.f };
         people.setSize(size_player);        
         people.setPosition(this->origin_pos);
        // people.setTextureRect({ 0, 0, 11, 8 });
@@ -44,8 +44,8 @@
         if (is_Alive) {
             auto w = people.getGlobalBounds().width;
             auto h = people.getGlobalBounds().height;
-            people.move(v_speed * dt);
-            v_speed *= 0.95f;
+            people.move(v_speed );
+            v_speed *= 0.f;
             //if player move out of bound
             
             //Left
