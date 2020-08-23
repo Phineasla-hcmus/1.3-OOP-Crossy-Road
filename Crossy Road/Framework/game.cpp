@@ -37,7 +37,7 @@ void Game::run()
 		auto& state = cur_state();
 		auto time = update_dt_clock();
 		//Frame update
-		//std::cout << 1.f / time.asSeconds() << std::endl;//DEBUG
+		//std::cout << 1.f / time.asSeconds() << std::endl;//DEBUG FPS
 		state.update(time);
 		//Handle event
 		sf::Event event;
@@ -63,8 +63,7 @@ void Game::run()
 		else if (m_swap_pending)
 			swap();
 	}
-	//m_states.empty()==true
-	m_window.close();
+	m_window.close();//m_states is empty
 }
 
 void Game::pushState(std::unique_ptr<state_base> state)
