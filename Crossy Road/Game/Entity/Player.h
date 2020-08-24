@@ -33,7 +33,7 @@
         sf::Vector2f origin_pos = { 640, 720 - 10 };
         float speed = 45.f;
         bool is_Alive = true;        
-
+        sf::Texture player_texture;
        
     };
 
