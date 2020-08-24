@@ -3,7 +3,6 @@
 #include"../../Framework/GUI/button.h"
 #include"../../Framework/GUI/StackMenu.h"
 #include"../../Framework/AssetManager/asset.h"
-#include"../../Game/State/state_playing.h"
 #include"../../Framework/game.h"
 class state_main_menu :public state_base {
 private:
