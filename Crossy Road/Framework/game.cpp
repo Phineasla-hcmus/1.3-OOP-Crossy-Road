@@ -1,6 +1,7 @@
 #include<iostream>
 #include "game.h"
 #include "../Game/State/state_playing.h"
+//#include"../Game/State/state_main_menu.h"
 state_base& Game::cur_state() const
 {
 	return *m_states.top();

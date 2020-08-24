@@ -1,4 +1,5 @@
 #ifndef _state_playing
+#define _state_playing
 #include"../../Framework/State/state_base.h"
 #include "../World.h"
 

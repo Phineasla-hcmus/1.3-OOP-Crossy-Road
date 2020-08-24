@@ -4,6 +4,7 @@
 #include<vector>
 #include<array>
 #include<SFML/Graphics.hpp>
+
 #include"State/state_base.h"
 #include"Util/no_copy.h"
 constexpr auto screen_width		= 1280;
@@ -34,7 +35,9 @@ public:
 	//no_move
 	Game(Game&&) = delete;
 	void run();
+
 	void pushState(std::unique_ptr<state_base>);
+	
 	//trigger bool var for pending pop/swap, prevent pop/swap too soon
 	void popState();
 	void swapState(std::unique_ptr<state_base> new_state);

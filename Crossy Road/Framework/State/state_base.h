@@ -11,6 +11,7 @@ public:
 	state_base(Game&);
 	virtual ~state_base() = default;
 
+	Game& game() { return m_game; }
 	//virtual void handleInput();
 	virtual void handleEvent(sf::Event) {};
 	virtual void update		(sf::Time delta_time)	= 0;
