@@ -14,10 +14,10 @@ constexpr float BASE_Y = 95.0f;
         _background.setPosition(_base_pos.x - _base_size.x/2.f , baseY - 100);
 
        
-       /* m_titleText.setPosition( m_baseSize.x /20000000000.f, baseY - 100);
-        m_titleText.setOutlineColor(sf::Color::Yellow);
-        m_titleText.setOutlineThickness(10);
-        m_titleText.setCharacterSize(10);*/
+       //m_titleText.setPosition( m_baseSize.x /20000000000.f, baseY - 100);
+       // m_titleText.setOutlineColor(sf::Color::Yellow);
+        //m_titleText.setOutlineThickness(10);
+        //m_titleText.setCharacterSize(10);
     }
 
     StackMenu::StackMenu(const sf::Vector2f& position)

@@ -2,7 +2,7 @@
 #define _BUTTON_H_
 
 #include <functional>
-#include "Widget.h"
+#include "../../Framework/GUI/Widget.h"
 enum class ButtonSize
 {
 	Small,

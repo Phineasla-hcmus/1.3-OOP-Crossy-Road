@@ -1,14 +1,13 @@
 #include "state_main_menu.h"
-
+#include"../../Framework/game.h"
 state_main_menu::state_main_menu(Game& game)
 	: state_base(game),
     m_mainMenu(game.get_window(), 300)
 {
-    sf::Texture title;
-    title.loadFromFile("Assets/texture/crossyroad.png");
+    
     m_banner.setSize({ 800, 100 });
     m_banner.setFillColor(sf::Color::Yellow);
-    m_banner.setTexture(&title);
+    m_banner.setTexture(&asset::texture().get("crossyroad", "png"));
     m_banner.setPosition(210, 30);
 
     
@@ -49,7 +48,6 @@ void state_main_menu::update(sf::Time delta_time)
 
 void state_main_menu::draw(sf::RenderTarget& render)
 {
-    render.draw(m_thumbnail);
     m_mainMenu.render(render);
     render.draw(m_banner);
 }

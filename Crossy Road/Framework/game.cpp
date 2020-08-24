@@ -25,7 +25,7 @@ Game::Game()
 	if (icon.loadFromFile("Assets/icon.png"))
 		m_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 	//push first state here
-	pushState(std::make_unique<state_playing>(*this));
+	pushState(std::make_unique<state_main_menu>(*this));
 }
 
 void Game::run()

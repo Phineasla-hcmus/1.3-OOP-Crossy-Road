@@ -3,12 +3,11 @@
 #include"../../Framework/GUI/button.h"
 #include"../../Framework/GUI/StackMenu.h"
 #include"../../Framework/AssetManager/asset.h"
-#include"../../Framework/game.h"
+
 #include"../State/state_playing.h"
 class state_main_menu :public state_base {
 private:
 	sf::RectangleShape m_container;
-	sf::RectangleShape m_thumbnail;
 	StackMenu m_mainMenu;
 	sf::RectangleShape m_banner;
 public:
