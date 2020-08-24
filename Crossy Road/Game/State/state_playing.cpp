@@ -1,12 +1,15 @@
 #include "state_playing.h"
 #include <iostream>
-
+state_playing::state_playing(Game& game, SaveInf save_inf)
+    : state_base(game)
+    , m_world()
+    , pause_menu(game)
+{}
 state_playing::state_playing(Game& game)
 	: state_base(game)
-	, m_world(),pause_menu(game)
-{
-
-}
+	, m_world()
+    , pause_menu(game)
+{}
 
 void state_playing::handleEvent(sf::Event ev)
 {

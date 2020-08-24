@@ -59,7 +59,7 @@ void Game::run()
 		//Handle pending pop/swap state
 		if (m_pop_pending)
 			pop();
-		else if (m_swap_pending)
+		if (m_swap_pending)
 			swap();
 	}
 	m_window.close();//m_states is empty

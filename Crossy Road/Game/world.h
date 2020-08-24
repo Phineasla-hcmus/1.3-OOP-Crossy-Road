@@ -1,7 +1,8 @@
 #ifndef _world_h
 #define _world_h
+#include <array>
 #include <SFML/Graphics.hpp>
-
+#include "../Framework/Util/random.h"
 #include "Entity/Player.h"
 #include "Entity/Road.h"
 #include "Entity/Vehicle.h"

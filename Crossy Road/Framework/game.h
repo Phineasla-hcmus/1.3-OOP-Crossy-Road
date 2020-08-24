@@ -10,17 +10,12 @@
 #include"../Game/State/state_playing.h"
 constexpr auto screen_width		= 1280;
 constexpr auto screen_height	= 720;
-constexpr auto num_lane			= 8;
-constexpr auto tile_size		= screen_height / num_lane;
+constexpr auto total_num_lane	= 8;
+constexpr auto tile_size		= screen_height / total_num_lane;
 class Game : public no_copy
 {
 private:
-	struct save {
-		unsigned level;
-		unsigned score;
-		std::array<float, 4> speed_road;
-		std::array<int, 4> obstacle_type_road;
-	}					m_save;
+
 	sf::Clock								m_dt_clock;
 	sf::RenderWindow						m_window;
 	std::stack<std::unique_ptr<state_base>> m_states;

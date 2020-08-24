@@ -12,8 +12,8 @@
 class Player :public Collision
 {
 public:
-	constexpr static int WIDTH = 44;
-	constexpr static int HEIGHT = 32;
+	//constexpr static int WIDTH = 44;
+	//constexpr static int HEIGHT = 32;
 
 	Player();
 
