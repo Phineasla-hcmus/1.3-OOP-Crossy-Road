@@ -15,7 +15,7 @@ state_main_menu::state_main_menu(Game& game)
     auto playBtn = makeButton();
     playBtn->setText("Play game");
     playBtn->setFunction([&]() {
-        (this->game()).pushState(std::make_unique<state_main_menu>(game));
+        (this->game()).pushState(std::make_unique<state_playing>(game));
         });
 
     auto LoadGameBtn = makeButton();

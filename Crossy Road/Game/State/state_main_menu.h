@@ -1,9 +1,10 @@
-#ifndef _state_playing
-#define _state_playing
+#ifndef _state_main_menu
+#define _state_main_menu
 #include"../../Framework/GUI/button.h"
 #include"../../Framework/GUI/StackMenu.h"
 #include"../../Framework/AssetManager/asset.h"
 #include"../../Framework/game.h"
+#include"../State/state_playing.h"
 class state_main_menu :public state_base {
 private:
 	sf::RectangleShape m_container;
