@@ -1,8 +1,8 @@
 #include "state_main_menu.h"
 #include"../../Framework/game.h"
 state_main_menu::state_main_menu(Game& game)
-	: state_base(game),
-    m_mainMenu(game.get_window(), 300)
+	: state_base(game)
+    , m_mainMenu(game.get_window(), 300)
 {
 
     m_banner.setSize({ 800, 100 });

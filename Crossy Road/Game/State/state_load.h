@@ -1,10 +1,10 @@
 #ifndef _state_load_h
 #define _state_load_h
 #include<array>
-#include"../../Framework/State/state_base.h"
 #include"../../Framework/GUI/button.h"
 #include"../../Framework/GUI/StackMenu.h"
 #include"../../Framework/AssetManager/asset.h"
+#include"../../Framework/State/state_base.h"
 constexpr auto save_lane = 4;
 class SaveInf {
 private:
@@ -21,27 +21,24 @@ public:
 	float		get_speed(size_t);
 	int			get_type(size_t);
 };
-////menu->load(m_change=stateplaying)
-////menu->load<->m_change
-////menu->stateplaying
-//
-////menu->stateplaying->load
-////menu->stateplaying->load(m_change=stateplaying)
-////menu->stateplaying->(popped)
-////menu->stateplaying<->m_change
-////menu->NEW_stateplaying
-//class state_load :public state_base {
-//public:
-//	bool isLoadFromMainMenu() {
-//		return (game().m_states.size() == 2);
-//	}
-//	void loadFile() {
-//		if (isLoadFromMainMenu())
-//			game().swapState(std::make_unique<state_playing>(game, SaveInf));
-//		else {
-//			game().PopState();
-//			game().swapState(std::make_unique<state_playing>(game, SaveInf));
-//		}
-//	}
-//};
+//case1
+//menu->load(m_change=stateplaying)
+//menu->load<->m_change
+//menu->stateplaying
+//case2
+//menu->stateplaying->load
+//menu->stateplaying->load(m_change=stateplaying)
+//menu->stateplaying->(popped)
+//menu->stateplaying<->m_change
+//menu->NEW_stateplaying
+class state_load :public state_base {
+private:
+
+public:
+	state_load(Game&);
+
+	void handleEvent(sf::Event e)			override;
+	void update(sf::Time delta_time)		override;
+	void draw(sf::RenderTarget& renderer)	override;
+};
 #endif // !_state_load_h
