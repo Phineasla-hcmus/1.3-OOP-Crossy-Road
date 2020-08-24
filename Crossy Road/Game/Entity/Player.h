@@ -5,8 +5,6 @@
 #include "../Collidable.h"
 #include <SFML/Audio.hpp>
 
-
-
     /**
         Represents the player
     */
@@ -22,7 +20,7 @@
         void update(float dt);
         void draw(sf::RenderTarget& target);           
 
-        const sf::Vector2f& getPosition() const { return people.getPosition(); };
+        const sf::Vector2f& getPosition() const { return m_player.getPosition(); };
         void onCollide(Collision& other) override { is_Alive = false; }
      
         bool isAlive() const;
@@ -30,7 +28,7 @@
     private:
         void restart();
 
-        sf::RectangleShape people;     
+        sf::RectangleShape m_player;     
         sf::Vector2f v_speed;   
         sf::Vector2f origin_pos = { 640, 720 - 10 };
         float speed = 45.f;
