@@ -28,7 +28,6 @@ private:
 	state_base& cur_state() const;
 	void pop();
 	void swap();
-	sf::Time update_dt_clock();
 public:
 	Game();
 	//no_move
@@ -39,6 +38,7 @@ public:
 	void popState();
 	void swapState(std::unique_ptr<state_base> new_state);
 	const sf::RenderWindow& get_window() const;
+	sf::Time update_dt_clock();
 };
 #endif // !_main_game
 
