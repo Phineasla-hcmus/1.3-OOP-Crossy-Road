@@ -44,6 +44,6 @@ bool PauseMenu:: isPaused() {
 	return is_paused;
 }
 void PauseMenu::changeState() {
-	is_paused= true;
+	is_paused= !is_paused;
 }
 //void update(sf::Time deltaTime) {}
