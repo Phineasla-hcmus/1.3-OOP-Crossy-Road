@@ -152,6 +152,7 @@
     <ClCompile Include="Framework\GUI\TextBox.cpp" />
     <ClCompile Include="Framework\GUI\Widget.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp" />
+    <ClCompile Include="Framework\Util\animation.cpp" />
     <ClCompile Include="Framework\Util\random.cpp" />
     <ClCompile Include="Game\Collidable.cpp" />
     <ClCompile Include="Game\Entity\Player.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Framework\GUI\TextBox.h" />
     <ClInclude Include="Framework\GUI\Widget.h" />
     <ClInclude Include="Framework\State\state_base.h" />
+    <ClInclude Include="Framework\Util\animation.h" />
     <ClInclude Include="Framework\Util\no_copy.h" />
     <ClInclude Include="Framework\Util\random.h" />
     <ClInclude Include="Game\Collidable.h" />

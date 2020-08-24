@@ -89,6 +89,9 @@
     <ClCompile Include="Game\State\state_load.cpp">
       <Filter>Source Files\Game\State</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Util\animation.cpp">
+      <Filter>Source Files\Framework\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\State\state_base.h">
@@ -147,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="Game\State\state_load.h">
       <Filter>Source Files\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\animation.h">
+      <Filter>Source Files\Framework\Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
