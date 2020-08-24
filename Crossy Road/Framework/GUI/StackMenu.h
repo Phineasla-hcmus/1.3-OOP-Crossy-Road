@@ -20,12 +20,6 @@ public:
     StackMenu& operator =(StackMenu&& other);
     ~StackMenu() = default;
     void addWidget(std::unique_ptr<Widget> w);
-    //template<typename T, typename Args>
-    //void addWidget(Args&& args) {
-    //    auto w = std::make_unique<T>(std::forward<Args>(args));
-    //    initWidget(*w);
-    //    _widgets.push_back(std::move(w));
-    //}
     void setTitle(const std::string& title, const sf::RenderTarget& target);
     void handleEvent(sf::Event e, const sf::RenderWindow& window);
     void render(sf::RenderTarget& renderer);
