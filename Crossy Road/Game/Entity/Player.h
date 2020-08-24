@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include"../../Framework/AssetManager/asset.h"
 #include "../Collidable.h"
 
 /*

@@ -4,9 +4,10 @@
 #include<vector>
 #include<array>
 #include<SFML/Graphics.hpp>
-
-#include"State/state_base.h"
 #include"Util/no_copy.h"
+#include"State/state_base.h"
+#include"../Game/State/state_main_menu.h"
+#include"../Game/State/state_playing.h"
 constexpr auto screen_width		= 1280;
 constexpr auto screen_height	= 720;
 constexpr auto num_lane			= 8;

@@ -8,7 +8,8 @@ Player::Player() :Collision(90.f, 90.f)
     sf::Vector2f size_player = { 90.f,90.f };
     people.setSize(size_player);
     people.setPosition(this->origin_pos);
-    player_texture.loadFromFile("Assets\\textures\\player_sprite_2.png");
+    //player_texture.loadFromFile("Assets\\textures\\player_sprite_2.png");
+    player_texture = asset::texture().get("player_sprite_2", "png");
     people.setTexture(&player_texture);
     people.setTextureRect(sf::IntRect{ 0,192,64,64 });
 }
