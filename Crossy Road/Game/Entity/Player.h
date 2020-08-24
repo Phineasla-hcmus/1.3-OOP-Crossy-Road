@@ -2,8 +2,10 @@
 #define Player_h
 
 #include <SFML/Graphics.hpp>
-#include "../Collidable.h"
 #include <SFML/Audio.hpp>
+#include "../Collidable.h"
+#include "../World.h"
+#include "../../Framework/AssetManager/asset.h"
 
     /**
         Represents the player

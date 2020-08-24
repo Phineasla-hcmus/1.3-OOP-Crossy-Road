@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "../world.h"
 
 Player::Player() :Collision(90.f, 90.f)
 {
