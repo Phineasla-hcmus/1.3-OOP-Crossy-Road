@@ -10,17 +10,17 @@ asset& asset::get()
     return storage;
 }
 
-asset_manager<sf::Font> asset::font()
+asset_manager<sf::Font>& asset::font()
 {
     return get()._font;
 }
 
-asset_manager<sf::Texture> asset::texture()
+asset_manager<sf::Texture>& asset::texture()
 {
     return get()._texture;
 }
 
-asset_manager<sf::SoundBuffer> asset::sound()
+asset_manager<sf::SoundBuffer>& asset::sound()
 {
     return get()._sound_buffer;
 }
