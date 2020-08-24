@@ -4,7 +4,7 @@ state_main_menu::state_main_menu(Game& game)
 	: state_base(game),
     m_mainMenu(game.get_window(), 300)
 {
-    
+
     m_banner.setSize({ 800, 100 });
     m_banner.setFillColor(sf::Color::Yellow);
     m_banner.setTexture(&asset::texture().get("crossyroad", "png"));
