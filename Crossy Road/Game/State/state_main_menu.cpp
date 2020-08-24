@@ -5,7 +5,7 @@ state_main_menu::state_main_menu(Game& game)
     m_mainMenu(game.get_window(), 300)
 {
     sf::Texture title;
-    title.loadFromFile("Assets/texture/crossyroad.png");
+    title.loadFromFile("Assets/textures/crossyroad.png");
     m_banner.setSize({ 800, 100 });
     m_banner.setFillColor(sf::Color::Yellow);
     m_banner.setTexture(&title);
