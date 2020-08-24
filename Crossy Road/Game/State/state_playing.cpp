@@ -23,7 +23,7 @@ void state_playing::handleEvent(sf::Event ev)
 
 void state_playing::handleInput()
 {
-    m_world.input();
+     if(!_is_paused)m_world.input();
 }
 
 void state_playing::draw(sf::RenderTarget& renderer)
