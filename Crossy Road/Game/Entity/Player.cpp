@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "../world.h"
 
+static int x = 0;
+static int y = 0;
 Player::Player() :Collision(90.f, 90.f)
 {
     sf::Vector2f size_player = { 90.f,90.f };
@@ -29,29 +31,28 @@ Player::Player() :Collision(90.f, 90.f)
         sf::Clock clock;
         if (keyDown(Key::A)) {
             clock.restart();
-            people.setTextureRect(sf::IntRect{ 0,64,64,64 });
-            /* people.setTextureRect(sf::IntRect{ 64,64,64,64 });*/
             v_speed.x -= speed;
+            y = 64;
             if (clock.getElapsedTime().asSeconds() > 0.01f)
                 v_speed.x = 0.f;
         }
         else if (keyDown(Key::D)) {
             clock.restart();
-            people.setTextureRect(sf::IntRect{ 0,128,64,64 });
+            y = 128;
             v_speed.x += speed;
             if (clock.getElapsedTime().asSeconds() > 0.01f)
                 v_speed.x = 0.f;
         }
         else if (keyDown(Key::W)) {
+            y = 192;
             clock.restart();
-            people.setTextureRect(sf::IntRect{ 0,192,64,64 });
             v_speed.y -= speed;
             if (clock.getElapsedTime().asSeconds() > 0.01f)
                 v_speed.y = 0.f;
         }
         else if (keyDown(Key::S)) {
+            y = 0;
             clock.restart();
-            people.setTextureRect(sf::IntRect{ 0,0,64,64 });
             v_speed.y += speed;
             if (clock.getElapsedTime().asSeconds() > 0.01f)
                 v_speed.y = 0.f;
@@ -82,16 +83,24 @@ Player::Player() :Collision(90.f, 90.f)
             if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height >= 720)
                 this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
         }
+  
 
     void Player::draw(sf::RenderTarget& target)
     {
+        sf::Clock clock;
         if (!is_Alive) {
             //people.setTextureRect(death_Animation.getFrame());
         }
-        else
-        
-            target.draw(people);
-        
+        else {
+            if (x == 192) {
+                x = 0;
+            }
+            else {
+                this->people.setTextureRect(sf::IntRect{ x,y,64,64 });
+                x += 64;
+                target.draw(people);
+            }  
+        }
     }
 
    
