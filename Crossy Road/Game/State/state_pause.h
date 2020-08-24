@@ -1,25 +1,22 @@
 #ifndef PAUSEMENU_H_
 #define PAUSEMENU_H_
-#include"Button.h"
-#include"StackMenu.h"
-#include"StateBase.h"
+#include"../../Framework/GUI/Button.h"
+#include"../../Framework/GUI/StackMenu.h"
+#include"../../Framework/State/state_base.h"
 #include<SFML/Graphics.hpp>
-
-class PauseMenu: public StateBase{
+class PauseMenu: public state_base {
 private:
-	
 	StackMenu pause_menu;
 	bool is_paused = false;
 
 public:
-	PauseMenu(Game& game);
+	PauseMenu(Game&);
 	
 	void changeState();
 	bool isPaused();
-	void update(const sf::Vector2f& mousePos);
-	void  draw(sf::RenderTarget& target);
-	void handleEvent(sf::Event e) ;
-	//void update(sf::Time deltaTime) ;
+	void  draw(sf::RenderTarget& target)    override;
+	void handleEvent(sf::Event e)		   override ;
+	void update(sf::Time dental_time)		override;
 };
 
 #endif // !PAUSEMENU_H_

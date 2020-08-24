@@ -20,14 +20,13 @@ state_main_menu::state_main_menu(Game& game)
     auto LoadGameBtn = makeButton();
     LoadGameBtn->setText("Load Game");
     LoadGameBtn->setFunction([&]() {
-        //m_game->pushState<PauseMenu>(*m_pGame);
-        //m_pGame->exit = true;
+       
         });
 
     auto exitBtn = makeButton();
     exitBtn->setText("Exit game");
     exitBtn->setFunction([&]() {
-       // m_game->exit = true;
+        this->game().popState();
         });
 
     m_mainMenu.addWidget(std::move(playBtn));
