@@ -26,7 +26,7 @@ World::World()
 void World::input()
 {
 	if (m_player.isAlive()) {
-		m_player.inputKeyPress();
+		m_player.keymove();
 
 	}
 }
@@ -36,7 +36,7 @@ int World::update(float dt)
 	int score = 0;
 	for (auto& road : this->m_road)
 		road.update(dt,this->level);
-
+	m_player.moving();
 	m_player.update(dt);
 	return score;
 }
