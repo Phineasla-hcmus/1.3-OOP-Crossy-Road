@@ -1,6 +1,8 @@
 #include "Collidable.h"
-#include "Collidable.h"
 
+Collision::Collision(const sf::Vector2f& size)
+    :m_size(size)
+{}
 
 Collision::Collision(float width, float height)
     : m_size(width, height)

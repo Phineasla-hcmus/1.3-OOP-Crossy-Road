@@ -128,6 +128,11 @@ Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed, vehicl
 	, m_new_vehicle(func)
 {}
 
+size_t Lane::vehicle_size() const
+{
+	return m_vehicles.size();
+}
+
 Vehicle& Lane::get_vehicle(size_t idx)
 {
 	return *m_vehicles[idx];

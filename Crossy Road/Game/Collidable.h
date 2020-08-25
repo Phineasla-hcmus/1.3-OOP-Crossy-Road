@@ -6,6 +6,7 @@
     class Collision
     {
     public:
+        Collision(const sf::Vector2f&);
         Collision(float width, float height);
 
         bool tryCollideWith(Collision& other);

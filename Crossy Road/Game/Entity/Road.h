@@ -42,7 +42,7 @@ using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 //	//	new_vehicle vehicle_rand[] =
 //	//	{
 //	//		Car::newVehicle,
-//	//		Truck::newVehicle,  // weighted towards FOO
+//	//		Truck::newVehicle,
 //	//		Bird::newVehicle
 //	//	};
 //	//	
@@ -60,6 +60,7 @@ public:
 		right = -1,
 	};
 	Lane(const sf::Vector2f road_pos, const direction, float speed, vehicle_func);
+
 	size_t vehicle_size() const;
 	Vehicle& get_vehicle(size_t);
 private:
