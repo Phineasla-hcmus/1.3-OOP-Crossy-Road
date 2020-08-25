@@ -68,18 +68,20 @@ private:
 	sf::RectangleShape m_sprite;
 	const sf::Texture& m_texture;
 public:
-	Vehicle(const sf::Texture&, sf::Vector2f size = { tile_size,tile_size }, sf::Vector2f pos = { 0,0 });
-	Vehicle(const sf::Texture&, float vehicle_length, sf::Vector2f pos = { 0,0 });
+	Vehicle(const sf::Texture&, int direction, sf::Vector2f size = { 90,90 }, sf::Vector2f pos = { 0,0 });
+	Vehicle(const sf::Texture&, int direction, float vehicle_length, sf::Vector2f pos = { 0,0 });
 
 	const sf::Vector2f& getPosition() const;
 	void draw(sf::RenderTarget&) const;
-	void move(float speed, float dt_time, DRoad::direction);
+	void move(float speed, float dt_time, int direction);
 };
 class Car :public Vehicle {
 public:
-	Car(const sf::Texture&, sf::Vector2f pos);
+	Car(const sf::Texture& texture, int dir, float car_length, sf::Vector2f pos);
 };
-
+class Truck :public Vehicle {
+	Truck(const sf::Texture& texture, int dir, float car_length, sf::Vector2f pos);
+};
 
 template<typename T>
 std::unique_ptr<Vehicle> new_vehicle() 

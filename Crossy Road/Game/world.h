@@ -4,8 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "../Framework/Util/random.h"
 #include "Entity/Player.h"
-#include "Entity/Road.h"
-#include "Entity/Vehicle.h"
+//#include "Entity/Road.h"
+//#include "Entity/Vehicle.h"
 constexpr auto x_tile = 14;
 constexpr auto y_tile = 8;
 /*
@@ -28,7 +28,7 @@ public:
 private:
 
 	Player m_player;
-    std::vector<DRoad> m_road;  
+    //std::vector<DRoad> m_road;  
    
 	int maxVehicles;   
 	static int level;

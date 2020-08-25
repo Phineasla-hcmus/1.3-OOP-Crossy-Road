@@ -2,9 +2,8 @@
 #define _state_playing
 #include"../../Framework/State/state_base.h"
 #include"../../Game/State/state_pause.h"
-#include "../World.h"
+#include"../world.h"
 #include"state_load.h"
-
 class state_playing :public state_base {
 private:
 	World	m_world;
@@ -13,7 +12,7 @@ private:
 	bool    _is_paused      = false;
 	int		m_level = 1;
 	PauseMenu pause_menu;
-	SaveInf save;
+	//SaveInf save;
 public:
 	state_playing(Game&);
 	state_playing(Game&, SaveInf);

@@ -17,8 +17,8 @@ World::World()
 		sf::Vector2f origin_Pos;
 		origin_Pos.x = 10;
 		origin_Pos.y = y_startPos;
-		m_road.push_back({ numVehicle,rand.int_in_range(-150,150),vehicle_type[i],origin_Pos,speed,isFromLeft ,m_player});
-		y_startPos = origin_Pos.y + m_road[0].getDistance();
+		//m_road.push_back({ numVehicle,rand.int_in_range(-150,150),vehicle_type[i],origin_Pos,speed,isFromLeft ,m_player});
+		//y_startPos = origin_Pos.y + m_road[0].getDistance();
 		isFromLeft = isFromLeft * -1;
 	}
 }
@@ -34,8 +34,8 @@ void World::input()
 int World::update(float dt)
 {
 	int score = 0;
-	for (auto& road : this->m_road)
-		road.update(dt,this->level);
+	//for (auto& road : this->m_road)
+	//	road.update(dt,this->level);
 
 	m_player.update(dt);
 	return score;
@@ -53,9 +53,7 @@ bool World::isGameOver() const
 
 void World::resetRoad()
 {
-  //  ++level;
-
-	m_road.clear();
+	//m_road.clear();
 	random rand;
 	float y_startPos = 0;
 	int isFromLeft = 1;
@@ -65,8 +63,8 @@ void World::resetRoad()
 		sf::Vector2f origin_Pos;
 		origin_Pos.x = 10;
 		origin_Pos.y = y_startPos;
-		m_road.push_back({ numVehicle,rand.int_in_range(-150,150),rand.int_in_range(0,2),origin_Pos,speed,isFromLeft ,m_player });
-		y_startPos = origin_Pos.y + m_road[0].getDistance();
+		//m_road.push_back({ numVehicle,rand.int_in_range(-150,150),rand.int_in_range(0,2),origin_Pos,speed,isFromLeft ,m_player });
+		//y_startPos = origin_Pos.y + m_road[0].getDistance();
 		isFromLeft = isFromLeft * -1;
 	}
 }
@@ -83,11 +81,8 @@ void World::levelUp()
 
 void World::draw(sf::RenderTarget& target)
 {
-
-	for (auto& droad : m_road) {
-		droad.draw(target);
-	}
+	//for (auto& droad : m_road) {
+	//	droad.draw(target);
+	//}
 	m_player.draw(target);
-
-
 }

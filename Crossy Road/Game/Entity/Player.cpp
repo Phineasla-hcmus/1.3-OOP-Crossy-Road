@@ -78,7 +78,7 @@ Player::Player() :Collision(90.f, 90.f)
             //Top
             if (this->people.getGlobalBounds().top <= 0.f) {
                 this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
-                World::levelUp();
+                //World::levelUp();
             }
             //Bottom
             if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height >= 720)

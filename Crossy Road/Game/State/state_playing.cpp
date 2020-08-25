@@ -1,13 +1,12 @@
 #include "state_playing.h"
-#include <iostream>
 state_playing::state_playing(Game& game, SaveInf save_inf)
     : state_base(game)
-    , m_world()
+    //, m_world()
     , pause_menu(game)
 {}
 state_playing::state_playing(Game& game)
 	: state_base(game)
-	, m_world()
+	//, m_world()
     , pause_menu(game)
 {}
 
@@ -26,12 +25,12 @@ void state_playing::handleEvent(sf::Event ev)
 
 void state_playing::handleInput()
 {
-     if(!_is_paused)m_world.input();
+     //if(!_is_paused)m_world.input();
 }
 
 void state_playing::draw(sf::RenderTarget& renderer)
 {
-    m_world.draw(renderer);
+    //m_world.draw(renderer);
     if (_is_paused) pause_menu.draw(renderer);
   //  m_lifeDisplay.draw(renderer, m_world.getPlayer().getLives());
   //  m_scoreDisplay.draw(renderer);
@@ -45,22 +44,22 @@ void state_playing::draw(sf::RenderTarget& renderer)
 
 void state_playing::update(sf::Time delta_time)
 {
-    if (!m_is_gameover && !_is_paused) {
-        m_score += m_world.update(delta_time.asSeconds());
-       // m_scoreDisplay.update(m_score);
+    //if (!m_is_gameover && !_is_paused) {
+    //    m_score += m_world.update(delta_time.asSeconds());
+    //   // m_scoreDisplay.update(m_score);
 
-       // if (m_score > m_highestScoreDisplay.getCurrentScoreDisplayed()) {
-        //    m_highestScoreDisplay.update(m_score);
-       // }
-    }
-    if (m_level != m_world.getLevel()) {
-        m_world.resetRoad();
-        m_level = m_world.getLevel();
-        std::cout << m_world.getLevel() << "\n";
-    }
+    //   // if (m_score > m_highestScoreDisplay.getCurrentScoreDisplayed()) {
+    //    //    m_highestScoreDisplay.update(m_score);
+    //   // }
+    //}
+    //if (m_level != m_world.getLevel()) {
+    //    m_world.resetRoad();
+    //    m_level = m_world.getLevel();
+    //    std::cout << m_world.getLevel() << "\n";
+    //}
     
     _is_paused = pause_menu.isPaused();
-    m_is_gameover = m_world.isGameOver();
+    //m_is_gameover = m_world.isGameOver();
 }
 
 
