@@ -4,8 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "../../Framework/game.h"
-#include "Player.h"
 #include "../Collidable.h"
+#include "Player.h"
 
 //class Vehicle :public Collision {
 //protected:
@@ -74,6 +74,10 @@ public:
 	const sf::Vector2f& getPosition() const;
 	void draw(sf::RenderTarget&) const;
 	void move(float speed, float dt_time, DRoad::direction);
+};
+class Car :public Vehicle {
+public:
+	Car(const sf::Texture&, sf::Vector2f pos);
 };
 
 

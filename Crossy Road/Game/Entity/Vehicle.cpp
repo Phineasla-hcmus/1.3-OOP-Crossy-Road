@@ -82,3 +82,7 @@ void Vehicle::move(float speed, float dt_time, DRoad::direction dir)
 {
 	m_sprite.move(speed * dt_time * (int)dir, 0);
 }
+
+Car::Car(const sf::Texture&, sf::Vector2f pos)
+{
+}
