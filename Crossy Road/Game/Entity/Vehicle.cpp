@@ -55,23 +55,27 @@
 //	return new Bird(origin_pos);
 //}
 
-Vehicle::Vehicle(const sf::Texture& texture, int dir, sf::Vector2f size, sf::Vector2f pos)
+Vehicle::Vehicle(const sf::Texture& texture, sf::Vector2f pos, sf::Vector2f size)
 	: m_sprite(size)
 	, m_texture(texture)
 	, Collision(size.x, size.y)
 {
-	m_sprite.setTexture(&m_texture);
 	m_sprite.setPosition(pos);
-	m_sprite.scale(dir, 0);
+	m_sprite.setTexture(&m_texture);
 }
 
-Vehicle::Vehicle(const sf::Texture& texture, int dir, float vehicle_length, sf::Vector2f pos)
-	: Vehicle(texture, dir, sf::Vector2f(vehicle_length, tile_size), pos)
+Vehicle::Vehicle(const sf::Texture& texture, sf::Vector2f pos, float vehicle_length)
+	: Vehicle(texture, pos, sf::Vector2f(vehicle_length, tile_size))
 {}
 
 const sf::Vector2f& Vehicle::getPosition() const
 {
 	return m_sprite.getPosition();
+}
+
+void Vehicle::set_TextureRec(const sf::IntRect& texture_bounds)
+{
+	m_sprite.setTextureRect(texture_bounds);
 }
 
 void Vehicle::draw(sf::RenderTarget& render) const
@@ -84,10 +88,10 @@ void Vehicle::move(float speed, float dt_time, int dir)
 	m_sprite.move(speed * dt_time * (int)dir, 0);
 }
 
-Car::Car(const sf::Texture& texture, int dir, float car_length, sf::Vector2f pos)
-	: Vehicle(texture, dir, car_length, pos)
+Truck::Truck(const sf::Texture& texture, const sf::Vector2f& pos, float length)
+	: Vehicle(texture, pos, length)
 {}
 
-Truck::Truck(const sf::Texture& texture, int dir, float car_length, sf::Vector2f pos)
-	: Vehicle(texture, dir, car_length, pos)
+Car::Car(const sf::Texture& texture, const sf::Vector2f& pos, float length)
+	: Vehicle(texture, pos, length)
 {}

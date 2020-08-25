@@ -26,3 +26,6 @@ sf::FloatRect Collision::getBox() const
         m_size.y
     };
 }
+
+void Collision::onCollide(Collision& other)
+{}

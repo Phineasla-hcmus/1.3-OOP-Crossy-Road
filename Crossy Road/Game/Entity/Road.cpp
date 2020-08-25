@@ -1,4 +1,5 @@
-//#include "Road.h"
+#include "Road.h"
+//#include "Lane.h"
 //#include "../../Framework/Util/random.h"
 //#include <iostream>
 //
@@ -119,3 +120,15 @@
 //		}
 //		return result;
 //	}
+
+Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed, vehicle_func func)
+	: m_pos(road_pos)
+	, m_dir(dir)
+	, m_speed(speed)
+	, m_new_vehicle(func)
+{}
+
+Vehicle& Lane::get_vehicle(size_t idx)
+{
+	return *m_vehicles[idx];
+}
