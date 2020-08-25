@@ -8,7 +8,7 @@ World::World()
 	for (auto& it : vehicle_type) {
 		it = rand.int_in_range(0, 2);
 	}
-	//init road
+	//init RoadInf
 	float y_startPos = 0;
 	int isFromLeft = 1;
 	float speed = base_vehicle_speed + World::level * step_vehicle_speed;

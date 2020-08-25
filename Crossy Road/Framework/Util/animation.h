@@ -5,7 +5,7 @@
 class animation {
 private:
 	struct frame {
-        sf::IntRect bounds; //The area in a texture of the frame
+        sf::IntRect bounds; //The area in a m_texture of the frame
         sf::Time    delay;  //Time delay to next frame
 		frame(const sf::IntRect& bounds, sf::Time delay);
 	};

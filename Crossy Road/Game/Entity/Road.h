@@ -4,7 +4,6 @@
 #include <SFML/Audio.hpp>
 #include "Vehicle.h"
 #include "Player.h"
-
 using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 class DRoad {
 private:
@@ -12,8 +11,7 @@ private:
 	float width;
 	float distance;
 	std::vector<Vehicle*> r_vehicle;	
-	
-	
+
 	float m_speed;
 	Player& m_player;
 	sf::Vector2f m_pos;
@@ -23,6 +21,10 @@ private:
 	typedef Vehicle* (*new_vehicle)(sf::Vector2f origin_pos);
 
 public:
+	enum direction {
+		left = 1,
+		right = -1
+	};
 	DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f pos, float speed, int isFromLeft, Player& player);
 	void initVehicle(int k=0, int rand_startPos=0);
 	void initVar(float width = 90, float distance = 90);
