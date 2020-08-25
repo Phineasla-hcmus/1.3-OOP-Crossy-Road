@@ -4,11 +4,15 @@ state_playing::state_playing(Game& game, SaveInf save_inf)
     : state_base(game)
     , m_world()
     , pause_menu(game)
+    ,_score_display(20,"Score")
+    ,_level_display(50,"Level")
 {}
 state_playing::state_playing(Game& game)
 	: state_base(game)
 	, m_world()
     , pause_menu(game)
+    , _score_display(20, "Score")
+    , _level_display(50, "Level")
 {}
 
 void state_playing::handleEvent(sf::Event ev)
@@ -34,7 +38,8 @@ void state_playing::draw(sf::RenderTarget& renderer)
     m_world.draw(renderer);
     if (_is_paused) pause_menu.draw(renderer);
   //  m_lifeDisplay.draw(renderer, m_world.getPlayer().getLives());
-  //  m_scoreDisplay.draw(renderer);
+    _score_display.draw(renderer);
+    _level_display.draw(renderer);
    // m_highestScoreDisplay.draw(renderer);
 
     if (m_is_gameover) {
@@ -47,7 +52,7 @@ void state_playing::update(sf::Time delta_time)
 {
     if (!m_is_gameover && !_is_paused) {
         m_score += m_world.update(delta_time.asSeconds());
-       // m_scoreDisplay.update(m_score);
+        _score_display.update(m_score);
 
        // if (m_score > m_highestScoreDisplay.getCurrentScoreDisplayed()) {
         //    m_highestScoreDisplay.update(m_score);
@@ -57,10 +62,33 @@ void state_playing::update(sf::Time delta_time)
         m_world.resetRoad();
         m_level = m_world.getLevel();
         std::cout << m_world.getLevel() << "\n";
+        
     }
-    
+    _level_display.update(m_level);
     _is_paused = pause_menu.isPaused();
     m_is_gameover = m_world.isGameOver();
 }
-
+state_playing::display::display(float centreY, const std::string& _text)
+    :text(_text), centrepoint(centreY)
+{
+    updateDisplay();
+    label.setOutlineThickness(0);
+}
+void state_playing::display::update(int newData) {
+    currentdata = newData;
+    updateDisplay();
+}
+void state_playing::display::draw(sf::RenderTarget& target) {
+    target.draw(label);
+}
+int state_playing::display::getCurrentDataDisplayed() const
+{
+    return currentdata;
+}
+void state_playing::display::updateDisplay()
+{
+    label.setString(text + "   " + std::to_string(currentdata));
+    label.setPosition(15, centrepoint - label.getGlobalBounds().height / 2);
+    label.setFillColor(sf::Color::Black);
+}
 

@@ -1,6 +1,7 @@
 #ifndef _state_playing
 #define _state_playing
 #include"../../Framework/State/state_base.h"
+#include"../../Framework/GUI/Widget.h"
 #include"../../Game/State/state_pause.h"
 #include "../World.h"
 #include"state_load.h"
@@ -14,6 +15,20 @@ private:
 	int		m_level = 1;
 	PauseMenu pause_menu;
 	SaveInf save;
+	class display {
+	private:
+		Widget::Text label;
+		std::string  text;
+		int currentdata;
+		float centrepoint;
+		void updateDisplay();
+	public:
+		display() {};
+		display(float centreY, const std::string& text);
+		void update(int newdata);
+		void draw(sf::RenderTarget& target);
+		int getCurrentDataDisplayed() const;
+	}_score_display, _level_display;
 public:
 	state_playing(Game&);
 	state_playing(Game&, SaveInf);
@@ -23,4 +38,5 @@ public:
 	void update(sf::Time delta_time)		override;	
 	void draw(sf::RenderTarget& renderer)    override;
 };
+
 #endif // !_state_playing/
