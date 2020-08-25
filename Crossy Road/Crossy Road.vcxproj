@@ -146,18 +146,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework\AssetManager\asset.cpp" />
-    <ClCompile Include="Framework\game.cpp" />
+    <ClCompile Include="Framework\Game.cpp" />
     <ClCompile Include="Framework\GUI\Button.cpp" />
     <ClCompile Include="Framework\GUI\StackMenu.cpp" />
     <ClCompile Include="Framework\GUI\TextBox.cpp" />
     <ClCompile Include="Framework\GUI\Widget.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp" />
+    <ClCompile Include="Framework\Util\animation.cpp" />
     <ClCompile Include="Framework\Util\random.cpp" />
     <ClCompile Include="Game\Collidable.cpp" />
     <ClCompile Include="Game\Entity\Player.cpp" />
     <ClCompile Include="Game\Entity\Road.cpp" />
     <ClCompile Include="Game\Entity\Vehicle.cpp" />
+    <ClCompile Include="Game\State\state_load.cpp" />
     <ClCompile Include="Game\State\state_main_menu.cpp" />
+    <ClCompile Include="Game\State\state_pause.cpp" />
     <ClCompile Include="Game\State\state_playing.cpp" />
     <ClCompile Include="Game\World.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -165,19 +168,22 @@
   <ItemGroup>
     <ClInclude Include="Framework\AssetManager\asset.h" />
     <ClInclude Include="Framework\AssetManager\asset_manager.h" />
-    <ClInclude Include="Framework\game.h" />
+    <ClInclude Include="Framework\Game.h" />
     <ClInclude Include="Framework\GUI\Button.h" />
     <ClInclude Include="Framework\GUI\StackMenu.h" />
     <ClInclude Include="Framework\GUI\TextBox.h" />
     <ClInclude Include="Framework\GUI\Widget.h" />
     <ClInclude Include="Framework\State\state_base.h" />
+    <ClInclude Include="Framework\Util\animation.h" />
     <ClInclude Include="Framework\Util\no_copy.h" />
     <ClInclude Include="Framework\Util\random.h" />
     <ClInclude Include="Game\Collidable.h" />
     <ClInclude Include="Game\Entity\Player.h" />
     <ClInclude Include="Game\Entity\Road.h" />
     <ClInclude Include="Game\Entity\Vehicle.h" />
+    <ClInclude Include="Game\State\state_load.h" />
     <ClInclude Include="Game\State\state_main_menu.h" />
+    <ClInclude Include="Game\State\state_pause.h" />
     <ClInclude Include="Game\State\state_playing.h" />
     <ClInclude Include="Game\World.h" />
   </ItemGroup>

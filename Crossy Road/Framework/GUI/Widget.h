@@ -7,7 +7,7 @@
 #define	OUTLINE_COLOR	sf::Color::Black
 #define FILL_COLOR		sf::Color::Blue
 #define DEFAULT_FONT	"arcade"
-#define DEFAULT_EXT		"TFF"
+#define DEFAULT_EXT		"TTF"
 class Widget
 {
 public:

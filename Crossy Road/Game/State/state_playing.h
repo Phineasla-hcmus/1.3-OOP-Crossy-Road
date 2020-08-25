@@ -1,15 +1,22 @@
 #ifndef _state_playing
+#define _state_playing
 #include"../../Framework/State/state_base.h"
+#include"../../Game/State/state_pause.h"
 #include "../World.h"
+#include"state_load.h"
 
 class state_playing :public state_base {
 private:
-	World	_world;
-	int		_score			= 0;
-	bool	_is_gameover	= false;
-	int		level = 1;
+	World	m_world;
+	int		m_score			= 0;
+	bool	m_is_gameover	= false;
+	bool    _is_paused      = false;
+	int		m_level = 1;
+	PauseMenu pause_menu;
+	SaveInf save;
 public:
-	state_playing(game&);
+	state_playing(Game&);
+	state_playing(Game&, SaveInf);
 
 	void handleEvent(sf::Event e)			override;
 	void handleInput()                      override;

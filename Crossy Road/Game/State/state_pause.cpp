@@ -1,10 +1,9 @@
-#include "PauseMenu.h"
-#include"Game.h"
-#include"StackMenu.h"
-#include"StateBase.h"
-#include<iostream>
+#include "../../Game/State/state_pause.h"
+#include"../../Framework/game.h"
+
 PauseMenu::PauseMenu(Game& game)
-	: StateBase(game),pause_menu(game.getWindow(), Display::HEIGHT/2 - 100)
+	: state_base(game),
+	pause_menu(game.get_window(),300)
 {
 	
 	auto ResumeBtn = makeButton();
@@ -15,38 +14,36 @@ PauseMenu::PauseMenu(Game& game)
 	auto SaveGameBtn = makeButton();
 	SaveGameBtn->setText("Save Game");
 	SaveGameBtn->setFunction([&]() {
-		 m_pGame->pushState<StateMainMenu>(*m_pGame);
+		//(this->game()).pushState(std::make_unique<state_playing>(game));
 		});
 	auto LoadGameBtn = makeButton();
 	LoadGameBtn->setText("Load Game");
 	LoadGameBtn->setFunction([&]() {
-		m_pGame->pushState<StateMainMenu>(*m_pGame);
+		//(this->game()).pushState(std::make_unique<state_playing>(game));
 		});
 
 	pause_menu.addWidget(std::move(ResumeBtn));
 	pause_menu.addWidget(std::move(SaveGameBtn));
 	pause_menu.addWidget(std::move(LoadGameBtn));
-	pause_menu.setTitle("   PAUSE  MENU", game.getWindow());
+	pause_menu.setTitle("   PAUSE  MENU", game.get_window());
+}
+void PauseMenu::update(sf::Time dental_time) {
+
 }
 
-void PauseMenu::update(const sf::Vector2f& mousePos) {
-	
-}
 void PauseMenu::draw(sf::RenderTarget& target) {
-	
 	
 	pause_menu.render(target);
 }
-void PauseMenu::handleEvent(sf::Event e){
+void PauseMenu::handleEvent(sf::Event ev){
 	
-	pause_menu.handleEvent(e, m_pGame->getWindow());
-	
+	pause_menu.handleEvent(ev,this->game().get_window());
 	
 }
 bool PauseMenu:: isPaused() {
 	return is_paused;
 }
 void PauseMenu::changeState() {
-	is_paused= true;
+	is_paused= !is_paused;
 }
 //void update(sf::Time deltaTime) {}

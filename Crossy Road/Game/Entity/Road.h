@@ -17,7 +17,6 @@ private:
 	float m_speed;
 	Player& m_player;
 	sf::Vector2f m_pos;
-	float speed;
 	int isFromLeft ;
 	int num_Vehicle ;
 	
@@ -47,6 +46,7 @@ public:
 		
 		return vehicle_rand[k](origin_pos);
 	}
+
 };
 
 

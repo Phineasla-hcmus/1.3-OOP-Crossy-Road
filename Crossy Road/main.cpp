@@ -1,7 +1,7 @@
 #include"Framework/game.h"
 int main()
 {
-	game Game;
+	Game Game;
 	Game.run();
 }
 

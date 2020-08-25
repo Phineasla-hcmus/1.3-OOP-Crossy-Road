@@ -10,13 +10,13 @@ class asset : public no_copy
 {
 private:
 	asset();
-	static asset& get();
 	asset_manager<sf::Font>			_font;			//fonts folder
 	asset_manager<sf::Texture>		_texture;		//textures folder
 	asset_manager<sf::SoundBuffer>	_sound_buffer;	//audio folder
 public:
-	static asset_manager<sf::Font>			font();
-	static asset_manager<sf::Texture>		texture();
-	static asset_manager<sf::SoundBuffer>	sound();
+	static asset& get();
+	static asset_manager<sf::Font>&			font();
+	static asset_manager<sf::Texture>&		texture();
+	static asset_manager<sf::SoundBuffer>&	sound();
 };
 #endif // !_asset_storage
