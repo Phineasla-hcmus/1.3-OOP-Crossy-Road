@@ -38,8 +38,13 @@ void res_manager<Resource_t>::load_file(const std::string& name, const std::stri
 }
 
 template<typename Resource_t>
+<<<<<<< Updated upstream:Crossy Road/Crossy Road/Crossy Road/Framework/ResourceManager/res_manager.h
 res_manager<Resource_t>::res_manager(const std::string& folder_name)
 	: _folder_dir(DEFAULT_FOLDER_DIR + folder_name + "/")
+=======
+asset_manager<Resource_t>::asset_manager(const std::string& folder_name)
+	: _folder_dir(DEFAULT_FOLDER_DIR + folder_name + "\\")
+>>>>>>> Stashed changes:Crossy Road/Framework/AssetManager/asset_manager.h
 {}
 template<typename Resource_t>
 const Resource_t& res_manager<Resource_t>::get(const std::string& name, const std::string& ext) {

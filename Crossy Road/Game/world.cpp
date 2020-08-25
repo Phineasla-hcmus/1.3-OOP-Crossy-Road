@@ -20,9 +20,15 @@ World::World()
 
 void World::input()
 {
+<<<<<<< Updated upstream
     if (_people.isAlive()) {
         _people.inputKeyPress();
 
+=======
+    if (m_player.isAlive()) {
+        m_player.inputKeyPress();
+       
+>>>>>>> Stashed changes
     }
 }
 
@@ -30,9 +36,15 @@ int World::update(float dt)
 {
     int score = 0;
     for (auto& road : this->m_road)
+<<<<<<< Updated upstream
         road.update(dt);
 
     _people.update(dt);
+=======
+        road.update(dt,this->level);
+    m_player.moving();
+   m_player.update(dt);
+>>>>>>> Stashed changes
     return score;
 }
 

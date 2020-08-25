@@ -23,6 +23,7 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& m_player) :p
 	initVehicle();
 >>>>>>> Stashed changes
 }
+<<<<<<< Updated upstream
 	void DRoad::initVar(float width, float distance)
 	{
 		this->width = width;
@@ -81,23 +82,58 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& m_player) :p
 		lane.setFillColor(sf::Color::Cyan);
 		lane.setOutlineColor(sf::Color::White);
 		lane.setOutlineThickness(1.f);
+=======
+void DRoad::initVar(float width, float distance)
+{
+	this->width = width;
+	this->distance = distance;	
+	
+}
+void DRoad::initVehicle(int k, int rand_startPos)
+{	
+		
+	sf::Vector2f origin_pos(rand_startPos, this->getCenterRoadPosition().y);
+	for (int i = 0; i<=num_Vehicle+3; ++i) {
+		r_vehicle.push_back(initVehicle_rand(k,origin_pos));
+		origin_pos.x += (1280/num_Vehicle);
+>>>>>>> Stashed changes
+	}
+}
+void DRoad::initShape(sf::Vector2f position)
+{
+	lane.setPosition(position);
+	lane.setSize(sf::Vector2f(1260.f, width));
+	lane.setFillColor(sf::Color::Cyan);
+	lane.setOutlineColor(sf::Color::White);
+	lane.setOutlineThickness(1.f);
+}
+
+float DRoad::getDistance()
+{
+	return width + distance;
+}	
+sf::Vector2f DRoad::getCenterRoadPosition()
+{
+	return sf::Vector2f(0, (lane.getSize().y + 2 * lane.getPosition().y) / 2);
+}
+
+void DRoad::draw(sf::RenderTarget& target)
+{
+	target.draw(this->lane);
+	for (auto& e : this->r_vehicle) {
+		e->draw(target);
 	}
 
-	float DRoad::getDistance()
-	{
-		return width + distance;
-	}	
-	sf::Vector2f DRoad::getCenterRoadPosition()
-	{
-		return sf::Vector2f(0, (lane.getSize().y + 2 * lane.getPosition().y) / 2);
-	}
-
-	void DRoad::draw(sf::RenderTarget& target)
-	{
-		target.draw(this->lane);
-		for (auto& e : this->r_vehicle) {
-			e->draw(target);
+}
+void DRoad::spawnVehicle()
+{
+		
+	Vehicle* v;
+	if (this->isFromLeft == 1) {
+		if (typeid(*this->r_vehicle[0])==typeid(Car)) {
+			v = new Car(getCenterRoadPosition());
 		}
+<<<<<<< Updated upstream
 	}
 	void DRoad::tryCollide(sf::RectangleShape& body) {
 		
@@ -128,8 +164,25 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& m_player) :p
 			}
 			else v = new Bike({ 1280,this->getCenterRoadPosition().y });
 			r_vehicle.push_back(v);
+=======
+		else if (typeid(*this->r_vehicle[0]) == typeid(Bike)) {
+			v = new Bike(this->getCenterRoadPosition());
 		}
+		else v= new Bird(this->getCenterRoadPosition());
+		r_vehicle.push_back(v);
 	}
+	else {
+		if (typeid(*this->r_vehicle[0]) == typeid(Car)){
+			v = new Car({1280-90,getCenterRoadPosition().y });
+		}
+		else if (typeid(*this->r_vehicle[0]) == typeid(Bike)){ 
+			v = new Bike({1280-90,this->getCenterRoadPosition().y}); 
+>>>>>>> Stashed changes
+		}
+		else v = new Bird({1280-90,this->getCenterRoadPosition().y});
+		r_vehicle.push_back(v);
+	}
+<<<<<<< Updated upstream
 	void DRoad::update(float dt)
 	{
 		//Updating the timer for enemy spawning
@@ -150,7 +203,47 @@ DRoad::DRoad(sf::Vector2f pos, float speed, int isFromLeft, Player& m_player) :p
 			if (this->isFromLeft == -1 && (this->r_vehicle[i]->vehicle.getPosition().x+this->r_vehicle[i]->vehicle.getSize().x) < 0)
 				this->r_vehicle.erase(this->r_vehicle.begin() + i);
 		}
+=======
+}
+	
+void DRoad::update(float dt,int level)
+{
+	//Updating the timer for enemy spawning
+	if (this->r_vehicle.size() < this->num_Vehicle)
+	{
+		this->spawnVehicle();
+
 	}
 
-	
+	//Moving and updating enemies
+	for (int i = 0; i < this->r_vehicle.size(); i++)
+	{
 
+		this->r_vehicle[i]->vehicle.move(double(this->m_speed*dt*level * this->isFromLeft), 0.f);
+		this->tryCollideWithPlayer();
+		if (this->isFromLeft == 1 && this->r_vehicle[i]->vehicle.getPosition().x > 1280)
+			this->r_vehicle.erase(this->r_vehicle.begin() + i);
+		if (this->isFromLeft == -1 && (this->r_vehicle[i]->vehicle.getPosition().x+this->r_vehicle[i]->vehicle.getSize().x) < 0)
+			this->r_vehicle.erase(this->r_vehicle.begin() + i);
+			
+>>>>>>> Stashed changes
+	}
+}
+
+	
+<<<<<<< Updated upstream
+
+=======
+CollisionResult DRoad::tryCollideWithPlayer() {
+	CollisionResult result;
+	for (int i = 0; i < r_vehicle.size(); ++i) {
+		if (!m_player.isAlive())
+			continue;
+
+		if (m_player.tryCollideWith(*(r_vehicle[i]))) {
+			std::cout << "Collided!!" << std::endl;
+		}
+	}
+	return result;
+}
+>>>>>>> Stashed changes
