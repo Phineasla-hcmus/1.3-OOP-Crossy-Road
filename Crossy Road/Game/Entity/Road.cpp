@@ -96,7 +96,7 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 		for (int i = 0; i < this->r_vehicle.size(); i++)
 		{
 
-			this->r_vehicle[i]->vehicle.move(double(this->m_speed*dt*level * this->isFromLeft), 0.f);
+			this->r_vehicle[i]->vehicle.move(double(this->m_speed*dt * this->isFromLeft), 0.f);
 			this->tryCollideWithPlayer();
 			if (this->isFromLeft == 1 && this->r_vehicle[i]->vehicle.getPosition().x > 1280)
 				this->r_vehicle.erase(this->r_vehicle.begin() + i);

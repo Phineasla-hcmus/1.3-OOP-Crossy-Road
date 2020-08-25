@@ -89,5 +89,4 @@ void World::draw(sf::RenderTarget& target)
 	}
 	m_player.draw(target);
 
-
 }
