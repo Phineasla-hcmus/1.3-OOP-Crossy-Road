@@ -65,8 +65,8 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 			if (typeid(*this->r_vehicle[0])==typeid(Car)) {
 				v = new Car(getCenterRoadPosition());
 			}
-			else if (typeid(*this->r_vehicle[0]) == typeid(Bike)) {
-				v = new Bike(this->getCenterRoadPosition());
+			else if (typeid(*this->r_vehicle[0]) == typeid(Truck)) {
+				v = new Truck(this->getCenterRoadPosition());
 			}
 			else v= new Bird(this->getCenterRoadPosition());
 			r_vehicle.push_back(v);
@@ -75,8 +75,8 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 			if (typeid(*this->r_vehicle[0]) == typeid(Car)){
 				v = new Car({1280-90,getCenterRoadPosition().y });
 			}
-			else if (typeid(*this->r_vehicle[0]) == typeid(Bike)){ 
-				v = new Bike({1280-90,this->getCenterRoadPosition().y}); 
+			else if (typeid(*this->r_vehicle[0]) == typeid(Truck)){ 
+				v = new Truck({1280-90,this->getCenterRoadPosition().y}); 
 			}
 			else v = new Bird({1280-90,this->getCenterRoadPosition().y});
 			r_vehicle.push_back(v);

@@ -18,8 +18,8 @@ public:
 		const std::array<int, save_lane>& lane_type, const std::array<float, save_lane>& lane_speed);
 	unsigned	get_level() const;
 	unsigned	get_score() const;
-	float		get_speed(size_t);
-	int			get_type(size_t);
+	float		get_speed(size_t)	const;
+	int			get_type(size_t)	const;
 };
 //case1
 //menu->load(m_change=stateplaying)

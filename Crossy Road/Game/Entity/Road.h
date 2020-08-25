@@ -40,7 +40,7 @@ public:
 		new_vehicle vehicle_rand[] =
 		{
 			Car::newVehicle,
-			Bike::newVehicle,  // weighted towards FOO
+			Truck::newVehicle,  // weighted towards FOO
 			Bird::newVehicle
 		};
 		

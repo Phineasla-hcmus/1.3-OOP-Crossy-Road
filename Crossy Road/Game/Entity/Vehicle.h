@@ -19,7 +19,8 @@ public:
 	virtual const sf::Vector2f& getPosition() const = 0;
 	virtual void draw(sf::RenderTarget& target) = 0;
 };
-
+template<typename T>
+std::unique_ptr<Vehicle> new_vehicle() { return std::make_unique<T>(); }
 class Car :public Vehicle {
 private:
 	bool m_active;
@@ -35,11 +36,11 @@ public:
 	static Vehicle* newVehicle(sf::Vector2f origin_pos);
 };
 
-class Bike :public Vehicle {
+class Truck :public Vehicle {
 private:
 	bool m_active;
 public:
-	Bike(sf::Vector2f position = { 0.f,0.f }) ;
+	Truck(sf::Vector2f position = { 0.f,0.f }) ;
 	void onCollide(Collision& other) {
 		m_active = false;
 	}
@@ -66,6 +67,7 @@ public:
 	static Vehicle* newVehicle(sf::Vector2f origin_pos);
 };
 
-#endif // !1
+
+#endif // !Vehicle_h
 	
 

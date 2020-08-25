@@ -28,19 +28,19 @@ Car::Car(sf::Vector2f position) :m_active(true), Vehicle(sf::Color::White, sf::V
 		return new Car(origin_pos);
 	}
 
-	Bike::Bike(sf::Vector2f position) : m_active(true),Vehicle(sf::Color::Yellow, sf::Vector2f(15.f, 15.f), sf::Vector2f(90.f, 90.f)) {
+	Truck::Truck(sf::Vector2f position) : m_active(true),Vehicle(sf::Color::Yellow, sf::Vector2f(15.f, 15.f), sf::Vector2f(90.f, 90.f)) {
 		this->vehicle.setSize(sf::Vector2f(90.f, 90.f));
 		this->vehicle.setPosition(sf::Vector2f(position.x, position.y - this->vehicle.getSize().y / 2));
 		this->vehicle.setFillColor(sf::Color::Yellow);
 		
 	};
-	void Bike::draw(sf::RenderTarget& target) {
+	void Truck::draw(sf::RenderTarget& target) {
 		target.draw(this->vehicle);
 	}
 
-	Vehicle* Bike::newVehicle(sf::Vector2f origin_pos)
+	Vehicle* Truck::newVehicle(sf::Vector2f origin_pos)
 	{
-		return new Bike(origin_pos);
+		return new Truck(origin_pos);
 	}
 	
 	Bird::Bird(sf::Vector2f position) :m_active(true),Vehicle(sf::Color::Yellow, sf::Vector2f(15.f, 15.f), sf::Vector2f(100.f, 50.f)) {

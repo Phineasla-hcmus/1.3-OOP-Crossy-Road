@@ -17,12 +17,12 @@ unsigned SaveInf::get_score() const
 	return m_score;
 }
 
-float SaveInf::get_speed(size_t idx)
+float SaveInf::get_speed(size_t idx) const
 {
 	return m_speed.at(idx);
 }
 
-int SaveInf::get_type(size_t idx)
+int SaveInf::get_type(size_t idx) const
 {
 	return m_type.at(idx);
 }
