@@ -127,25 +127,28 @@ void Player::restart()
 
 void Player::update(float dt)
 {
-    auto w = people.getGlobalBounds().width;
-    auto h = people.getGlobalBounds().height;
 
     //if player move out of bound
 
     //Left
-    if (this->people.getGlobalBounds().left <= 0.f)
-        this->people.setPosition(0.f, this->people.getGlobalBounds().top);
-    //Right
-    if (this->people.getGlobalBounds().left + this->people.getGlobalBounds().width >= 1260)
-        this->people.setPosition(1280 - this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
+    //if (this->people.getGlobalBounds().left <= 0.f) 
+    //    this->people.setPosition(0.f, this->people.getGlobalBounds().top);
+    // 
+    ////Right
+    //if (this->people.getGlobalBounds().left + this->people.getGlobalBounds().width >= 1280) 
+    //    this->people.setPosition(1280 - this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
+    //
     //Top
-    if (this->people.getGlobalBounds().top <= 0.f) {
+    if (this->people.getGlobalBounds().top <= -90.f) {
         this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
+        y = 720 - 90;
         World::levelUp();
     }
     //Bottom
-    if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height >= 720)
+    if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height > 720) {
         this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
+        y = 720 - 90;
+    }
 }
 
 

@@ -30,7 +30,7 @@ private:
 
 	sf::RectangleShape people;     
  
-	sf::Vector2f origin_pos = { 640, 720 - 10 };
+	sf::Vector2f origin_pos = { 640, 720 - 90 };
 
 	bool is_Alive = true;        
 	sf::Texture player_texture;
