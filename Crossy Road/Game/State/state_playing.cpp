@@ -64,6 +64,8 @@ void state_playing::update(sf::Time delta_time)
         std::cout << m_world.getLevel() << "\n";
         
     }
+    m_score = m_world.getScore();
+    _score_display.update(m_score);
     _level_display.update(m_level);
     _is_paused = pause_menu.isPaused();
     m_is_gameover = m_world.isGameOver();

@@ -55,8 +55,7 @@ int World::update(float dt)
 	for (auto& road : this->m_road)
 		road.update(dt,this->level);
 	m_player.moving();
-	m_player.update(dt);
-	std::cout << this->score << "\n";
+	m_player.update(dt);	
 	return score;
 }
 
