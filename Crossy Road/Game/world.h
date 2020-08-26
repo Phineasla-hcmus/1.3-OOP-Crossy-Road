@@ -25,6 +25,7 @@ public:
 	void resetRoad();
 	int getLevel()const;
 	static void levelUp();
+
 private:
 
 	Player m_player;
@@ -33,8 +34,8 @@ private:
    
 	int maxVehicles;   
 	static int level;
-	float base_vehicle_speed = 30;
-	float step_vehicle_speed = 0;
+	float base_vehicle_speed = 50;
+	float step_vehicle_speed = 10;
 
 	bool _isGameOver = false;
 };

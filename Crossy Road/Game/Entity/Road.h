@@ -12,7 +12,7 @@ private:
 	float width;
 	float distance;
 	std::vector<Vehicle*> r_vehicle;	
-	
+	size_t type_vehicle;
 	
 	float m_speed;
 	Player& m_player;
@@ -34,18 +34,8 @@ public:
 	void spawnVehicle();
 	CollisionResult tryCollideWithPlayer();
 
-	static Vehicle* initVehicle_rand(int i,sf::Vector2f origin_pos)
-	{
-		int k = i % 3;
-		new_vehicle vehicle_rand[] =
-		{
-			Car::newVehicle,
-			Truck::newVehicle,  // weighted towards FOO
-			Bird::newVehicle
-		};
-		
-		return vehicle_rand[k](origin_pos);
-	}
+	static Vehicle* initVehicle_rand(int i, sf::Vector2f origin_pos);
+	
 
 };
 

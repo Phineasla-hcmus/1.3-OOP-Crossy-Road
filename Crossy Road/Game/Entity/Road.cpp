@@ -9,6 +9,7 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 	this->isFromLeft = isFromLeft;
 	this->m_pos = pos;
 	this->m_speed = speed;
+	this->type_vehicle = rand_typeVehicle;
 	if (isFromLeft > 0)
 		this->isFromLeft = 1;
 	else this->isFromLeft = -1;
@@ -26,7 +27,7 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 	{	
 		
 		sf::Vector2f origin_pos(rand_startPos, this->getCenterRoadPosition().y);
-		for (int i = 0; i<=num_Vehicle+3; ++i) {
+		for (int i = 0; i<num_Vehicle; ++i) {
 			r_vehicle.push_back(initVehicle_rand(k,origin_pos));
 			origin_pos.x += (1280/num_Vehicle);
 		}
@@ -62,20 +63,20 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 		
 		Vehicle* v;
 		if (this->isFromLeft == 1) {
-			if (typeid(*this->r_vehicle[0])==typeid(Car)) {
+			if (type_vehicle==0) {
 				v = new Car(getCenterRoadPosition());
 			}
-			else if (typeid(*this->r_vehicle[0]) == typeid(Truck)) {
+			else if (type_vehicle == 1) {
 				v = new Truck(this->getCenterRoadPosition());
 			}
 			else v= new Bird(this->getCenterRoadPosition());
 			r_vehicle.push_back(v);
 		}
 		else {
-			if (typeid(*this->r_vehicle[0]) == typeid(Car)){
+			if (type_vehicle == 0){
 				v = new Car({1280-90,getCenterRoadPosition().y });
 			}
-			else if (typeid(*this->r_vehicle[0]) == typeid(Truck)){ 
+			else if (type_vehicle == 1){
 				v = new Truck({1280-90,this->getCenterRoadPosition().y}); 
 			}
 			else v = new Bird({1280-90,this->getCenterRoadPosition().y});
@@ -118,4 +119,17 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 			}
 		}
 		return result;
+	}
+
+	Vehicle* DRoad::initVehicle_rand(int i, sf::Vector2f origin_pos)
+	{
+		int k = i % 3;
+		new_vehicle vehicle_rand[] =
+		{
+			Car::newVehicle,
+			Truck::newVehicle,  // weighted towards FOO
+			Bird::newVehicle
+		};
+
+		return vehicle_rand[k](origin_pos);
 	}
