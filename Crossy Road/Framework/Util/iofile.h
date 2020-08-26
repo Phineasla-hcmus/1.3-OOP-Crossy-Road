@@ -5,7 +5,7 @@
 #include<fstream>
 #include"no_copy.h"
 //Contain file texture name and it size, load from file
-class texture_lookup {
+class textureSet {
 private:
 	struct texture_attribute {
 		std::string file_name;
@@ -21,13 +21,13 @@ public:
 	std::pair<const std::string&, unsigned> getAttribute(size_t) const;
 };
 //Contain multiple file names of multiple texture objects
-class texture_set : public no_copy {
+class textureLookup : public no_copy {
 private:
-	std::vector<texture_lookup> m_set;
+	std::vector<textureSet> m_set;
 public:
 	bool					loadNewSet(const std::string& file_dir);
 	size_t					size() const;
-	const texture_lookup&	getSet(size_t idx) const;
+	const textureSet&	getSet(size_t idx) const;
 };
 template<typename T>
 struct limit {

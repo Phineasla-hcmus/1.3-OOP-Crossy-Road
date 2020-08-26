@@ -90,7 +90,7 @@ const sf::RenderWindow& Game::get_window() const
 	return m_window;
 }
 
-const texture_set& Game::get_texture_set() const
+const textureLookup& Game::get_texture_set() const
 {
 	return m_vehicles_set;
 }

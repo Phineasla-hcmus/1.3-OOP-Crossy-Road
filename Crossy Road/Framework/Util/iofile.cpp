@@ -1,6 +1,6 @@
 #include "iofile.h"
 
-bool texture_lookup::loadFromFile(const std::string& dir)
+bool textureSet::loadFromFile(const std::string& dir)
 {
 	std::ifstream fin(dir);
 	if (!fin)
@@ -14,27 +14,27 @@ bool texture_lookup::loadFromFile(const std::string& dir)
 	return true;
 }
 
-size_t texture_lookup::size() const
+size_t textureSet::size() const
 {
 	return m_bucket.size();
 }
 
-const std::string& texture_lookup::getFileName(size_t idx) const
+const std::string& textureSet::getFileName(size_t idx) const
 {
 	return m_bucket[idx].file_name;
 }
 
-unsigned texture_lookup::getWidth(size_t idx) const
+unsigned textureSet::getWidth(size_t idx) const
 {
 	return m_bucket[idx].texture_width;
 }
 
-std::pair<const std::string&, unsigned> texture_lookup::getAttribute(size_t idx) const
+std::pair<const std::string&, unsigned> textureSet::getAttribute(size_t idx) const
 {
 	return std::make_pair<const std::string&, unsigned>(getFileName(idx), getWidth(idx));
 }
 
-texture_lookup::texture_attribute::texture_attribute(std::string name, unsigned width)
+textureSet::texture_attribute::texture_attribute(std::string name, unsigned width)
 	:file_name(name)
 	,texture_width(width)
 {}
@@ -73,21 +73,21 @@ bool config_file::loadFromFile(const std::string& dir)
 	return true;
 }
 
-bool texture_set::loadNewSet(const std::string& file_dir)
+bool textureLookup::loadNewSet(const std::string& file_dir)
 {
-	texture_lookup lookup;
+	textureSet lookup;
 	if (!lookup.loadFromFile(file_dir))
 		return false;
 	m_set.emplace_back(lookup);
 	return true;
 }
 
-size_t texture_set::size() const
+size_t textureLookup::size() const
 {
 	return m_set.size();
 }
 
-const texture_lookup& texture_set::getSet(size_t idx) const
+const textureSet& textureLookup::getSet(size_t idx) const
 {
 	return m_set[idx];
 }

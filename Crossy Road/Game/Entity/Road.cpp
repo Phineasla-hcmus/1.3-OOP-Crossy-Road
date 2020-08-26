@@ -125,6 +125,8 @@ Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	: m_pos(road_pos)
 	, m_dir(dir)
 	, m_speed(speed)
+	, m_vehicle_width(0)
+	, m_vehicles_texture(nullptr)
 {}
 
 void Lane::setVehicleType(vehicle_func funct, sf::Texture & vehicle, float width)

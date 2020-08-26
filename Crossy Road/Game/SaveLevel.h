@@ -5,8 +5,8 @@ constexpr auto save_lane = 4;
 class SaveInf {
 public:
 	struct RoadInf {
-		int		m_type;
-		int		m_dir;
+		int		m_type;		//vehicle type
+		int		m_dir;		//direction
 		float	m_speed;
 	};
 	SaveInf() = default;

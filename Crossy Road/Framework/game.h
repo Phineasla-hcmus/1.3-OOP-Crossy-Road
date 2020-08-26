@@ -20,7 +20,7 @@ private:
 	bool									m_pop_pending = false;
 	bool									m_swap_pending = false;
 	std::unique_ptr<state_base>				m_swap_state;//hold state for swapping
-	texture_set								m_vehicles_set;
+	textureLookup								m_vehicles_set;
 	
 	state_base& cur_state() const;
 	void pop();
@@ -38,7 +38,7 @@ public:
 	void popState();
 	void swapState(std::unique_ptr<state_base> new_state);
 	const sf::RenderWindow& get_window() const;
-	const texture_set& get_texture_set() const;
+	const textureLookup& get_texture_set() const;
 };
 #endif // !_main_game
 
