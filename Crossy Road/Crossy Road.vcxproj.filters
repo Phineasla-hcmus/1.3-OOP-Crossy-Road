@@ -95,6 +95,9 @@
     <ClCompile Include="Framework\Util\tilemap.cpp">
       <Filter>Source Files\Framework\Util</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Util\iofile.cpp">
+      <Filter>Source Files\Framework\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\State\state_base.h">
@@ -158,6 +161,9 @@
       <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Util\tilemap.h">
+      <Filter>Source Files\Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\iofile.h">
       <Filter>Source Files\Framework\Util</Filter>
     </ClInclude>
   </ItemGroup>

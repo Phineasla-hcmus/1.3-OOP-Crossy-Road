@@ -153,6 +153,7 @@
     <ClCompile Include="Framework\GUI\Widget.cpp" />
     <ClCompile Include="Framework\State\state_base.cpp" />
     <ClCompile Include="Framework\Util\animation.cpp" />
+    <ClCompile Include="Framework\Util\iofile.cpp" />
     <ClCompile Include="Framework\Util\random.cpp" />
     <ClCompile Include="Framework\Util\tilemap.cpp" />
     <ClCompile Include="Game\Collidable.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Framework\GUI\Widget.h" />
     <ClInclude Include="Framework\State\state_base.h" />
     <ClInclude Include="Framework\Util\animation.h" />
+    <ClInclude Include="Framework\Util\iofile.h" />
     <ClInclude Include="Framework\Util\no_copy.h" />
     <ClInclude Include="Framework\Util\random.h" />
     <ClInclude Include="Framework\Util\tilemap.h" />
