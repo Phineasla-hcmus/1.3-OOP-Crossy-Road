@@ -6,7 +6,12 @@ SaveInf::SaveInf(unsigned level, unsigned score, const std::array<int, save_lane
 	, m_speed(lane_speed)
 	, m_type(lane_type)
 {}
-
+SaveInf::SaveInf(const SaveInf& b) {
+	m_level = b.m_level;
+	m_score = b.m_score;
+	m_speed = b.m_speed;
+	m_type = b.m_type;
+}
 unsigned SaveInf::get_level() const
 {
 	return m_level;
@@ -46,3 +51,4 @@ void state_load::update(sf::Time delta_time)
 void state_load::draw(sf::RenderTarget& renderer)
 {
 }
+

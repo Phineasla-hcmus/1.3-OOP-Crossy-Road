@@ -1,22 +1,32 @@
 #include"../../Game/State/state_save.h"
 #include"../../Framework/game.h"
-state_save::state_save(Game& game,SaveInf& info)
+state_save::state_save(Game& game,SaveInf& save)
 	:state_base(game),
 	save_menu(game.get_window(), 300),
-	_info(info)
+	_info(save)
 {
 	auto name_textbox = makeTextBox(_name);
 	name_textbox->setLabel("Name");
+	
 
 	auto SaveBtn = makeButton();
 	SaveBtn->setText("Save         ");
 	SaveBtn->setFunction([&]() {
 		WritetoFile(_name);
-		//push back to statemain
+		//(this->game()).pushState(std::make_unique<state_main_menu>(game));
+		this->game().popState();
+		});
+
+	auto ReturnBtn = makeButton();
+	ReturnBtn->setText("Return      ");
+	ReturnBtn->setFunction([&]() {
+		(this->game()).pushState(std::make_unique<state_playing>(game,_info));
+		//this->game().popState();
 		});
 	save_menu.addWidget(std::move(name_textbox));
 	save_menu.addWidget(std::move(SaveBtn));
-	save_menu.setTitle("         SAVE GAME", game.get_window());
+	save_menu.addWidget(std::move(ReturnBtn));
+	save_menu.setTitle("     SAVE    GAME", game.get_window());
 
 }
 
@@ -40,6 +50,6 @@ void state_save::WritetoFile(std::string name)
 			fout << _info.get_type(i) << "," << _info.get_speed(i);
 		fout.close();
 	}
-	else std::cout << "can not save .\n";
+	else std::cout << "CAN NOT SAVE .\n";
 
 }

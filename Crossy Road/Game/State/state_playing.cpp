@@ -3,14 +3,14 @@
 state_playing::state_playing(Game& game, SaveInf save_inf)
     : state_base(game)
     , m_world(save_inf)
-    , pause_menu(game,save)
+    , pause_menu(game)
     ,_score_display(20,"SCORE")
     ,_level_display(50,"LEVEL")
 {}
 state_playing::state_playing(Game& game)
 	: state_base(game)
 	, m_world()
-    , pause_menu(game,save)
+    , pause_menu(game)
     , _score_display(20, "SCORE")
     , _level_display(50, "LEVEL")
 {}
@@ -64,6 +64,7 @@ void state_playing::update(sf::Time delta_time)
        // std::cout << m_world.getLevel() << "\n";
         
     }
+    pause_menu.updateSaveInfo(save);
     m_score = m_world.getScore();
     _score_display.update(m_score);
     _level_display.update(m_level);
