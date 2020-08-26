@@ -72,7 +72,9 @@ state_playing::display::display(float centreY, const std::string& _text)
     :text(_text), centrepoint(centreY)
 {
     updateDisplay();
-    label.setOutlineThickness(0);
+    label.setOutlineThickness(2);
+    label.setFillColor(sf::Color::White);
+    label.setOutlineColor(sf::Color::Black);
 }
 void state_playing::display::update(int newData) {
     currentdata = newData;
@@ -89,6 +91,6 @@ void state_playing::display::updateDisplay()
 {
     label.setString(text + "   " + std::to_string(currentdata));
     label.setPosition(15, centrepoint - label.getGlobalBounds().height / 2);
-    label.setFillColor(sf::Color::Black);
+  
 }
 
