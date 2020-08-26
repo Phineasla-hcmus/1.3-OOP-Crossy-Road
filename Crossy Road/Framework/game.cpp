@@ -72,7 +72,7 @@ void Game::pushState(std::unique_ptr<state_base> state)
 
 void Game::popState()
 {
-	m_swap_pending = true;
+	m_pop_pending = true;
 }
 
 void Game::swapState(std::unique_ptr<state_base> swap)

@@ -20,8 +20,8 @@ state_save::state_save(Game& game,SaveInf& save)
 	auto ReturnBtn = makeButton();
 	ReturnBtn->setText("Return      ");
 	ReturnBtn->setFunction([&]() {
-		(this->game()).pushState(std::make_unique<state_playing>(game,_info));
-		//this->game().popState();
+		//(this->game()).pushState(std::make_unique<state_playing>(game,_info));
+		this->game().popState();
 		});
 	save_menu.addWidget(std::move(name_textbox));
 	save_menu.addWidget(std::move(SaveBtn));
@@ -43,11 +43,11 @@ void state_save::draw(sf::RenderTarget& renderer) {
 void state_save::WritetoFile(std::string name)
 {
 	std::ofstream fout;
-	fout.open(SAVE_FILE_NAME + name + ".bin");
+	fout.open(SAVE_FILE_NAME + name + ".txt");
 	if (fout.is_open()) {
-		fout << _info.get_level() << "," << _info.get_score() << ",";
-		for (int i = 0; i <= save_lane; ++i)
-			fout << _info.get_type(i) << "," << _info.get_speed(i);
+		fout << _info.get_level() << " " << _info.get_score() << " ";
+		for (int i = 0; i < save_lane; ++i)
+			fout << _info.get_type(i) << " " << _info.get_speed(i);
 		fout.close();
 	}
 	else std::cout << "CAN NOT SAVE .\n";
