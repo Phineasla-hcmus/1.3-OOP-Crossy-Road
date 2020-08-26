@@ -22,7 +22,7 @@ public:
 	void moving(); //moving if "walking" boolean is true
 	const sf::Vector2f& getPosition() const { return people.getPosition(); };
 	void onCollide(Collision& other) override { is_Alive = false; }
-	 
+	void animationRenderer();
 	bool isAlive() const;
 
 private:

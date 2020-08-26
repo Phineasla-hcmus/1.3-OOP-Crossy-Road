@@ -1,25 +1,26 @@
 #include "Player.h"
 #include "../world.h"
+#include <iostream>
+static int initX = 0;
+static int initY = 192;
 
-static int initX = 640;
-static int initY = 720 - 90;
 int tilesize = 90;
-Player::Player() :Collision(90.f, 90.f), move{ 0,0,0,0 }
+Player::Player() :Collision(90.f, 64.f), move{ 0,0,0,0 }
 {
     sf::Vector2f size_player = { 90.f,90.f };
     // in this case, every loop, it will walk 2 pixels. 
 //if u put 50 as movespeed, it will walk 1 pixel each loop
-    movespeed = 10.f;
-    x = 640, y = 720 - 90;
+    movespeed = 2.f;
+    x = origin_pos.x, y = origin_pos.y;
     is_walking = false;
 
 
     people.setSize(size_player);
     people.setPosition(this->origin_pos);
-    //player_texture.loadFromFile("Assets\\textures\\player_sprite_2.png");
-   /* player_texture = asset::texture().get("player_sprite_2", "png");
+   /* player_texture.loadFromFile("Assets\\textures\\player_sprite_2.png");*/
+    player_texture = asset::texture().get("player_sprite_2", "png");
     people.setTexture(&player_texture);
-    people.setTextureRect(sf::IntRect{ 0,192,64,64 });*/
+    people.setTextureRect(sf::IntRect{ 0,192,64,64 });
 }
 
 
@@ -33,7 +34,8 @@ void Player::keymove()
             nextspot = y - tilesize;
             move[UP] = true;
             is_walking = true;
-
+            initY = 192;
+            people.setTextureRect({ initX,initY,64,64 });
         }
     }
 
@@ -44,6 +46,8 @@ void Player::keymove()
             nextspot = y + tilesize;
             move[DOWN] = true;
             is_walking = true;
+            initY = 0;
+            people.setTextureRect({ initX,initY,64,64 });
         }
     }
 
@@ -54,6 +58,8 @@ void Player::keymove()
             nextspot = x - tilesize;
             move[LEFT] = true;
             is_walking = true;
+            initY = 64;
+            people.setTextureRect({ initX,initY,64,64 });
         }
     }
 
@@ -64,6 +70,8 @@ void Player::keymove()
             nextspot = x + tilesize;
             move[RIGHT] = true;
             is_walking = true;
+            initY = 128;
+            people.setTextureRect({ initX,initY,64,64 });
         }
     }
 }
@@ -79,6 +87,7 @@ void Player::moving()
                 y = nextspot;
                 is_walking = false;
                 move[UP] = false;
+               
             }
         }
 
@@ -139,18 +148,26 @@ void Player::update(float dt)
     //    this->people.setPosition(1280 - this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
     //
     //Top
-    if (this->people.getGlobalBounds().top <= -90.f) {
+    if (this->people.getGlobalBounds().top <= -this->people.getGlobalBounds().height) {
         this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
-        y = 720 - 90;
+        y = origin_pos.y;
         World::levelUp();
     }
     //Bottom
     if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height > 720) {
         this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
-        y = 720 - 90;
+        y = origin_pos.y;
     }
 }
-
+void Player::animationRenderer() {
+        if (initX > 192)
+            initX = 0;
+        else {
+            std::cout << initX << "\n";
+            people.setTextureRect({ initX,initY,64,64 });
+            initX += 64;
+        }
+}
 
 void Player::draw(sf::RenderTarget& target)
 {
