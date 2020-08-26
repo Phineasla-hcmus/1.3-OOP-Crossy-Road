@@ -1,5 +1,6 @@
 #include "World.h"
 int World::level = 1;
+int World::score = 1;
 
 World::World()
 {
@@ -10,6 +11,33 @@ World::World()
 	}
 	//init road
 	resetRoad();
+}
+
+World::World(SaveInf inf)
+{
+	this->level = inf.get_level();
+	this->score = inf.get_score();
+	
+	const int num_lane = 4;
+	std::array<int, num_lane> type;
+	std::array<float, num_lane> speed;
+	for (int i = 0; i < num_lane; ++i) {
+		type[i] = inf.get_type(i);
+		speed[i] = inf.get_type(i);
+	}
+	float y_startPos = 0;
+	random rand;
+	int isFromLeft = 1;
+
+	int numVehicle = ((level <= 3) ? 2 : (level <= 5 ? 3 : 4));
+	for (int i = 0; i < 4; ++i) {
+		sf::Vector2f origin_Pos;
+		origin_Pos.x = 10;
+		origin_Pos.y = y_startPos;
+		m_road.push_back({ numVehicle + rand.int_in_range(-1,1),rand.int_in_range(-150,150),type[i],origin_Pos,speed[i] + rand.int_in_range(-10,10),isFromLeft ,m_player });
+		y_startPos = origin_Pos.y + m_road[0].getDistance();
+		isFromLeft = isFromLeft * -1;
+	}
 }
 
 void World::input()
@@ -70,6 +98,11 @@ int World::getLevel() const
 void World::levelUp()
 {
 	++level;
+}
+
+int World::getScore() const
+{
+	return this->score;
 }
 
 void World::draw(sf::RenderTarget& target)

@@ -2,7 +2,7 @@
 #include <iostream>
 state_playing::state_playing(Game& game, SaveInf save_inf)
     : state_base(game)
-    , m_world()
+    , m_world(save_inf)
     , pause_menu(game)
     ,_score_display(20,"Score")
     ,_level_display(50,"Level")

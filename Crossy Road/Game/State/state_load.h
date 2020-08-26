@@ -9,13 +9,13 @@ constexpr auto save_lane = 4;
 class SaveInf {
 private:
 	unsigned						m_level;
-	unsigned						m_score;
+	unsigned						m_score;	
 	std::array<float, save_lane>	m_speed;
 	std::array<int, save_lane>		m_type;
 public:
 	SaveInf() = default;
 	SaveInf(unsigned level, unsigned score, 
-		const std::array<int, save_lane>& lane_type, const std::array<float, save_lane>& lane_speed);
+	const std::array<int, save_lane>& lane_type, const std::array<float, save_lane>& lane_speed);
 	unsigned	get_level() const;
 	unsigned	get_score() const;
 	float		get_speed(size_t)	const;

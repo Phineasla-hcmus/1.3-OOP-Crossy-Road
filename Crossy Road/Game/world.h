@@ -6,6 +6,7 @@
 #include "Entity/Player.h"
 #include "Entity/Road.h"
 #include "Entity/Vehicle.h"
+#include "State/state_load.h"
 constexpr auto x_tile = 14;
 constexpr auto y_tile = 8;
 /*
@@ -15,7 +16,7 @@ class World
 {
 public:
 	World();
-
+	World(SaveInf inf);
 	void input();
 	int update(float dt);
 	void draw(sf::RenderTarget& target);
@@ -25,7 +26,7 @@ public:
 	void resetRoad();
 	int getLevel()const;
 	static void levelUp();
-
+	int getScore()const;
 private:
 
 	Player m_player;
@@ -34,6 +35,7 @@ private:
    
 	int maxVehicles;   
 	static int level;
+	static int score;
 	float base_vehicle_speed = 50;
 	float step_vehicle_speed = 10;
 
