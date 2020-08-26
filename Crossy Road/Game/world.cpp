@@ -1,6 +1,7 @@
 #include "World.h"
 int World::level = 1;
-int World::score = 1;
+int World::score = 0;
+bool World::isPlus = false;
 
 World::World()
 {
@@ -55,6 +56,7 @@ int World::update(float dt)
 		road.update(dt,this->level);
 	m_player.moving();
 	m_player.update(dt);
+	std::cout << this->score << "\n";
 	return score;
 }
 
@@ -104,6 +106,24 @@ int World::getScore() const
 {
 	return this->score;
 }
+
+void World::plusScore()
+{
+	if (!isPlus)
+		score += 10;
+}
+
+void World::n_plus()
+{
+	isPlus = false;
+}
+
+void World::plus()
+{
+	isPlus = true;
+}
+
+
 
 void World::draw(sf::RenderTarget& target)
 {

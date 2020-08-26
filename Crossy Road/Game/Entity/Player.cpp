@@ -143,12 +143,31 @@ void Player::update(float dt)
         this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
         y = 720 - 90;
         World::levelUp();
+        World::plusScore();
     }
     //Bottom
     if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height > 720) {
         this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
         y = 720 - 90;
     }
+
+    //score 90,270,450,630    
+    if (this->people.getGlobalBounds().top == 450) {
+        World::plusScore();
+        World::plus();
+    }
+    else if (this->people.getGlobalBounds().top == 270) {
+        World::plusScore();
+        World::plus();
+    }
+    else if (this->people.getGlobalBounds().top == 90) {
+        World::plusScore();
+        World::plus();
+    }
+    else World::n_plus();
+        
+    
+    
 }
 
 

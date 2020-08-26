@@ -7,6 +7,7 @@
 #include "Entity/Road.h"
 #include "Entity/Vehicle.h"
 #include "State/state_load.h"
+#include <iostream>
 constexpr auto x_tile = 14;
 constexpr auto y_tile = 8;
 /*
@@ -24,9 +25,14 @@ public:
 	bool isGameOver() const;
 	void setGameIsOver() { _isGameOver = true; }
 	void resetRoad();
+
 	int getLevel()const;
 	static void levelUp();
+
 	int getScore()const;
+	static void plusScore();	
+	static void n_plus();
+	static void plus();
 private:
 
 	Player m_player;
@@ -35,7 +41,8 @@ private:
    
 	int maxVehicles;   
 	static int level;
-	static int score;
+	static int score;	
+	static bool isPlus;
 	float base_vehicle_speed = 50;
 	float step_vehicle_speed = 10;
 
