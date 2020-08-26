@@ -6,16 +6,15 @@
 #include "state_pause.h"
 class state_playing :public state_base {
 private:
-	World	m_world;
-	int		m_score			= 0;
-	bool	m_is_gameover	= false;
-	bool    m_is_paused      = false;
-	int		m_level = 1;
-	PauseMenu pause_menu;
-	//SaveInf save;
+	World		m_world;
+	int			m_score			= 0;
+	bool		m_is_gameover	= false;
+	bool		m_is_paused      = false;
+	int			m_level = 1;
+	PauseMenu	m_pause_menu;
+	SaveInf		m_save;
 public:
 	state_playing(Game&);
-	//state_playing(Game&, SaveInf);
 
 	void handleEvent(sf::Event e)			override;
 	void handleInput()                      override;

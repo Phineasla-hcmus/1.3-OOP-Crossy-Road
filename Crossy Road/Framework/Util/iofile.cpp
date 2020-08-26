@@ -14,6 +14,11 @@ bool texture_lookup::loadFromFile(const std::string& dir)
 	return true;
 }
 
+size_t texture_lookup::size() const
+{
+	return m_bucket.size();
+}
+
 const std::string& texture_lookup::getFileName(size_t idx) const
 {
 	return m_bucket[idx].file_name;
@@ -66,4 +71,23 @@ bool config_file::loadFromFile(const std::string& dir)
 	}
 	fin.close();
 	return true;
+}
+
+bool texture_set::loadNewSet(const std::string& file_dir)
+{
+	texture_lookup lookup;
+	if (!lookup.loadFromFile(file_dir))
+		return false;
+	m_set.emplace_back(lookup);
+	return true;
+}
+
+size_t texture_set::size() const
+{
+	return m_set.size();
+}
+
+const texture_lookup& texture_set::getSet(size_t idx) const
+{
+	return m_set[idx];
 }

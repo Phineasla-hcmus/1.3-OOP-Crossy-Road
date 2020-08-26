@@ -121,12 +121,18 @@
 //		return result;
 //	}
 
-Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed, vehicle_func func)
+Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	: m_pos(road_pos)
 	, m_dir(dir)
 	, m_speed(speed)
-	, m_new_vehicle(func)
 {}
+
+void Lane::setVehicleType(vehicle_func funct, sf::Texture & vehicle, float width)
+{
+	m_new_vehicle = funct;
+	m_vehicles_texture = &vehicle;
+	m_vehicle_width = width;
+}
 
 size_t Lane::vehicle_size() const
 {
