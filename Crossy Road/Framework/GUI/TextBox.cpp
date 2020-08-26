@@ -6,7 +6,8 @@ TextBox::TextBox(std::string& modString)
 	: m_pModString(&modString)
 {
 	_label.setCharacterSize(15);
-	_rect.setFillColor({ 52, 152, 219 });
+	_label.setFillColor({255,0,0});
+	_rect.setFillColor({ 102, 255, 255 });
 	_rect.setSize({ 256, 64 });
 }
 void TextBox::setTexture(const sf::Texture& tex) {
@@ -24,10 +25,10 @@ void TextBox::handleEvent(sf::Event e, const sf::RenderWindow& window)
 void TextBox::render(sf::RenderTarget& renderer)
 {
 	if (!_isActive) {
-		_rect.setFillColor({ 52, 152, 219 });
+		_rect.setFillColor({ 102, 255, 255 });
 	}
 	else {
-		_rect.setFillColor({ 82, 132, 239 });
+		_rect.setFillColor({ 204, 255, 204 });
 	}
 	renderer.draw(_rect);
 	renderer.draw(_label);

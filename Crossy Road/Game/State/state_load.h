@@ -16,6 +16,7 @@ public:
 	SaveInf() = default;
 	SaveInf(unsigned level, unsigned score, 
 	const std::array<int, save_lane>& lane_type, const std::array<float, save_lane>& lane_speed);
+	SaveInf(const SaveInf&);
 	unsigned	get_level() const;
 	unsigned	get_score() const;
 	float		get_speed(size_t)	const;
@@ -33,7 +34,7 @@ public:
 //menu->NEW_stateplaying
 class state_load :public state_base {
 private:
-
+	StackMenu load_menu;
 public:
 	state_load(Game&);
 

@@ -140,24 +140,43 @@ void Player::update(float dt)
     //if player move out of bound
 
     //Left
-    //if (this->people.getGlobalBounds().left <= 0.f) 
-    //    this->people.setPosition(0.f, this->people.getGlobalBounds().top);
+    if (this->people.getGlobalBounds().left <= 10.f) 
+        this->people.setPosition(10.f, this->people.getGlobalBounds().top);
     // 
     ////Right
-    //if (this->people.getGlobalBounds().left + this->people.getGlobalBounds().width >= 1280) 
-    //    this->people.setPosition(1280 - this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
+    if (this->people.getGlobalBounds().left + this->people.getGlobalBounds().width >= 1270.f) 
+        this->people.setPosition(1270 - this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
     //
     //Top
     if (this->people.getGlobalBounds().top <= -this->people.getGlobalBounds().height) {
         this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
         y = origin_pos.y;
         World::levelUp();
+        World::plusScore();
     }
     //Bottom
     if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height > 720) {
         this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
         y = origin_pos.y;
     }
+
+    //score 90,270,450,630    
+    if (this->people.getGlobalBounds().top == 450) {
+        World::plusScore();
+        World::plus();
+    }
+    else if (this->people.getGlobalBounds().top == 270) {
+        World::plusScore();
+        World::plus();
+    }
+    else if (this->people.getGlobalBounds().top == 90) {
+        World::plusScore();
+        World::plus();
+    }
+    else World::n_plus();
+        
+    
+    
 }
 void Player::animationRenderer() {
         if (initX > 192)

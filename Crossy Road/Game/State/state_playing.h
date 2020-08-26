@@ -23,7 +23,7 @@ private:
 		float centrepoint;
 		void updateDisplay();
 	public:
-		display() {};
+		display() = default;
 		display(float centreY, const std::string& text);
 		void update(int newdata);
 		void draw(sf::RenderTarget& target);

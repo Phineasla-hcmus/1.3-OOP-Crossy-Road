@@ -5,6 +5,7 @@
 #include <SFML/Audio.hpp>
 #include"../../Framework/AssetManager/asset.h"
 #include "../Collidable.h"
+#include <iostream>
 
 /*
 	Represents the player

@@ -1,8 +1,8 @@
 #include "World.h"
-
 int World::level = 1;
-int World::score = 1;
-static float counter = 0;
+int World::score = 0;
+bool World::isPlus = false;
+
 World::World()
 {
 	random rand;
@@ -14,7 +14,7 @@ World::World()
 	resetRoad();
 }
 
-World::World(SaveInf inf):maxVehicles(50)
+World::World(SaveInf inf)
 {
 	this->level = inf.get_level();
 	this->score = inf.get_score();
@@ -29,7 +29,7 @@ World::World(SaveInf inf):maxVehicles(50)
 	float y_startPos = 0;
 	random rand;
 	int isFromLeft = 1;
-	
+
 	int numVehicle = ((level <= 3) ? 2 : (level <= 5 ? 3 : 4));
 	for (int i = 0; i < 4; ++i) {
 		sf::Vector2f origin_Pos;
@@ -45,6 +45,7 @@ void World::input()
 {
 	if (m_player.isAlive()) {
 		m_player.keymove();
+
 	}
 }
 
@@ -53,13 +54,8 @@ int World::update(float dt)
 	int score = 0;
 	for (auto& road : this->m_road)
 		road.update(dt,this->level);
-	m_player.update(dt);
 	m_player.moving();
-	if (counter >= 6.f) {
-		m_player.animationRenderer();
-		counter = 0;
-	}
-	counter += 1.f;
+	m_player.update(dt);	
 	return score;
 }
 
@@ -109,6 +105,24 @@ int World::getScore() const
 {
 	return this->score;
 }
+
+void World::plusScore()
+{
+	if (!isPlus)
+		score += 10;
+}
+
+void World::n_plus()
+{
+	isPlus = false;
+}
+
+void World::plus()
+{
+	isPlus = true;
+}
+
+
 
 void World::draw(sf::RenderTarget& target)
 {
