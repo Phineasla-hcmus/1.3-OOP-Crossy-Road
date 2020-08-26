@@ -19,8 +19,8 @@ public:
 	const RoadInf& get_road_inf(size_t)	const;
 	void		update_score(unsigned);
 private:
-	unsigned						m_level;
-	unsigned						m_score;
+	unsigned						m_level = 1;
+	unsigned						m_score = 0;
 	std::array<RoadInf, save_lane>	m_road_arr;
 };
 #endif // !_save_level

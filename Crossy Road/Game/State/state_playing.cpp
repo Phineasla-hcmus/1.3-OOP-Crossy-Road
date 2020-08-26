@@ -5,7 +5,9 @@ state_playing::state_playing(Game& game)
 	, m_world(game.get_texture_set())
     , m_pause_menu(game)
 {
+    random rand;
 
+    m_world.initLane(m_save);
 }
 
 void state_playing::handleEvent(sf::Event ev)

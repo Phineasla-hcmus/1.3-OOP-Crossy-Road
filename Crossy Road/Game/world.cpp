@@ -21,7 +21,7 @@ void World::initLane(const SaveInf& save)
 		const float lanePos = i * tile_size * 2.f;
 		Lane		newLane(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.m_dir, laneInf.m_speed);
 		//temporary texture, need to replace random one
-		newLane.setVehicleType(initVehicleFunc[laneInf.m_type], asset::texture().get("car2", "png"), 88);
+		newLane.setVehicleType(initVehicleFunc[laneInf.m_type], asset::texture().get("car2", "png"), 80);
 		m_lanes.push_back(std::move(newLane));//prevent copy because lane have unique_ptr
 	}
 }
