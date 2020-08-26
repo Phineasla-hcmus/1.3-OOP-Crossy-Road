@@ -1,5 +1,4 @@
-#include "../../Game/State/state_pause.h"
-#include"../../Framework/game.h"
+#include "state_pause.h"
 
 PauseMenu::PauseMenu(Game& game)
 	: state_base(game),

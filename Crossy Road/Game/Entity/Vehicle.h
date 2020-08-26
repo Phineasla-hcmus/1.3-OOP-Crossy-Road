@@ -1,11 +1,14 @@
 #ifndef Vehicle_h
 #define Vehicle_h
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include "../../Framework/game.h"
+//#include <SFML/Graphics.hpp>
+//#include <SFML/Audio.hpp>
+//#include "../../Framework/Game.h"
+//#include "../Collidable.h"
+
+#include "../../PCH.h"
 #include "../Collidable.h"
-#include "Player.h"
+
 
 //class Vehicle :public Collision {
 //protected:
@@ -62,7 +65,6 @@
 //	void draw(sf::RenderTarget& target);
 //	static Vehicle* newVehicle(sf::Vector2f origin_pos);
 //};
-
 class Vehicle : public Collision {
 private:
 	sf::RectangleShape m_sprite;

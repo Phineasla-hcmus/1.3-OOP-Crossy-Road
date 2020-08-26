@@ -6,8 +6,9 @@
 #include<SFML/Graphics.hpp>
 #include"Util/no_copy.h"
 #include"State/state_base.h"
-#include"../Game/State/state_main_menu.h"
-#include"../Game/State/state_playing.h"
+//#include"../Game/State/state_main_menu.h"
+//#include"../Game/State/state_playing.h"
+#include "../PCH.h"
 constexpr auto screen_width		= 1280;
 constexpr auto screen_height	= 720;
 constexpr auto total_num_lane	= 8;

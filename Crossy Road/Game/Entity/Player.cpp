@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "../world.h"
 
 static int x = 0;
 static int y = 0;

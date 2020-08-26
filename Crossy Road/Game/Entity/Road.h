@@ -1,9 +1,7 @@
 #ifndef _road_h
 #define _road_h
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+#include "../../PCH.h"
 #include "Vehicle.h"
-#include "Player.h"
 using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 //class DRoad {
 //private:
@@ -50,7 +48,7 @@ using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 //	//}
 //
 //};
-
+class Vehicle;
 //function for init new vehicle
 typedef std::function<std::unique_ptr<Vehicle>(const sf::Texture&, const sf::Vector2f&, float)>  vehicle_func;
 class Lane {

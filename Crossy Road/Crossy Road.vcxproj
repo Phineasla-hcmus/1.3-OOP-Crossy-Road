@@ -160,11 +160,12 @@
     <ClCompile Include="Game\Entity\Player.cpp" />
     <ClCompile Include="Game\Entity\Road.cpp" />
     <ClCompile Include="Game\Entity\Vehicle.cpp" />
+    <ClCompile Include="Game\SaveLevel.cpp" />
     <ClCompile Include="Game\State\state_load.cpp" />
     <ClCompile Include="Game\State\state_main_menu.cpp" />
     <ClCompile Include="Game\State\state_pause.cpp" />
     <ClCompile Include="Game\State\state_playing.cpp" />
-    <ClCompile Include="Game\world.cpp" />
+    <ClCompile Include="Game\World.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -185,11 +186,13 @@
     <ClInclude Include="Game\Entity\Player.h" />
     <ClInclude Include="Game\Entity\Road.h" />
     <ClInclude Include="Game\Entity\Vehicle.h" />
+    <ClInclude Include="Game\SaveLevel.h" />
     <ClInclude Include="Game\State\state_load.h" />
     <ClInclude Include="Game\State\state_main_menu.h" />
     <ClInclude Include="Game\State\state_pause.h" />
     <ClInclude Include="Game\State\state_playing.h" />
-    <ClInclude Include="Game\world.h" />
+    <ClInclude Include="Game\World.h" />
+    <ClInclude Include="PCH.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

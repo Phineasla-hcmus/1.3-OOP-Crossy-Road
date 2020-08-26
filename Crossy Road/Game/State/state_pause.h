@@ -1,9 +1,10 @@
 #ifndef PAUSEMENU_H_
 #define PAUSEMENU_H_
-#include"../../Framework/GUI/Button.h"
-#include"../../Framework/GUI/StackMenu.h"
-#include"../../Framework/State/state_base.h"
-#include<SFML/Graphics.hpp>
+//#include"../../Framework/GUI/Button.h"
+//#include"../../Framework/GUI/StackMenu.h"
+//#include"../../Framework/State/state_base.h"
+//#include<SFML/Graphics.hpp>
+#include "../../PCH.h"
 class PauseMenu: public state_base {
 private:
 	StackMenu pause_menu;

@@ -1,9 +1,7 @@
 #ifndef Player_h
 #define Player_h
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include"../../Framework/AssetManager/asset.h"
+#include "../../PCH.h"
 #include "../Collidable.h"
 
 /*
