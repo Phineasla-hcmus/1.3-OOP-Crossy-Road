@@ -4,11 +4,13 @@
 #include <SFML/Audio.hpp>
 #include "Vehicle.h"
 #include "Player.h"
+#include "TrafficLight.h"
 
 using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 class DRoad {
 private:
 	sf::RectangleShape lane;
+	TrafficLight light;
 	float width;
 	float distance;
 	std::vector<Vehicle*> r_vehicle;	
@@ -19,6 +21,11 @@ private:
 	sf::Vector2f m_pos;
 	int isFromLeft ;
 	int num_Vehicle ;
+	float time_running_origin=rand()%40*1.0/10;	
+	sf::Time red_time = sf::seconds(1.f+(rand() % 20 * 1.0 / 10));
+	sf::Time green_time = sf::seconds(3.f+(rand() % 40 * 1.0 / 10));
+	sf::Clock time;
+	sf::Time start_Point=time.getElapsedTime();
 	
 	typedef Vehicle* (*new_vehicle)(sf::Vector2f origin_pos);
 
@@ -36,7 +43,6 @@ public:
 
 	static Vehicle* initVehicle_rand(int i, sf::Vector2f origin_pos);
 	
-
 };
 
 

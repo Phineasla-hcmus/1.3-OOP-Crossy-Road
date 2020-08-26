@@ -3,7 +3,8 @@
 #include <iostream>
 
 
-DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f pos, float speed, int isFromLeft, Player& player) :m_player(player)
+DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f pos,
+	float speed, int isFromLeft, Player& player) :m_player(player), light({ pos.x,pos.y + 90 })
 {
 	this->num_Vehicle = num_Vehicle;
 	this->isFromLeft = isFromLeft;
@@ -53,6 +54,7 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 	void DRoad::draw(sf::RenderTarget& target)
 	{
 		target.draw(this->lane);
+		light.draw(target);
 		for (auto& e : this->r_vehicle) {
 			e->draw(target);
 		}
@@ -92,18 +94,34 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 			this->spawnVehicle();
 
 		}
-
 		//Moving and updating enemies
-		for (int i = 0; i < this->r_vehicle.size(); i++)
-		{
+		if (light.getLightState() == (sf::Color::Green)) {
+			if (time.getElapsedTime() <= (start_Point + green_time)) {
+				for (int i = 0; i < this->r_vehicle.size(); i++)
+				{
 
-			this->r_vehicle[i]->vehicle.move(double(this->m_speed*dt * this->isFromLeft), 0.f);
-			this->tryCollideWithPlayer();
-			if (this->isFromLeft == 1 && this->r_vehicle[i]->vehicle.getPosition().x > 1280)
-				this->r_vehicle.erase(this->r_vehicle.begin() + i);
-			if (this->isFromLeft == -1 && (this->r_vehicle[i]->vehicle.getPosition().x+this->r_vehicle[i]->vehicle.getSize().x) < 0)
-				this->r_vehicle.erase(this->r_vehicle.begin() + i);
+					this->r_vehicle[i]->vehicle.move(double(this->m_speed * dt * this->isFromLeft), 0.f);
+					this->tryCollideWithPlayer();
+					if (this->isFromLeft == 1 && this->r_vehicle[i]->vehicle.getPosition().x > 1280)
+						this->r_vehicle.erase(this->r_vehicle.begin() + i);
+					if (this->isFromLeft == -1 && (this->r_vehicle[i]->vehicle.getPosition().x + this->r_vehicle[i]->vehicle.getSize().x) < 0)
+						this->r_vehicle.erase(this->r_vehicle.begin() + i);
+
+				}				
+			}
+			else {
+				light.turnRed();
+				red_time = sf::seconds(0.5f+(rand() % 10 * 1.0 / 10));
+				start_Point = time.getElapsedTime();
+			}
+		}
+		else {
 			
+			if (time.getElapsedTime() >= (start_Point + red_time)) {
+				light.turnGreen();
+				start_Point = time.getElapsedTime();
+				green_time = sf::seconds(5.f+(rand() % 40 * 1.0 / 20));
+			}
 		}
 	}
 

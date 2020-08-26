@@ -92,6 +92,9 @@
     <ClCompile Include="Framework\Util\animation.cpp">
       <Filter>Source Files\Framework\Util</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Entity\TrafficLight.cpp">
+      <Filter>Source Files\Game\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\State\state_base.h">
@@ -153,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Util\animation.h">
       <Filter>Source Files\Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Entity\TrafficLight.h">
+      <Filter>Source Files\Game\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

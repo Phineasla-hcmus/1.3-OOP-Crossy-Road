@@ -157,6 +157,7 @@
     <ClCompile Include="Game\Collidable.cpp" />
     <ClCompile Include="Game\Entity\Player.cpp" />
     <ClCompile Include="Game\Entity\Road.cpp" />
+    <ClCompile Include="Game\Entity\TrafficLight.cpp" />
     <ClCompile Include="Game\Entity\Vehicle.cpp" />
     <ClCompile Include="Game\State\state_load.cpp" />
     <ClCompile Include="Game\State\state_main_menu.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Game\Collidable.h" />
     <ClInclude Include="Game\Entity\Player.h" />
     <ClInclude Include="Game\Entity\Road.h" />
+    <ClInclude Include="Game\Entity\TrafficLight.h" />
     <ClInclude Include="Game\Entity\Vehicle.h" />
     <ClInclude Include="Game\State\state_load.h" />
     <ClInclude Include="Game\State\state_main_menu.h" />
