@@ -131,12 +131,12 @@ void Player::update(float dt)
     //if player move out of bound
 
     //Left
-    //if (this->people.getGlobalBounds().left <= 0.f) 
-    //    this->people.setPosition(0.f, this->people.getGlobalBounds().top);
+    if (this->people.getGlobalBounds().left <= 10.f) 
+        this->people.setPosition(10.f, this->people.getGlobalBounds().top);
     // 
     ////Right
-    //if (this->people.getGlobalBounds().left + this->people.getGlobalBounds().width >= 1280) 
-    //    this->people.setPosition(1280 - this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
+    if (this->people.getGlobalBounds().left + this->people.getGlobalBounds().width >= 1270.f) 
+        this->people.setPosition(1270 - this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
     //
     //Top
     if (this->people.getGlobalBounds().top <= -90.f) {
