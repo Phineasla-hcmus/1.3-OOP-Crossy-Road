@@ -1,7 +1,7 @@
 #include "../../Game/State/state_pause.h"
 #include"../../Framework/game.h"
 
-PauseMenu::PauseMenu(Game& game)
+PauseMenu::PauseMenu(Game& game, SaveInf& _info)
 	: state_base(game),
 	pause_menu(game.get_window(),300)
 {
@@ -14,7 +14,7 @@ PauseMenu::PauseMenu(Game& game)
 	auto SaveGameBtn = makeButton();
 	SaveGameBtn->setText("Save Game");
 	SaveGameBtn->setFunction([&]() {
-		//(this->game()).pushState(std::make_unique<state_playing>(game));
+		(this->game()).pushState(std::make_unique<state_save>(game,_info));
 		});
 	auto LoadGameBtn = makeButton();
 	LoadGameBtn->setText("Load Game");

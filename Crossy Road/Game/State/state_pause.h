@@ -3,6 +3,8 @@
 #include"../../Framework/GUI/Button.h"
 #include"../../Framework/GUI/StackMenu.h"
 #include"../../Framework/State/state_base.h"
+#include"state_save.h"
+#include"state_load.h"
 #include<SFML/Graphics.hpp>
 class PauseMenu: public state_base {
 private:
@@ -10,7 +12,7 @@ private:
 	bool is_paused = false;
 
 public:
-	PauseMenu(Game&);
+	PauseMenu(Game&, SaveInf&);
 	
 	void changeState();
 	bool isPaused();

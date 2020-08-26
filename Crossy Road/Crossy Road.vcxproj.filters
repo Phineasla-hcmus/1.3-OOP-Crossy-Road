@@ -95,6 +95,9 @@
     <ClCompile Include="Game\Entity\TrafficLight.cpp">
       <Filter>Source Files\Game\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="Game\State\state_save.cpp">
+      <Filter>Source Files\Game\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\State\state_base.h">
@@ -159,6 +162,9 @@
     </ClInclude>
     <ClInclude Include="Game\Entity\TrafficLight.h">
       <Filter>Source Files\Game\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\state_save.h">
+      <Filter>Source Files\Game\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

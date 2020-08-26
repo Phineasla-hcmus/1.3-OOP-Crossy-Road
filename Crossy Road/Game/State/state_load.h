@@ -33,7 +33,7 @@ public:
 //menu->NEW_stateplaying
 class state_load :public state_base {
 private:
-
+	StackMenu load_menu;
 public:
 	state_load(Game&);
 

@@ -3,14 +3,14 @@
 state_playing::state_playing(Game& game, SaveInf save_inf)
     : state_base(game)
     , m_world(save_inf)
-    , pause_menu(game)
+    , pause_menu(game,save)
     ,_score_display(20,"SCORE")
     ,_level_display(50,"LEVEL")
 {}
 state_playing::state_playing(Game& game)
 	: state_base(game)
 	, m_world()
-    , pause_menu(game)
+    , pause_menu(game,save)
     , _score_display(20, "SCORE")
     , _level_display(50, "LEVEL")
 {}
