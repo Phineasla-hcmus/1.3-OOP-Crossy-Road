@@ -41,11 +41,15 @@ void state_save::draw(sf::RenderTarget& renderer) {
 void state_save::WritetoFile(std::string name)
 {
 	std::ofstream fout;
-	fout.open(SAVE_FILE_NAME + name + ".txt");
+	fout.open(SAVE_FILE_NAME + name + ".bin",std::ios::binary);
 	if (fout.is_open()) {
-		fout << _info.get_level() << " " << _info.get_score() << " ";
-		for (int i = 0; i < save_lane; ++i)
-			fout << _info.get_type(i) << " " << _info.get_speed(i);
+		fout.write((char*)(_info.get_level()), sizeof(int));
+		fout.write((char*)(_info.get_score()), sizeof(int));
+		for (int i = 0; i < save_lane; ++i) {
+			fout.write((char*)(_info.get_type(i)), sizeof(int));
+			const float f = (_info.get_speed(i));
+			fout.write((char*)&f, sizeof(float));
+		}
 		fout.close();
 	}
 	else std::cout << "CAN NOT SAVE .\n";

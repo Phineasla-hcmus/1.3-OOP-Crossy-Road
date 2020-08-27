@@ -21,7 +21,7 @@ private:
 	sf::Vector2f m_pos;
 	int isFromLeft ;
 	int num_Vehicle ;
-	float time_running_origin=rand()%40*1.0/10;	
+	float time_running_origin=float(rand()%40*1.0/10);	
 	sf::Time red_time = sf::seconds(1.f+(rand() % 20 * 1.0 / 10));
 	sf::Time green_time = sf::seconds(3.f+(rand() % 40 * 1.0 / 10));
 	sf::Clock time;
