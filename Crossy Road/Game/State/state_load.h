@@ -35,6 +35,8 @@ public:
 class state_load :public state_base {
 private:
 	StackMenu load_menu;
+	std::string link;
+	SaveInf load_inf;
 public:
 	state_load(Game&);
 

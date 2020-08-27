@@ -10,17 +10,15 @@ state_save::state_save(Game& game,SaveInf& save)
 	
 
 	auto SaveBtn = makeButton();
-	SaveBtn->setText("Save         ");
+	SaveBtn->setText("Save Game");
 	SaveBtn->setFunction([&]() {
 		WritetoFile(_name);
-		//(this->game()).pushState(std::make_unique<state_main_menu>(game));
 		this->game().popState();
 		});
 
 	auto ReturnBtn = makeButton();
-	ReturnBtn->setText("Return      ");
+	ReturnBtn->setText("Return Game");
 	ReturnBtn->setFunction([&]() {
-		//(this->game()).pushState(std::make_unique<state_playing>(game,_info));
 		this->game().popState();
 		});
 	save_menu.addWidget(std::move(name_textbox));

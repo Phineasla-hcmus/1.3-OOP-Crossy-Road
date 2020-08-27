@@ -20,7 +20,7 @@ state_main_menu::state_main_menu(Game& game)
     auto LoadGameBtn = makeButton();
     LoadGameBtn->setText("Load Game");
     LoadGameBtn->setFunction([&]() {
-       
+        (this->game()).pushState(std::make_unique<state_load>(game));
         });
 
     auto exitBtn = makeButton();
