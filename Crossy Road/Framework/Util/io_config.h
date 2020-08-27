@@ -17,10 +17,10 @@ private:
 	std::vector<texture_inf> m_set;
 public:
 	bool				loadFromFile(const std::string&);
-	size_t				size() const;
-	const std::string&	getName(size_t) const;
-	const std::string&	getExt(size_t)	const;
-	unsigned			getWidth(size_t) const;
+	size_t				size()				const;
+	const std::string&	getName(size_t)		const;
+	const std::string&	getExt(size_t)		const;
+	unsigned			getWidth(size_t)	const;
 	std::pair<const std::string&, unsigned> getAttribute(size_t) const;
 };
 //Contain multiple file names of multiple texture objects

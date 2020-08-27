@@ -9,9 +9,9 @@
 #include"State/state_base.h"
 constexpr auto screen_width		= 1280;
 constexpr auto screen_height	= 720;
-constexpr auto x_tile_size		= 14;
-constexpr auto y_tile_size		= 8;
-constexpr auto tile_size		= screen_height / y_tile_size;
+constexpr auto x_tiles			= 14;
+constexpr auto y_tiles			= 8;
+constexpr auto tile_size		= screen_height / y_tiles;
 class Game : public no_copy
 {
 private:
