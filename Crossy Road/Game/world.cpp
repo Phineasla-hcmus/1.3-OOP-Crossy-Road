@@ -7,8 +7,8 @@ World::World(const textureLookup& lookup)
 {
 	//lookup background
 	const std::vector<unsigned> tile_map = { 0,1,0,1,0,1,0,1 };
-	//render y_tile_size+1 for filling to whole screen
-	m_background.setMapSize(y_tile_size+1, y_tile_size);
+	//render y_tiles+1 to fill whole screen
+	m_background.setMapSize(x_tiles+1, y_tiles);
 	//scale the texture to tile_size (90)
 	m_background.create_map(tile_map, sf::Vector2u(tile_size, tile_size));
 }
