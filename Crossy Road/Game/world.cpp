@@ -36,6 +36,12 @@ void World::initLane(const SaveInf& save)
 		m_lanes.push_back(std::move(newLane));
 	}
 }
+void World::input()
+{
+	if (m_player.isAlive()) {
+		m_player.keymove();
+	}
+}
 
 void World::resetWorld(const SaveInf& new_save)
 {
@@ -49,6 +55,8 @@ void World::draw(sf::RenderTarget& target)
 	for (auto& droad : m_lanes) {
 		droad.draw(target);
 	}
+	m_player.moving();
+	m_player.animationRenderer();
 	m_player.draw(target);
 	
 }

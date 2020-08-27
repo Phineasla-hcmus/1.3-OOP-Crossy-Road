@@ -16,5 +16,6 @@ public:
 	void initLane(const SaveInf&);
 	void resetWorld(const SaveInf&);
 	void draw(sf::RenderTarget& target);
+	void input();
 };
 #endif // !_World_h
