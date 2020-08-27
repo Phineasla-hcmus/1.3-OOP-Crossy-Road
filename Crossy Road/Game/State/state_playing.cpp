@@ -6,6 +6,7 @@ state_playing::state_playing(Game& game, SaveInf save_inf)
     , pause_menu(game)
     ,_score_display(20,"SCORE")
     ,_level_display(50,"LEVEL")
+    ,save()
 {}
 state_playing::state_playing(Game& game)
 	: state_base(game)
@@ -13,6 +14,7 @@ state_playing::state_playing(Game& game)
     , pause_menu(game)
     , _score_display(20, "SCORE")
     , _level_display(50, "LEVEL")
+    ,save()
 {}
 
 void state_playing::handleEvent(sf::Event ev)

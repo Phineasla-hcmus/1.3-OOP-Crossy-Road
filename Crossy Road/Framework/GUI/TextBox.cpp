@@ -1,5 +1,5 @@
 #include "Textbox.h"
-
+#include<string>
 #include <iostream>
 
 TextBox::TextBox(std::string& modString)
@@ -96,6 +96,7 @@ void TextBox::handleTextInput(sf::Event e)
 					m_pModString->pop_back();
 			}
 			_text.setString(*m_pModString);
+			//std::cout << keyCode << "\n";
 		}
 		break;
 
@@ -105,10 +106,10 @@ void TextBox::handleTextInput(sf::Event e)
 }
 bool TextBox::isValidCharacter(unsigned char keyCode)
 {
-	return  keyCode >= 48 && keyCode <= 57 ||  //Numbers
+	return  keyCode >= 46 && keyCode <= 57 ||  //Numbers
 		keyCode >= 65 && keyCode <= 90 ||  //Uppercase
 		keyCode >= 97 && keyCode <= 122 ||  //Lowercase
-		keyCode == 32;    //Space
+		keyCode == 32 || keyCode == 92 || keyCode == 58;    //Space
 }
 bool TextBox::isBackspace(unsigned char keycode)
 {

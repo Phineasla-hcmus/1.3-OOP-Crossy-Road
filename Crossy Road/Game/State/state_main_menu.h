@@ -1,5 +1,6 @@
 #ifndef _state_main_menu
 #define _state_main_menu
+#include"state_load.h"
 #include"../../Framework/GUI/button.h"
 #include"../../Framework/GUI/StackMenu.h"
 #include"../../Framework/AssetManager/asset.h"
