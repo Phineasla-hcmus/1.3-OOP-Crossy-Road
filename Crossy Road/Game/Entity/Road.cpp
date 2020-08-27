@@ -17,6 +17,7 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 	this->initVar();
 	this->initShape(pos);
 	this->initVehicle(rand_typeVehicle,rand_startPos);
+	m_deathSound.setBuffer(asset::sound().get("Mario Death Sound Effect", "wav"));
 }
 	void DRoad::initVar(float width, float distance)
 	{
@@ -133,6 +134,7 @@ DRoad::DRoad(int num_Vehicle,int rand_startPos,int rand_typeVehicle,sf::Vector2f
 				continue;
 
 			if (m_player.tryCollideWith(*(r_vehicle[i]))) {
+				m_deathSound.play();
 				std::cout << "Collided!!" << std::endl;
 			}
 		}

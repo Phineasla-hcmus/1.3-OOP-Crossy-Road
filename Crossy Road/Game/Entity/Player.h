@@ -30,7 +30,8 @@ private:
 	void restart();
 
 	sf::RectangleShape people;     
-	sf::Clock clock;
+	sf::Clock m_clock;
+	float m_gaps = 0.1f;
 	sf::Vector2f origin_pos = { 640, 720 - 90 };
 
 	bool is_Alive = true;        
@@ -45,7 +46,6 @@ private:
     bool move[4]; //deciding if u move up/down/left/right
     bool is_walking;
     int nextspot; //the next tilespot of the map
-
 };
 
 #endif

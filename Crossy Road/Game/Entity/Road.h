@@ -42,7 +42,7 @@ public:
 	CollisionResult tryCollideWithPlayer();
 
 	static Vehicle* initVehicle_rand(int i, sf::Vector2f origin_pos);
-	
+	sf::Sound m_deathSound;
 };
 
 

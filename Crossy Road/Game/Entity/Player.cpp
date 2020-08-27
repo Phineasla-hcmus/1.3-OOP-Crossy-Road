@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "../world.h"
-#include <iostream>
+
 static int initX = 0;
 static int initY = 192;
 
@@ -19,6 +19,7 @@ Player::Player() :Collision(90.f, 64.f), move{ 0,0,0,0 }
     people.setPosition(this->origin_pos);
    /* player_texture.loadFromFile("Assets\\textures\\player_sprite_2.png");*/
     player_texture = asset::texture().get("player_sprite_2", "png");
+  
     people.setTexture(&player_texture);
     people.setTextureRect(sf::IntRect{ 0,192,64,64 });
 }
@@ -179,7 +180,7 @@ void Player::update(float dt)
     
 }
 void Player::animationRenderer() {
-    if (clock.getElapsedTime().asSeconds() > 0.1f && is_walking == true) {
+    if (m_clock.getElapsedTime().asSeconds() > m_gaps && is_walking == true) {
         if (initX > 192) {
             initX = 0;
             people.setTextureRect({ initX,initY,64,64 });
@@ -189,7 +190,7 @@ void Player::animationRenderer() {
             people.setTextureRect({ initX,initY,64,64 });
             initX += 64;
         }
-        clock.restart();
+        m_clock.restart();
     }
 }
 
