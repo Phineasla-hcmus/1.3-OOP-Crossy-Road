@@ -30,7 +30,8 @@ void state_playing::handleInput()
 
 void state_playing::draw(sf::RenderTarget& renderer)
 {
-    //m_world.draw(renderer);
+    m_world.draw(renderer);
+    
     if (m_is_paused) m_pause_menu.draw(renderer);
     //m_lifeDisplay.draw(renderer, m_world.getPlayer().getLives());
     //m_scoreDisplay.draw(renderer);

@@ -25,3 +25,13 @@ void World::initLane(const SaveInf& save)
 		m_lanes.push_back(std::move(newLane));//prevent copy because lane have unique_ptr
 	}
 }
+
+void World::draw(sf::RenderTarget& target)
+{
+	target.draw(m_background);
+	for (auto& droad : m_lanes) {
+		droad.draw(target);
+	}
+	m_player.draw(target);
+	
+}

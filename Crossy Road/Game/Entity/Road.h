@@ -61,6 +61,7 @@ public:
 	void setVehicleType(vehicle_func, sf::Texture& vehicle, float width);
 	size_t vehicle_size() const;
 	Vehicle& get_vehicle(size_t);
+	void draw(sf::RenderTarget& target);
 private:
 	const sf::Vector2f						m_pos;
 	const direction							m_dir;

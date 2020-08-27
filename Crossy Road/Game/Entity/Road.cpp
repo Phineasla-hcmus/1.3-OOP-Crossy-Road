@@ -145,3 +145,12 @@ Vehicle& Lane::get_vehicle(size_t idx)
 {
 	return *m_vehicles[idx];
 }
+
+void Lane::draw(sf::RenderTarget& target)
+{
+	//target.draw(this->lane);
+	//light.draw(target);
+	for (auto& e : this->m_vehicles) {
+		e->draw(target);
+	}
+}
