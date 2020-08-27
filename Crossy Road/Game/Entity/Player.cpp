@@ -35,7 +35,7 @@ void Player::keymove()
             nextspot = y - tilesize;
             move[UP] = true;
             is_walking = true;
-            initY = 192;
+            initY = 192, initX = 0;
             people.setTextureRect({ initX,initY,64,64 });
         }
     }
@@ -47,7 +47,7 @@ void Player::keymove()
             nextspot = y + tilesize;
             move[DOWN] = true;
             is_walking = true;
-            initY = 0;
+            initY = 0, initX = 0;
             people.setTextureRect({ initX,initY,64,64 });
         }
     }
@@ -59,7 +59,7 @@ void Player::keymove()
             nextspot = x - tilesize;
             move[LEFT] = true;
             is_walking = true;
-            initY = 64;
+            initY = 64, initX = 0;
             people.setTextureRect({ initX,initY,64,64 });
         }
     }
@@ -71,7 +71,7 @@ void Player::keymove()
             nextspot = x + tilesize;
             move[RIGHT] = true;
             is_walking = true;
-            initY = 128;
+            initY = 128, initX = 0;
             people.setTextureRect({ initX,initY,64,64 });
         }
     }
