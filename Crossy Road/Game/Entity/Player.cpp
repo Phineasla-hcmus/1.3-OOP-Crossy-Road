@@ -186,7 +186,6 @@ void Player::animationRenderer() {
             people.setTextureRect({ initX,initY,64,64 });
         }
         else {
-            std::cout << initX << "\n";
             people.setTextureRect({ initX,initY,64,64 });
             initX += 64;
         }
