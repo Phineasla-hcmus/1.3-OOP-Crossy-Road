@@ -19,17 +19,17 @@ void World::initLane(const SaveInf& save)
 	vehicle_func initVehicleFunc[] = { new_vehicle<Car>,new_vehicle<Truck> };
 	for (size_t i = 0; i < save_lane; ++i) {
 		const float			lanePos = i * tile_size * 2.f;					
-		const auto&			laneInf = save.get_RoadInf(i);					//get each laneInf from save file
+		const auto&			laneInf = save.get_RoadInf(i);							//get each laneInf from save file
 		Lane				newLane(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed);
-		//use for set vInfo type and its texture
+		/*use for set vInfo type and its texture*/
 		const textureSet&	set		= m_vehicle_set.getSet(laneInf.vehicleType);	//get a set of multiple texture of a vInfo type
-		unsigned			idx		= m_rand.int_in_range(0, set.size());	//random to choose a texture for vInfo
-		const textureInf&	vInfo	= set.getFullInf(idx);					//get all info about texture
+		unsigned			idx = m_rand.int_in_range(0, set.size() - 1);			//random to choose a texture for vInfo
+		const textureInf&	vInfo	= set.getFullInf(idx);							//get all info about texture
 		sf::Texture&		texture	= asset::texture().get(vInfo.name, vInfo.ext);
 		const sf::IntRect	bounds	= (laneInf.direction == Lane::direction::left) 
 			? vInfo.getBounds(0) 
 			: vInfo.getBounds(1);
-		//set function for init, texture and texture bounds
+		/*set function for init, texture and texture bounds*/
 		newLane.setVehicleType(initVehicleFunc[laneInf.vehicleType], texture, bounds);
 		newLane.setVehicleSize(laneInf.vehicleNum);
 
