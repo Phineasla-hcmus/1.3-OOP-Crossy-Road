@@ -8,6 +8,8 @@
 #define FILL_COLOR		sf::Color::Blue
 #define DEFAULT_FONT	"arcade"
 #define DEFAULT_EXT		"TTF"
+#define BACKUP_FONT	    "FAIL"
+#define BACKUP_EXT		"TTF"
 class Widget
 {
 public:
@@ -24,6 +26,8 @@ public:
 			unsigned size,
 			const sf::Color& outline, 
 			const sf::Color& fill);
+		void _setFont(const std::string& font,
+			const std::string& ext);
 	};
 	class Rectangle : public sf::RectangleShape
 	{

@@ -12,7 +12,10 @@ Widget::Text::Text(const std::string& font, const std::string& ext, unsigned siz
 	setFillColor(fill);
 	setFont(asset::font().get(font, ext));
 }
-
+void Widget::Text::_setFont(const std::string& font = BACKUP_FONT, const std::string& ext = BACKUP_EXT)
+{
+	setFont(asset::font().get(font, ext));
+}
 bool Widget::Rectangle::isRolledOn(const sf::RenderWindow& window) const
 {
 	auto pos = sf::Mouse::getPosition(window);

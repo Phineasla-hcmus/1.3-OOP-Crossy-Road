@@ -38,7 +38,7 @@ state_load::state_load(Game& game)
 	load_inf()
 {
 	auto Load_Textbox = makeTextBox(link);
-	Load_Textbox->setLabel("Name");
+	Load_Textbox->setLabel("LINK");
 
 	auto LoadBtn = makeButton();
 	LoadBtn->setText("   Load Game");
