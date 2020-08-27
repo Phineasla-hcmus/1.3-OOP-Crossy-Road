@@ -180,8 +180,10 @@ void Player::update(float dt)
 }
 void Player::animationRenderer() {
     if (clock.getElapsedTime().asSeconds() > 0.1f && is_walking == true) {
-        if (initX > 192)
+        if (initX > 192) {
             initX = 0;
+            people.setTextureRect({ initX,initY,64,64 });
+        }
         else {
             std::cout << initX << "\n";
             people.setTextureRect({ initX,initY,64,64 });
