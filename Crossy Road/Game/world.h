@@ -15,5 +15,6 @@ public:
 	World(const textureLookup&);
 	void initLane(const SaveInf&);
 	void draw(sf::RenderTarget& target);
+	void input();
 };
 #endif // !_World_h

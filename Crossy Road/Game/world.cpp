@@ -25,13 +25,21 @@ void World::initLane(const SaveInf& save)
 		m_lanes.push_back(std::move(newLane));//prevent copy because lane have unique_ptr
 	}
 }
+void World::input()
+{
+	if (m_player.isAlive()) {
+		m_player.keymove();
 
+	}
+}
 void World::draw(sf::RenderTarget& target)
 {
 	target.draw(m_background);
 	for (auto& droad : m_lanes) {
 		droad.draw(target);
 	}
+	m_player.moving();
+	m_player.animationRenderer();
 	m_player.draw(target);
 	
 }
