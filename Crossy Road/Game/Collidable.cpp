@@ -1,7 +1,7 @@
 #include "Collidable.h"
 
 Collision::Collision(const sf::Vector2f& size)
-    :m_size(size)
+    : m_size(size)
 {}
 
 Collision::Collision(float width, float height)
@@ -16,6 +16,11 @@ bool Collision::tryCollideWith(Collision& other)
         return true;
     }
     return false;
+}
+
+void Collision::setSize(sf::Vector2f new_size)
+{
+    m_size = new_size;
 }
 
 sf::FloatRect Collision::getBox() const

@@ -6,9 +6,11 @@ bool textureSet::loadFromFile(const std::string& dir)
 	if (!fin)
 		return false;
 	std::string file_name, file_ext;
-	unsigned	width, height;
-	while (fin >> file_name >> file_ext >> width >> height) {
-		m_set.emplace_back(texture_inf(file_name, file_ext, width, height));
+	sf::Vector2u size, file_dim;
+	while (fin >> file_name >> file_ext 
+		>> size.x >> size.y >> file_dim.x >> file_dim.y) 
+	{
+		m_set.emplace_back(textureInf(file_name, file_ext, size, file_dim));
 	}
 	fin.close();
 	return true;
@@ -21,29 +23,37 @@ size_t textureSet::size() const
 
 const std::string& textureSet::getName(size_t idx) const
 {
-	return m_set[idx].file_name;
+	return m_set[idx].name;
 }
 
 const std::string& textureSet::getExt(size_t idx) const
 {
-	return m_set[idx].file_ext;
+	return m_set[idx].ext;
 }
 
-unsigned textureSet::getWidth(size_t idx) const
+const textureInf& textureSet::getFullInf(size_t idx) const
 {
-	return m_set[idx].texture_width;
+	return m_set[idx];
 }
 
-std::pair<const std::string&, unsigned> textureSet::getAttribute(size_t idx) const
-{
-	return std::make_pair<const std::string&, unsigned>(getName(idx), getWidth(idx));
-}
-textureSet::texture_inf::texture_inf(const std::string& name, const std::string& ext, unsigned width, unsigned height)
-	: file_name(name)
-	, file_ext(ext)
-	, texture_height(height)
-	, texture_width(width)
+textureInf::textureInf(const std::string& name, const std::string& ext, sf::Vector2u size, sf::Vector2u fileDimension)
+	: name(name)
+	, ext(ext)
+	, size(size)
+	, fileDim(fileDimension)
 {}
+
+sf::IntRect textureInf::getBounds(size_t idx) const
+{
+	int tu = idx % (fileDim.x / size.x);
+	int tv = idx / (fileDim.x / size.x);
+	return sf::IntRect(sf::Vector2i(tu * size.x, tv * size.y), sf::Vector2i(size));
+}
+
+size_t textureInf::numTexture()
+{
+	return (fileDim.x / size.x) * (fileDim.y / size.y);
+}
 
 lane_inf::lane_inf(float minSpeed, float maxSpeed, unsigned minObst, unsigned maxObst)
 	: m_speed({minSpeed,maxSpeed})

@@ -2,7 +2,6 @@
 #define _road_h
 #include "../../PCH.h"
 #include "Vehicle.h"
-using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 //class DRoad {
 //private:
 //	sf::RectangleShape lane;
@@ -10,7 +9,7 @@ using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 //	float distance;
 //	//std::vector<Vehicle*> r_vehicle;	
 //
-//	float m_speed;
+//	float speed;
 //	Player& m_player;
 //	sf::Vector2f m_pos;
 //	int isFromLeft ;
@@ -49,8 +48,9 @@ using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 //
 //};
 class Vehicle;
+using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 //function for init new vehicle
-typedef std::function<std::unique_ptr<Vehicle>(const sf::Texture&, const sf::Vector2f&, float)>  vehicle_func;
+using vehicle_func = std::function<std::unique_ptr<Vehicle>(const sf::Vector2f& pos)>;
 class Lane {
 public:
 	enum direction {
@@ -58,17 +58,18 @@ public:
 		right = -1,
 	};
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
-	void setVehicleType(vehicle_func, sf::Texture& vehicle, float width);
-	size_t vehicle_size() const;
-	Vehicle& get_vehicle(size_t);
-	void draw(sf::RenderTarget& target);
+	void		setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
+	void		setVehicleSize(size_t);
+	size_t		getVehicleSize() const;
+	Vehicle&	getVehicle(size_t);
+	void		draw(sf::RenderTarget& target);
 private:
 	const sf::Vector2f						m_pos;
 	const direction							m_dir;
 	float									m_speed = 0;
 	std::vector<std::unique_ptr<Vehicle>>	m_vehicles;
-	vehicle_func							m_new_vehicle;
 	sf::Texture*							m_vehicles_texture = nullptr;
-	float									m_vehicle_width = 0;
+	sf::IntRect								m_texture_bound;
+	vehicle_func							m_init_func;
 };
 #endif // !_road_h

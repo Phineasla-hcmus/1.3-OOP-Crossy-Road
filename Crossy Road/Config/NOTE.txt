@@ -1,0 +1,1 @@
+file_name, ext, num_texture, texture_width, texture_height, file_width, file_height

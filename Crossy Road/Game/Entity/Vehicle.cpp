@@ -55,27 +55,50 @@
 //	return new Bird(origin_pos);
 //}
 
-Vehicle::Vehicle(const sf::Texture& texture, sf::Vector2f pos, sf::Vector2f size)
-	: m_sprite(size)
-	, m_texture(texture)
-	, Collision(size.x, size.y)
+
+Vehicle::Vehicle(sf::Vector2f pos, sf::Vector2f size)
+	: Collision(size)
+	, m_sprite(size)
 {
 	m_sprite.setPosition(pos);
-	m_sprite.setTexture(&m_texture);
 }
 
-Vehicle::Vehicle(const sf::Texture& texture, sf::Vector2f pos, float vehicle_length)
-	: Vehicle(texture, pos, sf::Vector2f(vehicle_length, tile_size))
-{}
+Vehicle::Vehicle(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound, sf::Vector2f scale)
+	: Collision()
+{
+	m_sprite.setPosition(pos);
+	sf::Vector2f size(textureBound.width, textureBound.height);
+	m_sprite.setSize(size);
+	this->setScale(scale);
+	m_sprite.setTexture(&texture);
+}
 
 const sf::Vector2f& Vehicle::getPosition() const
 {
 	return m_sprite.getPosition();
 }
 
-void Vehicle::set_TextureRec(const sf::IntRect& texture_bounds)
+void Vehicle::setTexture(const sf::Texture& texture, const sf::IntRect& bounds)
 {
-	m_sprite.setTextureRect(texture_bounds);
+	m_sprite.setTexture(&texture);
+	m_sprite.setTextureRect(bounds);
+}
+
+void Vehicle::setTexture(const sf::Texture& texture)
+{
+	m_sprite.setTexture(&texture);
+}
+
+void Vehicle::setTextureRec(const sf::IntRect& bounds)
+{
+	m_sprite.setTextureRect(bounds);
+}
+
+void Vehicle::setScale(const sf::Vector2f& scale)
+{
+	m_sprite.setScale(scale);
+	//set Collision size to match Sprite size
+	Collision::setSize(m_sprite.getSize());
 }
 
 void Vehicle::draw(sf::RenderTarget& render) const
@@ -88,10 +111,10 @@ void Vehicle::move(float speed, float dt_time, int dir)
 	m_sprite.move(speed * dt_time * (int)dir, 0);
 }
 
-Truck::Truck(const sf::Texture& texture, const sf::Vector2f& pos, float length)
-	: Vehicle(texture, pos, length)
+Car::Car(sf::Vector2f pos)
+	: Vehicle(pos)
 {}
 
-Car::Car(const sf::Texture& texture, const sf::Vector2f& pos, float length)
-	: Vehicle(texture, pos, length)
+Truck::Truck(sf::Vector2f pos)
+	: Vehicle(pos)
 {}

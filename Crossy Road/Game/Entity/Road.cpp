@@ -9,7 +9,7 @@
 //	this->num_Vehicle = num_Vehicle;
 //	this->isFromLeft = isFromLeft;
 //	this->m_pos = pos;
-//	this->m_speed = speed;
+//	this->speed = speed;
 //	if (isFromLeft > 0)
 //		this->isFromLeft = 1;
 //	else this->isFromLeft = -1;
@@ -97,7 +97,7 @@
 //		for (int i = 0; i < this->r_vehicle.size(); i++)
 //		{
 //
-//			this->r_vehicle[i]->vehicle.move(double(this->m_speed*dt*level * this->isFromLeft), 0.f);
+//			this->r_vehicle[i]->vehicle.move(double(this->speed*dt*level * this->isFromLeft), 0.f);
 //			this->tryCollideWithPlayer();
 //			if (this->isFromLeft == 1 && this->r_vehicle[i]->vehicle.getPosition().x > 1280)
 //				this->r_vehicle.erase(this->r_vehicle.begin() + i);
@@ -125,23 +125,27 @@ Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	: m_pos(road_pos)
 	, m_dir(dir)
 	, m_speed(speed)
-	, m_vehicle_width(0)
 	, m_vehicles_texture(nullptr)
 {}
 
-void Lane::setVehicleType(vehicle_func funct, sf::Texture & vehicle, float width)
+void Lane::setVehicleType(vehicle_func funct, sf::Texture& vehicle, sf::IntRect texture_bound)
 {
-	m_new_vehicle = funct;
-	m_vehicles_texture = &vehicle;
-	m_vehicle_width = width;
+	m_init_func			= funct;
+	m_vehicles_texture	= &vehicle;
+	m_texture_bound		= texture_bound;
 }
 
-size_t Lane::vehicle_size() const
+void Lane::setVehicleSize(size_t size)
+{
+	m_vehicles.reserve(size);
+}
+
+size_t Lane::getVehicleSize() const
 {
 	return m_vehicles.size();
 }
 
-Vehicle& Lane::get_vehicle(size_t idx)
+Vehicle& Lane::getVehicle(size_t idx)
 {
 	return *m_vehicles[idx];
 }

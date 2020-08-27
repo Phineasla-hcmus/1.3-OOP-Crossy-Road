@@ -65,32 +65,35 @@
 //	void draw(sf::RenderTarget& target);
 //	static Vehicle* newVehicle(sf::Vector2f origin_pos);
 //};
+
 class Vehicle : public Collision {
 private:
 	sf::RectangleShape m_sprite;
-	const sf::Texture& m_texture;
 public:
-	Vehicle(const sf::Texture&, sf::Vector2f pos = { 0,0 }, sf::Vector2f size = { tile_size,tile_size });
-	Vehicle(const sf::Texture&, sf::Vector2f pos = { 0,0 }, float vehicle_length = tile_size);
+	Vehicle(sf::Vector2f pos, sf::Vector2f size = { 0,0 });
+	Vehicle(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound, sf::Vector2f scale = { 1,1 });
 
 	const sf::Vector2f& getPosition() const;
-	void set_TextureRec(const sf::IntRect& texture_bounds);
+	void setTexture(const sf::Texture&, const sf::IntRect&);
+	void setTexture(const sf::Texture&);
+	void setTextureRec(const sf::IntRect&);
+	void setScale(const sf::Vector2f&);
 	void draw(sf::RenderTarget&) const;
 	void move(float speed, float dt_time, int direction);
 };
 class Car :public Vehicle {
 public:
-	Car(const sf::Texture& texture, const sf::Vector2f& pos, float car_length);
+	Car(sf::Vector2f pos);
 };
 class Truck :public Vehicle {
 public:
-	Truck(const sf::Texture& texture, const sf::Vector2f& pos, float truck_length);
+	Truck(sf::Vector2f pos);
 };
 
 template<typename T>
-std::unique_ptr<Vehicle> new_vehicle(const sf::Texture& texture, const sf::Vector2f& pos, float length)
+std::unique_ptr<Vehicle> new_vehicle(const sf::Vector2f& pos)
 { 
-	return std::make_unique<T>(texture, pos, length);
+	return std::make_unique<T>(pos);
 }
 #endif // !Vehicle_h
 	

@@ -15,22 +15,7 @@ unsigned SaveInf::get_score() const
 	return m_score;
 }
 
-float SaveInf::get_speed(size_t idx) const
-{
-	return m_road_arr.at(idx).m_speed;
-}
-
-int SaveInf::get_type(size_t idx) const
-{
-	return m_road_arr.at(idx).m_type;
-}
-
-int SaveInf::get_dir(size_t idx) const
-{
-	return m_road_arr.at(idx).m_dir;
-}
-
-const SaveInf::RoadInf& SaveInf::get_road_inf(size_t idx) const
+const SaveInf::RoadInf& SaveInf::get_RoadInf(size_t idx) const
 {
 	return m_road_arr.at(idx);
 }

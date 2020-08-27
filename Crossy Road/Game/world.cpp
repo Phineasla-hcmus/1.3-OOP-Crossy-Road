@@ -2,7 +2,7 @@
 
 World::World(const textureLookup& lookup)
 	: m_vehicle_set(lookup)
-	, m_background(&asset::texture().get("tileset", "png"), sf::Vector2u(16, 16))//size base on the tileset.png
+	, m_background(&asset::texture().get("FAILED", "png"), sf::Vector2u(256, 256))//size base on the tileset.png
 	, m_rand()
 {
 	//lookup background
@@ -15,15 +15,32 @@ World::World(const textureLookup& lookup)
 
 void World::initLane(const SaveInf& save)
 {
+	//function for init
 	vehicle_func initVehicleFunc[] = { new_vehicle<Car>,new_vehicle<Truck> };
 	for (size_t i = 0; i < save_lane; ++i) {
-		const auto& laneInf = save.get_road_inf(i);
-		const float lanePos = i * tile_size * 2.f;
-		Lane		newLane(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.m_dir, laneInf.m_speed);
-		//temporary texture, need to replace random one
-		newLane.setVehicleType(initVehicleFunc[laneInf.m_type], asset::texture().get("car2", "png"), 80);
-		m_lanes.push_back(std::move(newLane));//prevent copy because lane have unique_ptr
+		const float			lanePos = i * tile_size * 2.f;					
+		const auto&			laneInf = save.get_RoadInf(i);					//get each laneInf from save file
+		Lane				newLane(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed);
+		//use for set vInfo type and its texture
+		const textureSet&	set		= m_vehicle_set.getSet(laneInf.vehicleType);	//get a set of multiple texture of a vInfo type
+		unsigned			idx		= m_rand.int_in_range(0, set.size());	//random to choose a texture for vInfo
+		const textureInf&	vInfo	= set.getFullInf(idx);					//get all info about texture
+		sf::Texture&		texture	= asset::texture().get(vInfo.name, vInfo.ext);
+		const sf::IntRect	bounds	= (laneInf.direction == Lane::direction::left) 
+			? vInfo.getBounds(0) 
+			: vInfo.getBounds(1);
+		//set function for init, texture and texture bounds
+		newLane.setVehicleType(initVehicleFunc[laneInf.vehicleType], texture, bounds);
+		newLane.setVehicleSize(laneInf.vehicleNum);
+
+		m_lanes.push_back(std::move(newLane));
 	}
+}
+
+void World::resetWorld(const SaveInf& new_save)
+{
+	m_lanes.clear();
+	initLane(new_save);
 }
 
 void World::draw(sf::RenderTarget& target)

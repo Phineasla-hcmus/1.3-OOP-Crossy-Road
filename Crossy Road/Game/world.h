@@ -14,6 +14,7 @@ private:
 public:
 	World(const textureLookup&);
 	void initLane(const SaveInf&);
+	void resetWorld(const SaveInf&);
 	void draw(sf::RenderTarget& target);
 };
 #endif // !_World_h

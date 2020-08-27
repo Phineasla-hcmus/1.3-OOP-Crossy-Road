@@ -3,25 +3,27 @@
 #include<string>
 #include<vector>
 #include<fstream>
+#include<SFML/Graphics.hpp>
 #include"no_copy.h"
+struct textureInf {
+	const std::string	name;
+	const std::string	ext;
+	const sf::Vector2u	size;//texture dimensons (not file dimensions)
+	const sf::Vector2u	fileDim;
+	textureInf(const std::string& name, const std::string& ext, sf::Vector2u size, sf::Vector2u fileDimension);
+	sf::IntRect getBounds(size_t) const;
+	size_t		numTexture();
+};
 //Contain file texture name and it size, load from file
 class textureSet {
 private:
-	struct texture_inf {
-		const std::string&	file_name;
-		const std::string&	file_ext;
-		unsigned			texture_height;
-		unsigned			texture_width;
-		texture_inf(const std::string& name, const std::string& ext, unsigned width, unsigned height);
-	};
-	std::vector<texture_inf> m_set;
+	std::vector<textureInf> m_set;
 public:
 	bool				loadFromFile(const std::string&);
 	size_t				size()				const;
 	const std::string&	getName(size_t)		const;
 	const std::string&	getExt(size_t)		const;
-	unsigned			getWidth(size_t)	const;
-	std::pair<const std::string&, unsigned> getAttribute(size_t) const;
+	const textureInf&	getFullInf(size_t)	const;
 };
 //Contain multiple file names of multiple texture objects
 class textureLookup : public no_copy {
@@ -29,8 +31,8 @@ private:
 	std::vector<textureSet> m_set;
 public:
 	bool					loadNewSet(const std::string& file_dir);
-	size_t					size() const;
-	const textureSet&	getSet(size_t idx) const;
+	size_t					size()				const;
+	const textureSet&		getSet(size_t idx)	const;
 };
 template<typename T>
 struct limit {
