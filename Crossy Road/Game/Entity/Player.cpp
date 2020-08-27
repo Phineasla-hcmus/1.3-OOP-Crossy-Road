@@ -10,7 +10,7 @@ Player::Player() :Collision(90.f, 64.f), move{ 0,0,0,0 }
     sf::Vector2f size_player = { 90.f,90.f };
     // in this case, every loop, it will walk 2 pixels. 
 //if u put 50 as movespeed, it will walk 1 pixel each loop
-    movespeed = 2.f;
+    movespeed = 3.f;
     x = origin_pos.x, y = origin_pos.y;
     is_walking = false;
 
@@ -179,6 +179,7 @@ void Player::update(float dt)
     
 }
 void Player::animationRenderer() {
+    if (clock.getElapsedTime().asSeconds() > 0.1f && is_walking == true) {
         if (initX > 192)
             initX = 0;
         else {
@@ -186,6 +187,8 @@ void Player::animationRenderer() {
             people.setTextureRect({ initX,initY,64,64 });
             initX += 64;
         }
+        clock.restart();
+    }
 }
 
 void Player::draw(sf::RenderTarget& target)

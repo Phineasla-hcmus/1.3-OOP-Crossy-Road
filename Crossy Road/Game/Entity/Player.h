@@ -30,7 +30,7 @@ private:
 	void restart();
 
 	sf::RectangleShape people;     
- 
+	sf::Clock clock;
 	sf::Vector2f origin_pos = { 640, 720 - 90 };
 
 	bool is_Alive = true;        

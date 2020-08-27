@@ -55,6 +55,9 @@ int World::update(float dt)
 	for (auto& road : this->m_road)
 		road.update(dt,this->level);
 	m_player.moving();
+	if (m_player.isAlive()) {
+		m_player.animationRenderer();
+	}
 	m_player.update(dt);	
 	return score;
 }
