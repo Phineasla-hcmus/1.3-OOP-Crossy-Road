@@ -1,4 +1,4 @@
-car2 80
-car3 80
-car4 80
-car5 80
+car2	png	80	128
+car3	png	80	128
+car4	png	80	128
+car5	png	80	128

@@ -7,16 +7,19 @@
 //Contain file texture name and it size, load from file
 class textureSet {
 private:
-	struct texture_attribute {
-		std::string file_name;
-		unsigned	texture_width;
-		texture_attribute(std::string name, unsigned width);
+	struct texture_inf {
+		const std::string&	file_name;
+		const std::string&	file_ext;
+		unsigned			texture_height;
+		unsigned			texture_width;
+		texture_inf(const std::string& name, const std::string& ext, unsigned width, unsigned height);
 	};
-	std::vector<texture_attribute> m_bucket;
+	std::vector<texture_inf> m_set;
 public:
 	bool				loadFromFile(const std::string&);
 	size_t				size() const;
-	const std::string&	getFileName(size_t) const;
+	const std::string&	getName(size_t) const;
+	const std::string&	getExt(size_t)	const;
 	unsigned			getWidth(size_t) const;
 	std::pair<const std::string&, unsigned> getAttribute(size_t) const;
 };

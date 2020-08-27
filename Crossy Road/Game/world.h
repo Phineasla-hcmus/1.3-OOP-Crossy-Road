@@ -4,8 +4,6 @@
 #include"Entity/Player.h"
 #include"Entity/Road.h"
 #include"SaveLevel.h"
-constexpr auto x_tile_size = 14;
-constexpr auto y_tile_size = 8;
 class World {
 private:
 	Player					m_player;

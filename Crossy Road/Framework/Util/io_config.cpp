@@ -1,14 +1,14 @@
-#include "iofile.h"
+#include "io_config.h"
 
 bool textureSet::loadFromFile(const std::string& dir)
 {
 	std::ifstream fin(dir);
 	if (!fin)
 		return false;
-	std::string file_name;
-	unsigned	width;
-	while (fin >> file_name >> width) {
-		m_bucket.emplace_back(texture_attribute(file_name, width));
+	std::string file_name, file_ext;
+	unsigned	width, height;
+	while (fin >> file_name >> file_ext >> width >> height) {
+		m_set.emplace_back(texture_inf(file_name, file_ext, width, height));
 	}
 	fin.close();
 	return true;
@@ -16,27 +16,33 @@ bool textureSet::loadFromFile(const std::string& dir)
 
 size_t textureSet::size() const
 {
-	return m_bucket.size();
+	return m_set.size();
 }
 
-const std::string& textureSet::getFileName(size_t idx) const
+const std::string& textureSet::getName(size_t idx) const
 {
-	return m_bucket[idx].file_name;
+	return m_set[idx].file_name;
+}
+
+const std::string& textureSet::getExt(size_t idx) const
+{
+	return m_set[idx].file_ext;
 }
 
 unsigned textureSet::getWidth(size_t idx) const
 {
-	return m_bucket[idx].texture_width;
+	return m_set[idx].texture_width;
 }
 
 std::pair<const std::string&, unsigned> textureSet::getAttribute(size_t idx) const
 {
-	return std::make_pair<const std::string&, unsigned>(getFileName(idx), getWidth(idx));
+	return std::make_pair<const std::string&, unsigned>(getName(idx), getWidth(idx));
 }
-
-textureSet::texture_attribute::texture_attribute(std::string name, unsigned width)
-	:file_name(name)
-	,texture_width(width)
+textureSet::texture_inf::texture_inf(const std::string& name, const std::string& ext, unsigned width, unsigned height)
+	: file_name(name)
+	, file_ext(ext)
+	, texture_height(height)
+	, texture_width(width)
 {}
 
 lane_inf::lane_inf(float minSpeed, float maxSpeed, unsigned minObst, unsigned maxObst)

@@ -7,7 +7,7 @@
 #include "Framework/AssetManager/asset.h"
 #include "Framework/Util/animation.h"
 #include "Framework/Util/no_copy.h"
-#include "Framework/Util/iofile.h"
+#include "Framework/Util/io_config.h"
 #include "Framework/Util/random.h"
 #include "Framework/Util/tilemap.h"
 #include "Framework/State/state_base.h"
