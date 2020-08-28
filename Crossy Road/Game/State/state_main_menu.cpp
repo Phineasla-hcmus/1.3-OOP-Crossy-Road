@@ -10,7 +10,7 @@ void state_main_menu::open_music(const std::string& dir)
 state_main_menu::state_main_menu(Game& game)
 	: state_base(game)
 	, m_mainMenu(game.get_window(), 300)
-	, m_background(asset::texture().get("background768", "png"), { 768,448 }, { 8,12 }, sf::seconds(0.9f))
+	, m_background(asset::texture().get("background768", "png"), { 768,448 }, { 8,12 }, sf::seconds(0.2f))
 	, m_music()
 {
 	//open and play background music
@@ -45,7 +45,7 @@ state_main_menu::state_main_menu(Game& game)
 	m_mainMenu.addWidget(std::move(playBtn));
 	m_mainMenu.addWidget(std::move(LoadGameBtn));
 	m_mainMenu.addWidget(std::move(exitBtn));
-	m_mainMenu.setTitle("Choose  Action", game.get_window());
+	m_mainMenu.setTitle("Choose Action", game.get_window());
 }
 
 void state_main_menu::handleEvent(sf::Event ev)

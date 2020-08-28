@@ -3,11 +3,11 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 //default value
-#define	TEXT_SIZE		30
 #define	OUTLINE_COLOR	sf::Color::Black
 #define FILL_COLOR		sf::Color::Blue
-#define DEFAULT_FONT	"arcade"
-#define DEFAULT_EXT		"TTF"
+constexpr auto TEXT_SIZE	= 30;
+constexpr auto DEFAULT_FONT = "arcade";
+constexpr auto DEFAULT_EXT	= "TTF";
 class Widget
 {
 public:

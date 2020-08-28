@@ -61,16 +61,23 @@ void Button::setPosition(const sf::Vector2f& pos)
 {
     _pos = pos;
     _button.setPosition(_pos);
-    _text.setPosition(_pos);
+    //_text.setPosition(_pos);
     updateText();
 }
 
 void Button::updateText()
 {
-    _text.setOrigin(_text.getGlobalBounds().width +70 ,
-        _text.getGlobalBounds().height+30 );
-    _text.move(_button.getGlobalBounds().width+10 ,
-        _button.getGlobalBounds().height);
+    //_text.setOrigin(_text.getGlobalBounds().width +70 ,
+    //    _text.getGlobalBounds().height+30 );
+    //_text.move(_button.getGlobalBounds().width+10 ,
+    //    _button.getGlobalBounds().height);
+    _text.setOrigin(_text.getLocalBounds().left + _text.getLocalBounds().width / 2.0f
+        , _text.getLocalBounds().top + _text.getLocalBounds().height / 2.0f);
+    //_text.setPosition(_button.getLocalBounds().left + _button.getLocalBounds().width / 2.0f
+    //    , _button.getLocalBounds().top + _button.getLocalBounds().height / 2.0f);
+    _text.setPosition(_button.getGlobalBounds().left + _button.getGlobalBounds().width / 2.0f
+        , _button.getGlobalBounds().top + _button.getGlobalBounds().height / 2.0f);
+    //_text.setPosition(1280 / 2, 720 / 2);
 }
 
 

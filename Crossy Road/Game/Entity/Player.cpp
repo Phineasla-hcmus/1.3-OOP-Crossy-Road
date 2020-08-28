@@ -40,12 +40,20 @@ void Player::keymove()
 		if (is_walking == false)
 		{
 			nextspot = cur_pos.y + tile_size;
-			move[DOWN] = true;
-			is_walking = true;
-			initY = 0;
-			initX = 0;
-			people.setTextureRect({ initX,initY,64,64 });
+			if (nextspot >= SCREEN_HEIGHT) {
+				nextspot = cur_pos.y - tile_size;
+				move[DOWN] = false;
+				is_walking = false;;
+			}
+			else {
+				move[DOWN] = true;
+				is_walking = true;
+				initY = 0;
+				initX = 0;
+				people.setTextureRect({ initX,initY,64,64 });
+			}
 		}
+		std::cout << nextspot << "\n";
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -53,12 +61,20 @@ void Player::keymove()
 		if (is_walking == false)
 		{
 			nextspot = cur_pos.x - tile_size;
-			move[LEFT] = true;
-			is_walking = true;
-			initY = 64;
-			initX = 0;
-			people.setTextureRect({ initX,initY,64,64 });
+			if (nextspot <= 0) {
+				nextspot = cur_pos.x + tile_size;
+				move[DOWN] = false;
+				is_walking = false;;
+			}
+			else {
+				move[LEFT] = true;
+				is_walking = true;
+				initY = 64;
+				initX = 0;
+				people.setTextureRect({ initX,initY,64,64 });
+			}
 		}
+		std::cout << nextspot << "\n";
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -66,12 +82,20 @@ void Player::keymove()
 		if (is_walking == false)
 		{
 			nextspot = cur_pos.x + tile_size;
-			move[RIGHT] = true;
-			is_walking = true;
-			initY = 128;
-			initX = 0;
-			people.setTextureRect({ initX,initY,64,64 });
+			if (nextspot >= SCREEN_WIDTH - 10) {
+				nextspot = cur_pos.x - tile_size;
+				move[DOWN] = false;
+				is_walking = false;;
+			}
+			else {
+				move[RIGHT] = true;
+				is_walking = true;
+				initY = 128;
+				initX = 0;
+				people.setTextureRect({ initX,initY,64,64 });
+			}
 		}
+		std::cout << nextspot << "\n";
 	}
 }
 void Player::moving()
@@ -90,7 +114,7 @@ void Player::moving()
 			}
 		}
 
-		if (move[DOWN] == true)
+		if (move[DOWN] == true )
 		{
 			cur_pos.y += movespeed;
 			if (cur_pos.y >= nextspot)
@@ -182,7 +206,6 @@ void Player::animationRenderer() {
 			people.setTextureRect({ initX,initY,64,64 });
 		}
 		else {
-			std::cout << initX << "\n";
 			people.setTextureRect({ initX,initY,64,64 });
 			initX += 64;
 		}
