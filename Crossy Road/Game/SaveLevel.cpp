@@ -30,8 +30,9 @@ bool saveGame(std::string file_name, const SaveInf& save)
 	std::ofstream fout(SAVE_DIR + file_name + FILE_EXT, std::ios::binary);
 	if (!fout.is_open())
 		return false;
-	fout.write((char*)save.get_level(), sizeof(save.get_level()));
-	fout.write((char*)save.get_score(), sizeof(save.get_score()));
+	unsigned lv = save.get_level(), score = save.get_score();
+	fout.write((char*)&lv, sizeof(save.get_level()));
+	fout.write((char*)&score, sizeof(save.get_score()));
 	fout.write((char*)&save.get_RoadInf(0), sizeof(SaveInf::RoadInf) * SAVE_LANE);
 	fout.close();
 	return true;
