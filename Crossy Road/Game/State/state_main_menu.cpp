@@ -2,14 +2,16 @@
 #include "state_playing.h"
 #include "state_load.h"
 state_main_menu::state_main_menu(Game& game)
-	: state_base(game)
+    : state_base(game)
     , m_mainMenu(game.get_window(), 300)
+    , m_background(asset::texture().get("background768", "png"), { 768,448 }, { 8,12 })
 {
 
-    m_banner.setSize({ 800, 100 });
-    m_banner.setFillColor(sf::Color::Yellow);
-    m_banner.setTexture(&asset::texture().get("crossyroad", "png"));
-    m_banner.setPosition(210, 30);
+    m_banner.setSize({ 800, 150 });
+    m_banner.setFillColor(sf::Color::White);
+    m_banner.setOutlineColor(sf::Color::Black);
+    m_banner.setTexture(&asset::texture().get("crossyroad2", "png"));
+    m_banner.setPosition(220, 30);
 
     
     auto playBtn = makeButton();
@@ -48,6 +50,7 @@ void state_main_menu::update(sf::Time delta_time)
 
 void state_main_menu::draw(sf::RenderTarget& render)
 {
+    m_background.draw(render);
     m_mainMenu.render(render);
     render.draw(m_banner);
 }

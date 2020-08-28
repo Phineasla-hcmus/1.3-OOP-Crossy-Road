@@ -8,8 +8,8 @@
 /*
 	Represents the player
 */
-constexpr auto START_X	= screen_width / 2;
-constexpr auto START_Y	= screen_height - tile_size;
+constexpr auto START_X	= SCREEN_WIDTH / 2;
+constexpr auto START_Y	= SCREEN_HEIGHT - tile_size;
 constexpr auto MOVESPEED = 3.f;
 constexpr auto PLAYER_SIZE = tile_size - 10;
 class Player :public Collision

@@ -7,11 +7,11 @@
 #include"Util/io_config.h"
 #include"Util/no_copy.h"
 #include"State/state_base.h"
-constexpr auto screen_width		= 1280;
-constexpr auto screen_height	= 720;
+constexpr auto SCREEN_WIDTH		= 1280;
+constexpr auto SCREEN_HEIGHT	= 720;
 constexpr auto x_tiles			= 14;
 constexpr auto y_tiles			= 8;
-constexpr auto tile_size		= screen_height / y_tiles;
+constexpr auto tile_size		= SCREEN_HEIGHT / y_tiles;
 class Game : public no_copy
 {
 private:

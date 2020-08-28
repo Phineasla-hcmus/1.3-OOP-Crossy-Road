@@ -156,6 +156,7 @@
     <ClCompile Include="Framework\Util\io_config.cpp" />
     <ClCompile Include="Framework\Util\random.cpp" />
     <ClCompile Include="Framework\Util\tilemap.cpp" />
+    <ClCompile Include="Game\Background.cpp" />
     <ClCompile Include="Game\Collidable.cpp" />
     <ClCompile Include="Game\Entity\Player.cpp" />
     <ClCompile Include="Game\Entity\Road.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Framework\Util\no_copy.h" />
     <ClInclude Include="Framework\Util\random.h" />
     <ClInclude Include="Framework\Util\tilemap.h" />
+    <ClInclude Include="Game\Background.h" />
     <ClInclude Include="Game\Collidable.h" />
     <ClInclude Include="Game\Entity\Player.h" />
     <ClInclude Include="Game\Entity\Road.h" />
