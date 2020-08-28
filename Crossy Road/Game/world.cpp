@@ -19,7 +19,7 @@ void World::initLane(const SaveInf& save)
 {
 	//function for init
 	vehicle_func initVehicleFunc[] = { new_vehicle<Car>,new_vehicle<Truck> };
-	for (size_t i = 0; i < save_lane; ++i) {
+	for (size_t i = 0; i < SAVE_LANE; ++i) {
 		const float			lanePos = i * tile_size * 2.f;					
 		const auto&			laneInf = save.get_RoadInf(i);							//get each laneInf from save file
 		Lane				newLane(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed);

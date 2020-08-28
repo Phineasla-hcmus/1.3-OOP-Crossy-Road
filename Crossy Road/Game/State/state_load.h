@@ -2,16 +2,18 @@
 #define _state_load_h
 #include "../../PCH.h"
 #include "../SaveLevel.h"
-//case1
-//menu->load(m_change=stateplaying)
-//menu->load<->m_change
-//menu->stateplaying
-//case2
-//menu->stateplaying->load
-//menu->stateplaying->load(m_change=stateplaying)
-//menu->stateplaying->(popped)
-//menu->stateplaying<->m_change
-//menu->NEW_stateplaying
+/*
+case1
+menu->load(m_change=stateplaying)
+menu->load<->m_change
+menu->stateplaying
+case2
+menu->stateplaying->load
+menu->stateplaying->load(m_change=stateplaying)
+menu->stateplaying->(popped)
+menu->stateplaying<->m_change
+menu->NEW_stateplaying
+*/
 class state_load :public state_base {
 private:
 
