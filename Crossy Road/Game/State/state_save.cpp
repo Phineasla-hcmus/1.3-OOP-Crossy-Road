@@ -1,8 +1,8 @@
 #include"state_save.h"
 state_save::state_save(Game& game, SaveInf& save)
-	:state_base(game),
-	save_menu(game.get_window(), 300),
-	m_save(save)
+	: state_base(game)
+	, save_menu(game.get_window(), 300, &asset::texture().get("blue_panel", "png"))
+	, m_save(save)
 {
 	auto name_textbox = makeTextBox(m_name);
 	name_textbox->setLabel("Name");

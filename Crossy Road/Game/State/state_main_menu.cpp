@@ -9,7 +9,7 @@ void state_main_menu::open_music(const std::string& dir)
 }
 state_main_menu::state_main_menu(Game& game)
 	: state_base(game)
-	, m_mainMenu(game.get_window(), 300)
+	, m_mainMenu(game.get_window(), 300, &asset::texture().get("blue_panel", "png"))
 	, m_background(asset::texture().get("background768", "png"), { 768,448 }, { 8,12 }, sf::seconds(0.2f))
 	, m_music()
 {

@@ -3,7 +3,7 @@
 #include"state_save.h"
 PauseMenu::PauseMenu(Game& game)
 	: state_base(game),
-	pause_menu(game.get_window(), 250)
+	pause_menu(game.get_window(), 250, &asset::texture().get("blue_panel", "png"))
 {
 
 	auto ResumeBtn = makeButton();

@@ -10,7 +10,7 @@ private:
 	SaveInf		m_save;
 	World		m_world;
 	int			m_score			= 0;
-	bool		m_is_gameover	= false;
+	bool		m_is_gameover	= true;
 	bool		m_is_paused     = false;
 	int			m_level			= 1;
 	PauseMenu	m_pause_menu;

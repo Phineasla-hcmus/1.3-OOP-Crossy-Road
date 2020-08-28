@@ -2,9 +2,9 @@
 #include"state_playing.h"
 
 state_load::state_load(Game& game)
-	: state_base(game),
-	load_menu(game.get_window(), 300),
-	load_inf()
+	: state_base(game)
+	, load_menu(game.get_window(), 300, &asset::texture().get("blue_panel", "png"))
+	, load_inf()
 {
 	auto Load_Textbox = makeTextBox(link);
 	Load_Textbox->setLabel("LINK");

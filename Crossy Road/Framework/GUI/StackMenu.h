@@ -14,10 +14,10 @@ private:
     sf::Vector2f                            _base_size;
     Widget::Text                            _title_text;
 public:
-    StackMenu(const sf::RenderWindow& window, float baseY);
+    StackMenu(const sf::RenderWindow& window, float baseY, const sf::Texture* texture = nullptr);
     StackMenu(const sf::Vector2f& position);
-    StackMenu(StackMenu&& other);
-    StackMenu& operator =(StackMenu&& other);
+    StackMenu(StackMenu&& other) noexcept;
+    StackMenu& operator =(StackMenu&& other) noexcept;
     ~StackMenu() = default;
     void addWidget(std::unique_ptr<Widget> w);
 

@@ -1,6 +1,6 @@
 #include"state_game_over.h"
 game_over::game_over(Game& game)
-	:state_base(game)
+	: state_base(game)
 	, m_gameover_menu(game.get_window(), 450)
 {
 	label.setFillColor(sf::Color::White);
@@ -24,9 +24,10 @@ game_over::game_over(Game& game)
 
 	container.setPosition({ 450,195 });
 	container.setSize({ 400,300 });
-	container.setFillColor({ 100, 10, 200, 150 });
-	container.setOutlineColor(sf::Color::Magenta);
-	container.setOutlineThickness(4);
+	//container.setFillColor({ 100, 10, 200, 150 });
+	//container.setOutlineColor(sf::Color::Magenta);
+	//container.setOutlineThickness(4);
+	container.setTexture(&asset::texture().get("blue_panel", "png"));
 
 	auto ExitGameBtn = makeButton();
 	ExitGameBtn->setText("Exit Game");
@@ -62,12 +63,12 @@ void game_over::updateScore(int _score) {
 	if (score > highscore)
 	{
 		highscore = score;
-		m_highscore.setString(NewHighScore_label + "    " + std::to_string(highscore));
+		m_highscore.setString(NewHighScore_label + "	" + std::to_string(highscore));
 	}
 	else {
-		m_highscore.setString(HighScore_label + "    " + std::to_string(highscore));
-		m_score.setString(Score_label + "     " + std::to_string(score));
+		m_highscore.setString(HighScore_label + "	" + std::to_string(highscore));
+		m_score.setString(Score_label + "	" + std::to_string(score));
 	}
 	
-	label.setString("GAME   OVER");
+	label.setString("GAME	OVER");
 }

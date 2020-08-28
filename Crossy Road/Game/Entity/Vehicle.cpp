@@ -67,7 +67,7 @@ Vehicle::Vehicle(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textu
 	: Collision()
 {
 	m_sprite.setPosition(pos);
-	sf::Vector2f size(textureBound.width, textureBound.height);
+	sf::Vector2f size((float)textureBound.width, (float)textureBound.height);
 	m_sprite.setSize(size);
 	this->setScale(scale);
 	m_sprite.setTexture(&texture);
