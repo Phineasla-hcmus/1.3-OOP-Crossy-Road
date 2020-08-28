@@ -10,9 +10,6 @@ Player::Player()
 	, move{ 0,0,0,0 }
 
 {
-	sf::Vector2f size_player = { 90.f,90.f };
-
-	people.setSize(size_player);
 	people.setPosition(this->origin_pos);
 	//player_texture.loadFromFile("Assets\\textures\\player_sprite_2.png");
 	player_texture = asset::texture().get("player_sprite_2", "png");
@@ -176,8 +173,6 @@ void Player::update(float dt)
 		World::plus();
 	}
 	else World::n_plus();*/
-
-
 
 }
 void Player::animationRenderer() {
