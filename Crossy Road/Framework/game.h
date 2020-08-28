@@ -38,6 +38,8 @@ public:
 	//trigger bool var for pending pop/swap, prevent pop/swap too soon
 	void popState();
 	void swapState(std::unique_ptr<state_base> new_state);
+
+	size_t getStateSize() const;
 	const sf::RenderWindow& get_window() const;
 	const textureLookup& get_texture_set() const;
 };

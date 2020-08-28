@@ -76,13 +76,18 @@ void Game::pushState(std::unique_ptr<state_base> state)
 
 void Game::popState()
 {
-	m_swap_pending = true;
+	m_pop_pending = true;
 }
 
 void Game::swapState(std::unique_ptr<state_base> swap)
 {
 	m_swap_pending = true;
 	m_swap_state = std::move(swap);
+}
+
+size_t Game::getStateSize() const
+{
+	return m_states.size();
 }
 
 const sf::RenderWindow& Game::get_window() const
