@@ -4,7 +4,7 @@
 #include "../../PCH.h"
 #include "../World.h"
 #include"state_pause.h"
-
+#include"state_game_over.h"
 class state_playing :public state_base {
 private:
 	SaveInf		m_save;
@@ -14,6 +14,7 @@ private:
 	bool		m_is_paused     = false;
 	int			m_level			= 1;
 	PauseMenu	m_pause_menu;
+	game_over   m_gameover;
 	class display {
 	private:
 		Widget::Text label;

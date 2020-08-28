@@ -1,5 +1,6 @@
 #include "state_load.h"
 #include"state_playing.h"
+
 state_load::state_load(Game& game)
 	: state_base(game),
 	load_menu(game.get_window(), 300),

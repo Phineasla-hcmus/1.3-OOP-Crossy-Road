@@ -1,11 +1,12 @@
 #include "state_playing.h"
 state_playing::state_playing(Game& game)
-	: state_base(game)
+    : state_base(game)
     , m_save()
-	, m_world(game.get_texture_set())
+    , m_world(game.get_texture_set())
     , m_pause_menu(game)
     , m_score_display(20, "SCORE")
     , m_level_display(50, "LEVEL")
+    , m_gameover(game)
 {
     random rand;
 
@@ -21,7 +22,9 @@ void state_playing::handleEvent(sf::Event ev)
     }
     if (m_is_paused) m_pause_menu.handleEvent(ev);
     if (m_is_gameover) {
-        //m_gameOverMenu.handleEvent(e, m_pGame->getWindow());
+        m_gameover.handleEvent(ev);
+        if (m_gameover.GetState() == true)
+            game().popState();
     }
 }
 
@@ -40,7 +43,7 @@ void state_playing::draw(sf::RenderTarget& renderer)
     //m_highestScoreDisplay.draw(renderer);
 
     if (m_is_gameover) {
-      //  m_gameOverMenu.render(renderer);
+        m_gameover.draw(renderer);
     }
 
 }
@@ -64,6 +67,7 @@ void state_playing::update(sf::Time delta_time)
    m_pause_menu.updateSaveInfo(m_save);
     //m_score = m_world.getScore();
     m_score_display.update(m_score);
+    m_gameover.updateScore(m_score);
     m_level_display.update(m_level);
     m_is_paused = m_pause_menu.isPaused();
     //m_is_gameover = m_world.isGameOver();
