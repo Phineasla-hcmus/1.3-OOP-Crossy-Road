@@ -9,13 +9,13 @@ state_load::state_load(Game& game)
 	Load_Textbox->setLabel("LINK");
 
 	auto LoadBtn = makeButton();
-	LoadBtn->setText("   Load Game");
+	LoadBtn->setText("Load Game");
 	LoadBtn->setFunction([&]() {
 		//this->game().pushState(std::make_unique<state_playing>(game, load_inf));
 		});
 
 	auto ReturnBtn = makeButton();
-	ReturnBtn->setText("Return    ");
+	ReturnBtn->setText("Return");
 	ReturnBtn->setFunction([&]() {
 		this->game().popState();
 		});
