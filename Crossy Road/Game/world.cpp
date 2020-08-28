@@ -6,7 +6,7 @@ World::World(const textureLookup& lookup)
 	, m_rand()
 {
 
-	//lookup background
+	//render background map(top to bottom)
 	const std::vector<unsigned> tile_map = { 1,0,1,0,1,0,1,0 };
 
 	//render y_tiles+1 to fill whole screen
