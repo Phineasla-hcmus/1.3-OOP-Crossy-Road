@@ -7,7 +7,7 @@
 #include "../../PCH.h"
 #include "../Background.h"
 #include"state_load.h"
-constexpr auto BACKGROUND_MUSIC_DIR = "Assets/audio/music.ogg";
+constexpr auto BACKGROUND_MUSIC_DIR = "Assets/audio/Cold_Youth.ogg";
 class state_main_menu :public state_base {
 private:
 	sf::RectangleShape	m_container;
