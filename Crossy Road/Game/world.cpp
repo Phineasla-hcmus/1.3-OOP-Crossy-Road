@@ -2,11 +2,16 @@
 
 World::World(const textureLookup& lookup)
 	: m_vehicle_set(lookup)
-	, m_background(&asset::texture().get("FAILED", "png"), sf::Vector2u(256, 256))//size base on the tileset.png
+	, m_background(&asset::texture().get("road_textures", "png"), sf::Vector2u(20, 20))//size base on the tileset.png
 	, m_rand()
 {
+<<<<<<< Updated upstream
 	//render background map (top to bottom)
 	const std::vector<unsigned> tile_map = { 0,1,0,1,0,1,0,1 };
+=======
+	//lookup background
+	const std::vector<unsigned> tile_map = { 1,0,1,0,1,0,1,0 };
+>>>>>>> Stashed changes
 	//render y_tiles+1 to fill whole screen
 	m_background.setMapSize(x_tiles+1, y_tiles);
 	//scale the texture to tile_size (90)
