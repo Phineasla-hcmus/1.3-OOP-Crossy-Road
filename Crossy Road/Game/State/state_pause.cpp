@@ -7,7 +7,7 @@ PauseMenu::PauseMenu(Game& game)
 {
 
 	auto ResumeBtn = makeButton();
-	ResumeBtn->setText("Resume     ");
+	ResumeBtn->setText("Resume");
 	ResumeBtn->setFunction([&]() {
 		is_paused = false;
 		});

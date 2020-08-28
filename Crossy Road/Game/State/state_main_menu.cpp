@@ -45,7 +45,7 @@ state_main_menu::state_main_menu(Game& game)
 	m_mainMenu.addWidget(std::move(playBtn));
 	m_mainMenu.addWidget(std::move(LoadGameBtn));
 	m_mainMenu.addWidget(std::move(exitBtn));
-	m_mainMenu.setTitle("Choose  Action", game.get_window());
+	m_mainMenu.setTitle("Choose Action", game.get_window());
 }
 
 void state_main_menu::handleEvent(sf::Event ev)

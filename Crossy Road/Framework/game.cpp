@@ -17,7 +17,7 @@ void Game::swap()
 	m_states.push(std::move(m_swap_state));
 }
 Game::Game()
-	//set resolution, window's title and disable fullscreen
+//set resolution, window's title and disable fullscreen
 	: m_window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Crossy Road", sf::Style::Close)
 {
 	m_window.setFramerateLimit(60);

@@ -16,8 +16,8 @@ private:
 public:
     StackMenu(const sf::RenderWindow& window, float baseY);
     StackMenu(const sf::Vector2f& position);
-    //StackMenu(StackMenu&& other);
-    //StackMenu& operator =(StackMenu&& other);
+    StackMenu(StackMenu&& other);
+    StackMenu& operator =(StackMenu&& other);
     ~StackMenu() = default;
     void addWidget(std::unique_ptr<Widget> w);
 
