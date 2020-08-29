@@ -10,8 +10,8 @@ StackMenu::StackMenu(const sf::RenderWindow& window, float baseY, const sf::Text
 {
 	if (texture == nullptr) {
 		_background.setOutlineThickness(2);
-		_background.setOutlineColor(sf::Color::Magenta);
-		_background.setFillColor({ 100, 10, 200, 150 });
+		_background.setOutlineColor(sf::Color::Transparent);
+		_background.setFillColor(sf::Color::Transparent);
 	}
 	else {
 		_background.setTexture(texture);
@@ -19,11 +19,11 @@ StackMenu::StackMenu(const sf::RenderWindow& window, float baseY, const sf::Text
 	_background.setSize(_base_size);
 	_background.setPosition(_base_pos.x - _base_size.x/2.f , baseY - 100);
 
-	_title_text.setPosition(_base_pos.x - _base_size.x / 2.f, baseY - 100);
-	_title_text.setOutlineColor(sf::Color::Yellow);
-	_title_text.setFillColor(sf::Color::Black);
-	_title_text.setOutlineThickness(2);
-	_title_text.setCharacterSize(20);
+	_title_text.setPosition(_base_pos.x +100- (_base_size.x / 2.f), baseY - 100);
+	_title_text.setOutlineColor(sf::Color::Black);
+	_title_text.setFillColor(sf::Color::Yellow);
+	_title_text.setOutlineThickness(1);
+	_title_text.setCharacterSize(25);
 	   
 }
 
@@ -70,7 +70,7 @@ void StackMenu::initWidget(Widget& widget)
 void StackMenu::setTitle(const std::string& title, const sf::RenderTarget& target)
 {
 	_title_text.setString(title);
-	_title_text.setPosition((float)target.getSize().x - 710,
+	_title_text.setPosition((float)target.getSize().x-730,
 	_title_text.getPosition().y);
 }
 

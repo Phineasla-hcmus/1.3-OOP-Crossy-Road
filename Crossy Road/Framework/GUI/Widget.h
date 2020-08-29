@@ -4,7 +4,7 @@
 #include <memory>
 //default value
 #define	OUTLINE_COLOR	sf::Color::Black
-#define FILL_COLOR		sf::Color::Blue
+#define FILL_COLOR		sf::Color::White
 constexpr auto TEXT_SIZE	= 30;
 constexpr auto DEFAULT_FONT = "arcade";
 constexpr auto DEFAULT_EXT	= "TTF";

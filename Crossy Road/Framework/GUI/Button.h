@@ -3,6 +3,7 @@
 
 #include <functional>
 #include "../../Framework/GUI/Widget.h"
+#include"../AssetManager/asset.h"
 enum class ButtonSize
 {
 	Small,

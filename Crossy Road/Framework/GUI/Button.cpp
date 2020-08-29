@@ -2,9 +2,10 @@
 
 Button::Button(ButtonSize s)
 {
-	_button.setOutlineThickness(1);
-	_button.setOutlineColor(sf::Color::Blue);
-	_button.setFillColor(sf::Color::Yellow);
+	//_button.setOutlineThickness(1);
+	//_button.setOutlineColor(sf::Color::White);
+	_button.setFillColor({10,51,250});
+	_button.setTexture(&asset::texture().get("blue_panel", "png"));
 	switch (s) {
 	case ButtonSize::Wide:
 		_button.setSize({ 256, 64 });
