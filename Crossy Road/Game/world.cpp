@@ -18,11 +18,13 @@ World::World(const textureLookup& lookup)
 void World::initLane(const SaveInf& save)
 {
 	//function for init
+	m_lanes.reserve(SAVE_LANE);
 	vehicle_func initVehicleFunc[] = { new_vehicle<Truck> , new_vehicle<Car>};
 	for (size_t i = 0; i < SAVE_LANE; ++i) {
 		const float			lanePos = i * tile_size * 2.f;					
 		const auto&			laneInf = save.get_RoadInf(i);							//get each laneInf from save file
-		Lane				newLane(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed);
+		m_lanes.emplace_back(Lane(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed));
+		Lane&				newLane = m_lanes.back();
 		/*use for set vInfo type and its texture*/
 		const textureSet&	set		= m_vehicle_set.getSet(laneInf.vehicleType);	//get a set of multiple texture of a vInfo type
 		unsigned			idx		= m_rand.int_in_range(0, set.size() - 1);		//random to choose a texture for vehicle in that road
@@ -33,9 +35,7 @@ void World::initLane(const SaveInf& save)
 			: vInfo.getBounds(1);
 		/*set function for init, texture and texture bounds*/
 		newLane.setVehicleType(initVehicleFunc[laneInf.vehicleType], texture, bounds);
-		newLane.setVehicleSize(laneInf.vehicleNum);
-
-		m_lanes.push_back(std::move(newLane));
+		newLane.initVehicle(laneInf.vehicleNum);
 	}
 }
 void World::input()

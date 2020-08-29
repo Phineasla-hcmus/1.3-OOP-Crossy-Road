@@ -70,7 +70,7 @@ class Vehicle : public Collision {
 private:
 	sf::RectangleShape m_sprite;
 public:
-	Vehicle(sf::Vector2f pos, sf::Vector2f size = { 0,0 });
+	Vehicle(sf::Vector2f pos, sf::Vector2f size = { 90,90 });
 	Vehicle(sf::Vector2f pos , const sf::Texture&, sf::IntRect textureBound, sf::Vector2f scale = { 1,1 });
 
 	const sf::Vector2f& getPosition() const;

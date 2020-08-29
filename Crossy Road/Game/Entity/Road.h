@@ -59,8 +59,8 @@ public:
 		right = -1,
 	};
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
+	void		initVehicle(size_t);
 	void		setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
-	void		setVehicleSize(size_t);
 	size_t		getVehicleSize() const;
 	Vehicle&	getVehicle(size_t);
 	void		draw(sf::RenderTarget& target);
