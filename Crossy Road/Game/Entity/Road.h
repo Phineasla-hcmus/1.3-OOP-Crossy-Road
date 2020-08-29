@@ -47,6 +47,7 @@
 //	//}
 //
 //};
+
 class Vehicle;
 using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 //function for init new vehicle
@@ -64,8 +65,8 @@ public:
 	Vehicle&	getVehicle(size_t);
 	void		draw(sf::RenderTarget& target);
 private:
-	const sf::Vector2f						m_pos;
-	const direction							m_dir;
+	const sf::Vector2f						m_pos = { 0.f,0.f };
+	const direction							m_dir=left;
 	float									m_speed = 0;
 	std::vector<std::unique_ptr<Vehicle>>	m_vehicles;
 	sf::Texture*							m_vehicles_texture = nullptr;

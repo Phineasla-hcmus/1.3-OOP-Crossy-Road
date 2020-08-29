@@ -63,7 +63,7 @@ Vehicle::Vehicle(sf::Vector2f pos, sf::Vector2f size)
 	m_sprite.setPosition(pos);
 }
 
-Vehicle::Vehicle(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound, sf::Vector2f scale)
+Vehicle::Vehicle(sf::Vector2f pos , const sf::Texture& texture, sf::IntRect textureBound, sf::Vector2f scale)
 	: Collision()
 {
 	m_sprite.setPosition(pos);
@@ -104,6 +104,7 @@ void Vehicle::setScale(const sf::Vector2f& scale)
 void Vehicle::draw(sf::RenderTarget& render) const
 {
 	render.draw(m_sprite);
+	
 }
 
 void Vehicle::move(float speed, float dt_time, int dir)

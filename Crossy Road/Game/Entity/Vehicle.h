@@ -71,7 +71,7 @@ private:
 	sf::RectangleShape m_sprite;
 public:
 	Vehicle(sf::Vector2f pos, sf::Vector2f size = { 0,0 });
-	Vehicle(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound, sf::Vector2f scale = { 1,1 });
+	Vehicle(sf::Vector2f pos , const sf::Texture&, sf::IntRect textureBound, sf::Vector2f scale = { 1,1 });
 
 	const sf::Vector2f& getPosition() const;
 	void setTexture(const sf::Texture&, const sf::IntRect&);

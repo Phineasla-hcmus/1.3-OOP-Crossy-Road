@@ -1,4 +1,14 @@
 #include "SaveLevel.h"
+SaveInf::SaveInf():m_level(1),m_score(0)
+{
+	random r;
+	for (int i = 0; i < SAVE_LANE; ++i) {
+		this->m_road_arr[i].vehicleType =r.int_in_range(0,1);		
+		this->m_road_arr[i].vehicleNum = 3;
+		 this->m_road_arr[i].direction = -1 +r.int_in_range(0,1)*2;
+		this->m_road_arr[i].speed = 30;
+	}
+}
 SaveInf::SaveInf(unsigned level, unsigned score, std::array<RoadInf, SAVE_LANE> roads)
 	: m_level(level)
 	, m_score(score)

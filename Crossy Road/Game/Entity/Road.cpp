@@ -121,7 +121,7 @@
 //		return result;
 //	}
 
-Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed)
+Lane::Lane(const sf::Vector2f road_pos = { 0.f,0.f }, const direction dir=left, float speed=30.f)
 	: m_pos(road_pos)
 	, m_dir(dir)
 	, m_speed(speed)
@@ -135,7 +135,7 @@ void Lane::setVehicleType(vehicle_func funct, sf::Texture& vehicle, sf::IntRect 
 	m_texture_bound		= texture_bound;
 }
 
-void Lane::setVehicleSize(size_t size)
+void Lane::setVehicleSize(size_t size=3)
 {
 	m_vehicles.reserve(size);
 }
@@ -154,7 +154,10 @@ void Lane::draw(sf::RenderTarget& target)
 {
 	//target.draw(this->lane);
 	//light.draw(target);
+	
 	for (auto& e : this->m_vehicles) {
 		e->draw(target);
+		
 	}
+	
 }

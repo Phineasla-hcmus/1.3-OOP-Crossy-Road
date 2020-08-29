@@ -18,7 +18,7 @@ World::World(const textureLookup& lookup)
 void World::initLane(const SaveInf& save)
 {
 	//function for init
-	vehicle_func initVehicleFunc[] = { new_vehicle<Car>,new_vehicle<Truck> };
+	vehicle_func initVehicleFunc[] = { new_vehicle<Truck> , new_vehicle<Car>};
 	for (size_t i = 0; i < SAVE_LANE; ++i) {
 		const float			lanePos = i * tile_size * 2.f;					
 		const auto&			laneInf = save.get_RoadInf(i);							//get each laneInf from save file
@@ -53,10 +53,12 @@ void World::resetWorld(const SaveInf& new_save)
 
 void World::draw(sf::RenderTarget& target)
 {
+	
 	target.draw(m_background);
 	for (auto& droad : m_lanes) {
 		droad.draw(target);
 	}
+	
 	m_player.moving();
 	m_player.animationRenderer();
 	m_player.draw(target);
