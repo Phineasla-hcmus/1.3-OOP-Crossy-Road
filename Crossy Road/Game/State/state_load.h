@@ -17,10 +17,10 @@ menu->NEW_stateplaying
 const std::string warning = "LOAD FAIL";
 class state_load :public state_base {
 private:
-	StackMenu             load_menu;
-	std::string                name;
+	StackMenu				load_menu;
+	std::string             name;
 	SaveInf                 load_inf;
-	bool				is_fail = false;
+	bool					is_fail = false;
 	Widget::Text            fail_label;
 	sf::RectangleShape      background;
 public:

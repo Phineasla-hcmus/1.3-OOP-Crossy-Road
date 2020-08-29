@@ -37,7 +37,7 @@ state_load::state_load(Game& game)
 	load_menu.addWidget(std::move(Load_Textbox));
 	load_menu.addWidget(std::move(LoadBtn));
 	load_menu.addWidget(std::move(ReturnBtn));
-	load_menu.setTitle("	Load   Menu", game.get_window());
+	load_menu.setTitle("	Load	Menu", game.get_window());
 
 }
 void state_load::handleEvent(sf::Event e)
