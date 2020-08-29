@@ -128,16 +128,25 @@ Lane::Lane(const sf::Vector2f road_pos = { 0.f,0.f }, const direction dir=left, 
 	, m_vehicles_texture(nullptr)
 {}
 
+void Lane::initVehicle(size_t size)
+{
+	if (m_init_func) {
+		m_vehicles.reserve(size);
+		sf::Vector2f pos(0, m_pos.y);
+		for (size_t i = 0; i < size; ++i) {
+			pos.x += SCREEN_WIDTH / (size + 1);
+			m_vehicles.push_back(m_init_func(pos));
+			auto& vehicle = *m_vehicles.back();
+			vehicle.setTexture(*m_vehicles_texture, m_texture_bound);
+		}
+	}
+}
+
 void Lane::setVehicleType(vehicle_func funct, sf::Texture& vehicle, sf::IntRect texture_bound)
 {
 	m_init_func			= funct;
 	m_vehicles_texture	= &vehicle;
 	m_texture_bound		= texture_bound;
-}
-
-void Lane::setVehicleSize(size_t size=3)
-{
-	m_vehicles.reserve(size);
 }
 
 size_t Lane::getVehicleSize() const

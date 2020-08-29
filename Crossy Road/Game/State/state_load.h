@@ -14,7 +14,7 @@ menu->stateplaying->(popped)
 menu->stateplaying<->m_change
 menu->NEW_stateplaying
 */
-const std::string warning = "LOAD FAIL";
+const std::string warning = "LOAD FAILED";
 class state_load :public state_base {
 private:
 	StackMenu				load_menu;
