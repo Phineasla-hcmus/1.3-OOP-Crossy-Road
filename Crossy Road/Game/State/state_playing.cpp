@@ -37,7 +37,7 @@ void state_playing::draw(sf::RenderTarget& renderer)
 {
     m_world.draw(renderer);
     
-    if (m_is_paused) m_pause_menu.draw(renderer);
+    if (m_is_paused&&!m_is_gameover) m_pause_menu.draw(renderer);
     m_score_display.draw(renderer);
     m_level_display.draw(renderer);
     //m_highestScoreDisplay.draw(renderer);
