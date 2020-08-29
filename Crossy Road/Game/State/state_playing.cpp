@@ -70,6 +70,14 @@ void state_playing::update(sf::Time delta_time)
     m_gameover.updateScore(m_score);
     m_level_display.update(m_level);
     m_is_paused = m_pause_menu.isPaused();
+    uint level=0, score=0;
+    m_world.update(level, score);
+    if (level) {
+        m_world.resetWorld(m_save);
+        m_level += level;
+    }
+    m_score += score;
+
     //m_is_gameover = m_world.isGameOver();
 }
 

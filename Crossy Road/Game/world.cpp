@@ -45,6 +45,16 @@ void World::input()
 	}
 }
 
+void World::update(uint& level, uint& score)
+{
+	m_player.update(level, score);
+}
+
+
+
+
+
+
 void World::resetWorld(const SaveInf& new_save)
 {
 	m_lanes.clear();

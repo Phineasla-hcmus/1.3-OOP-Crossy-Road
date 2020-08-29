@@ -17,5 +17,7 @@ public:
 	void resetWorld(const SaveInf&);
 	void draw(sf::RenderTarget& target);
 	void input();
+	void update(uint& level, uint& score);
+	//unsigned getLevel();
 };
 #endif // !_World_h

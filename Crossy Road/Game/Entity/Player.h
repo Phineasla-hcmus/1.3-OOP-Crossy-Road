@@ -19,7 +19,7 @@ public:
 	//constexpr static int HEIGHT = 32;
 
 	Player();
-	void update(float dt);
+	void update(uint& level,uint& score);
 	void draw(sf::RenderTarget& target);
 	void keymove(); //keypress detection
 	void moving(); //moving if "walking" boolean is true
@@ -45,6 +45,7 @@ private:
 
 	bool is_Alive = true;
 	sf::Texture player_texture;
+	float min_y_get_point;
 };
 
 #endif
