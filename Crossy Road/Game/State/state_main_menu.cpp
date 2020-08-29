@@ -16,11 +16,13 @@ state_main_menu::state_main_menu(Game& game)
 	//open and play background music
 	open_music();
 	//Set up main menu
-	m_banner.setSize({ 800, 150 });
+	m_banner.setSize({ 780, 130 });
+	m_banner.setScale({ 1.3,1 });
 	m_banner.setFillColor(sf::Color::White);
 	m_banner.setOutlineColor(sf::Color::Black);
-	m_banner.setTexture(&asset::texture().get("crossyroad2", "png"));
-	m_banner.setPosition(220, 30);
+	
+	m_banner.setTexture(&asset::texture().get("crossyroad3", "png"));
+	m_banner.setPosition(120, 30);
 
 	//Create buttons and assign function to it
 	auto playBtn = makeButton();
