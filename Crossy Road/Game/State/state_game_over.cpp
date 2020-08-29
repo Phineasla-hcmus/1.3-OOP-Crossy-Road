@@ -24,9 +24,6 @@ game_over::game_over(Game& game)
 
 	container.setPosition({ 450,195 });
 	container.setSize({ 400,300 });
-	//container.setFillColor({ 100, 10, 200, 150 });
-	//container.setOutlineColor(sf::Color::Magenta);
-	//container.setOutlineThickness(4);
 	container.setTexture(&asset::texture().get("blue_panel", "png"));
 
 	auto ExitGameBtn = makeButton();

@@ -3,7 +3,6 @@
 #include"state_load.h"
 #include"../SaveLevel.h"
 #include"../../PCH.h"
-constexpr auto SAVE_FILE_NAME = "D:\\";  //need Phuc redefine the link
 class state_save :public state_base {
 private:
 	StackMenu save_menu;

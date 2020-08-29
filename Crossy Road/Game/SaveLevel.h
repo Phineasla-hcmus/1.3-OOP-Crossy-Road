@@ -2,7 +2,7 @@
 #define _save_level
 #include "../PCH.h"
 constexpr auto SAVE_LANE = 4;
-constexpr auto SAVE_DIR = "Save/";
+constexpr auto SAVE_DIR = "Save&load/";
 constexpr auto FILE_EXT = ".bin";
 class SaveInf {
 public:
@@ -23,6 +23,6 @@ private:
 	unsigned						m_score = 0;
 	std::array<RoadInf, SAVE_LANE>	m_road_arr;
 };
-bool saveGame(std::string file_name, const SaveInf&);
+bool saveGame(std::string& file_name, const SaveInf&);
 bool loadGame(std::string file_name, SaveInf&);
 #endif // !_save_level

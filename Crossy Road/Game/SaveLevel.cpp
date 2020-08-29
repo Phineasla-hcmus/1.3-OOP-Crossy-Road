@@ -25,7 +25,7 @@ void SaveInf::update_score(unsigned new_score)
 	m_score = new_score;
 }
 
-bool saveGame(std::string file_name, const SaveInf& save)
+bool saveGame(std::string& file_name, const SaveInf& save)
 {
 	std::ofstream fout(SAVE_DIR + file_name + FILE_EXT, std::ios::binary);
 	if (!fout.is_open())
