@@ -45,6 +45,21 @@ void World::input()
 	}
 }
 
+//void World::levelUp()
+//{
+//	++level;
+//}
+
+void World::update(uint& level, uint& score,float dt)
+{
+	m_player.update(level, score);
+	/*for (auto& lane : this->m_lanes)
+		lane.update(level,dt);*/
+}
+
+
+
+
 void World::resetWorld(const SaveInf& new_save)
 {
 	m_lanes.clear();
@@ -55,8 +70,8 @@ void World::draw(sf::RenderTarget& target)
 {
 	
 	target.draw(m_background);
-	for (auto& droad : m_lanes) {
-		droad.draw(target);
+	for (auto& lane : m_lanes) {
+		lane.draw(target);
 	}
 	m_player.moving();
 	m_player.animationRenderer();

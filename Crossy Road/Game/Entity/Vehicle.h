@@ -81,7 +81,7 @@ public:
 	void setSize(const sf::Vector2f&);
 	void setScale(const sf::Vector2f&);
 	void draw(sf::RenderTarget&) const;
-	void move(float speed, float dt_time, int direction);
+	void move(float speed);
 };
 class Car :public Vehicle {
 public:

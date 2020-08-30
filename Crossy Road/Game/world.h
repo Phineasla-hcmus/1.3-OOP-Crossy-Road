@@ -13,9 +13,13 @@ private:
 	random					m_rand;//random engine
 public:
 	World(const textureLookup&);
+	/*void levelUp();*/
 	void initLane(const SaveInf&);
 	void resetWorld(const SaveInf&);
 	void draw(sf::RenderTarget& target);
 	void input();
+	void update(uint& level, uint& score,float dt);
+	//unsigned getLevel();
+	
 };
 #endif // !_World_h
