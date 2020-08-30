@@ -13,7 +13,7 @@ state_playing::state_playing(Game& game)
     for (int i = 0; i < SAVE_LANE; ++i) {
         m_road_arr[i].vehicleType = r.int_in_range(0, 1);
         m_road_arr[i].vehicleNum = 2;
-        m_road_arr[i].direction = -1 + r.int_in_range(0, 1) * 2;
+        m_road_arr[i].direction = -1;
         m_road_arr[i].speed = r.double_in_range(50, 150);
     }
     m_save.update_road(m_road_arr);

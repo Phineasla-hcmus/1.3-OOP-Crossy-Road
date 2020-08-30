@@ -167,12 +167,10 @@ void Player::restart()
 
 void Player::update(uint& level, uint& score)
 {
-	/*if (this->people.getGlobalBounds().top <= -90) {
+	if (this->people.getGlobalBounds().top <= -90) {
 		++level;
-		score += 10;
-		this->restart();
-
-	}*/
+		score += 10;	
+	}
 	if (this->people.getGlobalBounds().top > 600)
 		min_y_get_point = this->people.getGlobalBounds().top;
 
