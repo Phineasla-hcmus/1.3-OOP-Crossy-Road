@@ -170,3 +170,12 @@ void Lane::draw(sf::RenderTarget& target)
 	}
 	
 }
+
+void Lane::update(unsigned& level,float dt)
+{
+	int speed = m_speed * level * (int)m_dir*dt;
+	for (auto& e : this->m_vehicles)
+		e->move(speed);
+}
+
+

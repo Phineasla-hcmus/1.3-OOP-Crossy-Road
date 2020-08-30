@@ -153,18 +153,20 @@ void Player::restart()
 	/* v_speed *= 0.0f;*/
 	/* people.setTextureRect(sf::IntRect{ 0,192,64,64 });*/
 	is_Alive = true;
+	is_walking = false;
 	people.setPosition(this->origin_pos);
+	cur_pos = this->origin_pos;
 }
 
 
 
 void Player::update(uint& level,uint& score)
 {	
-	if (this->people.getGlobalBounds().top <= -this->people.getGlobalBounds().height) {
-		this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
-		cur_pos.y = origin_pos.y;
-		level = 1;
-		score = 10;
+	if (this->people.getGlobalBounds().top <= -this->people.getGlobalBounds().height) {		
+		++level;
+		score += 10;
+		this->restart();
+
 	}
 	if (this->people.getGlobalBounds().top > 600)
 		min_y_get_point = this->people.getGlobalBounds().top;
@@ -172,16 +174,16 @@ void Player::update(uint& level,uint& score)
 
 	//score 90,270,450,630    
    if (this->people.getGlobalBounds().top == 450 && this->people.getGlobalBounds().top<min_y_get_point) {
-	   score = 10;
+	   score += 10;
 	   min_y_get_point = this->people.getGlobalBounds().top;
 	}
 	else if (this->people.getGlobalBounds().top == 270&& this->people.getGlobalBounds().top < min_y_get_point) {
-	   score = 10;
+	   score += 10;
 	   min_y_get_point = this->people.getGlobalBounds().top;
 
 	}
 	else if (this->people.getGlobalBounds().top == 90 && this->people.getGlobalBounds().top < min_y_get_point) {
-	   score = 10;
+	   score += 10;
 	   min_y_get_point = this->people.getGlobalBounds().top;
 	}
 

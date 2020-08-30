@@ -8,9 +8,30 @@ state_playing::state_playing(Game& game)
     , m_level_display(50, "LEVEL")
     , m_gameover(game)
 {
-    random rand;
+    random r;
+    std::array<SaveInf::RoadInf, SAVE_LANE> m_road_arr;
+    for (int i = 0; i < SAVE_LANE; ++i) {
+        m_road_arr[i].vehicleType = r.int_in_range(0, 1);
+        m_road_arr[i].vehicleNum = 3;
+        m_road_arr[i].direction = -1 + r.int_in_range(0, 1) * 2;
+        m_road_arr[i].speed = 30;
+    }
+    m_save.update_road(m_road_arr);
 
     m_world.initLane(m_save);
+}
+
+state_playing::state_playing(Game& game, const SaveInf& save):
+    state_base(game)
+    , m_save(save)
+    , m_world(game.get_texture_set())
+    , m_pause_menu(game)
+    , m_score_display(20, "SCORE")
+    , m_level_display(50, "LEVEL")
+    , m_gameover(game)
+{
+    m_world.initLane(m_save);
+
 }
 
 void state_playing::handleEvent(sf::Event ev)
@@ -70,14 +91,21 @@ void state_playing::update(sf::Time delta_time)
     m_gameover.updateScore(m_score);
     m_level_display.update(m_level);
     m_is_paused = m_pause_menu.isPaused();
-    uint level=0, score=0;
-    m_world.update(level, score);
-    if (level) {
-        m_world.resetWorld(m_save);
-        m_level += level;
-    }
-    m_score += score;
 
+
+    uint new_level = m_level , new_score = m_score;
+    m_world.update(new_level, new_score,delta_time.asSeconds());
+
+    if (new_level>m_level) {
+        m_save.update_level(m_level);
+        m_save.update_score(m_score);
+        m_world.resetWorld(m_save);
+        m_level = new_level;//get level
+    }
+    m_score = new_score;//get score
+
+    m_save.update_level(m_level);
+    m_save.update_score(m_score);
     //m_is_gameover = m_world.isGameOver();
 }
 
