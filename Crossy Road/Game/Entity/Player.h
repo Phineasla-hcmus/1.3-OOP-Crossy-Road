@@ -28,7 +28,10 @@ public:
 	void animationRenderer();
 	bool isAlive() const;
 	sf::Vector2f getPosition() { return cur_pos; };
+
 	/*void restart();*/
+
+
 
 private:
 	
@@ -48,6 +51,7 @@ private:
 	bool is_Alive = true;
 	sf::Texture player_texture;
 	float min_y_get_point;
+	bool m_passed;
 };
 
 #endif
