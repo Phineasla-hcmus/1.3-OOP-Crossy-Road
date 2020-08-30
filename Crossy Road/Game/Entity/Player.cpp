@@ -27,11 +27,16 @@ void Player::keymove()
 		if (is_walking == false)
 		{
 			nextspot = cur_pos.y - tile_size;
-			move[UP] = true;
-			is_walking = true;
-			initY = 192;
-			initX = 0;
-			people.setTextureRect({ initX,initY,64,64 });
+			
+				move[UP] = true;
+				is_walking = true;
+				initY = 192;
+				initX = 0;
+				people.setTextureRect({ initX,initY,64,64 });
+				if (nextspot == -90) {
+					nextspot = origin_pos.y;
+					cur_pos.y = 720;
+				}
 		}
 	}
 
@@ -174,7 +179,7 @@ void Player::update(float dt)
 	if (this->people.getGlobalBounds().top <= -this->people.getGlobalBounds().height) {
 		this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
 		cur_pos.y = origin_pos.y;
-	   /* World::levelUp();
+		/*World::levelUp();
 		World::plusScore();*/
 	}
 	//Bottom

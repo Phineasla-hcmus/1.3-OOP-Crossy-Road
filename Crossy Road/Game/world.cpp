@@ -45,6 +45,10 @@ void World::input()
 	}
 }
 
+//void World::levelUp()
+//{
+//	++level;
+//}
 void World::resetWorld(const SaveInf& new_save)
 {
 	m_lanes.clear();
@@ -58,7 +62,6 @@ void World::draw(sf::RenderTarget& target)
 	for (auto& droad : m_lanes) {
 		droad.draw(target);
 	}
-	
 	m_player.moving();
 	m_player.animationRenderer();
 	m_player.draw(target);
