@@ -19,7 +19,7 @@ public:
 	//constexpr static int HEIGHT = 32;
 
 	Player();
-	void update(unsigned int& level, unsigned int& score);
+	void update(uint& level, uint& score);
 	void draw(sf::RenderTarget& target);
 	void keymove(); //keypress detection
 	void moving(); //moving if "walking" boolean is true

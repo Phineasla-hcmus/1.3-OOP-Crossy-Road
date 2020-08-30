@@ -14,8 +14,13 @@ state_playing::state_playing(Game& game)
         auto random_value = r.int_in_range(0, 1);
         m_road_arr[i].vehicleType = random_value;
         m_road_arr[i].vehicleNum = 2;
+<<<<<<< HEAD
         m_road_arr[i].direction = -1+ random_value *2;
         m_road_arr[i].speed = r.double_in_range(50, 150);
+=======
+        m_road_arr[i].direction = -1 + r.int_in_range(0, 1) * 2;
+        m_road_arr[i].speed = (float)r.double_in_range(50, 150);
+>>>>>>> 9ce4e3c9aa6d4b4a26aec92b84dc03523aeb1c2b
     }
     m_save.update_road(m_road_arr);
 
@@ -83,7 +88,7 @@ void state_playing::update(sf::Time delta_time)
     m_is_paused = m_pause_menu.isPaused();
 
 
-    uint new_level = m_level , new_score = m_score;
+    uint new_level = m_level, new_score = m_score;
     m_world.update(new_level, new_score,delta_time.asSeconds());
 
     if (new_level>m_level) {

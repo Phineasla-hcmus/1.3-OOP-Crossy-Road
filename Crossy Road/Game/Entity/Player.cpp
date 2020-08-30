@@ -169,8 +169,26 @@ void Player::update(uint& level, uint& score)
 {
 	if (this->people.getGlobalBounds().top <= -90) {
 		++level;
+<<<<<<< HEAD
 		score += 10;	
 	}
+=======
+		score += 10;
+		this->restart();
+	}
+
+	//if player move out of bound
+
+	//Top
+	if (this->people.getGlobalBounds().top <= -this->people.getGlobalBounds().height) {
+		this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
+		cur_pos.y = origin_pos.y;
+		/*World::levelUp();
+		World::plusScore();*/
+	}
+	if (this->people.getGlobalBounds().top > 600)
+		min_y_get_point = this->people.getGlobalBounds().top;
+>>>>>>> 9ce4e3c9aa6d4b4a26aec92b84dc03523aeb1c2b
 	if (this->people.getGlobalBounds().top > 600)
 		min_y_get_point = this->people.getGlobalBounds().top;
 
