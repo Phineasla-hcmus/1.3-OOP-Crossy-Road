@@ -107,9 +107,10 @@ void Vehicle::draw(sf::RenderTarget& render) const
 	
 }
 
-void Vehicle::move(float speed, float dt_time, int dir)
+void Vehicle::move(float speed)
 {
-	m_sprite.move(speed * dt_time * (int)dir, 0);
+	m_sprite.move(speed>100?100:speed,0);//limit speed max
+//	std::cout << "move vehicle\n";
 }
 
 Car::Car(sf::Vector2f pos)
