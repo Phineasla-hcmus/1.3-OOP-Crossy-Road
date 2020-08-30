@@ -27,9 +27,10 @@ public:
 	void onCollide(Collision& other) override { is_Alive = false; }
 	void animationRenderer();
 	bool isAlive() const;
+	void restart();
 
 private:
-	void restart();
+	
 
 	sf::RectangleShape people;
 	sf::Clock m_clock;
