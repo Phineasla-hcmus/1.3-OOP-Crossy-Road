@@ -53,8 +53,9 @@ void World::input()
 void World::update(uint& level, uint& score, float dt)
 {
 	m_player.update(level, score);
+
 	for (auto& lane : this->m_lanes)
-		lane.update(level,dt);
+		lane.update(level, dt);
 }
 
 

@@ -133,7 +133,7 @@ void Lane::initVehicle(size_t size, random& rand)
 	if (m_init_func) {
 		float spacing = SCREEN_WIDTH / (float)size;
 		//origin x with some offset for randomness
-		float x = LEFT_BOUND + (float)rand.double_in_range(-spacing, spacing);
+		float x = LEFT_BOUND;// +(float)rand.double_in_range(-spacing, spacing);
 		size += HIDDEN_VEHICLE;//increase size with extra vehicle
 
 		m_vehicles.reserve(size);

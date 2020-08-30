@@ -2,7 +2,7 @@
 #define _save_level
 #include "../PCH.h"
 constexpr auto SAVE_LANE = 4;
-constexpr auto SAVE_DIR = "Save&load/";
+constexpr auto SAVE_DIR = "Save/";
 constexpr auto FILE_EXT = ".bin";
 class SaveInf {
 public:
