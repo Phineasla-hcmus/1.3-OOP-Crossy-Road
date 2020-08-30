@@ -13,6 +13,5 @@ public:
 	void handleEvent(sf::Event e)			override;
 	void update(sf::Time delta_time)		override;
 	void draw(sf::RenderTarget& renderer)	override;
-	//void WritetoFile(std::string name);
 };
 #endif // !_STATE_SAVE_H
