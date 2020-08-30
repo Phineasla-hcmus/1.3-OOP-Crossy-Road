@@ -19,7 +19,7 @@ public:
 	//constexpr static int HEIGHT = 32;
 
 	Player();
-	void update(uint& level, uint& score);
+	/*void update(uint& level, uint& score);*/
 	void draw(sf::RenderTarget& target);
 	void keymove(); //keypress detection
 	void moving(); //moving if "walking" boolean is true
@@ -27,7 +27,11 @@ public:
 	void onCollide(Collision& other) override { is_Alive = false; }
 	void animationRenderer();
 	bool isAlive() const;
-	void restart();
+	sf::Vector2f getPosition() { return cur_pos; };
+
+	/*void restart();*/
+
+
 
 private:
 	
@@ -47,6 +51,7 @@ private:
 	bool is_Alive = true;
 	sf::Texture player_texture;
 	float min_y_get_point;
+	bool m_passed;
 };
 
 #endif

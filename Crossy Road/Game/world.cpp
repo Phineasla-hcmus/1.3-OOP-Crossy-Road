@@ -52,8 +52,10 @@ void World::input()
 
 void World::update(uint& level, uint& score, float dt)
 {
-	m_player.update(level, score);
-
+	/*m_player.update(level, score);*/
+	if (m_player.getPosition().y <= SCREEN_HEIGHT && m_player.getPosition().y > SCREEN_HEIGHT - 5) {
+		level++;
+	}
 	for (auto& lane : this->m_lanes)
 		lane.update(level, dt);
 }
@@ -65,7 +67,7 @@ void World::resetWorld(const SaveInf& new_save)
 {
 	m_lanes.clear();
 	initLane(new_save);
-	m_player.restart();
+	/*m_player.restart();*/
 }
 
 void World::draw(sf::RenderTarget& target)
