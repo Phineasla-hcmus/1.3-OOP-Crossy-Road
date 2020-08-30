@@ -15,7 +15,7 @@ state_playing::state_playing(Game& game)
         m_road_arr[i].vehicleType = random_value;
         m_road_arr[i].vehicleNum = 2;
         m_road_arr[i].direction = -1+ random_value *2;
-        m_road_arr[i].speed = r.double_in_range(50, 150);
+        m_road_arr[i].speed = (float)r.double_in_range(50, 150);
 
     }
     m_save.update_road(m_road_arr);

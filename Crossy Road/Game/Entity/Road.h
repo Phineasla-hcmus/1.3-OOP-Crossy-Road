@@ -4,7 +4,6 @@
 #include "Vehicle.h"
 #include "TrafficLight.h"
 
-
 constexpr auto HIDDEN_VEHICLE	= 2;
 constexpr auto EXTRA_PIXEL		= 320;
 constexpr auto LEFT_BOUND		= -EXTRA_PIXEL;
@@ -29,23 +28,24 @@ public:
 		left = 1,
 		right = -1,
 	};
+	Lane(Lane&&) = default;
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
+	//Lane(Lane&&) = default;
 	void		initVehicle(size_t, random&);
 	void		setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
 	size_t		getVehicleSize() const;
 	Vehicle&	getVehicle(size_t);
 	void		draw(sf::RenderTarget& target);
 	void		update(unsigned& level,float dt);
-	
 private:
 	const sf::Vector2f						m_pos = { 0.f,0.f };
 	const direction							m_dir=left;
 	float									m_speed = 0;
 	std::vector<std::unique_ptr<Vehicle>>	m_vehicles;
-//	TrafficLight							m_light;	
 	sf::Texture*							m_vehicles_texture = nullptr;
 	sf::IntRect								m_texture_bound;
 	vehicle_func							m_init_func;
+	TrafficLight							m_light;
 
 	/*float									m_time_running_origin = rand() % 40 * 1.0 / 10;
 	sf::Time								m_red_time = sf::seconds(1.f + (rand() % 20 * 1.0 / 10));

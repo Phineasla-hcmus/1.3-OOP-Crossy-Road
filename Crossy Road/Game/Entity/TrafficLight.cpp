@@ -28,5 +28,3 @@ void TrafficLight::draw(sf::RenderTarget& target)
 {
 	target.draw(this->light);
 }
-
-
