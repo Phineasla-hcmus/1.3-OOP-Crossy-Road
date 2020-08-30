@@ -12,7 +12,7 @@ public:
 		int		direction;			//direction
 		float	speed;
 	};
-	SaveInf();
+	SaveInf() = default;
 	SaveInf(unsigned level, unsigned score, std::array<RoadInf, SAVE_LANE> roads);
 	unsigned	get_level() const;
 	unsigned	get_score() const;
