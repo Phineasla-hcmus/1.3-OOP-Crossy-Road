@@ -53,8 +53,8 @@
 //	void DRoad::draw(sf::RenderTarget& target)
 //	{
 //		target.draw(this->lane);
-//		for (auto& e : this->r_vehicle) {
-//			e->draw(target);
+//		for (auto& vehicle : this->r_vehicle) {
+//			vehicle->draw(target);
 //		}
 //
 //	}
@@ -173,16 +173,15 @@ void Lane::draw(sf::RenderTarget& target)
 	
 	for (auto& e : this->m_vehicles) {
 		e->draw(target);
-		
 	}
 	
 }
 
-void Lane::update(unsigned& level,float dt)
+void Lane::update(unsigned& level, float dt)
 {
-	int speed = m_speed * level * (int)m_dir*dt;
-	for (auto& e : this->m_vehicles)
-		e->move(speed);
+	float speed = m_speed * level * (int)m_dir * dt;
+	for (auto& vehicle : this->m_vehicles)
+		vehicle->move(speed);
 }
 
 
