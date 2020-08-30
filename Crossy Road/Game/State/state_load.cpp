@@ -26,7 +26,7 @@ state_load::state_load(Game& game)
 	LoadBtn->setText("Load Game");
 	LoadBtn->setFunction([&]() {
 		if (loadGame(name, load_inf) == false)is_fail = true;
-		else this->game().pushState(std::make_unique<state_playing>(game)); 
+		else this->game().pushState(std::make_unique<state_playing>(game,load_inf)); 
 		});
 
 	auto ReturnBtn = makeButton();
