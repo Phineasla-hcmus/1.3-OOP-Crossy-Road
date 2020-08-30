@@ -84,19 +84,24 @@ void state_playing::update(sf::Time delta_time)
     m_is_paused = m_pause_menu.isPaused();
 
 
-    uint new_level = m_level, new_score = m_score;
+    uint new_level = 0, new_score = 0;
     m_world.update(new_level, new_score,delta_time.asSeconds());
 
-    if (new_level>m_level) {
+    if (new_level) {
+        m_level += new_level;
+        m_score += new_score;
         m_save.update_level(new_level);
         m_save.update_score(new_score);
         m_world.resetWorld(m_save);
         m_level = new_level;//get level
     }
-    m_score = new_score;//get score
-
-    m_save.update_level(m_level);
-    m_save.update_score(m_score);
+    else {       
+        m_level += new_level;
+        m_score += new_score;
+        m_save.update_level(m_level);
+        m_save.update_score(m_score);
+    }
+    
     //m_is_gameover = m_world.isGameOver();
 }
 
