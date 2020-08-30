@@ -28,16 +28,15 @@ void Player::keymove()
 		if (is_walking == false)
 		{
 			nextspot = cur_pos.y - tile_size;
-			
-				move[UP] = true;
-				is_walking = true;
-				initY = 192;
-				initX = 0;
-				people.setTextureRect({ initX,initY,64,64 });
-				/*if (nextspot == -tile_size) {
-					nextspot = origin_pos.y;
-					cur_pos.y = SCREEN_HEIGHT;
-				}*/
+			move[UP] = true;
+			is_walking = true;
+			initY = 192;
+			initX = 0;
+			people.setTextureRect({ initX,initY,64,64 });
+			if (nextspot == -tile_size) {
+				nextspot = origin_pos.y;
+				cur_pos.y = SCREEN_HEIGHT;
+			}
 		}
 	}
 
@@ -153,15 +152,15 @@ void Player::moving()
 		people.setPosition(cur_pos.x, cur_pos.y);
 	}
 }
-void Player::restart()
-{
-	/* v_speed *= 0.0f;*/
-	/* people.setTextureRect(sf::IntRect{ 0,192,64,64 });*/
-	is_Alive = true;
-	is_walking = false;
-	people.setPosition(this->origin_pos);
-	cur_pos = this->origin_pos;
-}
+//void Player::restart()
+//{
+//	/* v_speed *= 0.0f;*/
+//	/* people.setTextureRect(sf::IntRect{ 0,192,64,64 });*/
+//	is_Alive = true;
+//	is_walking = false;
+//	people.setPosition(this->origin_pos);
+//	cur_pos = this->origin_pos;
+//}
 
 
 
@@ -170,7 +169,7 @@ void Player::update(uint& level, uint& score)
 	if (this->people.getGlobalBounds().top <= -90) {
 		++level;
 		score += 10;
-		this->restart();
+		/*this->restart();*/
 	}
 
 	//if player move out of bound
