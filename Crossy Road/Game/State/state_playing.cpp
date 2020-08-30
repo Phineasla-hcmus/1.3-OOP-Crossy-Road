@@ -71,19 +71,8 @@ void state_playing::draw(sf::RenderTarget& renderer)
 
 void state_playing::update(sf::Time delta_time)
 {
-    //if (!m_is_gameover && !m_is_paused) {
-    //    m_score += m_world.update(delta_time.asSeconds());
-    //   //_score_display.update(m_score);
-
-    //   // if (m_score > m_highestScoreDisplay.getCurrentScoreDisplayed()) {
-    //    //    m_highestScoreDisplay.update(m_score);
-    //   // }
-    //}
-    //if (m_level != m_world.getLevel()) {
-    //    m_world.resetRoad();
-    //    m_level = m_world.getLevel();
-    //    std::cout << m_world.getLevel() << "\n";
-    //}
+    m_save.update_level(m_level);
+    m_save.update_score(m_score);
     
    m_pause_menu.updateSaveInfo(m_save);
     //m_score = m_world.getScore();
@@ -97,8 +86,8 @@ void state_playing::update(sf::Time delta_time)
     m_world.update(new_level, new_score,delta_time.asSeconds());
 
     if (new_level>m_level) {
-        m_save.update_level(m_level);
-        m_save.update_score(m_score);
+        m_save.update_level(new_level);
+        m_save.update_score(new_score);
         m_world.resetWorld(m_save);
         m_level = new_level;//get level
     }
