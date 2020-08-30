@@ -34,10 +34,10 @@ void Player::keymove()
 				initY = 192;
 				initX = 0;
 				people.setTextureRect({ initX,initY,64,64 });
-				if (nextspot == -tile_size) {
+				/*if (nextspot == -tile_size) {
 					nextspot = origin_pos.y;
 					cur_pos.y = SCREEN_HEIGHT;
-				}
+				}*/
 		}
 	}
 
