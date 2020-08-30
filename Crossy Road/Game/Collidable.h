@@ -11,12 +11,12 @@
 		Collision(float width, float height);
 
 		bool			tryCollideWith(Collision& other);
-		//overwrite previous size
-		void			setSize(sf::Vector2f new_size);
-		sf::FloatRect	getBox() const;
+		virtual void	onCollide(Collision& other);
+		virtual void	setSize(sf::Vector2f new_size);			//overwrite previous size
+		virtual void	setSize(float width, float height);		//overwrite previous size
 
 		virtual const sf::Vector2f& getPosition() const = 0;
-		virtual void onCollide(Collision& other);
+		sf::FloatRect				getBox() const;
 
 	private:
 		sf::Vector2f m_size = { 0,0 };

@@ -48,10 +48,24 @@
 //
 //};
 
+constexpr auto HIDDEN_VEHICLE	= 2;
+constexpr auto EXTRA_PIXEL		= 320;
+constexpr auto LEFT_BOUND		= -EXTRA_PIXEL;
+constexpr auto RIGHT_BOUND		= SCREEN_WIDTH + EXTRA_PIXEL;
+constexpr auto EXTEND_WIDTH		= SCREEN_WIDTH + EXTRA_PIXEL * 2;
+/*
+BOUND			_____________				BOUND
+||				|			|				||
+||EXTRA_PIXEL	|	SCREEN	|EXTRA_PIXEL	||
+||				|___________|				||
+<---------------EXTEND_WIDTH----------------->
+*/
+
+constexpr float VEHICLE_SIZE	= 85;
 class Vehicle;
 using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 //function for init new vehicle
-using vehicle_func = std::function<std::unique_ptr<Vehicle>(const sf::Vector2f& pos)>;
+using vehicle_func = std::function < std::unique_ptr<Vehicle>(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound) >;
 class Lane {
 public:
 	enum direction {
@@ -59,7 +73,7 @@ public:
 		right = -1,
 	};
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
-	void		initVehicle(size_t);
+	void		initVehicle(size_t, random&);
 	void		setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
 	size_t		getVehicleSize() const;
 	Vehicle&	getVehicle(size_t);

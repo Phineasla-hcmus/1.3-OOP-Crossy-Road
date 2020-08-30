@@ -17,7 +17,7 @@ state_main_menu::state_main_menu(Game& game)
 	open_music();
 	//Set up main menu
 	m_banner.setSize({ 780, 130 });
-	m_banner.setScale({ 1.3,1 });
+	m_banner.setScale({ 1.3f,1.f });
 	m_banner.setFillColor(sf::Color::White);
 	m_banner.setOutlineColor(sf::Color::Black);
 	

@@ -23,6 +23,11 @@ void Collision::setSize(sf::Vector2f new_size)
     m_size = new_size;
 }
 
+void Collision::setSize(float width, float height)
+{
+    m_size = { width,height };
+}
+
 sf::FloatRect Collision::getBox() const
 {
     return

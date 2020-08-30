@@ -35,7 +35,7 @@ void World::initLane(const SaveInf& save)
 			: vInfo.getBounds(1);
 		/*set function for init, texture and texture bounds*/
 		newLane.setVehicleType(initVehicleFunc[laneInf.vehicleType], texture, bounds);
-		newLane.initVehicle(laneInf.vehicleNum);
+		newLane.initVehicle(laneInf.vehicleNum, m_rand);
 	}
 }
 void World::input()
@@ -58,9 +58,7 @@ void World::draw(sf::RenderTarget& target)
 	for (auto& droad : m_lanes) {
 		droad.draw(target);
 	}
-	
 	m_player.moving();
 	m_player.animationRenderer();
 	m_player.draw(target);
-	
 }

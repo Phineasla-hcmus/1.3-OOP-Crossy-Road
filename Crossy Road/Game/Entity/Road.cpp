@@ -128,16 +128,23 @@ Lane::Lane(const sf::Vector2f road_pos = { 0.f,0.f }, const direction dir=left, 
 	, m_vehicles_texture(nullptr)
 {}
 
-void Lane::initVehicle(size_t size)
+void Lane::initVehicle(size_t size, random& rand)
 {
 	if (m_init_func) {
+		float spacing = SCREEN_WIDTH / (float)size;
+		//origin x with some offset for randomness
+		float x = LEFT_BOUND + (float)rand.double_in_range(-spacing, spacing);
+		size += HIDDEN_VEHICLE;//increase size with extra vehicle
+
 		m_vehicles.reserve(size);
-		sf::Vector2f pos(0, m_pos.y);
 		for (size_t i = 0; i < size; ++i) {
-			pos.x += SCREEN_WIDTH / (size + 1);
-			m_vehicles.push_back(m_init_func(pos));
-			auto& vehicle = *m_vehicles.back();
-			vehicle.setTexture(*m_vehicles_texture, m_texture_bound);
+			x += spacing;
+			//create vehicle at x, lanePos.y
+			auto new_vehicle = m_init_func(sf::Vector2f(x, m_pos.y), *m_vehicles_texture, m_texture_bound);
+			float scale = VEHICLE_SIZE / m_texture_bound.height;
+			new_vehicle->setScale(sf::Vector2f(scale, scale));
+
+			m_vehicles.push_back(std::move(new_vehicle));
 		}
 	}
 }
