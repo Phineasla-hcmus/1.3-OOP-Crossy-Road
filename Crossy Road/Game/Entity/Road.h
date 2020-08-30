@@ -42,7 +42,7 @@ private:
 	const direction							m_dir=left;
 	float									m_speed = 0;
 	std::vector<std::unique_ptr<Vehicle>>	m_vehicles;
-	TrafficLight							m_light;	
+//	TrafficLight							m_light;	
 	sf::Texture*							m_vehicles_texture = nullptr;
 	sf::IntRect								m_texture_bound;
 	vehicle_func							m_init_func;
