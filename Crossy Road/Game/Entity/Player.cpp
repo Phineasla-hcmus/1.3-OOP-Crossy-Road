@@ -34,10 +34,10 @@ void Player::keymove()
 				initY = 192;
 				initX = 0;
 				people.setTextureRect({ initX,initY,64,64 });
-				if (nextspot == -tile_size) {
+				/*if (nextspot == -tile_size) {
 					nextspot = origin_pos.y;
 					cur_pos.y = SCREEN_HEIGHT;
-				}
+				}*/
 		}
 	}
 
@@ -165,55 +165,33 @@ void Player::restart()
 
 
 
-void Player::update(unsigned int& level, unsigned int& score)
+void Player::update(uint& level, uint& score)
 {
-	if (this->people.getGlobalBounds().top <= -this->people.getGlobalBounds().height) {
+	/*if (this->people.getGlobalBounds().top <= -90) {
 		++level;
 		score += 10;
 		this->restart();
-		//if player move out of bound
 
-		//Left
-		if (this->people.getGlobalBounds().left <= 10.f)
-			this->people.setPosition(10.f, this->people.getGlobalBounds().top);
-		// 
-		//Right
-		if (this->people.getGlobalBounds().left + this->people.getGlobalBounds().width >= 1270.f)
-			this->people.setPosition(1270 - this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
-		//
-		//Top
-		if (this->people.getGlobalBounds().top <= -this->people.getGlobalBounds().height) {
-			this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
-			cur_pos.y = origin_pos.y;
-			/*World::levelUp();
-			World::plusScore();*/
-		}
-		//Bottom
-		if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height > 720) {
-			this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
-			cur_pos.y = origin_pos.y;
-
-		}
-		if (this->people.getGlobalBounds().top > 600)
-			min_y_get_point = this->people.getGlobalBounds().top;
+	}*/
+	if (this->people.getGlobalBounds().top > 600)
+		min_y_get_point = this->people.getGlobalBounds().top;
 
 
-		//score 90,270,450,630    
-		if (this->people.getGlobalBounds().top == 450 && this->people.getGlobalBounds().top < min_y_get_point) {
-			score += 10;
-			min_y_get_point = this->people.getGlobalBounds().top;
-		}
-		else if (this->people.getGlobalBounds().top == 270 && this->people.getGlobalBounds().top < min_y_get_point) {
-			score += 10;
-			min_y_get_point = this->people.getGlobalBounds().top;
-
-		}
-		else if (this->people.getGlobalBounds().top == 90 && this->people.getGlobalBounds().top < min_y_get_point) {
-			score += 10;
-			min_y_get_point = this->people.getGlobalBounds().top;
-		}
+	//score 90,270,450,630    
+	if (this->people.getGlobalBounds().top == 450 && this->people.getGlobalBounds().top < min_y_get_point) {
+		score += 10;
+		min_y_get_point = this->people.getGlobalBounds().top;
+	}
+	else if (this->people.getGlobalBounds().top == 270 && this->people.getGlobalBounds().top < min_y_get_point) {
+		score += 10;
+		min_y_get_point = this->people.getGlobalBounds().top;
 
 	}
+	else if (this->people.getGlobalBounds().top == 90 && this->people.getGlobalBounds().top < min_y_get_point) {
+		score += 10;
+		min_y_get_point = this->people.getGlobalBounds().top;
+	}
+
 }
 void Player::animationRenderer() {
 	if (m_clock.getElapsedTime().asSeconds() > m_gaps && is_walking == true) {
