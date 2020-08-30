@@ -1,8 +1,4 @@
 #include "SaveLevel.h"
-SaveInf::SaveInf()
-{
-	
-}
 SaveInf::SaveInf(unsigned level, unsigned score, std::array<RoadInf, SAVE_LANE> roads)
 	: m_level(level)
 	, m_score(score)

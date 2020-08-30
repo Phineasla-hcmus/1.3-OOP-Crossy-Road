@@ -171,8 +171,6 @@ void Player::update(unsigned int& level, unsigned int& score)
 		++level;
 		score += 10;
 		this->restart();
-
-
 		//if player move out of bound
 
 		//Left
