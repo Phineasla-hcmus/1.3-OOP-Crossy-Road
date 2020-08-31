@@ -3,6 +3,8 @@ game_over::game_over(Game& game)
 	: state_base(game)
 	, m_gameover_menu(game.get_window(), 450)
 {
+	loadHighScore(highscore);
+
 	label.setFillColor(sf::Color::White);
 	label.setCharacterSize(50);
 	label.setOutlineColor(sf::Color::Black);
@@ -60,6 +62,7 @@ void game_over::updateScore(int _score) {
 	if (score > highscore)
 	{
 		highscore = score;
+		saveHighScore(highscore);
 		m_highscore.setString(NewHighScore_label + "	" + std::to_string(highscore));
 	}
 	else {

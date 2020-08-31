@@ -9,17 +9,7 @@ state_playing::state_playing(Game& game)
     , m_gameover(game)
 {
     random r;    
-    std::array<SaveInf::RoadInf, SAVE_LANE> m_road_arr;
-    for (int i = 0; i < SAVE_LANE; ++i) {
-        auto random_value = r.int_in_range(0, 1);
-        m_road_arr[i].vehicleType = random_value;
-        m_road_arr[i].vehicleNum = 2;
-        m_road_arr[i].direction = -1+ random_value *2;
-        m_road_arr[i].speed = (float)r.double_in_range(50, 150);
-
-    }
-    m_save.update_road(m_road_arr);
-
+    m_save.update_road(randomSaveInf(1));//level 1
     m_world.initLane(m_save);
 }
 
@@ -71,21 +61,38 @@ void state_playing::draw(sf::RenderTarget& renderer)
 
 }
 
+std::vector<SaveInf::RoadInf> state_playing::randomSaveInf(unsigned lv)
+{
+    random r;
+    int vehicleType, vehicleNum, direction, maxVehicleType = game().get_texture_set().size() - 1;
+    float speed;
+    std::vector<SaveInf::RoadInf> lane;
+    for (size_t i = 0; i < SAVE_LANE; ++i) {
+        direction   = -1 + r.int_in_range(0, 1) * 2;//left or right
+        vehicleType = r.int_in_range(0, maxVehicleType);//random base on how many type read from Config/
+        vehicleNum  = r.int_in_range(2, 5);
+        speed       = (float)r.double_in_range(20, 100);
+
+        lane.emplace_back(SaveInf::RoadInf({ vehicleType, vehicleNum, direction, speed }));
+    }
+    return lane;
+}
+
 void state_playing::update(sf::Time delta_time)
 {
     m_save.update_level(m_level);
     m_save.update_score(m_score);
     
-   m_pause_menu.updateSaveInfo(m_save);
+    m_pause_menu.updateSaveInfo(m_save);
     //m_score = m_world.getScore();
+    m_level_display.update(m_level);
     m_score_display.update(m_score);
     m_gameover.updateScore(m_score);
-    m_level_display.update(m_level);
     m_is_paused = m_pause_menu.isPaused();
 
 
-    uint new_level = m_level, new_score = m_score;
-    m_world.update(new_level, new_score,delta_time.asSeconds());
+    unsigned new_level = m_level, new_score = m_score;
+    m_world.update(new_level, new_score, delta_time.asSeconds());
 
     //if (new_level) {
     //    m_level += new_level;
@@ -101,10 +108,10 @@ void state_playing::update(sf::Time delta_time)
     //    m_save.update_level(m_level);
     //    m_save.update_score(m_score);
     //}
-
     if (new_level > m_level) {
         m_save.update_level(new_level);
         m_save.update_score(new_score);
+        m_save.update_road(randomSaveInf(new_level));
         m_world.resetWorld(m_save);
         m_level = new_level;//get level
     }

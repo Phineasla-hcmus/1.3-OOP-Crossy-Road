@@ -14,7 +14,7 @@ state_main_menu::state_main_menu(Game& game)
 	, m_music()
 {
 	//open and play background music
-	open_music();
+	//open_music();
 	//Set up main menu
 	m_banner.setSize({ 780, 130 });
 	m_banner.setScale({ 1.3f,1.f });

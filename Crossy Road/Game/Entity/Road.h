@@ -10,6 +10,7 @@ constexpr auto EXTRA_PIXEL		= 320;
 constexpr auto LEFT_BOUND		= -EXTRA_PIXEL;
 constexpr auto RIGHT_BOUND		= SCREEN_WIDTH + EXTRA_PIXEL;
 constexpr auto EXTEND_WIDTH		= SCREEN_WIDTH + EXTRA_PIXEL * 2;
+constexpr auto BASE_X			= 0;
 /*
 BOUND			_____________				BOUND
 ||				|			|				||
@@ -29,30 +30,33 @@ public:
 		left = 1,
 		right = -1,
 	};
+	//Force move constructor
 	Lane(Lane&&) = default;
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
-	//Lane(Lane&&) = default;
 	void		initVehicle(size_t, random&);
 	void		setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
 	size_t		getVehicleSize() const;
 	Vehicle&	getVehicle(size_t);
 	void		draw(sf::RenderTarget& target);
-	void		update(unsigned& level,float dt);
-	
+
+	void		update(float dt);
+	void		spawnVehicle();
 private:
-	const sf::Vector2f						m_pos = { 0.f,0.f };
-	const direction							m_dir=left;
-	float									m_speed = 0;
+	const sf::Vector2f						m_vehicle_pos				= { 0.f,0.f };
+	const direction							m_dir				= left;
+	float									m_speed				= 0;
 	std::vector<std::unique_ptr<Vehicle>>	m_vehicles;
-	sf::Texture*							m_vehicles_texture = nullptr;
+	sf::Texture*							m_vehicles_texture	= nullptr;
 	sf::IntRect								m_texture_bound;
 	vehicle_func							m_init_func;
 	TrafficLight							m_light;
+	size_t									m_num_vehicle;
+	float									m_distance_vehicle;
 
-	/*float									m_time_running_origin = rand() % 40 * 1.0 / 10;
+	//float									m_time_running_origin = rand() % 40 * 1.0 / 10;
 	sf::Time								m_red_time = sf::seconds(1.f + (rand() % 20 * 1.0 / 10));
 	sf::Time								m_green_time = sf::seconds(3.f + (rand() % 40 * 1.0 / 10));
-	sf::Clock								m_time;
-	sf::Time								m_start_Point = m_time.getElapsedTime();*/
+	sf::Clock								m_clock;// clock
+	sf::Time								m_start_time_change_color = m_clock.getElapsedTime();//time start change color light
 };
 #endif // !_road_h
