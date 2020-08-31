@@ -48,7 +48,7 @@ public:
 	void		update(float dt);
 	void		spawnVehicle();
 private:
-	const sf::Vector2f						m_vehicle_pos				= { 0.f,0.f };
+	const sf::Vector2f						m_vehicle_pos		= { 0.f,0.f };
 	const direction							m_dir				= left;
 	float									m_speed				= 0;
 	std::vector<std::unique_ptr<Vehicle>>	m_vehicles;
@@ -56,13 +56,13 @@ private:
 	sf::IntRect								m_texture_bound;
 	vehicle_func							m_init_func;
 	TrafficLight							m_light;
-	size_t									m_num_vehicle=MIN_VEHICLE;
-	float									m_distance_vehicle=SCREEN_WIDTH/m_num_vehicle;
+	size_t									m_num_vehicle = MIN_VEHICLE;
+	//float									m_distance_vehicle = SCREEN_WIDTH / m_num_vehicle;
 
 	//float									m_time_running_origin = rand() % 40 * 1.0 / 10;
-	sf::Time								m_red_time = sf::seconds(1.f + (rand() % 20 * 1.0 / 10));
-	sf::Time								m_green_time = sf::seconds(3.f + (rand() % 40 * 1.0 / 10));
-	sf::Clock								m_clock;// clock
+	sf::Time								m_red_time			= sf::seconds(1.f + (rand() % 20 * 1.0 / 10));
+	sf::Time								m_green_time		= sf::seconds(3.f + (rand() % 40 * 1.0 / 10));
+	sf::Clock								m_clock;
 	sf::Time								m_start_time_change_color = m_clock.getElapsedTime();//time start change color light
 };
 #endif // !_road_h

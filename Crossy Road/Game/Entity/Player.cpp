@@ -264,8 +264,6 @@ bool Player::isPassLevel() const
 
 void Player::update()
 {
-	
-	
 	if (this->people.getGlobalBounds().top > 600)
 		min_y_get_point = getPosition().y;		
 		
@@ -288,12 +286,10 @@ void Player::update()
 	}
 	else
 		m_get_score = false;
-
 	if (getPosition().y <= SCREEN_HEIGHT && getPosition().y > SCREEN_HEIGHT - 5) {
 		m_passed = true;
 		m_get_score = true;
 	}
-
 }
 
 bool Player::isGetScore() const

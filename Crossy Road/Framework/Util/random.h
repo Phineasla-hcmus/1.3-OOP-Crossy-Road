@@ -15,8 +15,9 @@ public:
 	using uniform_int = std::uniform_int_distribution<>;
 	using uniform_double = std::uniform_real_distribution<>;
 	random(unsigned seed = std::time(nullptr));
-	int int_in_range(int low, int high);
-	double double_in_range(double low, double high);
+	int		getInt		(int	low, int	high);
+	double	getDouble	(double low, double high);
+	float	getFloat	(float	low, float	high);
 };
 #endif // !_random
 
