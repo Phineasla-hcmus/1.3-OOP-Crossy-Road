@@ -69,3 +69,19 @@ bool loadGame(std::string file_name, SaveInf& save)
 	fin.close();
 	return true;
 }
+bool loadHighScore(int& highscore) {
+	std::string filename = "highscore";
+	std::ifstream fin(HIGHSCORE_DIR+filename+FILE_EXT, std::iostream::binary);
+	if (!fin.is_open())return false;
+	fin.read((char*)&highscore, sizeof(int));
+	fin.close();
+	return true;
+}
+bool saveHighScore(const int& highscore) {
+	std::string filename = "highscore";
+	std::ofstream fout(HIGHSCORE_DIR + filename + FILE_EXT, std::iostream::binary);
+	if (!fout.is_open())return false;
+	fout.write((char*)&highscore, sizeof(int));
+	fout.close();
+	return true;
+}

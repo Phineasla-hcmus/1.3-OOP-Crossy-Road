@@ -1,6 +1,7 @@
 #ifndef _STATE_GAME_OVER_H_
 #define _STATE_GAME_OVER_H_
 #include"../../PCH.h"
+#include"../SaveLevel.h"
 const  std::string Score_label ="SCORE";
 const std::string HighScore_label ="HIGH SCORE";
 const std::string NewHighScore_label = "NEW \n HIGH SCORE";

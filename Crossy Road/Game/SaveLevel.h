@@ -3,6 +3,7 @@
 #include "../PCH.h"
 constexpr auto SAVE_LANE = 4;
 constexpr auto SAVE_DIR = "Save/";
+constexpr auto HIGHSCORE_DIR = "Highscore/";
 constexpr auto FILE_EXT = ".bin";
 class SaveInf {
 public:
@@ -28,4 +29,6 @@ private:
 };
 bool saveGame(std::string& file_name, const SaveInf&);
 bool loadGame(std::string file_name, SaveInf&);
-#endif // !_save_level
+bool loadHighScore(int& highscore);
+bool saveHighScore(const int& highscore);
+#endif 
