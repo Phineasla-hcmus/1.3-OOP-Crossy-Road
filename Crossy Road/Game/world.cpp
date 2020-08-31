@@ -56,8 +56,10 @@ void World::update(uint& level, uint& score, float dt)
 	if (m_player.getPosition().y <= SCREEN_HEIGHT && m_player.getPosition().y > SCREEN_HEIGHT - 5) {
 		level++;
 	}
-	for (auto& lane : this->m_lanes)
+	this->tryPlayerCollideWith();
+	for (auto& lane : this->m_lanes) 
 		lane.update(level, dt);
+
 }
 
 
@@ -80,4 +82,18 @@ void World::draw(sf::RenderTarget& target)
 	m_player.moving();
 	m_player.animationRenderer();
 	m_player.draw(target);
+}
+CollisionResult World::tryPlayerCollideWith() {
+	CollisionResult result;
+	for (int i = 0; i < m_lanes.size(); i++) {
+		if (!m_player.isAlive())
+			continue;
+		if (m_player.tryCollideWith(m_lanes[i].getVehicle(3))
+			|| m_player.tryCollideWith(m_lanes[i].getVehicle(2))
+			|| m_player.tryCollideWith(m_lanes[i].getVehicle(1))
+			||	m_player.tryCollideWith(m_lanes[i].getVehicle(0))) {
+			std::cout << "Collided\n";
+		}
+	}
+	return result;
 }

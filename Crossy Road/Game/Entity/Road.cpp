@@ -61,7 +61,7 @@ void Lane::draw(sf::RenderTarget& target)
 void Lane::update(unsigned& level, float dt)
 {
 	float speed = m_speed * level * (int)m_dir * dt;
-	for (auto& vehicle : this->m_vehicles)
+	for (auto& vehicle : this->m_vehicles) 
 		vehicle->move(speed);
 
 	//if (m_light.getLightState() == (sf::Color::Green)) {

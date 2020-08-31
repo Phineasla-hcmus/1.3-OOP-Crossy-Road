@@ -4,6 +4,9 @@
 #include"Entity/Player.h"
 #include"Entity/Road.h"
 #include "SaveLevel.h"
+
+
+using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 class World {
 private:
 	Player					m_player;
@@ -19,6 +22,7 @@ public:
 	void draw(sf::RenderTarget& target);
 	void input();
 	void update(uint& level, uint& score, float dt);
+	CollisionResult tryPlayerCollideWith();
 	//unsigned getLevel();
 	
 };

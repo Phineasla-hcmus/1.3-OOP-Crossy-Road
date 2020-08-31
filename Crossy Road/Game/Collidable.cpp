@@ -39,5 +39,3 @@ sf::FloatRect Collision::getBox() const
     };
 }
 
-void Collision::onCollide(Collision& other)
-{}
