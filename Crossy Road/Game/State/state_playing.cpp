@@ -70,10 +70,10 @@ std::vector<SaveInf::RoadInf> state_playing::randomSaveInf(unsigned lv)
     float speed;
     std::vector<SaveInf::RoadInf> lane;    
     for (size_t i = 0; i < SAVE_LANE; ++i) {
-        direction   = -1 + r.int_in_range(0, 1) * 2;//left or right
-        vehicleType = r.int_in_range(0, maxVehicleType);//random base on how many type read from Config/
-        vehicleNum = lv < 5 ? (r.int_in_range(1, lv)) : (lv < 10 ? r.int_in_range(2, 5) : r.int_in_range(3, 5));
-        speed = lv > 2 ? (r.double_in_range(-10.f, 10.f) + 10 * lv) : r.double_in_range(10.f, 20.f);
+        direction   = -1 + r.getInt(0, 1) * 2;//left or right
+        vehicleType = r.getInt(0, maxVehicleType);//random base on how many type read from Config/
+        vehicleNum = lv < 5 ? (r.getInt(1, lv)) : (lv < 10 ? r.getInt(2, 5) : r.getInt(3, 5));
+        speed = lv > 2 ? (r.getDouble(-10.f, 10.f) + 10 * lv) : r.getDouble(10.f, 20.f);
 
         lane.emplace_back(SaveInf::RoadInf({ vehicleType, vehicleNum, direction, speed }));
     }

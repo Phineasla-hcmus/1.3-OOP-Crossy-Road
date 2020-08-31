@@ -26,7 +26,7 @@ void World::initLane(const SaveInf& save)
 		Lane&				newLane = m_lanes.back();
 		/*use for set vInfo type and its texture*/
 		const textureSet&	set		= m_vehicle_set.getSet(laneInf.vehicleType);	//get a set of multiple texture of a vInfo type
-		unsigned			idx		= m_rand.int_in_range(0, set.size() - 1);		//random to choose a texture for vehicle in that road
+		unsigned			idx		= m_rand.getInt(0, set.size() - 1);		//random to choose a texture for vehicle in that road
 		const textureInf&	vInfo	= set.getFullInf(idx);							//get all info about texture
 		sf::Texture&		texture	= asset::texture().get(vInfo.name, vInfo.ext);
 		const sf::IntRect	bounds	= (laneInf.direction == Lane::direction::left) 
@@ -47,7 +47,7 @@ void World::update(float dt)
 {
 
 	
-	m_player.update();	
+	m_player.update();
 
 	//check for level up	
 
@@ -101,7 +101,7 @@ void World::draw(sf::RenderTarget& target)
 }
 CollisionResult World::tryPlayerCollideWith() {
 	CollisionResult result;
-	for (int i = 0; i < m_lanes.size(); i++) {
+	for (size_t i = 0; i < m_lanes.size(); i++) {
 		if (!m_player.isAlive())
 			continue;
 		for (int j = m_lanes[i].getVehicleSize() - 1; j >= 0; j--) {
