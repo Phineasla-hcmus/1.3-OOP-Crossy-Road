@@ -1,4 +1,5 @@
 #include "TrafficLight.h"
+#include <iostream>
 
 TrafficLight::TrafficLight(sf::Vector2f org_Pos)
 {
@@ -27,4 +28,5 @@ sf::Color TrafficLight::getLightState()
 void TrafficLight::draw(sf::RenderTarget& target)
 {
 	target.draw(this->light);
+	//std::cout << "draw light\n";
 }
