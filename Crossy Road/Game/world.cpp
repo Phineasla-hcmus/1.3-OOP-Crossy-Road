@@ -80,11 +80,10 @@ CollisionResult World::tryPlayerCollideWith() {
 	for (int i = 0; i < m_lanes.size(); i++) {
 		if (!m_player.isAlive())
 			continue;
-		if (m_player.tryCollideWith(m_lanes[i].getVehicle(3))
-			|| m_player.tryCollideWith(m_lanes[i].getVehicle(2))
-			|| m_player.tryCollideWith(m_lanes[i].getVehicle(1))
-			||	m_player.tryCollideWith(m_lanes[i].getVehicle(0))) {
-			std::cout << "Collided\n";
+		for (int j = m_lanes[i].getVehicleSize() - 1; j >= 0; j--) {
+			if (m_player.tryCollideWith(m_lanes[i].getVehicle(j))) {
+				std::cout << "Collided!\n";
+			}
 		}
 	}
 	return result;
