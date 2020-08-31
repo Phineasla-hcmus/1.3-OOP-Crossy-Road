@@ -11,10 +11,11 @@ Lane::Lane(const sf::Vector2f road_pos = { 0.f,0.f }, const direction dir=left, 
 
 void Lane::initVehicle(size_t size, random& rand)
 {
-	m_num_vehicle = ++size;//init max vehicle
+	m_num_vehicle = size;//init max vehicle
 	//m_distance_vehicle = (1280 - 90 * (m_num_vehicle-1) * 1.0) / (m_num_vehicle-1);
 	if (m_init_func) {
 		float spacing = SCREEN_WIDTH / (float)size;
+		std::cout << "size vehicle " << size << std::endl;
 		//float spacing = m_distance_vehicle;
 		//origin x with some offset for randomness
 		float x = LEFT_BOUND;// +(float)rand.double_in_range(-spacing, spacing);
@@ -66,7 +67,10 @@ void Lane::update(float dt)
 	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
 	for (auto& vehicle : this->m_vehicles)
 		vehicle->move(speed);
-	float spacing = SCREEN_WIDTH / (float)m_num_vehicle;//space between 2 car
+	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle-1);//space between 2 car
+
+	if (this->m_vehicles.size() <= m_num_vehicle)
+		spawnVehicle();
 
 	if (m_light.getLightState() == (sf::Color::Green)) {
 		if (m_clock.getElapsedTime() <= (m_start_time_change_color + m_green_time)/*time green light*/) {
@@ -75,19 +79,18 @@ void Lane::update(float dt)
 
 				this->m_vehicles[i]->move(speed);
 				//this->tryCollideWithPlayer();
-				if (this->m_dir == left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing) {
+				if (this->m_dir == left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing - 2*VEHICLE_SIZE) {
 
 					this->m_vehicles.erase(this->m_vehicles.begin() + i);
-					if (this->m_vehicles.size() < m_num_vehicle )
-						spawnVehicle();
-				}
-				if (this->m_dir == right && (this->m_vehicles[i]->getPosition().x + this->m_vehicles[i]->getSize().x) <= -spacing) {
+					//std::cout << "erased "<<i<<"\n";
 					
-					this->m_vehicles.erase(this->m_vehicles.begin() + i);	
-					if (this->m_vehicles.size() < m_num_vehicle)
-						spawnVehicle();
 				}
-				std::cout << this->m_vehicles.size() << "\n";
+				if (this->m_dir == right && (this->m_vehicles[i]->getPosition().x + this->m_vehicles[i]->getSize().x) <= -spacing+VEHICLE_SIZE) {
+					
+					this->m_vehicles.erase(this->m_vehicles.begin() + i);
+					
+				}
+				//std::cout << this->m_vehicles.size() << "\n";
 
 			}
 		}
