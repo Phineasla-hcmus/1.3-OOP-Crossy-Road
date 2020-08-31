@@ -57,7 +57,8 @@
 
 Vehicle::Vehicle(sf::Vector2f pos, const sf::Texture& texture)
 	: Collision((float)texture.getSize().x, (float)texture.getSize().y)
-	, m_sprite(sf::Vector2f((float)texture.getSize().x,(float)texture.getSize().y))
+	, m_sprite(sf::Vector2f((float)texture.getSize().x, (float)texture.getSize().y))
+	, m_active(true)
 {
 	m_sprite.setPosition(pos);
 	setTexture(texture);
@@ -69,11 +70,6 @@ Vehicle::Vehicle(sf::Vector2f pos , const sf::Texture& texture, sf::IntRect text
 {
 	m_sprite.setPosition(pos);
 	setTexture(texture, textureBound);
-}
-
-const sf::Vector2f& Vehicle::getPosition() const
-{
-	return m_sprite.getPosition();
 }
 
 const sf::Vector2f& Vehicle::getSize() const

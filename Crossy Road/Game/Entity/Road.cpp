@@ -64,8 +64,10 @@ void Lane::draw(sf::RenderTarget& target)
 
 void Lane::update(float dt)
 {
+
 	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
 	for (auto& vehicle : this->m_vehicles)
+
 		vehicle->move(speed);
 
 	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle);//space between 2 car

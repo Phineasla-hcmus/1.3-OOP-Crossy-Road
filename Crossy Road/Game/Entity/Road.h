@@ -3,8 +3,13 @@
 #include "../../PCH.h"
 #include "Vehicle.h"
 #include "TrafficLight.h"
+<<<<<<< HEAD
 constexpr auto MIN_VEHICLE = 3;
 constexpr auto Y_DISTANCE_LIGHT_VS_LANE = 90.f;
+=======
+
+using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
+>>>>>>> fc3f1247a4f854f4cc9d7c5042ed14e1cbcd41ec
 constexpr auto HIDDEN_VEHICLE	= 2;
 constexpr auto EXTRA_PIXEL		= 320;
 constexpr auto LEFT_BOUND		= -EXTRA_PIXEL;
@@ -21,7 +26,7 @@ BOUND			_____________				BOUND
 
 constexpr float VEHICLE_SIZE	= 85;
 class Vehicle;
-using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
+
 //function for init new vehicle
 using vehicle_func = std::function < std::unique_ptr<Vehicle>(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound) >;
 class Lane {
@@ -39,6 +44,7 @@ public:
 	size_t		getVehicleSize() const;
 	Vehicle&	getVehicle(size_t);
 	void		draw(sf::RenderTarget& target);
+
 	void		update(float dt);
 	void		spawnVehicle();
 private:
