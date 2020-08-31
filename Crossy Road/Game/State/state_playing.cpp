@@ -22,6 +22,8 @@ state_playing::state_playing(Game& game, const SaveInf& save):
     , m_level_display(50, "LEVEL")
     , m_gameover(game)
 {
+    m_score = m_save.get_score();
+    m_level = m_save.get_level();
     m_world.initLane(m_save);
 
 }
