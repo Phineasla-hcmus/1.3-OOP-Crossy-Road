@@ -26,16 +26,10 @@ public:
 	void resetWorld(const SaveInf&);
 	void draw(sf::RenderTarget& target);
 	void input();
-<<<<<<< HEAD
 	//worldState update(unsigned& level, unsigned& score, float dt);
 	void update(float dt);
-=======
-
 	CollisionResult tryPlayerCollideWith();
-
 	worldState update(unsigned& level, unsigned& score, float dt);
-
->>>>>>> fc3f1247a4f854f4cc9d7c5042ed14e1cbcd41ec
 	//unsigned getLevel();
 	unsigned updateScore();
 	unsigned updateLevel();

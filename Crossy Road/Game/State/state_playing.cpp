@@ -99,6 +99,7 @@ void state_playing::update(sf::Time delta_time)
         m_level += step_level;
         m_save.update_level(m_level);
         m_save.update_score(m_score); 
+        m_save.update_road(randomSaveInf(m_level));
         m_world.resetWorld(m_save);
     }
 

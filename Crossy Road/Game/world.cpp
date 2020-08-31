@@ -45,22 +45,18 @@ void World::input()
 }
 void World::update(float dt)
 {
-<<<<<<< HEAD
+
 	
 	m_player.update();	
-=======
-	//check for level up
-	if (m_player.getPosition().y <= SCREEN_HEIGHT && m_player.getPosition().y > SCREEN_HEIGHT - 5) {
-		++level;
-		return worldState::update_level;
-	}
+
+	//check for level up	
 
 	this->tryPlayerCollideWith();
->>>>>>> fc3f1247a4f854f4cc9d7c5042ed14e1cbcd41ec
+
 	for (auto& lane : this->m_lanes)
 		lane.update(dt);
 }
-<<<<<<< HEAD
+
 
 unsigned World::updateScore()
 {
@@ -81,13 +77,14 @@ unsigned World::updateLevel()
 
 
 
-=======
->>>>>>> fc3f1247a4f854f4cc9d7c5042ed14e1cbcd41ec
+
 void World::resetWorld(const SaveInf& new_save)
 {
 	m_lanes.clear();
 	m_player.restart();
+	
 	initLane(new_save);
+
 	//m_player.restart();
 }
 
