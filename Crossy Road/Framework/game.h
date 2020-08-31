@@ -7,7 +7,6 @@
 #include"Util/io_config.h"
 #include"Util/no_copy.h"
 #include"State/state_base.h"
-typedef unsigned uint;
 constexpr auto SCREEN_WIDTH		= 1280;
 constexpr auto SCREEN_HEIGHT	= 720;
 constexpr auto x_tiles			= 14;

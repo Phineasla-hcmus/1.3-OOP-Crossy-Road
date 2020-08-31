@@ -28,9 +28,9 @@ public:
 		left = 1,
 		right = -1,
 	};
+	//Force move constructor
 	Lane(Lane&&) = default;
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
-	//Lane(Lane&&) = default;
 	void		initVehicle(size_t, random&);
 	void		setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
 	size_t		getVehicleSize() const;
@@ -38,11 +38,11 @@ public:
 	void		draw(sf::RenderTarget& target);
 	void		update(unsigned& level,float dt);
 private:
-	const sf::Vector2f						m_pos = { 0.f,0.f };
-	const direction							m_dir=left;
-	float									m_speed = 0;
+	const sf::Vector2f						m_pos				= { 0.f,0.f };
+	const direction							m_dir				= left;
+	float									m_speed				= 0;
 	std::vector<std::unique_ptr<Vehicle>>	m_vehicles;
-	sf::Texture*							m_vehicles_texture = nullptr;
+	sf::Texture*							m_vehicles_texture	= nullptr;
 	sf::IntRect								m_texture_bound;
 	vehicle_func							m_init_func;
 	TrafficLight							m_light;

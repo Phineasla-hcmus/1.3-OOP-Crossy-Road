@@ -8,7 +8,6 @@ World::World(const textureLookup& lookup)
 
 	//render background map(top to bottom)
 	const std::vector<unsigned> tile_map = { 1,0,1,0,1,0,1,0 };
-
 	//render y_tiles+1 to fill whole screen
 	m_background.setMapSize(x_tiles+1, y_tiles);
 	//scale the texture to tile_size (90)
@@ -45,29 +44,21 @@ void World::input()
 	}
 }
 
-//void World::levelUp()
-//{
-//	++level;
-//}
-
-void World::update(uint& level, uint& score, float dt)
+void World::update(unsigned& level, unsigned& score, float dt)
 {
-	/*m_player.update(level, score);*/
+	//check for level up
 	if (m_player.getPosition().y <= SCREEN_HEIGHT && m_player.getPosition().y > SCREEN_HEIGHT - 5) {
-		level++;
+		++level;
 	}
 	for (auto& lane : this->m_lanes)
 		lane.update(level, dt);
 }
 
-
-
-
 void World::resetWorld(const SaveInf& new_save)
 {
 	m_lanes.clear();
 	initLane(new_save);
-	/*m_player.restart();*/
+	//m_player.restart();
 }
 
 void World::draw(sf::RenderTarget& target)

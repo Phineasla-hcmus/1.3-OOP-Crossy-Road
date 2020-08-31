@@ -84,7 +84,7 @@ void state_playing::update(sf::Time delta_time)
     m_is_paused = m_pause_menu.isPaused();
 
 
-    uint new_level = m_level, new_score = m_score;
+    unsigned new_level = m_level, new_score = m_score;
     m_world.update(new_level, new_score,delta_time.asSeconds());
 
     //if (new_level) {
@@ -101,7 +101,6 @@ void state_playing::update(sf::Time delta_time)
     //    m_save.update_level(m_level);
     //    m_save.update_score(m_score);
     //}
-
     //if (new_level){
     //    m_level += new_level;
     //    m_score += new_score;
@@ -116,7 +115,6 @@ void state_playing::update(sf::Time delta_time)
     //    m_score += new_score;
     //    m_save.update_level(m_level);
     //    m_save.update_score(m_score);
-
     //}
     if (new_level > m_level) {
         m_save.update_level(new_level);
