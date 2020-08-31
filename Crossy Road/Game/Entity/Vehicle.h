@@ -69,6 +69,7 @@
 class Vehicle : public Collision {
 private:
 	sf::RectangleShape m_sprite;
+	int shake = 3;
 public:
 	Vehicle(sf::Vector2f pos, const sf::Texture&);
 	Vehicle(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);

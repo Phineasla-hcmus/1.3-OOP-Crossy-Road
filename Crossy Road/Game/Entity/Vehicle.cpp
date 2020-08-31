@@ -120,8 +120,8 @@ void Vehicle::draw(sf::RenderTarget& render) const
 
 void Vehicle::move(float speed)
 {
-	m_sprite.move(speed > 100 ? 100 : speed, 0);//limit speed max
-//	std::cout << "move vehicle\n";
+	m_sprite.move(speed > 100 ? 100 : speed, shake);//limit speed max
+	shake = -shake;
 }
 
 Car::Car(sf::Vector2f pos, const sf::Texture& texture)

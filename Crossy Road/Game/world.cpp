@@ -44,14 +44,16 @@ void World::input()
 	}
 }
 
-void World::update(unsigned& level, unsigned& score, float dt)
+worldState World::update(unsigned& level, unsigned& score, float dt)
 {
 	//check for level up
 	if (m_player.getPosition().y <= SCREEN_HEIGHT && m_player.getPosition().y > SCREEN_HEIGHT - 5) {
 		++level;
+		return worldState::update_level;
 	}
 	for (auto& lane : this->m_lanes)
-		lane.update(level, dt);
+		lane.update(dt);
+	return worldState::no_update;
 }
 
 void World::resetWorld(const SaveInf& new_save)

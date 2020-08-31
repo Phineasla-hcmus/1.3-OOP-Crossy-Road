@@ -4,6 +4,11 @@
 #include"Entity/Player.h"
 #include"Entity/Road.h"
 #include "SaveLevel.h"
+enum class worldState {
+	update_score,
+	update_level,
+	no_update
+};
 class World {
 private:
 	Player					m_player;
@@ -18,7 +23,7 @@ public:
 	void resetWorld(const SaveInf&);
 	void draw(sf::RenderTarget& target);
 	void input();
-	void update(unsigned& level, unsigned& score, float dt);
+	worldState update(unsigned& level, unsigned& score, float dt);
 	//unsigned getLevel();
 	
 };

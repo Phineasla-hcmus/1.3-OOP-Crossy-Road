@@ -36,7 +36,7 @@ public:
 	size_t		getVehicleSize() const;
 	Vehicle&	getVehicle(size_t);
 	void		draw(sf::RenderTarget& target);
-	void		update(unsigned& level,float dt);
+	void		update(float dt);
 private:
 	const sf::Vector2f						m_pos				= { 0.f,0.f };
 	const direction							m_dir				= left;
