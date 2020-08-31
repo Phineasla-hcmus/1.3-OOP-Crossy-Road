@@ -102,22 +102,6 @@ void state_playing::update(sf::Time delta_time)
     //    m_save.update_score(m_score);
     //}
 
-    //if (new_level){
-    //    m_level += new_level;
-    //    m_score += new_score;
-    //    m_save.update_level(new_level);
-    //    m_save.update_score(new_score);
-    //    m_world.resetWorld(m_save);
-    //    m_level = new_level;//get level
-    //}
-    //
-    //else {
-    //    m_level += new_level;
-    //    m_score += new_score;
-    //    m_save.update_level(m_level);
-    //    m_save.update_score(m_score);
-
-    //}
     if (new_level > m_level) {
         m_save.update_level(new_level);
         m_save.update_score(new_score);
