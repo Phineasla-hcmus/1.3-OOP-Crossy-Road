@@ -77,28 +77,23 @@ void Lane::update(float dt)
 
 	if (m_light.getLightState() == (sf::Color::Green)) {
 		if (m_clock.getElapsedTime() <= (m_start_time_change_color + m_green_time)/*time green light*/) {
-			for (int i = 0; i < this->m_vehicles.size(); i++)
+			for (size_t i = 0; i < this->m_vehicles.size(); i++)
 			{
-
 				this->m_vehicles[i]->move(speed);
 				//this->tryCollideWithPlayer();
 				if (this->m_dir == left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing - 2 * VEHICLE_SIZE) {
 
 					this->m_vehicles.erase(this->m_vehicles.begin() + i);					
-
 				}
 				if (this->m_dir == right && (this->m_vehicles[i]->getPosition().x + this->m_vehicles[i]->getSize().x) <= -spacing + VEHICLE_SIZE) {
 
 					this->m_vehicles.erase(this->m_vehicles.begin() + i);
-
 				}
-				
-
 			}
 		}
 		else {
 			m_light.turnRed();//turn red light
-			float red_time= 0.5f + (rand() % 10 * 1.0 / 10);
+			float red_time = 0.5f + (rand() % 10 * 1.0 / 10);
 			m_red_time = sf::seconds(red_time);
 			m_start_time_change_color = m_clock.getElapsedTime();
 		}
