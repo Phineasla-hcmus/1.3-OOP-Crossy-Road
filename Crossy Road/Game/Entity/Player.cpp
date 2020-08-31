@@ -78,7 +78,6 @@ void Player::keymove()
 				people.setTextureRect({ initX,initY,64,64 });
 			}
 		}
-		std::cout << nextspot << "\n";
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
