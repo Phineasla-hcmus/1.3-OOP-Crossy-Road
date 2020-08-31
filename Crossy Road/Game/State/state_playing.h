@@ -37,6 +37,7 @@ public:
 	void handleInput()							override;
 	void update(sf::Time delta_time)			override;	
 	void draw(sf::RenderTarget& renderer)		override;
+	
 
 	std::vector<SaveInf::RoadInf> randomSaveInf(unsigned lv);
 };

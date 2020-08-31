@@ -1,23 +1,24 @@
 #include "Road.h"
 
 
-Lane::Lane(const sf::Vector2f road_pos = { 0.f,0.f }, const direction dir=left, float speed=30.f)
+
+Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	: m_vehicle_pos(road_pos)
 	, m_dir(dir)
 	, m_speed(speed)
 	, m_vehicles_texture(nullptr)
-	, m_light({ road_pos.x,road_pos.y + 90 })
-{}
+	, m_light({ road_pos.x,road_pos.y + Y_DISTANCE_LIGHT_VS_LANE })	
+{
+}
 
 void Lane::initVehicle(size_t size, random& rand)
 {
+	if (size >= 5)
+		size = 5;//max vehicle
 	m_num_vehicle = size;//init max vehicle
 	//m_distance_vehicle = (1280 - 90 * (m_num_vehicle-1) * 1.0) / (m_num_vehicle-1);
 	if (m_init_func) {
-		float spacing = SCREEN_WIDTH / (float)size;
-		std::cout << "size vehicle " << size << std::endl;
-		//float spacing = m_distance_vehicle;
-		//origin x with some offset for randomness
+		float spacing = SCREEN_WIDTH / (float)size;		
 		float x = LEFT_BOUND;// +(float)rand.double_in_range(-spacing, spacing);
 		size += HIDDEN_VEHICLE;//increase size with extra vehicle
 
@@ -53,8 +54,7 @@ Vehicle& Lane::getVehicle(size_t idx)
 
 void Lane::draw(sf::RenderTarget& target)
 {
-	//target.draw(this->lane);
-	m_light.draw(target);
+	m_light.draw(target);//draw traffic light
 	
 	for (auto& e : this->m_vehicles) {
 		e->draw(target);
@@ -67,7 +67,8 @@ void Lane::update(float dt)
 	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
 	for (auto& vehicle : this->m_vehicles)
 		vehicle->move(speed);
-	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle-1);//space between 2 car
+
+	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle);//space between 2 car
 
 	if (this->m_vehicles.size() <= m_num_vehicle)
 		spawnVehicle();
@@ -79,24 +80,24 @@ void Lane::update(float dt)
 
 				this->m_vehicles[i]->move(speed);
 				//this->tryCollideWithPlayer();
-				if (this->m_dir == left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing - 2*VEHICLE_SIZE) {
+				if (this->m_dir == left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing - 2 * VEHICLE_SIZE) {
+
+					this->m_vehicles.erase(this->m_vehicles.begin() + i);					
+
+				}
+				if (this->m_dir == right && (this->m_vehicles[i]->getPosition().x + this->m_vehicles[i]->getSize().x) <= -spacing + VEHICLE_SIZE) {
 
 					this->m_vehicles.erase(this->m_vehicles.begin() + i);
-					//std::cout << "erased "<<i<<"\n";
-					
+
 				}
-				if (this->m_dir == right && (this->m_vehicles[i]->getPosition().x + this->m_vehicles[i]->getSize().x) <= -spacing+VEHICLE_SIZE) {
-					
-					this->m_vehicles.erase(this->m_vehicles.begin() + i);
-					
-				}
-				//std::cout << this->m_vehicles.size() << "\n";
+				
 
 			}
 		}
 		else {
 			m_light.turnRed();//turn red light
-			m_red_time = sf::seconds(0.5f + (rand() % 10 * 1.0 / 10));
+			float red_time= 0.5f + (rand() % 10 * 1.0 / 10);
+			m_red_time = sf::seconds(red_time);
 			m_start_time_change_color = m_clock.getElapsedTime();
 		}
 	}
@@ -104,11 +105,13 @@ void Lane::update(float dt)
 
 		if (m_clock.getElapsedTime() >= (m_start_time_change_color + m_red_time)) {
 			m_light.turnGreen();
+			float green_time = 5.f + (rand() % 40 * 1.0 / 20);
 			m_start_time_change_color = m_clock.getElapsedTime();
-			m_green_time = sf::seconds(5.f + (rand() % 40 * 1.0 / 20));
+			m_green_time = sf::seconds(green_time);
 		}
 	}
 
+	
 
 }
 

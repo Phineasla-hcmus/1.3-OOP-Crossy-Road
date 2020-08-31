@@ -23,8 +23,11 @@ public:
 	void resetWorld(const SaveInf&);
 	void draw(sf::RenderTarget& target);
 	void input();
-	worldState update(unsigned& level, unsigned& score, float dt);
+	//worldState update(unsigned& level, unsigned& score, float dt);
+	void update(float dt);
 	//unsigned getLevel();
+	unsigned updateScore();
+	unsigned updateLevel();
 	
 };
 #endif // !_World_h

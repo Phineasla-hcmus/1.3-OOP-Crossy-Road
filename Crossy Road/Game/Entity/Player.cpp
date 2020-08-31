@@ -256,3 +256,54 @@ bool Player::isAlive() const
 {
 	return is_Alive;
 }
+
+bool Player::isPassLevel() const
+{
+	return m_passed;
+}
+
+void Player::update()
+{
+	
+	
+	if (this->people.getGlobalBounds().top > 600)
+		min_y_get_point = getPosition().y;		
+		
+	//score 90,270,450,630    
+	if (this->people.getGlobalBounds().top == 450 && this->people.getGlobalBounds().top < min_y_get_point) {
+		min_y_get_point = getPosition().y;
+		m_get_score = true;
+	}
+	else if (this->people.getGlobalBounds().top == 270 && this->people.getGlobalBounds().top < min_y_get_point) {
+		min_y_get_point = getPosition().y;
+		m_get_score = true;
+	}
+	else if (this->people.getGlobalBounds().top == 270 && this->people.getGlobalBounds().top < min_y_get_point) {
+		min_y_get_point = getPosition().y;
+		m_get_score = true;
+	}
+	else if (this->people.getGlobalBounds().top == 90 && this->people.getGlobalBounds().top < min_y_get_point) {
+		min_y_get_point = getPosition().y;
+		m_get_score = true;
+	}
+	else
+		m_get_score = false;
+
+	if (getPosition().y <= SCREEN_HEIGHT && getPosition().y > SCREEN_HEIGHT - 5) {
+		m_passed = true;
+		m_get_score = true;
+	}
+
+}
+
+bool Player::isGetScore() const
+{
+	return m_get_score;
+}
+
+void Player::restart()
+{
+	m_passed = false;
+	m_get_score = false;
+	min_y_get_point = 720.f;
+}

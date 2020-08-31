@@ -43,22 +43,37 @@ void World::input()
 		m_player.keymove();
 	}
 }
-
-worldState World::update(unsigned& level, unsigned& score, float dt)
+void World::update(float dt)
 {
-	//check for level up
-	if (m_player.getPosition().y <= SCREEN_HEIGHT && m_player.getPosition().y > SCREEN_HEIGHT - 5) {
-		++level;
-		return worldState::update_level;
-	}
+	
+	m_player.update();	
 	for (auto& lane : this->m_lanes)
 		lane.update(dt);
-	return worldState::no_update;
 }
+
+unsigned World::updateScore()
+{
+	unsigned score = 0;
+	if (m_player.isGetScore())
+		score = 10;
+	return score;
+}
+
+unsigned World::updateLevel()
+{
+	unsigned level = 0;
+	if (m_player.isPassLevel()) {
+		level = 1;
+	}
+	return level;
+}
+
+
 
 void World::resetWorld(const SaveInf& new_save)
 {
 	m_lanes.clear();
+	m_player.restart();
 	initLane(new_save);
 	//m_player.restart();
 }

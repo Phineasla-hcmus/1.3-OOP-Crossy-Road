@@ -3,7 +3,8 @@
 #include "../../PCH.h"
 #include "Vehicle.h"
 #include "TrafficLight.h"
-
+constexpr auto MIN_VEHICLE = 3;
+constexpr auto Y_DISTANCE_LIGHT_VS_LANE = 90.f;
 constexpr auto HIDDEN_VEHICLE	= 2;
 constexpr auto EXTRA_PIXEL		= 320;
 constexpr auto LEFT_BOUND		= -EXTRA_PIXEL;
@@ -31,6 +32,7 @@ public:
 	};
 	//Force move constructor
 	Lane(Lane&&) = default;
+	Lane() = default;
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
 	void		initVehicle(size_t, random&);
 	void		setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
@@ -48,8 +50,8 @@ private:
 	sf::IntRect								m_texture_bound;
 	vehicle_func							m_init_func;
 	TrafficLight							m_light;
-	size_t									m_num_vehicle;
-	float									m_distance_vehicle;
+	size_t									m_num_vehicle=MIN_VEHICLE;
+	float									m_distance_vehicle=SCREEN_WIDTH/m_num_vehicle;
 
 	//float									m_time_running_origin = rand() % 40 * 1.0 / 10;
 	sf::Time								m_red_time = sf::seconds(1.f + (rand() % 20 * 1.0 / 10));

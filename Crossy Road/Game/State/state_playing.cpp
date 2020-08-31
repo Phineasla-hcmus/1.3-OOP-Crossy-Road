@@ -61,17 +61,19 @@ void state_playing::draw(sf::RenderTarget& renderer)
 
 }
 
+
+
 std::vector<SaveInf::RoadInf> state_playing::randomSaveInf(unsigned lv)
 {
     random r;
     int vehicleType, vehicleNum, direction, maxVehicleType = game().get_texture_set().size() - 1;
     float speed;
-    std::vector<SaveInf::RoadInf> lane;
+    std::vector<SaveInf::RoadInf> lane;    
     for (size_t i = 0; i < SAVE_LANE; ++i) {
         direction   = -1 + r.int_in_range(0, 1) * 2;//left or right
         vehicleType = r.int_in_range(0, maxVehicleType);//random base on how many type read from Config/
-        vehicleNum  = r.int_in_range(2, 5);
-        speed       = (float)r.double_in_range(20, 100);
+        vehicleNum = lv < 5 ? (r.int_in_range(1, lv)) : (lv < 10 ? r.int_in_range(2, 5) :r.int_in_range(3,5));
+        speed = lv>2?(r.double_in_range(-10.f, 10.f) + 10.f * (float)lv):r.double_in_range(10.f,20.f);
 
         lane.emplace_back(SaveInf::RoadInf({ vehicleType, vehicleNum, direction, speed }));
     }
@@ -80,8 +82,7 @@ std::vector<SaveInf::RoadInf> state_playing::randomSaveInf(unsigned lv)
 
 void state_playing::update(sf::Time delta_time)
 {
-    m_save.update_level(m_level);
-    m_save.update_score(m_score);
+    
     
     m_pause_menu.updateSaveInfo(m_save);
     //m_score = m_world.getScore();
@@ -90,32 +91,16 @@ void state_playing::update(sf::Time delta_time)
     m_gameover.updateScore(m_score);
     m_is_paused = m_pause_menu.isPaused();
 
-
-    unsigned new_level = m_level, new_score = m_score;
-    m_world.update(new_level, new_score, delta_time.asSeconds());
-
-    //if (new_level) {
-    //    m_level += new_level;
-    //    m_score += new_score;
-    //    m_save.update_level(new_level);
-    //    m_save.update_score(new_score);
-    //    m_world.resetWorld(m_save);
-    //    m_level = new_level;//get level
-    //}
-    //else {       
-    //    m_level += new_level;
-    //    m_score += new_score;
-    //    m_save.update_level(m_level);
-    //    m_save.update_score(m_score);
-    //}
-    if (new_level > m_level) {
-        m_save.update_level(new_level);
-        m_save.update_score(new_score);
-        m_save.update_road(randomSaveInf(new_level));
+   
+    m_world.update(delta_time.asSeconds());
+    m_score += m_world.updateScore();
+    unsigned step_level = m_world.updateLevel();
+    if (step_level) {        
+        m_level += step_level;
+        m_save.update_level(m_level);
+        m_save.update_score(m_score); 
         m_world.resetWorld(m_save);
-        m_level = new_level;//get level
     }
-    m_score = new_score;//get score
 
     m_save.update_level(m_level);
     m_save.update_score(m_score);
