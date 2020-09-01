@@ -14,8 +14,8 @@ private:
 	sf::RectangleShape	m_banner;
 	Background			m_background;
 	StackMenu			m_mainMenu;
-	sf::Music			m_music;
-	void				open_music(const std::string & = BACKGROUND_MUSIC_DIR);
+	//sf::Music			m_music;
+	//void				open_music(const std::string & = BACKGROUND_MUSIC_DIR);
 public:
 	state_main_menu(Game&);
 

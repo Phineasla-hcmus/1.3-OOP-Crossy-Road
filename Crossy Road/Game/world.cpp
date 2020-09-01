@@ -90,7 +90,6 @@ void World::resetWorld(const SaveInf& new_save)
 
 void World::draw(sf::RenderTarget& target)
 {
-	
 	target.draw(m_background);
 	for (auto& lane : m_lanes) {
 		lane.draw(target);
