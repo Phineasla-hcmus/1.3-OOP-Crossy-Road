@@ -43,6 +43,9 @@ void World::input()
 		m_player.keymove();
 	}
 }
+bool World::is_game_over() {
+	return m_game_over;
+}
 void World::update(float dt)
 {
 
@@ -106,6 +109,7 @@ CollisionResult World::tryPlayerCollideWith() {
 		for (int j = m_lanes[i].getVehicleSize() - 1; j >= 0; j--) {
 			if (m_player.tryCollideWith(m_lanes[i].getVehicle(j))) {
 				std::cout << "Collided!\n";
+				m_game_over = true;
 			}
 		}
 	}

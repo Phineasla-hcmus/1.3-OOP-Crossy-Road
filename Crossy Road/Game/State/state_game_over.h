@@ -4,19 +4,20 @@
 #include"../SaveLevel.h"
 const  std::string Score_label ="SCORE";
 const std::string HighScore_label ="HIGH SCORE";
-const std::string NewHighScore_label = "NEW \n HIGH SCORE";
+const std::string NewHighScore_label = "\tNEW  HIGH  SCORE\n";
 
 class game_over :public state_base {
 private:
 	StackMenu m_gameover_menu;
+	bool new_high_score = false;
 	bool m_exit = false;
 	Widget::Text label;
 	Widget::Text m_score;
 	Widget::Text m_highscore;
 	sf::RectangleShape container;
 
-	int score = 10;
-	int highscore = 1000;
+	int score = 0;
+	int highscore = 0;
 public:
 	game_over(Game&);
 
