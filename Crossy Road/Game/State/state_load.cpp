@@ -26,9 +26,17 @@ state_load::state_load(Game& game)
 	LoadBtn->setText("Load Game");
 	LoadBtn->setFunction([&]() {
 		if (loadGame(name, load_inf) == false)is_fail = true;
-		else this->game().pushState(std::make_unique<state_playing>(game,load_inf)); 
+		else {
+			if (game.getStateSize() == 2)
+				this->game().swapState(std::make_unique<state_playing>(game, load_inf));
+			if (game.getStateSize() == 3)
+			{
+				this->game().popState();
+				this->game().swapState(std::make_unique<state_playing>(game, load_inf));
+			}
+		}
 		});
-
+	
 	auto ReturnBtn = makeButton();
 	ReturnBtn->setText("Return");
 	ReturnBtn->setFunction([&]() {
