@@ -10,7 +10,7 @@ bool textureSet::loadFromFile(const std::string& dir)
 	while (fin >> file_name >> file_ext 
 		>> size.x >> size.y >> file_dim.x >> file_dim.y) 
 	{
-		m_set.emplace_back(textureInf(file_name, file_ext, size, file_dim));
+		m_set.emplace_back(file_name, file_ext, size, file_dim);
 	}
 	fin.close();
 	return true;
@@ -83,7 +83,7 @@ bool config_file::loadFromFile(const std::string& dir)
 	float minSpeed, maxSpeed;
 	int level, minObst, maxObst;
 	while (fin >> level >> minSpeed >> maxSpeed >> minObst >> maxObst) {
-		m_level.emplace_back(lane_inf(minSpeed, maxSpeed, minObst, maxObst));
+		m_level.emplace_back(minSpeed, maxSpeed, minObst, maxObst);
 	}
 	fin.close();
 	return true;
@@ -94,7 +94,7 @@ bool textureLookup::loadNewSet(const std::string& file_dir)
 	textureSet lookup;
 	if (!lookup.loadFromFile(file_dir))
 		return false;
-	m_set.emplace_back(lookup);
+	m_set.push_back(lookup);
 	return true;
 }
 
