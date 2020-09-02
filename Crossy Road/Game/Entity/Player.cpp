@@ -267,19 +267,10 @@ void Player::update()
 		min_y_get_point = getPosition().y;		
 		
 	//score 90,270,450,630    
-	if (this->people.getGlobalBounds().top == 450 && this->people.getGlobalBounds().top < min_y_get_point) {
-		min_y_get_point = getPosition().y;
-		m_get_score = true;
-	}
-	else if (this->people.getGlobalBounds().top == 270 && this->people.getGlobalBounds().top < min_y_get_point) {
-		min_y_get_point = getPosition().y;
-		m_get_score = true;
-	}
-	else if (this->people.getGlobalBounds().top == 270 && this->people.getGlobalBounds().top < min_y_get_point) {
-		min_y_get_point = getPosition().y;
-		m_get_score = true;
-	}
-	else if (this->people.getGlobalBounds().top == 90 && this->people.getGlobalBounds().top < min_y_get_point) {
+	if ((this->people.getGlobalBounds().top == 90
+		|| this->people.getGlobalBounds().top == 270
+		|| this->people.getGlobalBounds().top == 450)
+		&& this->people.getGlobalBounds().top < min_y_get_point) {
 		min_y_get_point = getPosition().y;
 		m_get_score = true;
 	}

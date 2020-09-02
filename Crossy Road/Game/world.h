@@ -19,6 +19,7 @@ private:
 	TileMap					m_background;
 	const textureLookup&	m_vehicle_set;
 	random					m_rand;//random engine
+	bool					m_game_over=false;
 public:
 	World(const textureLookup&);
 	/*void levelUp();*/
@@ -33,6 +34,7 @@ public:
 	//unsigned getLevel();
 	unsigned updateScore();
 	unsigned updateLevel();
+	bool is_game_over();
 	
 };
 #endif // !_World_h

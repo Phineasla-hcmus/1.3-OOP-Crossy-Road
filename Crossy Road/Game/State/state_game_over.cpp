@@ -47,7 +47,7 @@ void game_over::draw(sf::RenderTarget& target) {
 	target.draw(container);
 	m_gameover_menu.render(target);
 	target.draw(label);
-	target.draw(m_score);
+	if(!new_high_score)target.draw(m_score);
 	target.draw(m_highscore);
 }
 void game_over::handleEvent(sf::Event e) {
@@ -62,13 +62,12 @@ void game_over::updateScore(int _score) {
 	if (score > highscore)
 	{
 		highscore = score;
-		saveHighScore(highscore);
-		m_highscore.setString(NewHighScore_label + "	" + std::to_string(highscore));
+		new_high_score=saveHighScore(highscore);
+		m_highscore.setString(NewHighScore_label + "\t\t\t\t\t\t   " + std::to_string(highscore));
 	}
 	else {
-		m_highscore.setString(HighScore_label + "	" + std::to_string(highscore));
+		if(!new_high_score)m_highscore.setString(HighScore_label + "	" + std::to_string(highscore));
 		m_score.setString(Score_label + "	" + std::to_string(score));
 	}
-	
 	label.setString("GAME	OVER");
 }
