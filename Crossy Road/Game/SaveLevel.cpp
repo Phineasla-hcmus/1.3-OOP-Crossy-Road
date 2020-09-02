@@ -85,3 +85,10 @@ bool saveHighScore(const int& highscore) {
 	fout.close();
 	return true;
 }
+
+SaveInf::RoadInf::RoadInf(int vehicleType, int vehicleNum, int dir, float speed)
+	: vehicleType(vehicleType)
+	, vehicleNum(vehicleNum)
+	, direction(dir)
+	, speed(speed)
+{}

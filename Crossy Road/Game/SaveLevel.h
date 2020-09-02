@@ -12,6 +12,8 @@ public:
 		int		vehicleNum;
 		int		direction;			//direction
 		float	speed;
+		RoadInf() = default;
+		RoadInf(int vehicleType, int vehicleNum, int dir, float speed);
 	};
 	SaveInf() = default;
 	SaveInf(unsigned level, unsigned score, std::vector<RoadInf> roads);
