@@ -30,11 +30,12 @@ public:
 	//worldState update(unsigned& level, unsigned& score, float dt);
 	void update(float dt);
 	CollisionResult tryPlayerCollideWith();
-	worldState update(unsigned& level, unsigned& score, float dt);
+	//worldState update(unsigned& level, unsigned& score, float dt);
 	//unsigned getLevel();
 	unsigned updateScore();
 	unsigned updateLevel();
 	bool is_game_over();
+	void pause();
 	
 };
 #endif // !_World_h

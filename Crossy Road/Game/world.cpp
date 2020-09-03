@@ -46,6 +46,9 @@ void World::input()
 bool World::is_game_over() {
 	return m_game_over;
 }
+void World::pause()
+{
+}
 void World::update(float dt)
 {
 
