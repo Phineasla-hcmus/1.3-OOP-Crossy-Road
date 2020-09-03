@@ -20,5 +20,6 @@ public:
 	void add_frame(sf::Time delay, size_t row, size_t col = 0);
 	const sf::IntRect& nextFrame();
 	const sf::IntRect& getFrame(size_t);
+	size_t totalFrame();
 };
 #endif // !_animation_h

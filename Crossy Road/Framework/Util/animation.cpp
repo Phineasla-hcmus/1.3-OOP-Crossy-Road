@@ -38,3 +38,8 @@ const sf::IntRect& animation::getFrame(size_t idx)
 {
 	return m_frames[idx].bounds;
 }
+
+size_t animation::totalFrame()
+{
+	return m_frames.size();
+}
