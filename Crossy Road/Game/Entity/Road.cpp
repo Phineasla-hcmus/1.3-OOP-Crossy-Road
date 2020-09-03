@@ -93,7 +93,7 @@ void Lane::update(float dt)
 		}
 		else {
 			m_light.turnRed();//turn red light
-			float red_time = 0.5f + (rand() % 10 * 1.0 / 10);
+			float red_time = 0.5f + mtrand::getFloat(0,1);
 			m_red_time = sf::seconds(red_time);
 			m_start_time_change_color = m_clock.getElapsedTime();
 		}
@@ -102,7 +102,7 @@ void Lane::update(float dt)
 
 		if (m_clock.getElapsedTime() >= (m_start_time_change_color + m_red_time)) {
 			m_light.turnGreen();
-			float green_time = 5.f + (rand() % 40 * 1.0 / 20);
+			float green_time = 5.f + mtrand::getFloat(0, 2);
 			m_start_time_change_color = m_clock.getElapsedTime();
 			m_green_time = sf::seconds(green_time);
 		}
