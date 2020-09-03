@@ -15,6 +15,7 @@ private:
 	const size_t		FRAME_WIDTH;
 	const size_t		FRAME_HEIGHT;
 public:
+	//frame_width(file_width), frame_height(file_height)
 	animation(size_t frame_width, size_t frame_height);
 	void add_frame(sf::Time delay, size_t row, size_t col = 0);
 	const sf::IntRect& getFrame();
