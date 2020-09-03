@@ -3,21 +3,24 @@
 
 TrafficLight::TrafficLight(sf::Vector2f org_Pos)
 {
+	red_light = asset::texture().get("red", "png");
+	green_light = asset::texture().get("green", "png");
 	this->light.setSize(size);	
 	this->light.setPosition(org_Pos);
-	this->light.setFillColor(state);
+	/*this->light.setFillColor(state);*/
+	light.setTexture(&green_light);
 }
 
 void TrafficLight::turnRed()
 {
 	state = (sf::Color::Red);
-	this->light.setFillColor(state);
+	light.setTexture(&red_light);
 }
 
 void TrafficLight::turnGreen()
 {
 	state = (sf::Color::Green);
-	this->light.setFillColor(state);
+	light.setTexture(&green_light);
 }
 
 sf::Color TrafficLight::getLightState()

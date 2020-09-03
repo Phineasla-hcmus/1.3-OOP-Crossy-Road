@@ -1,10 +1,13 @@
 #ifndef trafflight_h
 #define trafflight_h
+#include"../../Framework/AssetManager/asset.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
 class TrafficLight {
 private:
+	sf::Texture red_light;
+	sf::Texture green_light;
 	sf::RectangleShape light;
 	sf::Vector2f size = { 30.f,30.f };
 	sf::Color state=(sf::Color::Green);
