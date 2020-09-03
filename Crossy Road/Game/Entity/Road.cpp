@@ -20,6 +20,7 @@ void Lane::initVehicle(size_t size, random& rand)
 	if (m_init_func) {
 		float spacing = SCREEN_WIDTH / (float)size;		
 		float x = LEFT_BOUND;// +(float)rand.getDouble(-spacing, spacing);
+		//float x = -10.f;
 		size += HIDDEN_VEHICLE;//increase size with extra vehicle
 
 		m_vehicles.reserve(size);
@@ -78,9 +79,9 @@ void Lane::update(float dt)
 		if (m_clock.getElapsedTime() <= (m_start_time_change_color + m_green_time)/*time green light*/) {
 			for (size_t i = 0; i < this->m_vehicles.size(); i++)
 			{
-				this->m_vehicles[i]->move(2.f*speed);
+				this->m_vehicles[i]->move(2.f*speed);// xxx
 				//this->tryCollideWithPlayer();
-				if (this->m_dir == left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing - 2 * VEHICLE_SIZE) {
+				if (this->m_dir == left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing -  VEHICLE_SIZE) {
 
 					this->m_vehicles.erase(this->m_vehicles.begin() + i);					
 				}
