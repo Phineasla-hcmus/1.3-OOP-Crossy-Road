@@ -66,9 +66,8 @@ void Lane::update(float dt)
 {
 
 	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
-	for (auto& vehicle : this->m_vehicles)
-
-		vehicle->move(speed);
+	//for (auto& vehicle : this->m_vehicles)
+	//	vehicle->move(speed);
 
 	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle);//space between 2 car
 
@@ -79,7 +78,7 @@ void Lane::update(float dt)
 		if (m_clock.getElapsedTime() <= (m_start_time_change_color + m_green_time)/*time green light*/) {
 			for (size_t i = 0; i < this->m_vehicles.size(); i++)
 			{
-				this->m_vehicles[i]->move(speed);
+				this->m_vehicles[i]->move(2.f*speed);
 				//this->tryCollideWithPlayer();
 				if (this->m_dir == left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing - 2 * VEHICLE_SIZE) {
 
@@ -126,6 +125,21 @@ void Lane::spawnVehicle()
 		new_vehicle->setScale(sf::Vector2f(scale, scale));
 		m_vehicles.push_back(std::move(new_vehicle));
 	}
+}
+
+void Lane::pause()
+{
+	is_paused = true;
+}
+
+void Lane::unPause()
+{
+	is_paused = false;
+}
+
+bool Lane::isPause()const
+{
+	return is_paused;
 }
 
 

@@ -47,6 +47,9 @@ public:
 
 	void		update(float dt);
 	void		spawnVehicle();
+	bool 		isPause() const;
+	void		pause();
+	void		unPause();
 private:
 	const sf::Vector2f						m_vehicle_pos		= { 0.f,0.f };
 	const direction							m_dir				= left;
@@ -57,9 +60,9 @@ private:
 	vehicle_func							m_init_func;
 	TrafficLight							m_light;
 	size_t									m_num_vehicle = MIN_VEHICLE;
-	//float									m_distance_vehicle = SCREEN_WIDTH / m_num_vehicle;
-
-	//float									m_time_running_origin = rand() % 40 * 1.0 / 10;
+	
+	bool									is_paused = false;
+	
 	sf::Time								m_red_time			= sf::seconds(1.f + (rand() % 20 * 1.0 / 10));
 	sf::Time								m_green_time		= sf::seconds(3.f + (rand() % 40 * 1.0 / 10));
 	sf::Clock								m_clock;
