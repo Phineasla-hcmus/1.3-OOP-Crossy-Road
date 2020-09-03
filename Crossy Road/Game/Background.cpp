@@ -12,7 +12,7 @@ Background::Background(const sf::Texture& texture, sf::Vector2f texture_size, sf
 
 void Background::draw(sf::RenderTarget& render)
 {
-	sf::IntRect frame = m_animation.getFrame();
+	sf::IntRect frame = m_animation.nextFrame();
 	m_sprite.setTextureRect(frame);
 	render.draw(m_sprite);
 }

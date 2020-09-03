@@ -246,7 +246,7 @@ void Player::draw(sf::RenderTarget& target)
 {
 	sf::Clock clock;
 	if (!is_Alive) {
-		//people.setTextureRect(death_Animation.getFrame());
+		//people.setTextureRect(death_Animation.nextFrame());
 	}
 	target.draw(people);
 }

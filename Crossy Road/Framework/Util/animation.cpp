@@ -22,7 +22,7 @@ void animation::add_frame(sf::Time delay, size_t row, size_t col)
 		, delay);
 }
 
-const sf::IntRect& animation::getFrame()
+const sf::IntRect& animation::nextFrame()
 {
 	if (m_timer.getElapsedTime() >= m_frames[m_frame_idx].delay) {
 		m_timer.restart();
@@ -32,4 +32,9 @@ const sf::IntRect& animation::getFrame()
 	}
 
 	return m_frames[m_frame_idx].bounds;
+}
+
+const sf::IntRect& animation::getFrame(size_t idx)
+{
+	return m_frames[idx].bounds;
 }
