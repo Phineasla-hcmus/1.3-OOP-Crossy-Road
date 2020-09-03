@@ -93,18 +93,19 @@ void state_playing::update(sf::Time delta_time)
     m_gameover.updateScore(m_score);
     m_is_paused = m_pause_menu.isPaused();
 
-   
-    m_world.update(delta_time.asSeconds());
-    m_score += m_world.updateScore();
-    unsigned step_level = m_world.updateLevel();
-    if (step_level) {        
-        m_level += step_level;
-        m_save.update_level(m_level);
-        m_save.update_score(m_score); 
-        m_save.update_road(randomSaveInf(m_level));
-        m_world.resetWorld(m_save);
+    if (!m_is_gameover && !m_is_paused)
+    {
+        m_world.update(delta_time.asSeconds());
+        m_score += m_world.updateScore();
+        unsigned step_level = m_world.updateLevel();
+        if (step_level) {
+            m_level += step_level;
+            m_save.update_level(m_level);
+            m_save.update_score(m_score);
+            m_save.update_road(randomSaveInf(m_level));
+            m_world.resetWorld(m_save);
+        }
     }
-
     m_save.update_level(m_level);
     m_save.update_score(m_score);
     
