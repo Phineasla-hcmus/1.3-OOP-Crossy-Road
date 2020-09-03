@@ -17,7 +17,7 @@
 		virtual void	onCollide(Collision& other) = 0;
 		virtual const sf::Vector2f& getPosition() const = 0;
 
-		sf::FloatRect				getBox() const;
+		sf::FloatRect				getBox(int delta_X) const;
 
 	private:
 		sf::Vector2f m_size = { 0,0 };

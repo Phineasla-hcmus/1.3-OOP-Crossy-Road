@@ -6,7 +6,7 @@ static int initX = 0;
 static int initY = 192;
 
 Player::Player() 
-	: Collision(45.f, PLAYER_SIZE)
+	: Collision(PLAYER_SIZE/2, PLAYER_SIZE)
 	, people({ PLAYER_SIZE,PLAYER_SIZE })
 	, move{ 0,0,0,0 }
 
