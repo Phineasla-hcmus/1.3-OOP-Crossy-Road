@@ -6,7 +6,7 @@ static int initX = 0;
 static int initY = 192;
 
 Player::Player() 
-	: Collision(45.f, PLAYER_SIZE)
+	: Collision(PLAYER_SIZE/2, PLAYER_SIZE/2)
 	, people({ PLAYER_SIZE,PLAYER_SIZE })
 	, move{ 0,0,0,0 }
 
@@ -246,7 +246,7 @@ void Player::draw(sf::RenderTarget& target)
 {
 	sf::Clock clock;
 	if (!is_Alive) {
-		//people.setTextureRect(death_Animation.getFrame());
+		//people.setTextureRect(death_Animation.nextFrame());
 	}
 	target.draw(people);
 }
