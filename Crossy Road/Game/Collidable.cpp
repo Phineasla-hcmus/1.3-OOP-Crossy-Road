@@ -10,7 +10,7 @@ Collision::Collision(float width, float height)
 
 bool Collision::tryCollideWith(Collision& other)
 {
-    if (getBox(15).intersects(other.getBox(0))) {
+    if (getBox(20).intersects(other.getBox(0))) {
         onCollide(other);
         other.onCollide(*this);
         return true;
@@ -33,7 +33,7 @@ sf::FloatRect Collision::getBox(int delta_X) const
     return
     {
         getPosition().x + delta_X,
-        getPosition().y ,
+        getPosition().y + delta_X,
         m_size.x,
         m_size.y
     };
