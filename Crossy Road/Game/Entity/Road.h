@@ -63,8 +63,8 @@ private:
 	
 	bool									is_paused = false;
 	
-	sf::Time								m_red_time			= sf::seconds(1.f + (rand() % 20 * 1.0 / 10));
-	sf::Time								m_green_time		= sf::seconds(3.f + (rand() % 40 * 1.0 / 10));
+	sf::Time								m_red_time			= sf::seconds(1.5 + (rand() % 20 * 1.0 / 10));
+	sf::Time								m_green_time		= sf::seconds(4.f + (rand() % 40 * 1.0 / 10));
 	sf::Clock								m_clock;
 	sf::Time								m_start_time_change_color = m_clock.getElapsedTime();//time start change color light
 };
