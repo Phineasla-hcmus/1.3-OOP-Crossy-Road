@@ -36,7 +36,7 @@ public:
 private:
 	sf::RectangleShape	m_player;
 	sf::Clock			m_clock;
-	float				m_gaps		= 0.1f;
+	sf::Time		    m_delay     = sf::seconds(0.1f);
 	sf::Vector2f		origin_pos	= { START_X, START_Y };
 	sf::Vector2f		cur_pos		= { START_X,START_Y };
 	float				movespeed	= MOVESPEED;
@@ -53,6 +53,8 @@ private:
 	bool m_passed = false;
 	bool m_get_score = false;
 
+	sf::IntRect frame;
+	animation death_animation;
 	sf::Sound death_sound;
 };
 

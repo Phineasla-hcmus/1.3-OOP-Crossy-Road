@@ -10,11 +10,14 @@ Player::Player()
 	, m_player({ PLAYER_SIZE,PLAYER_SIZE })
 	, player_texture(asset::texture().get("player_sprite_2", "png"))
 	, explosion(asset::texture().get("explosion", "png"))
+	,death_animation(64.f,64.f)
 {
 	m_player.setPosition(this->origin_pos);
 	m_player.setTexture(&player_texture);
 	m_player.setTextureRect(sf::IntRect{ 0,192,64,64 });
-
+	for (int index = 0; index < 5; index++) {
+		death_animation.add_frame(m_delay,0,index);
+	}
 	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
 }
 
@@ -145,7 +148,12 @@ void Player::moving()
 }
 
 void Player::animationRenderer() {
-	if (m_clock.getElapsedTime().asSeconds() > m_gaps && is_walking == true && is_Alive) {
+	/*for (int col = 0; col < 4; col++) {
+		for (int row = 0; row < 4; row++) {
+			moveAnimation[row].add_frame(m_delay,row,col);
+		}
+	}*/
+	if (m_clock.getElapsedTime().asSeconds() > m_delay.asSeconds() && is_walking == true && is_Alive) {
 		if (initX > 192) {
 			initX = 0;
 			m_player.setTextureRect({ initX,initY,64,64 });
@@ -156,12 +164,14 @@ void Player::animationRenderer() {
 		}
 		m_clock.restart();
 	}
-	else if (m_clock.getElapsedTime().asSeconds() > m_gaps && !is_Alive) {
+	else if (m_clock.getElapsedTime().asSeconds() > m_delay.asSeconds() && !is_Alive) {
 		is_walking = false;
 		m_player.setTexture(&explosion);
 		m_player.setScale(1.5f, 1.5f);
 		m_player.setTextureRect({ initX,0,64,64 });
 		initX += 64;
+		/*frame = death_animation.nextFrame();
+		m_player.setTextureRect(frame);*/
 		m_clock.restart();
 	}
 }
