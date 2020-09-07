@@ -34,7 +34,7 @@ public:
 	void update();
 	bool isGetScore()const;
 	void restart();
-	void soundPlaying() { if (!is_Alive) { death_sound.play(); } };
+	void soundPlaying();
 
 private:
 	
@@ -59,6 +59,7 @@ private:
 	bool m_get_score = false;
 
 	sf::Sound death_sound;
+	sf::Sound walking_sound;
 };
 
 #endif

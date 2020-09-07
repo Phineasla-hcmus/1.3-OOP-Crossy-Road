@@ -17,8 +17,10 @@ Player::Player()
 
 	people.setTexture(&player_texture);
 	people.setTextureRect(sf::IntRect{ 0,192,64,64 });
-	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
 	explosion = asset::texture().get("explosion", "png");
+
+	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
+	walking_sound.setBuffer(asset::sound().get("walking_SFX", "ogg"));
 }
 
 
@@ -35,6 +37,7 @@ void Player::keymove()
 			initY = 192;
 			initX = 0;
 			people.setTextureRect({ initX,initY,64,64 });
+			walking_sound.play();
 			if (nextspot == -tile_size) {
 				nextspot = origin_pos.y;
 				cur_pos.y = SCREEN_HEIGHT;
@@ -58,6 +61,7 @@ void Player::keymove()
 				initY = 0;
 				initX = 0;
 				people.setTextureRect({ initX,initY,64,64 });
+				walking_sound.play();
 			}
 		}
 	}
@@ -78,6 +82,7 @@ void Player::keymove()
 				initY = 64;
 				initX = 0;
 				people.setTextureRect({ initX,initY,64,64 });
+				walking_sound.play();
 			}
 		}
 	}
@@ -98,6 +103,7 @@ void Player::keymove()
 				initY = 128;
 				initX = 0;
 				people.setTextureRect({ initX,initY,64,64 });
+				walking_sound.play();
 			}
 		}
 	}
@@ -249,7 +255,10 @@ void Player::animationRenderer() {
 	}
 }
 
-
+void Player::soundPlaying() {
+	if (!is_Alive)
+		death_sound.play();
+}
 void Player::draw(sf::RenderTarget& target)
 {
 	sf::Clock clock;
