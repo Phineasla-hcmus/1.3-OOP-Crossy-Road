@@ -8,15 +8,12 @@ static int initY = 192;
 Player::Player() 
 	: Collision(PLAYER_SIZE/2, PLAYER_SIZE/2)
 	, m_player({ PLAYER_SIZE,PLAYER_SIZE })
-	, move{ 0,0,0,0 }
-
+	, player_texture(asset::texture().get("player_sprite_2", "png"))
+	, explosion(asset::texture().get("explosion", "png"))
 {
 	m_player.setPosition(this->origin_pos);
-	player_texture = asset::texture().get("player_sprite_2", "png");
-
 	m_player.setTexture(&player_texture);
 	m_player.setTextureRect(sf::IntRect{ 0,192,64,64 });
-	explosion = asset::texture().get("explosion", "png");
 
 	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
 	walking_sound.setBuffer(asset::sound().get("walking_SFX", "ogg"));
