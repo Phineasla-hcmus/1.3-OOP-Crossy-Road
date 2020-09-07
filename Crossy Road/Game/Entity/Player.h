@@ -54,7 +54,6 @@ private:
 	bool m_get_score = false;
 
 	sf::Sound death_sound;
-	sf::Sound walking_sound;
 };
 
 #endif

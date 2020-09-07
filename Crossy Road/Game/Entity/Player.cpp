@@ -16,7 +16,6 @@ Player::Player()
 	m_player.setTextureRect(sf::IntRect{ 0,192,64,64 });
 
 	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
-	walking_sound.setBuffer(asset::sound().get("walking_SFX", "ogg"));
 }
 
 
@@ -33,7 +32,6 @@ void Player::keymove()
 			initY = 192;
 			initX = 0;
 			m_player.setTextureRect({ initX,initY,64,64 });
-			walking_sound.play();
 			if (nextspot == -tile_size) {
 				nextspot = origin_pos.y;
 				cur_pos.y = SCREEN_HEIGHT;
@@ -56,7 +54,6 @@ void Player::keymove()
 				initY = 0;
 				initX = 0;
 				m_player.setTextureRect({ initX,initY,64,64 });
-				walking_sound.play();
 			}
 		}
 	}
@@ -76,7 +73,6 @@ void Player::keymove()
 				initY = 64;
 				initX = 0;
 				m_player.setTextureRect({ initX,initY,64,64 });
-				walking_sound.play();
 			}
 		}
 	}
@@ -96,7 +92,6 @@ void Player::keymove()
 				initY = 128;
 				initX = 0;
 				m_player.setTextureRect({ initX,initY,64,64 });
-				walking_sound.play();
 			}
 		}
 	}
@@ -148,73 +143,9 @@ void Player::moving()
 		m_player.setPosition(cur_pos.x, cur_pos.y);
 	}
 }
-//void Player::restart()
-//{
-//	/* v_speed *= 0.0f;*/
-//	/* m_player.setTextureRect(sf::IntRect{ 0,192,64,64 });*/
-//	is_Alive = true;
-//	is_walking = false;
-//	m_player.setPosition(this->origin_pos);
-//	cur_pos = this->origin_pos;
-//}
 
-//void Player::update(uint& level, uint& score)
-//{
-//	if (this->m_player.getGlobalBounds().top <= -90) {
-//<<<<<<< HEAD
-//		++level;
-//		score += 10;
-//		/*this->restart();*/
-//
-//		level=1;
-//		score = 10;
-//		this->restart();
-//>>>>>>> 4c274ad04f643f8fe18e5303d212977b0a1e94f3
-//		++level;
-//		score += 10;
-//		/*this->restart();*/
-//	}
-//
-//	//if player move out of bound
-//
-//	
-//	//Top
-//	if (this->m_player.getGlobalBounds().top <= -this->m_player.getGlobalBounds().height) {
-//		this->m_player.setPosition(this->m_player.getGlobalBounds().left, 720 - this->m_player.getGlobalBounds().height);
-//		cur_pos.y = origin_pos.y;
-//		/*World::levelUp();
-//		World::plusScore();*/
-//	}
-//	if (this->m_player.getGlobalBounds().top > 600)
-//		min_y_get_point = this->m_player.getGlobalBounds().top;
-//	if (this->m_player.getGlobalBounds().top > 600)
-//		min_y_get_point = this->m_player.getGlobalBounds().top;
-//
-//
-//	//score 90,270,450,630    
-//	if (this->m_player.getGlobalBounds().top == 450 && this->m_player.getGlobalBounds().top < min_y_get_point) {
-//		score = 10;
-//		min_y_get_point = this->m_player.getGlobalBounds().top;
-//	}
-//	else if (this->m_player.getGlobalBounds().top == 270 && this->m_player.getGlobalBounds().top < min_y_get_point) {
-//		score = 10;
-//		score += 10;
-//		min_y_get_point = this->m_player.getGlobalBounds().top;
-//	}
-//	else if (this->m_player.getGlobalBounds().top == 270 && this->m_player.getGlobalBounds().top < min_y_get_point) {
-//		score += 10;
-//		min_y_get_point = this->m_player.getGlobalBounds().top;
-//
-//	}
-//	else if (this->m_player.getGlobalBounds().top == 90 && this->m_player.getGlobalBounds().top < min_y_get_point) {
-//		score = 10;
-//	score += 10;
-//		min_y_get_point = this->m_player.getGlobalBounds().top;
-//	}
-//
-//}
 void Player::animationRenderer() {
-	if (m_clock.getElapsedTime().asSeconds() > m_gaps && is_walking == true) {
+	if (m_clock.getElapsedTime().asSeconds() > m_gaps && is_walking == true && is_Alive) {
 		if (initX > 192) {
 			initX = 0;
 			m_player.setTextureRect({ initX,initY,64,64 });
@@ -226,7 +157,9 @@ void Player::animationRenderer() {
 		m_clock.restart();
 	}
 	else if (m_clock.getElapsedTime().asSeconds() > m_gaps && !is_Alive) {
+		is_walking = false;
 		m_player.setTexture(&explosion);
+		m_player.setScale(1.5f, 1.5f);
 		m_player.setTextureRect({ initX,0,64,64 });
 		initX += 64;
 		m_clock.restart();
@@ -240,9 +173,6 @@ void Player::soundPlaying() {
 void Player::draw(sf::RenderTarget& target)
 {
 	sf::Clock clock;
-	if (!is_Alive) {
-		//m_player.setTextureRect(death_Animation.nextFrame());
-	}
 	target.draw(m_player);
 }
 
