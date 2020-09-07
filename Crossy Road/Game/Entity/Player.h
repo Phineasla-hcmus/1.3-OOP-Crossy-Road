@@ -24,7 +24,7 @@ public:
 	void draw(sf::RenderTarget& target);
 	void keymove(); //keypress detection
 	void moving(); //moving if "walking" boolean is true
-	const sf::Vector2f& getPosition() const { return people.getPosition(); };
+	const sf::Vector2f& getPosition() const { return m_player.getPosition(); };
 	void onCollide(Collision& other) override { is_Alive = false; }
 	void animationRenderer();
 	bool isAlive() const;
@@ -35,11 +35,8 @@ public:
 	bool isGetScore()const;
 	void restart();
 	void soundPlaying();
-
 private:
-	
-
-	sf::RectangleShape people;
+	sf::RectangleShape m_player;
 	sf::Clock m_clock;
 	float m_gaps = 0.1f;
 	sf::Vector2f origin_pos = { START_X, START_Y };
@@ -52,8 +49,8 @@ private:
 	float nextspot; //the next tilespot of the map
 
 	bool is_Alive = true;
-	sf::Texture player_texture;
-	sf::Texture explosion;
+	sf::Texture& player_texture;
+	sf::Texture& explosion;
 	float min_y_get_point;
 	bool m_passed = false;
 	bool m_get_score = false;

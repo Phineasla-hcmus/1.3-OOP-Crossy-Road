@@ -7,7 +7,6 @@
 constexpr auto MIN_VEHICLE = 3;
 constexpr auto Y_DISTANCE_LIGHT_VS_LANE = 90.f;
 
-
 using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 
 constexpr auto HIDDEN_VEHICLE	= 2;
@@ -31,13 +30,13 @@ class Vehicle;
 using vehicle_func = std::function < std::unique_ptr<Vehicle>(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound) >;
 class Lane {
 public:
-	enum direction {
+	enum class direction {
 		left = 1,
 		right = -1,
 	};
 	//Force move constructor
-	Lane(Lane&&) = default;
 	Lane() = default;
+	Lane(Lane&&) = default;
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
 	void		initVehicle(size_t, random&);
 	void		setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
@@ -52,7 +51,7 @@ public:
 	void		unPause();
 private:
 	const sf::Vector2f						m_vehicle_pos		= { 0.f,0.f };
-	const direction							m_dir				= left;
+	const direction							m_dir;
 	float									m_speed				= 0;
 	std::vector<std::unique_ptr<Vehicle>>	m_vehicles;
 	sf::Texture*							m_vehicles_texture	= nullptr;

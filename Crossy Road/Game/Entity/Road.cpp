@@ -81,11 +81,11 @@ void Lane::update(float dt)
 			{
 				this->m_vehicles[i]->move(2.f*speed);// xxx
 				//this->tryCollideWithPlayer();
-				if (this->m_dir == left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing -  VEHICLE_SIZE) {
+				if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing -  VEHICLE_SIZE) {
 
 					this->m_vehicles.erase(this->m_vehicles.begin() + i);					
 				}
-				if (this->m_dir == right && (this->m_vehicles[i]->getPosition().x + this->m_vehicles[i]->getSize().x) <= -spacing + VEHICLE_SIZE) {
+				if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x + this->m_vehicles[i]->getSize().x) <= -spacing + VEHICLE_SIZE) {
 
 					this->m_vehicles.erase(this->m_vehicles.begin() + i);
 				}
@@ -111,7 +111,7 @@ void Lane::update(float dt)
 
 void Lane::spawnVehicle()
 {	
-	if (this->m_dir == left) {
+	if (this->m_dir == direction::left) {
 		auto new_vehicle = m_init_func(sf::Vector2f(BASE_X-VEHICLE_SIZE, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
 		float scale = VEHICLE_SIZE / m_texture_bound.height;
 		new_vehicle->setScale(sf::Vector2f(scale, scale));

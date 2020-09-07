@@ -29,7 +29,7 @@ void World::initLane(const SaveInf& save)
 		unsigned			idx		= m_rand.getInt(0, set.size() - 1);		//random to choose a texture for vehicle in that road
 		const textureInf&	vInfo	= set.getFullInf(idx);							//get all info about texture
 		sf::Texture&		texture	= asset::texture().get(vInfo.name, vInfo.ext);
-		const sf::IntRect	bounds	= (laneInf.direction == Lane::direction::left) 
+		const sf::IntRect	bounds	= (laneInf.direction == (int)Lane::direction::left) 
 			? vInfo.getBounds(0) 
 			: vInfo.getBounds(1);
 		/*set function for init, texture and texture bounds*/
@@ -51,8 +51,6 @@ void World::pause()
 }
 void World::update(float dt)
 {
-
-	
 	m_player.update();
 
 	//check for level up	

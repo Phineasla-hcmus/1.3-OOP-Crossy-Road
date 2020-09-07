@@ -7,16 +7,15 @@ static int initY = 192;
 
 Player::Player() 
 	: Collision(PLAYER_SIZE/2, PLAYER_SIZE/2)
-	, people({ PLAYER_SIZE,PLAYER_SIZE })
+	, m_player({ PLAYER_SIZE,PLAYER_SIZE })
 	, move{ 0,0,0,0 }
 
 {
-	people.setPosition(this->origin_pos);
-	//player_texture.loadFromFile("Assets\\textures\\player_sprite_2.png");
+	m_player.setPosition(this->origin_pos);
 	player_texture = asset::texture().get("player_sprite_2", "png");
 
-	people.setTexture(&player_texture);
-	people.setTextureRect(sf::IntRect{ 0,192,64,64 });
+	m_player.setTexture(&player_texture);
+	m_player.setTextureRect(sf::IntRect{ 0,192,64,64 });
 	explosion = asset::texture().get("explosion", "png");
 
 	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
@@ -36,7 +35,7 @@ void Player::keymove()
 			is_walking = true;
 			initY = 192;
 			initX = 0;
-			people.setTextureRect({ initX,initY,64,64 });
+			m_player.setTextureRect({ initX,initY,64,64 });
 			walking_sound.play();
 			if (nextspot == -tile_size) {
 				nextspot = origin_pos.y;
@@ -44,7 +43,6 @@ void Player::keymove()
 			}
 		}
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		if (is_walking == false)
@@ -60,12 +58,11 @@ void Player::keymove()
 				is_walking = true;
 				initY = 0;
 				initX = 0;
-				people.setTextureRect({ initX,initY,64,64 });
+				m_player.setTextureRect({ initX,initY,64,64 });
 				walking_sound.play();
 			}
 		}
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		if (is_walking == false)
@@ -81,12 +78,11 @@ void Player::keymove()
 				is_walking = true;
 				initY = 64;
 				initX = 0;
-				people.setTextureRect({ initX,initY,64,64 });
+				m_player.setTextureRect({ initX,initY,64,64 });
 				walking_sound.play();
 			}
 		}
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		if (is_walking == false)
@@ -102,7 +98,7 @@ void Player::keymove()
 				is_walking = true;
 				initY = 128;
 				initX = 0;
-				people.setTextureRect({ initX,initY,64,64 });
+				m_player.setTextureRect({ initX,initY,64,64 });
 				walking_sound.play();
 			}
 		}
@@ -122,7 +118,6 @@ void Player::moving()
 				move[UP] = false;
 			}
 		}
-
 		if (move[DOWN] == true )
 		{
 			cur_pos.y += movespeed;
@@ -153,25 +148,22 @@ void Player::moving()
 				move[RIGHT] = false;
 			}
 		}
-		people.setPosition(cur_pos.x, cur_pos.y);
+		m_player.setPosition(cur_pos.x, cur_pos.y);
 	}
 }
 //void Player::restart()
 //{
 //	/* v_speed *= 0.0f;*/
-//	/* people.setTextureRect(sf::IntRect{ 0,192,64,64 });*/
+//	/* m_player.setTextureRect(sf::IntRect{ 0,192,64,64 });*/
 //	is_Alive = true;
 //	is_walking = false;
-//	people.setPosition(this->origin_pos);
+//	m_player.setPosition(this->origin_pos);
 //	cur_pos = this->origin_pos;
 //}
 
-
-
 //void Player::update(uint& level, uint& score)
 //{
-//	if (this->people.getGlobalBounds().top <= -90) {
-
+//	if (this->m_player.getGlobalBounds().top <= -90) {
 //<<<<<<< HEAD
 //		++level;
 //		score += 10;
@@ -181,57 +173,46 @@ void Player::moving()
 //		score = 10;
 //		this->restart();
 //>>>>>>> 4c274ad04f643f8fe18e5303d212977b0a1e94f3
-
 //		++level;
 //		score += 10;
 //		/*this->restart();*/
-
 //	}
 //
 //	//if player move out of bound
 //
-
 //	
-
 //	//Top
-//	if (this->people.getGlobalBounds().top <= -this->people.getGlobalBounds().height) {
-//		this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
+//	if (this->m_player.getGlobalBounds().top <= -this->m_player.getGlobalBounds().height) {
+//		this->m_player.setPosition(this->m_player.getGlobalBounds().left, 720 - this->m_player.getGlobalBounds().height);
 //		cur_pos.y = origin_pos.y;
 //		/*World::levelUp();
 //		World::plusScore();*/
 //	}
-//	if (this->people.getGlobalBounds().top > 600)
-//		min_y_get_point = this->people.getGlobalBounds().top;
-
-//	if (this->people.getGlobalBounds().top > 600)
-//		min_y_get_point = this->people.getGlobalBounds().top;
+//	if (this->m_player.getGlobalBounds().top > 600)
+//		min_y_get_point = this->m_player.getGlobalBounds().top;
+//	if (this->m_player.getGlobalBounds().top > 600)
+//		min_y_get_point = this->m_player.getGlobalBounds().top;
 //
 //
 //	//score 90,270,450,630    
-//	if (this->people.getGlobalBounds().top == 450 && this->people.getGlobalBounds().top < min_y_get_point) {
-
+//	if (this->m_player.getGlobalBounds().top == 450 && this->m_player.getGlobalBounds().top < min_y_get_point) {
 //		score = 10;
-//		min_y_get_point = this->people.getGlobalBounds().top;
+//		min_y_get_point = this->m_player.getGlobalBounds().top;
 //	}
-//	else if (this->people.getGlobalBounds().top == 270 && this->people.getGlobalBounds().top < min_y_get_point) {
+//	else if (this->m_player.getGlobalBounds().top == 270 && this->m_player.getGlobalBounds().top < min_y_get_point) {
 //		score = 10;
-
 //		score += 10;
-//		min_y_get_point = this->people.getGlobalBounds().top;
+//		min_y_get_point = this->m_player.getGlobalBounds().top;
 //	}
-//	else if (this->people.getGlobalBounds().top == 270 && this->people.getGlobalBounds().top < min_y_get_point) {
+//	else if (this->m_player.getGlobalBounds().top == 270 && this->m_player.getGlobalBounds().top < min_y_get_point) {
 //		score += 10;
-
-//		min_y_get_point = this->people.getGlobalBounds().top;
+//		min_y_get_point = this->m_player.getGlobalBounds().top;
 //
 //	}
-//	else if (this->people.getGlobalBounds().top == 90 && this->people.getGlobalBounds().top < min_y_get_point) {
-
+//	else if (this->m_player.getGlobalBounds().top == 90 && this->m_player.getGlobalBounds().top < min_y_get_point) {
 //		score = 10;
-
-//		score += 10;
-
-//		min_y_get_point = this->people.getGlobalBounds().top;
+//	score += 10;
+//		min_y_get_point = this->m_player.getGlobalBounds().top;
 //	}
 //
 //}
@@ -239,17 +220,17 @@ void Player::animationRenderer() {
 	if (m_clock.getElapsedTime().asSeconds() > m_gaps && is_walking == true) {
 		if (initX > 192) {
 			initX = 0;
-			people.setTextureRect({ initX,initY,64,64 });
+			m_player.setTextureRect({ initX,initY,64,64 });
 		}
 		else {
-			people.setTextureRect({ initX,initY,64,64 });
+			m_player.setTextureRect({ initX,initY,64,64 });
 			initX += 64;
 		}
 		m_clock.restart();
 	}
 	else if (m_clock.getElapsedTime().asSeconds() > m_gaps && !is_Alive) {
-		people.setTexture(&explosion);
-		people.setTextureRect({ initX,0,64,64 });
+		m_player.setTexture(&explosion);
+		m_player.setTextureRect({ initX,0,64,64 });
 		initX += 64;
 		m_clock.restart();
 	}
@@ -263,9 +244,9 @@ void Player::draw(sf::RenderTarget& target)
 {
 	sf::Clock clock;
 	if (!is_Alive) {
-		//people.setTextureRect(death_Animation.nextFrame());
+		//m_player.setTextureRect(death_Animation.nextFrame());
 	}
-	target.draw(people);
+	target.draw(m_player);
 }
 
 bool Player::isAlive() const
@@ -280,14 +261,14 @@ bool Player::isPassLevel() const
 
 void Player::update()
 {
-	if (this->people.getGlobalBounds().top > 600)
+	if (this->m_player.getGlobalBounds().top > 600)
 		min_y_get_point = getPosition().y;		
 		
 	//score 90,270,450,630    
-	if ((this->people.getGlobalBounds().top == 90
-		|| this->people.getGlobalBounds().top == 270
-		|| this->people.getGlobalBounds().top == 450)
-		&& this->people.getGlobalBounds().top < min_y_get_point) {
+	if ((this->m_player.getGlobalBounds().top == 90
+		|| this->m_player.getGlobalBounds().top == 270
+		|| this->m_player.getGlobalBounds().top == 450)
+		&& this->m_player.getGlobalBounds().top < min_y_get_point) {
 		min_y_get_point = getPosition().y;
 		m_get_score = true;
 	}
