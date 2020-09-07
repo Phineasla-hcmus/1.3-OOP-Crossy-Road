@@ -107,9 +107,6 @@ void Lane::update(float dt)
 			m_green_time = sf::seconds(green_time);
 		}
 	}
-
-	
-
 }
 
 void Lane::spawnVehicle()

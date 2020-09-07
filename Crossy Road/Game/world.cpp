@@ -112,6 +112,7 @@ CollisionResult World::tryPlayerCollideWith() {
 		for (int j = m_lanes[i].getVehicleSize() - 1; j >= 0; j--) {
 			if (m_player.tryCollideWith(m_lanes[i].getVehicle(j))) {
 				std::cout << "Collided!\n";
+				m_player.soundPlaying();
 				m_game_over = true;
 			}
 		}

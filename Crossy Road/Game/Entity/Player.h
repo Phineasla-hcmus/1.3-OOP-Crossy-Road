@@ -3,6 +3,7 @@
 
 #include"../../PCH.h"
 #include "../Collidable.h"
+#include "SFML/Audio.hpp"
 #include <iostream>
 
 /*
@@ -33,6 +34,7 @@ public:
 	void update();
 	bool isGetScore()const;
 	void restart();
+	void soundPlaying() { if (!is_Alive) { death_sound.play(); } };
 
 private:
 	
@@ -51,9 +53,12 @@ private:
 
 	bool is_Alive = true;
 	sf::Texture player_texture;
+	sf::Texture explosion;
 	float min_y_get_point;
 	bool m_passed = false;
 	bool m_get_score = false;
+
+	sf::Sound death_sound;
 };
 
 #endif

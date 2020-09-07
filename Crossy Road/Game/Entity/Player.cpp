@@ -17,6 +17,8 @@ Player::Player()
 
 	people.setTexture(&player_texture);
 	people.setTextureRect(sf::IntRect{ 0,192,64,64 });
+	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
+	explosion = asset::texture().get("explosion", "png");
 }
 
 
@@ -237,6 +239,12 @@ void Player::animationRenderer() {
 			people.setTextureRect({ initX,initY,64,64 });
 			initX += 64;
 		}
+		m_clock.restart();
+	}
+	else if (m_clock.getElapsedTime().asSeconds() > m_gaps && !is_Alive) {
+		people.setTexture(&explosion);
+		people.setTextureRect({ initX,0,64,64 });
+		initX += 64;
 		m_clock.restart();
 	}
 }
