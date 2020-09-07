@@ -71,7 +71,7 @@ void Player::keymove()
 		if (is_walking == false)
 		{
 			nextspot = cur_pos.x - tile_size;
-			if (nextspot <= 0) {
+			if (nextspot <= tile_size * 2) {
 				nextspot = cur_pos.x + tile_size;
 				move[DOWN] = false;
 				is_walking = false;;
@@ -92,7 +92,7 @@ void Player::keymove()
 		if (is_walking == false)
 		{
 			nextspot = cur_pos.x + tile_size;
-			if (nextspot >= SCREEN_WIDTH - 10) {
+			if (nextspot >= SCREEN_WIDTH - tile_size * 3) {
 				nextspot = cur_pos.x - tile_size;
 				move[DOWN] = false;
 				is_walking = false;;
