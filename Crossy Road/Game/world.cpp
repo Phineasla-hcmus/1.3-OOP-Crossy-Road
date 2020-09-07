@@ -79,9 +79,6 @@ unsigned World::updateLevel()
 	return level;
 }
 
-
-
-
 void World::resetWorld(const SaveInf& new_save)
 {
 	m_lanes.clear();
