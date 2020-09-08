@@ -5,7 +5,6 @@
 #include"Entity/Road.h"
 #include "SaveLevel.h"
 
-using CollisionResult = std::pair<int, std::vector<sf::Vector2f>>;
 
 enum class worldState {
 	update_score,
@@ -29,7 +28,7 @@ public:
 	void input();
 	//worldState update(unsigned& level, unsigned& score, float dt);
 	void update(float dt);
-	CollisionResult tryPlayerCollideWith();
+	bool tryPlayerCollideWith();
 	//worldState update(unsigned& level, unsigned& score, float dt);
 	//unsigned getLevel();
 	unsigned updateScore();
