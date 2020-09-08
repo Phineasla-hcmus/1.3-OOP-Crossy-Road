@@ -23,14 +23,14 @@ const sf::IntRect animation::nextFrame()
 {
 	if (m_timer.getElapsedTime() >= m_frames[m_frame_idx].delay) {
 		m_timer.restart();
-		m_frame_idx++;//next frame idx
+		++m_frame_idx;//next frame idx
 		if (m_frame_idx == m_frames.size())//loop back
 			reset();
 	}
 	return sf::IntRect(m_frames[m_frame_idx].pos, m_frame_size);
 }
 
-const sf::IntRect animation::getFrame(size_t idx)
+const sf::IntRect animation::getFrame(size_t idx) const
 {
 	return sf::IntRect(m_frames[m_frame_idx].pos, m_frame_size);
 }
@@ -40,7 +40,7 @@ void animation::reset()
 	m_frame_idx = 0;
 }
 
-size_t animation::totalFrame()
+size_t animation::totalFrame() const
 {
 	return m_frames.size();
 }

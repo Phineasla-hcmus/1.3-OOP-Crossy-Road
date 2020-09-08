@@ -7,9 +7,9 @@ public:
 	animation(size_t frame_width, size_t frame_height);
 	void add_frame(sf::Time delay, size_t row, size_t col = 0);
 	const sf::IntRect nextFrame();
-	const sf::IntRect getFrame(size_t);
 	void	reset();
-	size_t	totalFrame();
+	const sf::IntRect getFrame(size_t) const;
+	size_t	totalFrame() const;
 private:
 	struct frame {
 		sf::Vector2i	pos;	//The position of the frame in a texture

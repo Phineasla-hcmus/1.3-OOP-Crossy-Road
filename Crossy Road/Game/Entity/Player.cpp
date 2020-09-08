@@ -147,6 +147,16 @@ void Player::moving()
 	}
 }
 
+const sf::Vector2f& Player::getPosition() const
+{
+	return m_player.getPosition();
+}
+
+void Player::onCollide(Collision& other)
+{
+	is_Alive = false;
+}
+
 void Player::animationRenderer() {
 	/*for (int col = 0; col < 4; col++) {
 		for (int row = 0; row < 4; row++) {

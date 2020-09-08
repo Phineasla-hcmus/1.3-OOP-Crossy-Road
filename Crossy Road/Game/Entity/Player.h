@@ -3,8 +3,6 @@
 
 #include"../../PCH.h"
 #include "../Collidable.h"
-#include "SFML/Audio.hpp"
-#include <iostream>
 
 /*
 	Represents the player
@@ -16,23 +14,19 @@ constexpr auto PLAYER_SIZE	= tile_size - 10;
 class Player :public Collision
 {
 public:
-
 	Player();
-	/*void update(uint& level, uint& score);*/
 	void draw(sf::RenderTarget& target);
+	void update();
 	void keymove(); //keypress detection
 	void moving(); //moving if "walking" boolean is true
-	const sf::Vector2f& getPosition() const { return m_player.getPosition(); };
-	void onCollide(Collision& other) override { is_Alive = false; }
+	void onCollide(Collision& other) override;
 	void animationRenderer();
-	bool isAlive() const;
-	sf::Vector2f getPosition() { return cur_pos; };
-	/*void restart();*/
-	bool isPassLevel()const;
-	void update();
-	bool isGetScore()const;
 	void restart();
 	void soundPlaying();
+	const sf::Vector2f& getPosition() const;
+	bool isAlive() const;
+	bool isGetScore()const;
+	bool isPassLevel()const;
 private:
 	sf::RectangleShape	m_player;
 	sf::Clock			m_clock;
