@@ -16,11 +16,11 @@ void Lane::initVehicle(size_t size, random& rand)
 	if (size >= 5)
 		size = 5;//max vehicle
 	m_num_vehicle = size;//init max vehicle
-	//m_distance_vehicle = (1280 - 90 * (m_num_vehicle-1) * 1.0) / (m_num_vehicle-1);
+	
 	if (m_init_func) {
 		float spacing = SCREEN_WIDTH / (float)size;		
 		float x = LEFT_BOUND;// +(float)rand.getDouble(-spacing, spacing);
-		//float x = -10.f;
+	
 		size += HIDDEN_VEHICLE;//increase size with extra vehicle
 
 		m_vehicles.reserve(size);
@@ -67,8 +67,6 @@ void Lane::update(float dt)
 {
 
 	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
-	//for (auto& vehicle : this->m_vehicles)
-	//	vehicle->move(speed);
 
 	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle);//space between 2 car
 
@@ -80,7 +78,6 @@ void Lane::update(float dt)
 			for (size_t i = 0; i < this->m_vehicles.size(); i++)
 			{
 				this->m_vehicles[i]->move(2.f*speed);// xxx
-				//this->tryCollideWithPlayer();
 				if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing -  VEHICLE_SIZE) {
 
 					this->m_vehicles.erase(this->m_vehicles.begin() + i);					

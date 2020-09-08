@@ -85,8 +85,6 @@ void World::resetWorld(const SaveInf& new_save)
 	m_player.restart();
 	
 	initLane(new_save);
-
-	//m_player.restart();
 }
 
 void World::draw(sf::RenderTarget& target)

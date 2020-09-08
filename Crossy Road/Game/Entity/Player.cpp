@@ -154,6 +154,9 @@ const sf::Vector2f& Player::getPosition() const
 
 void Player::onCollide(Collision& other)
 {
+	is_walking = false;
+	m_player.setTexture(&explosion);
+	m_player.setScale(1.5f, 1.5f);
 	is_Alive = false;
 }
 
@@ -175,13 +178,8 @@ void Player::animationRenderer() {
 		m_clock.restart();
 	}
 	else if (m_clock.getElapsedTime().asSeconds() > m_delay.asSeconds() && !is_Alive) {
-		is_walking = false;
-		m_player.setTexture(&explosion);
-		m_player.setScale(1.5f, 1.5f);
 		m_player.setTextureRect({ initX,0,64,64 });
 		initX += 64;
-		/*frame = death_animation.nextFrame();
-		m_player.setTextureRect(frame);*/
 		m_clock.restart();
 	}
 }

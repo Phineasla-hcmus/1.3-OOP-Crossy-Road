@@ -7,7 +7,6 @@ TrafficLight::TrafficLight(sf::Vector2f org_Pos)
 	green_light = asset::texture().get("green", "png");
 	this->light.setSize(size);	
 	this->light.setPosition(org_Pos);
-	/*this->light.setFillColor(state);*/
 	light.setTexture(&green_light);
 }
 
