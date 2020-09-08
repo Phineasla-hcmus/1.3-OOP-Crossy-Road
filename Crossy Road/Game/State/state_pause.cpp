@@ -32,18 +32,13 @@ PauseMenu::PauseMenu(Game& game)
 	m_menu.addWidget(std::move(ExitGameBtn));
 	m_menu.setTitle("   PAUSE  MENU", game.get_window());
 }
-void PauseMenu::update(sf::Time dental_time) {
-
-}
+void PauseMenu::update(sf::Time dental_time) {}
 
 void PauseMenu::draw(sf::RenderTarget& target) {
-
 	m_menu.render(target);
 }
 void PauseMenu::handleEvent(sf::Event ev) {
-
 	m_menu.handleEvent(ev, this->game().get_window());
-
 }
 bool PauseMenu::isPaused() {
 	return m_isPaused;

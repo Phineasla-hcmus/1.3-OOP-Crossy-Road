@@ -22,16 +22,12 @@ private:
 	bool					m_game_over=false;
 public:
 	World(const textureLookup&);
-	/*void levelUp();*/
 	void initLane(const SaveInf&);
 	void resetWorld(const SaveInf&);
 	void draw(sf::RenderTarget& target);
 	void input();
-	//worldState update(unsigned& level, unsigned& score, float dt);
 	void update(float dt);
 	CollisionResult tryPlayerCollideWith();
-	//worldState update(unsigned& level, unsigned& score, float dt);
-	//unsigned getLevel();
 	unsigned updateScore();
 	unsigned updateLevel();
 	bool is_game_over();

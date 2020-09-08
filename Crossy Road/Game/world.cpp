@@ -5,7 +5,6 @@ World::World(const textureLookup& lookup)
 	, m_background(&asset::texture().get("road_textures", "png"), sf::Vector2u(20, 20))//size base on the tileset.png
 	, m_rand()
 {
-
 	//render background map(top to bottom)
 	const std::vector<unsigned> tile_map = { 1,0,1,0,1,0,1,0 };
 	//render y_tiles+1 to fill whole screen
@@ -52,11 +51,7 @@ void World::pause()
 void World::update(float dt)
 {
 	m_player.update();
-
-	//check for level up	
-
 	this->tryPlayerCollideWith();
-
 	for (auto& lane : this->m_lanes)
 		lane.update(dt);
 }

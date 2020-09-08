@@ -1,6 +1,6 @@
 #include"state_game_over.h"
-game_over::game_over(Game& game)
-	: state_base(game)
+GameOver::GameOver(Game& game)
+	: m_game(game)
 	, m_gameover_menu(game.get_window(), 450)
 {
 	loadHighScore(highscore);
@@ -38,11 +38,11 @@ game_over::game_over(Game& game)
 	m_gameover_menu.setTitle("", game.get_window());
 	
 }
-bool game_over::GetState()
+bool GameOver::GetState()
 {
 	return m_exit;
 }
-void game_over::draw(sf::RenderTarget& target) {
+void GameOver::draw(sf::RenderTarget& target) {
 	
 	target.draw(container);
 	m_gameover_menu.render(target);
@@ -50,14 +50,13 @@ void game_over::draw(sf::RenderTarget& target) {
 	if(!new_high_score)target.draw(m_score);
 	target.draw(m_highscore);
 }
-void game_over::handleEvent(sf::Event e) {
-	m_gameover_menu.handleEvent(e, game().get_window());
-
+void GameOver::handleEvent(sf::Event e) {
+	m_gameover_menu.handleEvent(e, m_game.get_window());
 }
-void game_over::update(sf::Time dental_time) {
+void GameOver::update(sf::Time dental_time) {
 	
 }
-void game_over::updateScore(int _score) {
+void GameOver::updateScore(int _score) {
 	score = _score;
 	if (score > highscore)
 	{
