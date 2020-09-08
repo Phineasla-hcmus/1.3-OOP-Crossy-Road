@@ -17,7 +17,7 @@ public:
 	Player();
 	void draw(sf::RenderTarget& target);
 	void update();
-	void keymove(); //keypress detection
+	void input(); //keypress detection
 	void moving(); //moving if "walking" boolean is true
 	void onCollide(Collision& other) override;
 	void animationRenderer();

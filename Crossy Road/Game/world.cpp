@@ -40,7 +40,7 @@ void World::initLane(const SaveInf& save)
 void World::input()
 {
 	if (m_player.isAlive()) {
-		m_player.keymove();
+		m_player.input();
 	}
 }
 bool World::is_game_over() {

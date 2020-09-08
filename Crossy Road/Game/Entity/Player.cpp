@@ -22,9 +22,9 @@ Player::Player()
 }
 
 
-void Player::keymove()
+void Player::input()
 {
-	/*keymove() and moving() functions are working together*/
+	/*input() and moving() functions are working together*/
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		if (is_walking == false)
