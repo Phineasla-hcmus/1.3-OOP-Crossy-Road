@@ -92,8 +92,7 @@ void World::draw(sf::RenderTarget& target)
 	m_player.animationRenderer();
 	m_player.draw(target);
 }
-CollisionResult World::tryPlayerCollideWith() {
-	CollisionResult result;
+bool World::tryPlayerCollideWith() {
 	for (size_t i = 0; i < m_lanes.size(); i++) {
 		if (!m_player.isAlive())
 			continue;
@@ -102,8 +101,9 @@ CollisionResult World::tryPlayerCollideWith() {
 				std::cout << "Collided!\n";
 				m_player.soundPlaying();
 				m_game_over = true;
+				return true;
 			}
 		}
 	}
-	return result;
+	return false;
 }
