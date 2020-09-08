@@ -30,7 +30,7 @@ void Player::keymove()
 		if (is_walking == false)
 		{
 			nextspot = cur_pos.y - tile_size;
-			move[UP] = true;
+			moves[UP] = true;
 			is_walking = true;
 			initY = 192;
 			initX = 0;
@@ -48,11 +48,11 @@ void Player::keymove()
 			nextspot = cur_pos.y + tile_size;
 			if (nextspot >= SCREEN_HEIGHT) {
 				nextspot = cur_pos.y - tile_size;
-				move[DOWN] = false;
-				is_walking = false;;
+				moves[DOWN] = false;
+				is_walking = false;
 			}
 			else {
-				move[DOWN] = true;
+				moves[DOWN] = true;
 				is_walking = true;
 				initY = 0;
 				initX = 0;
@@ -67,11 +67,11 @@ void Player::keymove()
 			nextspot = cur_pos.x - tile_size;
 			if (nextspot <= tile_size * 2) {
 				nextspot = cur_pos.x + tile_size;
-				move[DOWN] = false;
+				moves[DOWN] = false;
 				is_walking = false;;
 			}
 			else {
-				move[LEFT] = true;
+				moves[LEFT] = true;
 				is_walking = true;
 				initY = 64;
 				initX = 0;
@@ -86,11 +86,11 @@ void Player::keymove()
 			nextspot = cur_pos.x + tile_size;
 			if (nextspot >= SCREEN_WIDTH - tile_size * 3) {
 				nextspot = cur_pos.x - tile_size;
-				move[DOWN] = false;
+				moves[DOWN] = false;
 				is_walking = false;;
 			}
 			else {
-				move[RIGHT] = true;
+				moves[RIGHT] = true;
 				is_walking = true;
 				initY = 128;
 				initX = 0;
@@ -103,44 +103,44 @@ void Player::moving()
 {
 	if (is_walking == true)
 	{
-		if (move[UP] == true)
+		if (moves[UP] == true)
 		{
 			cur_pos.y -= movespeed;
 			if (cur_pos.y <= nextspot)
 			{
 				cur_pos.y = nextspot;
 				is_walking = false;
-				move[UP] = false;
+				moves[UP] = false;
 			}
 		}
-		if (move[DOWN] == true )
+		if (moves[DOWN] == true )
 		{
 			cur_pos.y += movespeed;
 			if (cur_pos.y >= nextspot)
 			{
 				cur_pos.y = nextspot;
 				is_walking = false;
-				move[DOWN] = false;
+				moves[DOWN] = false;
 			}
 		}
-		if (move[LEFT] == true)
+		if (moves[LEFT] == true)
 		{
 			cur_pos.x -= movespeed;
 			if (cur_pos.x <= nextspot)
 			{
 				cur_pos.x = nextspot;
 				is_walking = false;
-				move[LEFT] = false;
+				moves[LEFT] = false;
 			}
 		}
-		if (move[RIGHT] == true)
+		if (moves[RIGHT] == true)
 		{
 			cur_pos.x += movespeed;
 			if (cur_pos.x >= nextspot)
 			{
 				cur_pos.x = nextspot;
 				is_walking = false;
-				move[RIGHT] = false;
+				moves[RIGHT] = false;
 			}
 		}
 		m_player.setPosition(cur_pos.x, cur_pos.y);

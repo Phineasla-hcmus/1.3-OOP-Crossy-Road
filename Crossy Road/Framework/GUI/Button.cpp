@@ -69,7 +69,7 @@ void Button::updateText()
 {
 	//_text.setOrigin(_text.getGlobalBounds().width +70 ,
 	//    _text.getGlobalBounds().height+30 );
-	//_text.move(_button.getGlobalBounds().width+10 ,
+	//_text.moves(_button.getGlobalBounds().width+10 ,
 	//    _button.getGlobalBounds().height);
 	_text.setOrigin(_text.getLocalBounds().left + _text.getLocalBounds().width / 2.0f
 		, _text.getLocalBounds().top + _text.getLocalBounds().height / 2.0f);

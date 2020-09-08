@@ -34,7 +34,7 @@ public:
 		left = 1,
 		right = -1,
 	};
-	//Force move constructor
+	//Force moves constructor
 	Lane() = default;
 	Lane(Lane&&) = default;
 	Lane(const sf::Vector2f road_pos, const direction, float speed);

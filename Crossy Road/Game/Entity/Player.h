@@ -36,7 +36,7 @@ private:
 	float				movespeed	= MOVESPEED;
 
 	enum	MOVE { UP, DOWN, LEFT, RIGHT }; //enums instead of remember numbers
-	bool	move[4] = { 0,0,0,0 };
+	bool	moves[4] = { 0,0,0,0 };
 	bool	is_walking = false;
 	float	nextspot; //the next tilespot of the map
 
