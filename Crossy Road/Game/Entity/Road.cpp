@@ -7,7 +7,7 @@ Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	, m_dir(dir)
 	, m_speed(speed)
 	, m_vehicles_texture(nullptr)
-	, m_light({ road_pos.x,road_pos.y + Y_DISTANCE_LIGHT_VS_LANE })	
+	, m_light({ road_pos.x,road_pos.y + Y_DISTANCE_LIGHT_VS_LANE }, nullptr)
 {
 }
 

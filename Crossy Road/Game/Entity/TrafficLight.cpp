@@ -1,25 +1,27 @@
 #include "TrafficLight.h"
-#include <iostream>
+#include <vector>
+#include <initializer_list>
 
-TrafficLight::TrafficLight(sf::Vector2f org_Pos)
+TrafficLight::TrafficLight(sf::Vector2f org_Pos, const sf::Texture* texture)
+	: Green_Light(&asset::texture().get("green", "png"))
+	, Red_Light(&asset::texture().get("red", "png"))
 {
-	red_light = asset::texture().get("red", "png");
-	green_light = asset::texture().get("green", "png");
-	this->light.setSize(size);	
+
+	this->light.setSize(size);
 	this->light.setPosition(org_Pos);
-	light.setTexture(&green_light);
+	light.setTexture(Green_Light);
 }
 
 void TrafficLight::turnRed()
 {
 	state = (sf::Color::Red);
-	light.setTexture(&red_light);
+	light.setTexture(Red_Light);
 }
 
 void TrafficLight::turnGreen()
 {
 	state = (sf::Color::Green);
-	light.setTexture(&green_light);
+	light.setTexture(Green_Light);
 }
 
 sf::Color TrafficLight::getLightState()
