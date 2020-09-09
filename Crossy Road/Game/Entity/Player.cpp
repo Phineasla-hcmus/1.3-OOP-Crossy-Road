@@ -184,10 +184,7 @@ void Player::animationRenderer() {
 	}
 }
 
-void Player::soundPlaying() {
-	if (!is_Alive)
-		death_sound.play();
-}
+
 void Player::draw(sf::RenderTarget& target)
 {
 	sf::Clock clock;

@@ -22,7 +22,7 @@ public:
 	void onCollide(Collision& other) override;
 	void animationRenderer();
 	void restart();
-	void soundPlaying();
+	void deathSoundPlaying() { if (!is_Alive)death_sound.play(); };
 	const sf::Vector2f& getPosition() const;
 	bool isAlive() const;
 	bool isGetScore()const;
