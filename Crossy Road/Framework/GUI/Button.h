@@ -1,6 +1,5 @@
 #ifndef _BUTTON_H_
 #define _BUTTON_H_
-
 #include <functional>
 #include "../../Framework/GUI/Widget.h"
 #include"../AssetManager/asset.h"

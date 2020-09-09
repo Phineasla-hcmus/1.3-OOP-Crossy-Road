@@ -1,7 +1,5 @@
 #include "Textbox.h"
 
-#include <iostream>
-
 TextBox::TextBox(std::string& modString)
 	: m_pModString(&modString)
 {
