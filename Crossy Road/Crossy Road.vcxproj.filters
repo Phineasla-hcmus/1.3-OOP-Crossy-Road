@@ -113,6 +113,9 @@
     <ClCompile Include="Game\Entity\Obstacle.cpp">
       <Filter>Source Files\Game\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\AssetManager\music.cpp">
+      <Filter>Source Files\Framework\AssetManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\State\state_base.h">
@@ -198,6 +201,9 @@
     </ClInclude>
     <ClInclude Include="Game\Entity\Obstacle.h">
       <Filter>Source Files\Game\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\AssetManager\music.h">
+      <Filter>Source Files\Framework\AssetManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
