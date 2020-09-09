@@ -10,7 +10,9 @@ Player::Player()
 	, m_player({ PLAYER_SIZE,PLAYER_SIZE })
 	, player_texture(asset::texture().get("player_sprite_2", "png"))
 	, explosion(asset::texture().get("explosion", "png"))
-	,death_animation(64.f,64.f)
+	,death_animation(64,64)
+	,min_y_get_point(0)
+	,nextspot(cur_pos.y - tile_size)
 {
 	m_player.setPosition(this->origin_pos);
 	m_player.setTexture(&player_texture);
@@ -19,6 +21,7 @@ Player::Player()
 		death_animation.add_frame(m_delay,0,index);
 	}
 	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
+	death_sound.setVolume(50);
 }
 
 
@@ -184,10 +187,7 @@ void Player::animationRenderer() {
 	}
 }
 
-void Player::soundPlaying() {
-	if (!is_Alive)
-		death_sound.play();
-}
+
 void Player::draw(sf::RenderTarget& target)
 {
 	sf::Clock clock;
