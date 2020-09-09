@@ -5,13 +5,13 @@
 #include "../Collidable.h"
 
 
-class Vehicle : public Collision {
+class Obstacle : public Collision {
 private:
 	bool m_active;
 	sf::RectangleShape m_sprite;
 public:
-	Vehicle(sf::Vector2f pos, const sf::Texture&);
-	Vehicle(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
+	Obstacle(sf::Vector2f pos, const sf::Texture&);
+	Obstacle(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
 
 	const sf::Vector2f& getPosition()	const { return m_sprite.getPosition(); };
 	void	onCollide(Collision& other) { m_active = false; };
@@ -24,19 +24,19 @@ public:
 	void draw(sf::RenderTarget&) const;
 	void move(float speed);
 };
-class Car :public Vehicle {
+class Car :public Obstacle {
 public:
 	Car(sf::Vector2f pos, const sf::Texture&);
 	Car(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
 };
-class Truck :public Vehicle {
+class Truck :public Obstacle {
 public:
 	Truck(sf::Vector2f pos, const sf::Texture&);
 	Truck(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
 };
 
 template<typename T>
-std::unique_ptr<Vehicle> new_vehicle(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
+std::unique_ptr<Obstacle> new_vehicle(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
 {
 	return std::make_unique<T>(pos, texture, textureBound);
 }

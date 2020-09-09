@@ -5,9 +5,10 @@
 #include"../../PCH.h"
 class state_save :public state_base {
 private:
-	StackMenu save_menu;
-	SaveInf m_save;
-	std::string m_name;
+	StackMenu			save_menu;
+	SaveInf				   m_save;
+	std::string			   m_name;
+	sf::RectangleShape    background;
 public:
 	state_save(Game&, SaveInf& _save);
 	void handleEvent(sf::Event e)			override;

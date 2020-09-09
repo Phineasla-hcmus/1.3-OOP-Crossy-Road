@@ -23,6 +23,7 @@ private:
 	bool					is_fail = false;
 	Widget::Text            fail_label;
 	sf::RectangleShape      background;
+	sf::RectangleShape		background2;
 public:
 	state_load(Game&);
 

@@ -48,7 +48,7 @@ size_t Lane::getVehicleSize() const
 	return m_vehicles.size();
 }
 
-Vehicle& Lane::getVehicle(size_t idx)
+Obstacle& Lane::getVehicle(size_t idx)
 {
 	return *m_vehicles[idx];
 }
@@ -77,10 +77,10 @@ void Lane::update(float dt)
 		if (m_clock.getElapsedTime() <= (m_start_time_change_color + m_green_time)/*time green light*/) {
 			for (size_t i = 0; i < this->m_vehicles.size(); i++)
 			{
-				this->m_vehicles[i]->move(2.f*speed);// xxx
+				this->m_vehicles[i]->move(2.f*speed);
 				if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing -  VEHICLE_SIZE) {
 
-					this->m_vehicles.erase(this->m_vehicles.begin() + i);					
+					this->m_vehicles.erase(this->m_vehicles.begin() + i);
 				}
 				if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x + this->m_vehicles[i]->getSize().x) <= -spacing + VEHICLE_SIZE) {
 

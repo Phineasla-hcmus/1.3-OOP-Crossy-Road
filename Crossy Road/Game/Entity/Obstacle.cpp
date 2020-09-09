@@ -1,7 +1,7 @@
-#include "Vehicle.h"
+#include "Obstacle.h"
 
 
-Vehicle::Vehicle(sf::Vector2f pos, const sf::Texture& texture)
+Obstacle::Obstacle(sf::Vector2f pos, const sf::Texture& texture)
 	: Collision((float)texture.getSize().x, (float)texture.getSize().y)
 	, m_sprite(sf::Vector2f((float)texture.getSize().x, (float)texture.getSize().y))
 	, m_active(true)
@@ -10,7 +10,7 @@ Vehicle::Vehicle(sf::Vector2f pos, const sf::Texture& texture)
 	setTexture(texture);
 }
 
-Vehicle::Vehicle(sf::Vector2f pos , const sf::Texture& texture, sf::IntRect textureBound)
+Obstacle::Obstacle(sf::Vector2f pos , const sf::Texture& texture, sf::IntRect textureBound)
 	: Collision((float)textureBound.width, (float)textureBound.height)
 	, m_sprite(sf::Vector2f((float)textureBound.width, (float)textureBound.height))
 {
@@ -18,35 +18,35 @@ Vehicle::Vehicle(sf::Vector2f pos , const sf::Texture& texture, sf::IntRect text
 	setTexture(texture, textureBound);
 }
 
-const sf::Vector2f& Vehicle::getSize() const
+const sf::Vector2f& Obstacle::getSize() const
 {
 	return m_sprite.getSize();
 }
 
-void Vehicle::setTexture(const sf::Texture& texture, const sf::IntRect& bounds)
+void Obstacle::setTexture(const sf::Texture& texture, const sf::IntRect& bounds)
 {
 	m_sprite.setTexture(&texture);
 	m_sprite.setTextureRect(bounds);
 }
 
-void Vehicle::setTexture(const sf::Texture& texture, bool resetRect)
+void Obstacle::setTexture(const sf::Texture& texture, bool resetRect)
 {
 	m_sprite.setTexture(&texture, resetRect);
 }
 
-void Vehicle::setTextureRec(const sf::IntRect& bounds)
+void Obstacle::setTextureRec(const sf::IntRect& bounds)
 {
 	m_sprite.setTextureRect(bounds);
 }
 
-void Vehicle::setSize(const sf::Vector2f& size)
+void Obstacle::setSize(const sf::Vector2f& size)
 {
 	m_sprite.setSize(size);
 	Collision::setSize(size);
 }
 
 //scale texture and collision size
-void Vehicle::setScale(const sf::Vector2f& scale)
+void Obstacle::setScale(const sf::Vector2f& scale)
 {
 	m_sprite.setScale(scale);
 	//set Collision size to match Sprite size
@@ -55,27 +55,27 @@ void Vehicle::setScale(const sf::Vector2f& scale)
 	Collision::setSize({ spriteSize.x * spriteScale.x,spriteSize.y * spriteScale.y });
 }
 
-void Vehicle::draw(sf::RenderTarget& render) const
+void Obstacle::draw(sf::RenderTarget& render) const
 {
 	render.draw(m_sprite);
 }
 
-void Vehicle::move(float speed)
+void Obstacle::move(float speed)
 {
 	m_sprite.move(speed, 0);//limit speed max
 }
 
 Car::Car(sf::Vector2f pos, const sf::Texture& texture)
-	: Vehicle(pos, texture)
+	: Obstacle(pos, texture)
 {}
 
 Car::Car(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
-	: Vehicle(pos, texture, textureBound)
+	: Obstacle(pos, texture, textureBound)
 {}
 Truck::Truck(sf::Vector2f pos, const sf::Texture& texture)
-	: Vehicle(pos, texture)
+	: Obstacle(pos, texture)
 {}
 
 Truck::Truck(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
-	: Vehicle(pos, texture, textureBound)
+	: Obstacle(pos, texture, textureBound)
 {}
