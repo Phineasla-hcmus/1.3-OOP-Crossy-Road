@@ -62,9 +62,6 @@
     <ClCompile Include="Framework\GUI\TextBox.cpp">
       <Filter>Source Files\Framework\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Game\World.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Entity\Road.cpp">
       <Filter>Source Files\Game\Entity</Filter>
     </ClCompile>
@@ -80,9 +77,6 @@
     <ClCompile Include="Game\Collidable.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Game.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Game\State\state_pause.cpp">
       <Filter>Source Files\Game\State</Filter>
     </ClCompile>
@@ -92,11 +86,32 @@
     <ClCompile Include="Framework\Util\animation.cpp">
       <Filter>Source Files\Framework\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Entity\TrafficLight.cpp">
-      <Filter>Source Files\Game\Entity</Filter>
+    <ClCompile Include="Framework\Util\tilemap.cpp">
+      <Filter>Source Files\Framework\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Game.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\World.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\SaveLevel.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Util\io_config.cpp">
+      <Filter>Source Files\Framework\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Background.cpp">
+      <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\State\state_save.cpp">
       <Filter>Source Files\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\State\state_game_over.cpp">
+      <Filter>Source Files\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Entity\TrafficLight.cpp">
+      <Filter>Source Files\Game\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -127,9 +142,6 @@
     <ClInclude Include="Framework\GUI\TextBox.h">
       <Filter>Source Files\Framework\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="Game\World.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Entity\Player.h">
       <Filter>Source Files\Game\Entity</Filter>
     </ClInclude>
@@ -148,9 +160,6 @@
     <ClInclude Include="Game\Collidable.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Game.h">
-      <Filter>Source Files\Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Game\State\state_pause.h">
       <Filter>Source Files\Game\State</Filter>
     </ClInclude>
@@ -160,11 +169,35 @@
     <ClInclude Include="Framework\Util\animation.h">
       <Filter>Source Files\Framework\Util</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Entity\TrafficLight.h">
-      <Filter>Source Files\Game\Entity</Filter>
+    <ClInclude Include="Framework\Util\tilemap.h">
+      <Filter>Source Files\Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="PCH.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Game.h">
+      <Filter>Source Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\World.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\SaveLevel.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Util\io_config.h">
+      <Filter>Source Files\Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Background.h">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\State\state_save.h">
       <Filter>Source Files\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\state_game_over.h">
+      <Filter>Source Files\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Entity\TrafficLight.h">
+      <Filter>Source Files\Game\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

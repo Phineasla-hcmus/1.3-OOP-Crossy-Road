@@ -1,6 +1,8 @@
 #include "Collidable.h"
-#include "Collidable.h"
 
+Collision::Collision(const sf::Vector2f& size)
+    : m_size(size)
+{}
 
 Collision::Collision(float width, float height)
     : m_size(width, height)
@@ -8,7 +10,7 @@ Collision::Collision(float width, float height)
 
 bool Collision::tryCollideWith(Collision& other)
 {
-    if (getBox().intersects(other.getBox())) {
+    if (getBox(20).intersects(other.getBox(0))) {
         onCollide(other);
         other.onCollide(*this);
         return true;
@@ -16,13 +18,24 @@ bool Collision::tryCollideWith(Collision& other)
     return false;
 }
 
-sf::FloatRect Collision::getBox() const
+void Collision::setSize(sf::Vector2f new_size)
+{
+    m_size = new_size;
+}
+
+void Collision::setSize(float width, float height)
+{
+    m_size = { width,height };
+}
+
+sf::FloatRect Collision::getBox(int delta_X) const
 {
     return
     {
-        getPosition().x,
-        getPosition().y,
+        getPosition().x + delta_X,
+        getPosition().y + delta_X,
         m_size.x,
         m_size.y
     };
 }
+

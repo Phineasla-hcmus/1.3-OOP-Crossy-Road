@@ -1,5 +1,6 @@
 #include<iostream>
 #include "Game.h"
+#include "../Game/State/state_main_menu.h"
 state_base& Game::cur_state() const
 {
 	return *m_states.top();
@@ -17,13 +18,16 @@ void Game::swap()
 }
 Game::Game()
 	//set resolution, window's title and disable fullscreen
-	: m_window(sf::VideoMode(screen_width, screen_height), "Crossy Road", sf::Style::Close)
+	: m_window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Crossy Road", sf::Style::Close)
 {
 	m_window.setFramerateLimit(60);
 	sf::Image icon;
 	//set icon for window, skip if failed
 	if (icon.loadFromFile("Assets/icon.png"))
 		m_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+	//Load all texture name
+	m_vehicles_set.loadNewSet("Config/car.txt");
+	m_vehicles_set.loadNewSet("Config/truck.txt");
 	//push first state here
 	pushState(std::make_unique<state_main_menu>(*this));
 }
@@ -81,9 +85,19 @@ void Game::swapState(std::unique_ptr<state_base> swap)
 	m_swap_state = std::move(swap);
 }
 
+size_t Game::getStateSize() const
+{
+	return m_states.size();
+}
+
 const sf::RenderWindow& Game::get_window() const
 {
 	return m_window;
+}
+
+const textureLookup& Game::get_texture_set() const
+{
+	return m_vehicles_set;
 }
 
 sf::Time Game::update_dt_clock()

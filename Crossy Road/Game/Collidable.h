@@ -3,17 +3,22 @@
 #include <SFML/Graphics.hpp>
 
 
-    class Collision
-    {
-    public:
-        Collision(float width, float height);
+	class Collision
+	{
+	public:
+		Collision() = default;
+		Collision(const sf::Vector2f&);
+		Collision(float width, float height);
 
-        bool tryCollideWith(Collision& other);
-        sf::FloatRect getBox() const;
+		bool			tryCollideWith(Collision& other);
+		virtual void	setSize(sf::Vector2f new_size);			//overwrite previous size
+		virtual void	setSize(float width, float height);		//overwrite previous size
 
-        virtual const sf::Vector2f& getPosition() const = 0;
-        virtual void onCollide(Collision& other) = 0;
+		virtual void	onCollide(Collision& other) = 0;
+		virtual const sf::Vector2f& getPosition() const = 0;
 
-    private:
-        sf::Vector2f m_size;
-    };
+		sf::FloatRect				getBox(int delta_X) const;
+
+	private:
+		sf::Vector2f m_size = { 0,0 };
+	};

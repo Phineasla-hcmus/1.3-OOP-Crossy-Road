@@ -1,138 +1,109 @@
 #include "World.h"
-int World::level = 1;
-int World::score = 0;
-bool World::isPlus = false;
 
-World::World()
+World::World(const textureLookup& lookup)
+	: m_vehicle_set(lookup)
+	, m_background(&asset::texture().get("road_textures", "png"), sf::Vector2u(20, 20))//size base on the tileset.png
+	, m_rand()
 {
-	random rand;
-	std::array<int, 4> vehicle_type;
-	for (auto& it : vehicle_type) {
-		it = rand.int_in_range(0, 2);
-	}
-	//init road
-	resetRoad();
+	//render background map(top to bottom)
+	const std::vector<unsigned> tile_map = { 1,0,1,0,1,0,1,0 };
+	//render y_tiles+1 to fill whole screen
+	m_background.setMapSize(x_tiles+1, y_tiles);
+	//scale the texture to tile_size (90)
+	m_background.create_map(tile_map, sf::Vector2u(tile_size, tile_size));
 }
 
-World::World(SaveInf inf)
+void World::initLane(const SaveInf& save)
 {
-	this->level = inf.get_level();
-	this->score = inf.get_score();
-	
-	const int num_lane = 4;
-	std::array<int, num_lane> type;
-	std::array<float, num_lane> speed;
-	for (int i = 0; i < num_lane; ++i) {
-		type[i] = inf.get_type(i);
-		speed[i] = inf.get_type(i);
-	}
-	float y_startPos = 0;
-	random rand;
-	int isFromLeft = 1;
-
-	int numVehicle = ((level <= 3) ? 2 : (level <= 5 ? 3 : 4));
-	for (int i = 0; i < 4; ++i) {
-		sf::Vector2f origin_Pos;
-		origin_Pos.x = 10;
-		origin_Pos.y = y_startPos;
-		m_road.push_back({ numVehicle + rand.int_in_range(-1,1),rand.int_in_range(-150,150),type[i],origin_Pos,speed[i] + rand.int_in_range(-10,10),isFromLeft ,m_player });
-		y_startPos = origin_Pos.y + m_road[0].getDistance();
-		isFromLeft = isFromLeft * -1;
+	//function for init
+	m_lanes.reserve(SAVE_LANE);
+	vehicle_func initVehicleFunc[] = { new_vehicle<Truck> , new_vehicle<Car>};
+	for (size_t i = 0; i < SAVE_LANE; ++i) {
+		const float			lanePos = i * tile_size * 2.f;					
+		const auto&			laneInf = save.get_RoadInf(i);							//get each laneInf from save file
+		m_lanes.emplace_back(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed);
+		Lane&				newLane = m_lanes.back();
+		/*use for set vInfo type and its texture*/
+		const textureSet&	set		= m_vehicle_set.getSet(laneInf.vehicleType);	//get a set of multiple texture of a vInfo type
+		unsigned			idx		= m_rand.getInt(0, set.size() - 1);		//random to choose a texture for vehicle in that road
+		const textureInf&	vInfo	= set.getFullInf(idx);							//get all info about texture
+		sf::Texture&		texture	= asset::texture().get(vInfo.name, vInfo.ext);
+		const sf::IntRect	bounds	= (laneInf.direction == (int)Lane::direction::left) 
+			? vInfo.getBounds(0) 
+			: vInfo.getBounds(1);
+		/*set function for init, texture and texture bounds*/
+		newLane.setVehicleType(initVehicleFunc[laneInf.vehicleType], texture, bounds);
+		newLane.initVehicle(laneInf.vehicleNum, m_rand);
 	}
 }
-
 void World::input()
 {
 	if (m_player.isAlive()) {
-		m_player.keymove();
-
+		m_player.input();
 	}
 }
-
-int World::update(float dt)
+bool World::is_game_over() {
+	return m_game_over;
+}
+void World::pause()
 {
-	int score = 0;
-	for (auto& road : this->m_road)
-		road.update(dt,this->level);
-	m_player.moving();
-	if (m_player.isAlive()) {
-		m_player.animationRenderer();
-	}
-	m_player.update(dt);	
+}
+void World::update(float dt)
+{
+	m_player.update();
+	this->tryPlayerCollideWith();
+	for (auto& lane : this->m_lanes)
+		lane.update(dt);
+}
+
+
+unsigned World::updateScore()
+{
+	unsigned score = 0;
+	if (m_player.isGetScore())
+		score = 10;
 	return score;
 }
 
-const Player& World::getPlayer() const
+unsigned World::updateLevel()
 {
-	return m_player;
-}
-
-bool World::isGameOver() const
-{
-	return _isGameOver;
-}
-
-void World::resetRoad()
-{
-  //  ++level;
-
-	m_road.clear();
-	random rand;
-	float y_startPos = 0;
-	int isFromLeft = 1;
-	float speed = base_vehicle_speed + World::level * step_vehicle_speed;
-	auto m_level = World::level;
-	
-	int numVehicle = ((m_level <= 3) ? 2 : (m_level <= 5 ? 3 : 4));
-	for (int i = 0; i < 4; ++i) {
-		sf::Vector2f origin_Pos;
-		origin_Pos.x = 10;
-		origin_Pos.y = y_startPos;
-		m_road.push_back({ numVehicle+rand.int_in_range(-1,1),rand.int_in_range(-150,150),rand.int_in_range(0, 2),origin_Pos,speed+rand.int_in_range(-10,10),isFromLeft ,m_player });
-		y_startPos = origin_Pos.y + m_road[0].getDistance();
-		isFromLeft = isFromLeft * -1;
+	unsigned level = 0;
+	if (m_player.isPassLevel()) {
+		level = 1;
 	}
-}
-
-int World::getLevel() const
-{
 	return level;
 }
 
-void World::levelUp()
+void World::resetWorld(const SaveInf& new_save)
 {
-	++level;
+	m_lanes.clear();
+	m_player.restart();
+	
+	initLane(new_save);
 }
-
-int World::getScore() const
-{
-	return this->score;
-}
-
-void World::plusScore()
-{
-	if (!isPlus)
-		score += 10;
-}
-
-void World::n_plus()
-{
-	isPlus = false;
-}
-
-void World::plus()
-{
-	isPlus = true;
-}
-
-
 
 void World::draw(sf::RenderTarget& target)
 {
-
-	for (auto& droad : m_road) {
-		droad.draw(target);
+	target.draw(m_background);
+	for (auto& lane : m_lanes) {
+		lane.draw(target);
 	}
+	m_player.moving();
+	m_player.animationRenderer();
 	m_player.draw(target);
-
+}
+bool World::tryPlayerCollideWith() {
+	for (size_t i = 0; i < m_lanes.size(); i++) {
+		if (!m_player.isAlive())
+			continue;
+		for (int j = m_lanes[i].getVehicleSize() - 1; j >= 0; j--) {
+			if (m_player.tryCollideWith(m_lanes[i].getVehicle(j))) {
+				std::cout << "Collided!\n";
+				m_player.soundPlaying();
+				m_game_over = true;
+				return true;
+			}
+		}
+	}
+	return false;
 }

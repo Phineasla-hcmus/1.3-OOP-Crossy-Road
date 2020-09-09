@@ -3,13 +3,11 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 //default value
-#define	TEXT_SIZE		30
 #define	OUTLINE_COLOR	sf::Color::Black
-#define FILL_COLOR		sf::Color::Blue
-#define DEFAULT_FONT	"arcade"
-#define DEFAULT_EXT		"TTF"
-#define BACKUP_FONT	    "FAIL"
-#define BACKUP_EXT		"TTF"
+#define FILL_COLOR		sf::Color::White
+constexpr auto TEXT_SIZE	= 30;
+constexpr auto DEFAULT_FONT = "arcade";
+constexpr auto DEFAULT_EXT	= "TTF";
 class Widget
 {
 public:
@@ -26,8 +24,6 @@ public:
 			unsigned size,
 			const sf::Color& outline, 
 			const sf::Color& fill);
-		void _setFont(const std::string& font,
-			const std::string& ext);
 	};
 	class Rectangle : public sf::RectangleShape
 	{

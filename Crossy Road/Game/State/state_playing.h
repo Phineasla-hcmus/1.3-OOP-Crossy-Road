@@ -1,20 +1,20 @@
 #ifndef _state_playing
 #define _state_playing
-#include"../../Framework/State/state_base.h"
-#include"../../Framework/GUI/Widget.h"
-#include"../../Game/State/state_pause.h"
-#include "../World.h"
-#include"state_load.h"
 
+#include "../../PCH.h"
+#include "../World.h"
+#include"state_pause.h"
+#include"state_game_over.h"
+constexpr auto LEVEL_CAP = 5;
 class state_playing :public state_base {
 private:
-	World	m_world;
-	int		m_score			= 0;
-	bool	m_is_gameover	= false;
-	bool    _is_paused      = false;
-	int		m_level = 1;
-	PauseMenu pause_menu;
-	SaveInf save;
+	SaveInf		m_save;
+	World		m_world;
+	unsigned	m_level			= 1;
+	unsigned	m_score			= 0;
+	bool		m_is_gameover	= false;
+	PauseMenu	m_pause_menu;
+	GameOver   m_gameover;
 	class display {
 	private:
 		Widget::Text label;
@@ -28,15 +28,16 @@ private:
 		void update(int newdata);
 		void draw(sf::RenderTarget& target);
 		int getCurrentDataDisplayed() const;
-	}_score_display, _level_display;
+	}m_score_display, m_level_display;
 public:
-	state_playing(Game&);
-	state_playing(Game&, SaveInf);
+	state_playing(Game&);//start at level 1
+	state_playing(Game&, const SaveInf&);//call in state_load
+	void handleEvent(sf::Event e)				override;
+	void handleInput()							override;
+	void update(sf::Time delta_time)			override;	
+	void draw(sf::RenderTarget& renderer)		override;
+	
 
-	void handleEvent(sf::Event e)			override;
-	void handleInput()                      override;
-	void update(sf::Time delta_time)		override;	
-	void draw(sf::RenderTarget& renderer)    override;
+	std::vector<SaveInf::RoadInf> randomSaveInf(unsigned lv);
 };
-
 #endif // !_state_playing/

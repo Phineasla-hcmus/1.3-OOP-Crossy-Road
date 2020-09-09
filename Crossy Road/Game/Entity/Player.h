@@ -1,51 +1,55 @@
 #ifndef Player_h
 #define Player_h
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include"../../Framework/AssetManager/asset.h"
+#include"../../PCH.h"
 #include "../Collidable.h"
-#include <iostream>
 
 /*
 	Represents the player
 */
+constexpr auto START_X		= SCREEN_WIDTH / 2;
+constexpr auto START_Y		= SCREEN_HEIGHT - tile_size;
+constexpr auto MOVESPEED	= 3.f;
+constexpr auto PLAYER_SIZE	= tile_size - 10;
 class Player :public Collision
 {
 public:
-	//constexpr static int WIDTH = 44;
-	//constexpr static int HEIGHT = 32;
-
 	Player();
-	void update(float dt);
-	void draw(sf::RenderTarget& target);           
-	void keymove(); //keypress detection
+	void draw(sf::RenderTarget& target);
+	void update();
+	void input(); //keypress detection
 	void moving(); //moving if "walking" boolean is true
-	const sf::Vector2f& getPosition() const { return people.getPosition(); };
-	void onCollide(Collision& other) override { is_Alive = false; }
+	void onCollide(Collision& other) override;
 	void animationRenderer();
-	bool isAlive() const;
-
-private:
 	void restart();
+	void soundPlaying();
+	const sf::Vector2f& getPosition() const;
+	bool isAlive() const;
+	bool isGetScore()const;
+	bool isPassLevel()const;
+private:
+	sf::RectangleShape	m_player;
+	sf::Clock			m_clock;
+	sf::Time		    m_delay     = sf::seconds(0.1f);
+	sf::Vector2f		origin_pos	= { START_X, START_Y };
+	sf::Vector2f		cur_pos		= { START_X,START_Y };
+	float				movespeed	= MOVESPEED;
 
-	sf::RectangleShape people;     
-	sf::Clock m_clock;
-	float m_gaps = 0.1f;
-	sf::Vector2f origin_pos = { 640, 720 - 90 };
+	enum	MOVE { UP, DOWN, LEFT, RIGHT }; //enums instead of remember numbers
+	bool	moves[4] = { 0,0,0,0 };
+	bool	is_walking = false;
+	float	nextspot; //the next tilespot of the map
 
-	bool is_Alive = true;        
-	sf::Texture player_texture;
-	
+	bool is_Alive = true;
+	sf::Texture& player_texture;
+	sf::Texture& explosion;
+	float min_y_get_point;
+	bool m_passed = false;
+	bool m_get_score = false;
 
-    float x;
-    float y;
-    float movespeed; //sets the movespeed
-
-    enum MOVE { UP, DOWN, LEFT, RIGHT }; //enums instead of remember numbers
-    bool move[4]; //deciding if u move up/down/left/right
-    bool is_walking;
-    int nextspot; //the next tilespot of the map
+	sf::IntRect frame;
+	animation death_animation;
+	sf::Sound death_sound;
 };
 
 #endif

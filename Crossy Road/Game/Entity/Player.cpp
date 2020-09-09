@@ -1,211 +1,238 @@
 #include "Player.h"
 #include "../world.h"
+#include <algorithm>
 
 static int initX = 0;
 static int initY = 192;
 
-int tilesize = 90;
-Player::Player() :Collision(90.f, 64.f), move{ 0,0,0,0 }
+Player::Player() 
+	: Collision(PLAYER_SIZE/2, PLAYER_SIZE/2)
+	, m_player({ PLAYER_SIZE,PLAYER_SIZE })
+	, player_texture(asset::texture().get("player_sprite_2", "png"))
+	, explosion(asset::texture().get("explosion", "png"))
+	,death_animation(64.f,64.f)
 {
-    sf::Vector2f size_player = { 90.f,90.f };
-    // in this case, every loop, it will walk 2 pixels. 
-//if u put 50 as movespeed, it will walk 1 pixel each loop
-    movespeed = 3.f;
-    x = origin_pos.x, y = origin_pos.y;
-    is_walking = false;
-
-
-    people.setSize(size_player);
-    people.setPosition(this->origin_pos);
-   /* player_texture.loadFromFile("Assets\\textures\\player_sprite_2.png");*/
-    player_texture = asset::texture().get("player_sprite_2", "png");
-  
-    people.setTexture(&player_texture);
-    people.setTextureRect(sf::IntRect{ 0,192,64,64 });
+	m_player.setPosition(this->origin_pos);
+	m_player.setTexture(&player_texture);
+	m_player.setTextureRect(sf::IntRect{ 0,192,64,64 });
+	for (int index = 0; index < 5; index++) {
+		death_animation.add_frame(m_delay,0,index);
+	}
+	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
 }
 
 
-void Player::keymove()
+void Player::input()
 {
-    /*keymove() and moving() functions are working together*/
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        if (is_walking == false)
-        {
-            nextspot = y - tilesize;
-            move[UP] = true;
-            is_walking = true;
-            initY = 192, initX = 0;
-            people.setTextureRect({ initX,initY,64,64 });
-        }
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        if (is_walking == false)
-        {
-            nextspot = y + tilesize;
-            move[DOWN] = true;
-            is_walking = true;
-            initY = 0, initX = 0;
-            people.setTextureRect({ initX,initY,64,64 });
-        }
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        if (is_walking == false)
-        {
-            nextspot = x - tilesize;
-            move[LEFT] = true;
-            is_walking = true;
-            initY = 64, initX = 0;
-            people.setTextureRect({ initX,initY,64,64 });
-        }
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        if (is_walking == false)
-        {
-            nextspot = x + tilesize;
-            move[RIGHT] = true;
-            is_walking = true;
-            initY = 128, initX = 0;
-            people.setTextureRect({ initX,initY,64,64 });
-        }
-    }
+	/*input() and moving() functions are working together*/
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		if (is_walking == false)
+		{
+			nextspot = cur_pos.y - tile_size;
+			moves[UP] = true;
+			is_walking = true;
+			initY = 192;
+			initX = 0;
+			m_player.setTextureRect({ initX,initY,64,64 });
+			if (nextspot == -tile_size) {
+				nextspot = origin_pos.y;
+				cur_pos.y = SCREEN_HEIGHT;
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		if (is_walking == false)
+		{
+			nextspot = cur_pos.y + tile_size;
+			if (nextspot >= SCREEN_HEIGHT) {
+				nextspot = cur_pos.y - tile_size;
+				moves[DOWN] = false;
+				is_walking = false;
+			}
+			else {
+				moves[DOWN] = true;
+				is_walking = true;
+				initY = 0;
+				initX = 0;
+				m_player.setTextureRect({ initX,initY,64,64 });
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		if (is_walking == false)
+		{
+			nextspot = cur_pos.x - tile_size;
+			if (nextspot <= tile_size * 2) {
+				nextspot = cur_pos.x + tile_size;
+				moves[DOWN] = false;
+				is_walking = false;;
+			}
+			else {
+				moves[LEFT] = true;
+				is_walking = true;
+				initY = 64;
+				initX = 0;
+				m_player.setTextureRect({ initX,initY,64,64 });
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		if (is_walking == false)
+		{
+			nextspot = cur_pos.x + tile_size;
+			if (nextspot >= SCREEN_WIDTH - tile_size * 3) {
+				nextspot = cur_pos.x - tile_size;
+				moves[DOWN] = false;
+				is_walking = false;;
+			}
+			else {
+				moves[RIGHT] = true;
+				is_walking = true;
+				initY = 128;
+				initX = 0;
+				m_player.setTextureRect({ initX,initY,64,64 });
+			}
+		}
+	}
 }
 void Player::moving()
 {
-    if (is_walking == true)
-    {
-        if (move[UP] == true)
-        {
-            y -= movespeed;
-            if (y <= nextspot)
-            {
-                y = nextspot;
-                is_walking = false;
-                move[UP] = false;
-               
-            }
-        }
-
-        if (move[DOWN] == true)
-        {
-            y += movespeed;
-            if (y >= nextspot)
-            {
-                y = nextspot;
-                is_walking = false;
-                move[DOWN] = false;
-            }
-        }
-        if (move[LEFT] == true)
-        {
-            x -= movespeed;
-            if (x <= nextspot)
-            {
-                x = nextspot;
-                is_walking = false;
-                move[LEFT] = false;
-            }
-        }
-        if (move[RIGHT] == true)
-        {
-            x += movespeed;
-            if (x >= nextspot)
-            {
-                x = nextspot;
-                is_walking = false;
-                move[RIGHT] = false;
-            }
-        }
-        people.setPosition(x, y);
-    }
+	if (is_walking == true)
+	{
+		if (moves[UP] == true)
+		{
+			cur_pos.y -= movespeed;
+			if (cur_pos.y <= nextspot)
+			{
+				cur_pos.y = nextspot;
+				is_walking = false;
+				moves[UP] = false;
+			}
+		}
+		if (moves[DOWN] == true )
+		{
+			cur_pos.y += movespeed;
+			if (cur_pos.y >= nextspot)
+			{
+				cur_pos.y = nextspot;
+				is_walking = false;
+				moves[DOWN] = false;
+			}
+		}
+		if (moves[LEFT] == true)
+		{
+			cur_pos.x -= movespeed;
+			if (cur_pos.x <= nextspot)
+			{
+				cur_pos.x = nextspot;
+				is_walking = false;
+				moves[LEFT] = false;
+			}
+		}
+		if (moves[RIGHT] == true)
+		{
+			cur_pos.x += movespeed;
+			if (cur_pos.x >= nextspot)
+			{
+				cur_pos.x = nextspot;
+				is_walking = false;
+				moves[RIGHT] = false;
+			}
+		}
+		m_player.setPosition(cur_pos.x, cur_pos.y);
+	}
 }
-void Player::restart()
+
+const sf::Vector2f& Player::getPosition() const
 {
-    /* v_speed *= 0.0f;*/
-    /* people.setTextureRect(sf::IntRect{ 0,192,64,64 });*/
-    is_Alive = true;
-    people.setPosition(this->origin_pos);
+	return m_player.getPosition();
 }
 
-
-
-void Player::update(float dt)
+void Player::onCollide(Collision& other)
 {
-
-    //if player move out of bound
-
-    //Left
-    if (this->people.getGlobalBounds().left <= 10.f) 
-        this->people.setPosition(10.f, this->people.getGlobalBounds().top);
-    // 
-    ////Right
-    if (this->people.getGlobalBounds().left + this->people.getGlobalBounds().width >= 1270.f) 
-        this->people.setPosition(1270 - this->people.getGlobalBounds().width, this->people.getGlobalBounds().top);
-    //
-    //Top
-    if (this->people.getGlobalBounds().top <= -this->people.getGlobalBounds().height) {
-        this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
-        y = origin_pos.y;
-        World::levelUp();
-        World::plusScore();
-    }
-    //Bottom
-    if (this->people.getGlobalBounds().top + this->people.getGlobalBounds().height > 720) {
-        this->people.setPosition(this->people.getGlobalBounds().left, 720 - this->people.getGlobalBounds().height);
-        y = origin_pos.y;
-    }
-
-    //score 90,270,450,630    
-    if (this->people.getGlobalBounds().top == 450) {
-        World::plusScore();
-        World::plus();
-    }
-    else if (this->people.getGlobalBounds().top == 270) {
-        World::plusScore();
-        World::plus();
-    }
-    else if (this->people.getGlobalBounds().top == 90) {
-        World::plusScore();
-        World::plus();
-    }
-    else World::n_plus();
-        
-    
-    
+	is_walking = false;
+	m_player.setTexture(&explosion);
+	m_player.setScale(1.5f, 1.5f);
+	is_Alive = false;
 }
+
 void Player::animationRenderer() {
-    if (m_clock.getElapsedTime().asSeconds() > m_gaps && is_walking == true) {
-        if (initX > 192) {
-            initX = 0;
-            people.setTextureRect({ initX,initY,64,64 });
-        }
-        else {
-            people.setTextureRect({ initX,initY,64,64 });
-            initX += 64;
-        }
-        m_clock.restart();
-    }
+	/*for (int col = 0; col < 4; col++) {
+		for (int row = 0; row < 4; row++) {
+			moveAnimation[row].add_frame(m_delay,row,col);
+		}
+	}*/
+	if (m_clock.getElapsedTime().asSeconds() > m_delay.asSeconds() && is_walking == true && is_Alive) {
+		if (initX > 192) {
+			initX = 0;
+			m_player.setTextureRect({ initX,initY,64,64 });
+		}
+		else {
+			m_player.setTextureRect({ initX,initY,64,64 });
+			initX += 64;
+		}
+		m_clock.restart();
+	}
+	else if (m_clock.getElapsedTime().asSeconds() > m_delay.asSeconds() && !is_Alive) {
+		m_player.setTextureRect({ initX,0,64,64 });
+		initX += 64;
+		m_clock.restart();
+	}
 }
 
+void Player::soundPlaying() {
+	if (!is_Alive)
+		death_sound.play();
+}
 void Player::draw(sf::RenderTarget& target)
 {
-    sf::Clock clock;
-    if (!is_Alive) {
-        //people.setTextureRect(death_Animation.getFrame());
-    }
-    target.draw(people);
+	sf::Clock clock;
+	target.draw(m_player);
 }
-
-
-
 
 bool Player::isAlive() const
 {
-    return is_Alive;
+	return is_Alive;
+}
+
+bool Player::isPassLevel() const
+{
+	return m_passed;
+}
+
+void Player::update()
+{
+	if (this->m_player.getGlobalBounds().top > 600)
+		min_y_get_point = getPosition().y;		
+		
+	//score 90,270,450,630    
+	if ((this->m_player.getGlobalBounds().top == 90
+		|| this->m_player.getGlobalBounds().top == 270
+		|| this->m_player.getGlobalBounds().top == 450)
+		&& this->m_player.getGlobalBounds().top < min_y_get_point) {
+		min_y_get_point = getPosition().y;
+		m_get_score = true;
+	}
+	else
+		m_get_score = false;
+	if (getPosition().y <= SCREEN_HEIGHT && getPosition().y > SCREEN_HEIGHT - 5) {
+		m_passed = true;
+		m_get_score = true;
+	}
+}
+
+bool Player::isGetScore() const
+{
+	return m_get_score;
+}
+
+void Player::restart()
+{
+	m_passed = false;
+	m_get_score = false;
+	min_y_get_point = 720.f;
 }

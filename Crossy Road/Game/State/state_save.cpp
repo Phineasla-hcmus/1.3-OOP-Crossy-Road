@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include"../../Game/State/state_save.h"
 #include"../../Framework/game.h"
 state_save::state_save(Game& game,SaveInf& save)
@@ -8,12 +9,27 @@ state_save::state_save(Game& game,SaveInf& save)
 	auto name_textbox = makeTextBox(_name);
 	name_textbox->setLabel("Name");
 	
+=======
+#include"state_save.h"
+state_save::state_save(Game& game, SaveInf& save)
+	: state_base(game)
+	, save_menu(game.get_window(), 300, &asset::texture().get("blue_panel", "png"))
+	, m_save(save)
+{
+	auto name_textbox = makeTextBox(m_name);
+	name_textbox->setLabel("Name");
+
+>>>>>>> new-vehicle
 
 	auto SaveBtn = makeButton();
 	SaveBtn->setText("Save Game");
 	SaveBtn->setFunction([&]() {
+<<<<<<< HEAD
 		WritetoFile(_name);
 		this->game().popState();
+=======
+		if(saveGame(m_name, m_save))this->game().popState();
+>>>>>>> new-vehicle
 		});
 
 	auto ReturnBtn = makeButton();
@@ -38,6 +54,7 @@ void state_save::update(sf::Time delta_time)
 void state_save::draw(sf::RenderTarget& renderer) {
 	save_menu.render(renderer);
 }
+<<<<<<< HEAD
 void state_save::WritetoFile(std::string name)
 {
 	std::ofstream fout;
@@ -55,3 +72,5 @@ void state_save::WritetoFile(std::string name)
 	else std::cout << "CAN NOT SAVE .\n";
 
 }
+=======
+>>>>>>> new-vehicle
