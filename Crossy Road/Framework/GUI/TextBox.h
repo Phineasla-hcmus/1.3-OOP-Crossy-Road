@@ -11,8 +11,6 @@
 		bool isValidCharacter(unsigned char keyCode);
 		bool isBackspace(unsigned char keycode);
 
-
-		sf::Font _font;
 		sf::Vector2f    _pos;
 		Rectangle       _rect;
 		Text            _text;
