@@ -48,7 +48,7 @@ size_t Lane::getVehicleSize() const
 	return m_vehicles.size();
 }
 
-Vehicle& Lane::getVehicle(size_t idx)
+Obstacle& Lane::getVehicle(size_t idx)
 {
 	return *m_vehicles[idx];
 }
