@@ -2,7 +2,7 @@
 #include <vector>
 #include <initializer_list>
 
-TrafficLight::TrafficLight(sf::Vector2f org_Pos, const sf::Texture* texture)
+TrafficLight::TrafficLight(sf::Vector2f org_Pos)
 	: Green_Light(&asset::texture().get("green", "png"))
 	, Red_Light(&asset::texture().get("red", "png"))
 {

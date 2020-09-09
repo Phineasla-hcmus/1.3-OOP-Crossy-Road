@@ -13,7 +13,7 @@ private:
 	sf::Color state=(sf::Color::Green);
 	sf::Clock time;	
 public:
-	TrafficLight(sf::Vector2f org_Pos, const sf::Texture* texture);
+	TrafficLight(sf::Vector2f org_Pos);
 	void turnRed();
 	void turnGreen();
 	sf::Color getLightState();
