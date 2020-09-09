@@ -5,6 +5,7 @@ Widget::Text::Text()
 		TEXT_SIZE,
 		OUTLINE_COLOR, FILL_COLOR)
 {}
+
 Widget::Text::Text(const std::string& font, const std::string& ext, unsigned size, const sf::Color& outline, const sf::Color& fill)
 {
 	setCharacterSize(size);

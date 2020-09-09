@@ -9,18 +9,22 @@ TextBox::TextBox(std::string& modString)
 	_rect.setFillColor({ 52, 152, 219 });
 	_rect.setSize({ 256, 64 });
 }
+
 void TextBox::setTexture(const sf::Texture& tex) {
 	_rect.setTexture(&tex);
 }
+
 void TextBox::setLabel(const std::string& str)
 {
 	_label.setString(str);
 }
+
 void TextBox::handleEvent(sf::Event e, const sf::RenderWindow& window)
 {
 	handleClick(e, window);
 	handleTextInput(e);
 }
+
 void TextBox::render(sf::RenderTarget& renderer)
 {
 	if (!_isActive) {
@@ -33,6 +37,7 @@ void TextBox::render(sf::RenderTarget& renderer)
 	renderer.draw(_label);
 	renderer.draw(_text);
 }
+
 void TextBox::setPosition(const sf::Vector2f& pos)
 {
 	_pos = pos;
@@ -50,6 +55,7 @@ sf::Vector2f TextBox::getSize() const
 	return  { _rect.getSize().x,
 				_rect.getSize().y + _label.getGlobalBounds().height };
 }
+
 void TextBox::handleClick(sf::Event e, const sf::RenderWindow& window)
 {
 	auto pos = sf::Mouse::getPosition(window);
@@ -75,6 +81,7 @@ void TextBox::handleClick(sf::Event e, const sf::RenderWindow& window)
 		}
 	}
 }
+
 void TextBox::handleTextInput(sf::Event e)
 {
 	switch (e.type) {
@@ -102,6 +109,7 @@ void TextBox::handleTextInput(sf::Event e)
 		break;
 	}
 }
+
 bool TextBox::isValidCharacter(unsigned char keyCode)
 {
 	return  keyCode >= 48 && keyCode <= 57 ||  //Numbers
@@ -109,6 +117,7 @@ bool TextBox::isValidCharacter(unsigned char keyCode)
 		keyCode >= 97 && keyCode <= 122 ||  //Lowercase
 		keyCode == 32;    //Space
 }
+
 bool TextBox::isBackspace(unsigned char keycode)
 {
 	return keycode == 8;
