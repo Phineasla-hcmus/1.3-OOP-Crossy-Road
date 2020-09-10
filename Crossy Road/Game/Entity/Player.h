@@ -41,14 +41,12 @@ private:
 	float	nextspot; //the next tilespot of the map
 
 	bool is_Alive = true;
-	sf::Texture& player_texture;
-	sf::Texture& explosion;
+	sf::Texture* player_texture;
+	sf::Texture* explosion;
 	float min_y_get_point;
 	bool m_passed = false;
 	bool m_get_score = false;
 
-	sf::IntRect frame;
-	animation death_animation;
 	sf::Sound death_sound;
 };
 

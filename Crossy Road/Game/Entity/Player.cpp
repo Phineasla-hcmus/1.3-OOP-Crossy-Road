@@ -8,19 +8,15 @@ static int initY = 192;
 Player::Player() 
 	: Collision(PLAYER_SIZE/2, PLAYER_SIZE/2)
 	, m_player({ PLAYER_SIZE,PLAYER_SIZE })
-	, player_texture(asset::texture().get("player_sprite_2", "png"))
-	, explosion(asset::texture().get("explosion", "png"))
-	,death_animation(64,64)
+	, player_texture(&asset::texture().get("player_sprite_2", "png"))
+	, explosion(&asset::texture().get("explosion", "png"))
 	,min_y_get_point(0)
 	,nextspot(cur_pos.y - tile_size)
+	, death_sound((asset::sound().get("oofMinecraft", "ogg")))
 {
 	m_player.setPosition(this->origin_pos);
-	m_player.setTexture(&player_texture);
+	m_player.setTexture(player_texture);
 	m_player.setTextureRect(sf::IntRect{ 0,192,64,64 });
-	for (int index = 0; index < 5; index++) {
-		death_animation.add_frame(m_delay,0,index);
-	}
-	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
 	death_sound.setVolume(50);
 }
 
@@ -158,7 +154,7 @@ const sf::Vector2f& Player::getPosition() const
 void Player::onCollide(Collision& other)
 {
 	is_walking = false;
-	m_player.setTexture(&explosion);
+	m_player.setTexture(explosion);
 	m_player.setScale(1.5f, 1.5f);
 	is_Alive = false;
 }
