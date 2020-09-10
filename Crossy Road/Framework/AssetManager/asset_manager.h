@@ -34,7 +34,7 @@ void asset_manager<Resource_t>::load_file(const std::string& name, const std::st
 		//load placeholder if file not found
 		res.loadFromFile(file_dir(full_name(FAILED_FILE_NAME, ext)));
 	}
-	_container.insert(std::make_pair(name_with_ext, res));
+	_container.emplace(name_with_ext, res);
 }
 
 template<typename Resource_t>

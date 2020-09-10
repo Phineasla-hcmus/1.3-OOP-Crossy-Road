@@ -146,7 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework\AssetManager\asset.cpp" />
-    <ClCompile Include="Framework\AssetManager\music.cpp" />
+    <ClCompile Include="Framework\AssetManager\playlist.cpp" />
     <ClCompile Include="Framework\Game.cpp" />
     <ClCompile Include="Framework\GUI\Button.cpp" />
     <ClCompile Include="Framework\GUI\StackMenu.cpp" />
@@ -176,7 +176,7 @@
   <ItemGroup>
     <ClInclude Include="Framework\AssetManager\asset.h" />
     <ClInclude Include="Framework\AssetManager\asset_manager.h" />
-    <ClInclude Include="Framework\AssetManager\music.h" />
+    <ClInclude Include="Framework\AssetManager\playlist.h" />
     <ClInclude Include="Framework\Game.h" />
     <ClInclude Include="Framework\GUI\Button.h" />
     <ClInclude Include="Framework\GUI\StackMenu.h" />
