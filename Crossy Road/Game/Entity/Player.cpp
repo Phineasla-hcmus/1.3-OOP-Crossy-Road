@@ -160,11 +160,6 @@ void Player::onCollide(Collision& other)
 }
 
 void Player::animationRenderer() {
-	/*for (int col = 0; col < 4; col++) {
-		for (int row = 0; row < 4; row++) {
-			moveAnimation[row].add_frame(m_delay,row,col);
-		}
-	}*/
 	if (m_clock.getElapsedTime().asSeconds() > m_delay.asSeconds() && is_walking == true && is_Alive) {
 		if (initX > 192) {
 			initX = 0;
