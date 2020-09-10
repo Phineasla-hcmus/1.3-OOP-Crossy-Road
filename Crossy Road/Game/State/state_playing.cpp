@@ -127,5 +127,4 @@ void state_playing::display::updateDisplay()
 {
 	label.setString(text + "   " + std::to_string(currentdata));
 	label.setPosition(15, centrepoint - label.getGlobalBounds().height / 2);
-
 }

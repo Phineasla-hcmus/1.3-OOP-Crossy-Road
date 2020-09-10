@@ -6,10 +6,16 @@ World::World(const textureLookup& lookup)
 {
 	//render background map(top to bottom)
 	const std::vector<unsigned> tile_map = { 1,0,1,0,1,0,1,0 };
-	//render y_tiles+1 to fill whole screen
-	m_background.setMapSize(x_tiles+1, y_tiles);
-	//scale the texture to tile_size (90)
-	m_background.create_map(tile_map, sf::Vector2u(tile_size, tile_size));
+	//render Y_TILES+1 to fill whole screen
+	m_background.setMapSize(X_TILES+1, Y_TILES);
+	//scale the texture to TILE_SIZE (90)
+	m_background.create_map(tile_map, sf::Vector2u(TILE_SIZE, TILE_SIZE));
+	//load ambience sound and background music
+	initMusic(m_ambient, AMBIENT_DIR, AMBIENT_VOL);
+	//add some randomness to ambient sound
+	sf::Time duration = m_ambient.getDuration();
+	m_ambient.setPlayingOffset(sf::seconds(mtrand::getFloat(0, duration.asSeconds())));
+	//initMusic(m_music, MUSIC_DIR, MUSIC_VOL);
 }
 
 void World::initLane(const SaveInf& save)
@@ -18,10 +24,10 @@ void World::initLane(const SaveInf& save)
 	m_lanes.reserve(SAVE_LANE);
 	vehicle_func initVehicleFunc[] = { new_vehicle<Truck> , new_vehicle<Car>};
 	for (size_t i = 0; i < SAVE_LANE; ++i) {
-		const float			lanePos = i * tile_size * 2.f;					
+		const float			lanePos = i * TILE_SIZE * 2.f;					
 		const auto&			laneInf = save.get_RoadInf(i);							//get each laneInf from save file
 		m_lanes.emplace_back(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed);
-		Lane&				newLane = m_lanes.back();
+
 		/*use for set vInfo type and its texture*/
 		const textureSet&	set		= m_vehicle_set.getSet(laneInf.vehicleType);	//get a set of multiple texture of a vInfo type
 		unsigned			idx		= mtrand::getInt(0, set.size() - 1);			//random to choose a texture for vehicle in that road
@@ -31,6 +37,7 @@ void World::initLane(const SaveInf& save)
 			? vInfo.getBounds(0) 
 			: vInfo.getBounds(1);
 		/*set function for init, texture and texture bounds*/
+		Lane& newLane = m_lanes.back();
 		newLane.setVehicleType(initVehicleFunc[laneInf.vehicleType], texture, bounds);
 		newLane.initVehicle(laneInf.vehicleNum);
 	}
@@ -55,13 +62,18 @@ void World::update(float dt)
 		lane.update(dt);
 }
 
-
-unsigned World::updateScore()
+bool World::updateScore()
 {
-	unsigned score = 0;
-	if (m_player.isGetScore())
-		score = 10;
-	return score;
+	//unsigned score = 0;
+	//if (m_player.isGetScore())
+	//	score = 10;
+	//return score;
+	int cur_lane = (int)(m_player.getPosition().y / TILE_SIZE);
+	if (cur_lane < m_best_lane) {
+		m_best_lane = cur_lane;
+		return true;
+	}
+	return false;
 }
 
 unsigned World::updateLevel()
@@ -77,7 +89,7 @@ void World::resetWorld(const SaveInf& new_save)
 {
 	m_lanes.clear();
 	m_player.restart();
-	
+	m_best_lane = Y_TILES - 1;
 	initLane(new_save);
 }
 
@@ -105,4 +117,14 @@ bool World::tryPlayerCollideWith() {
 		}
 	}
 	return false;
+}
+
+bool initMusic(sf::Music& music, const std::string& dir, float volume, bool loop)
+{
+	if (!music.openFromFile(dir))
+		return false;
+	music.setVolume(volume);
+	music.setLoop(loop);
+	music.play();
+	return true;
 }

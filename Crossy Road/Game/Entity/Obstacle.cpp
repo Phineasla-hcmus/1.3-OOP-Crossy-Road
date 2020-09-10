@@ -62,7 +62,7 @@ void Obstacle::draw(sf::RenderTarget& render) const
 
 void Obstacle::move(float speed)
 {
-	m_sprite.move(speed, 0);//limit speed max
+	m_sprite.move(speed, 0);
 }
 
 Car::Car(sf::Vector2f pos, const sf::Texture& texture)

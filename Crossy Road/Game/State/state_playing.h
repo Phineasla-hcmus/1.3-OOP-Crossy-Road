@@ -14,7 +14,7 @@ private:
 	unsigned	m_score			= 0;
 	bool		m_is_gameover	= false;
 	PauseMenu	m_pause_menu;
-	GameOver   m_gameover;
+	GameOver	m_gameover;
 	class display {
 	private:
 		Widget::Text label;

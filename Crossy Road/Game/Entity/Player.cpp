@@ -11,7 +11,7 @@ Player::Player()
 	, player_texture(&asset::texture().get("player_sprite_2", "png"))
 	, explosion(&asset::texture().get("explosion", "png"))
 	,min_y_get_point(0)
-	,nextspot(cur_pos.y - tile_size)
+	,nextspot(cur_pos.y - TILE_SIZE)
 	, death_sound((asset::sound().get("oofMinecraft", "ogg")))
 {
 	m_player.setPosition(this->origin_pos);
@@ -28,13 +28,13 @@ void Player::input()
 	{
 		if (is_walking == false)
 		{
-			nextspot = cur_pos.y - tile_size;
+			nextspot = cur_pos.y - TILE_SIZE;
 			moves[UP] = true;
 			is_walking = true;
 			initY = 192;
 			initX = 0;
 			m_player.setTextureRect({ initX,initY,64,64 });
-			if (nextspot == -tile_size) {
+			if (nextspot == -TILE_SIZE) {
 				nextspot = origin_pos.y;
 				cur_pos.y = SCREEN_HEIGHT;
 			}
@@ -44,9 +44,9 @@ void Player::input()
 	{
 		if (is_walking == false)
 		{
-			nextspot = cur_pos.y + tile_size;
+			nextspot = cur_pos.y + TILE_SIZE;
 			if (nextspot >= SCREEN_HEIGHT) {
-				nextspot = cur_pos.y - tile_size;
+				nextspot = cur_pos.y - TILE_SIZE;
 				moves[DOWN] = false;
 				is_walking = false;
 			}
@@ -63,9 +63,9 @@ void Player::input()
 	{
 		if (is_walking == false)
 		{
-			nextspot = cur_pos.x - tile_size;
-			if (nextspot <= tile_size * 2) {
-				nextspot = cur_pos.x + tile_size;
+			nextspot = cur_pos.x - TILE_SIZE;
+			if (nextspot <= TILE_SIZE * 2) {
+				nextspot = cur_pos.x + TILE_SIZE;
 				moves[DOWN] = false;
 				is_walking = false;;
 			}
@@ -82,9 +82,9 @@ void Player::input()
 	{
 		if (is_walking == false)
 		{
-			nextspot = cur_pos.x + tile_size;
-			if (nextspot >= SCREEN_WIDTH - tile_size * 3) {
-				nextspot = cur_pos.x - tile_size;
+			nextspot = cur_pos.x + TILE_SIZE;
+			if (nextspot >= SCREEN_WIDTH - TILE_SIZE * 3) {
+				nextspot = cur_pos.x - TILE_SIZE;
 				moves[DOWN] = false;
 				is_walking = false;;
 			}
@@ -231,4 +231,9 @@ void Player::restart()
 	m_passed = false;
 	m_get_score = false;
 	min_y_get_point = 720.f;
+}
+
+void Player::deathSoundPlaying()
+{
+	if (!is_Alive)death_sound.play();
 }
