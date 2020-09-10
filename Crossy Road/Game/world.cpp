@@ -10,12 +10,6 @@ World::World(const textureLookup& lookup)
 	m_background.setMapSize(X_TILES+1, Y_TILES);
 	//scale the texture to TILE_SIZE (90)
 	m_background.create_map(tile_map, sf::Vector2u(TILE_SIZE, TILE_SIZE));
-	//load ambience sound and background music
-	initMusic(m_ambient, AMBIENT_DIR, AMBIENT_VOL);
-	//add some randomness to ambient sound
-	sf::Time duration = m_ambient.getDuration();
-	m_ambient.setPlayingOffset(sf::seconds(mtrand::getFloat(0, duration.asSeconds())));
-	//initMusic(m_music, MUSIC_DIR, MUSIC_VOL);
 }
 
 void World::initLane(const SaveInf& save)
@@ -42,18 +36,18 @@ void World::initLane(const SaveInf& save)
 		newLane.initVehicle(laneInf.vehicleNum);
 	}
 }
+
 void World::input()
 {
 	if (m_player.isAlive()) {
 		m_player.input();
 	}
 }
+
 bool World::is_game_over() {
 	return m_game_over;
 }
-void World::pause()
-{
-}
+
 void World::update(float dt)
 {
 	m_player.update();
@@ -64,10 +58,6 @@ void World::update(float dt)
 
 bool World::updateScore()
 {
-	//unsigned score = 0;
-	//if (m_player.isGetScore())
-	//	score = 10;
-	//return score;
 	int cur_lane = (int)(m_player.getPosition().y / TILE_SIZE);
 	if (cur_lane < m_best_lane) {
 		m_best_lane = cur_lane;
@@ -103,13 +93,14 @@ void World::draw(sf::RenderTarget& target)
 	m_player.animationRenderer();
 	m_player.draw(target);
 }
+
 bool World::tryPlayerCollideWith() {
 	for (size_t i = 0; i < m_lanes.size(); i++) {
 		if (!m_player.isAlive())
 			continue;
 		for (int j = m_lanes[i].getVehicleSize() - 1; j >= 0; j--) {
 			if (m_player.tryCollideWith(m_lanes[i].getVehicle(j))) {
-				std::cout << "Collided!\n";
+				//std::cout << "Collided!\n";
 				m_player.deathSoundPlaying();
 				m_game_over = true;
 				return true;
@@ -117,14 +108,4 @@ bool World::tryPlayerCollideWith() {
 		}
 	}
 	return false;
-}
-
-bool initMusic(sf::Music& music, const std::string& dir, float volume, bool loop)
-{
-	if (!music.openFromFile(dir))
-		return false;
-	music.setVolume(volume);
-	music.setLoop(loop);
-	music.play();
-	return true;
 }

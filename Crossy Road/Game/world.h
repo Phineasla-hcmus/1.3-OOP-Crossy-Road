@@ -4,14 +4,9 @@
 #include"Entity/Player.h"
 #include"Entity/Road.h"
 #include "SaveLevel.h"
-constexpr auto AMBIENT_DIR	= "Assets/audio/ambient.ogg";
-constexpr auto AMBIENT_VOL	= 100;
-constexpr auto MUSIC_DIR	= "Assets/audio/background.ogg";
-constexpr auto MUSIC_VOL	= 20;
+
 class World {
 private:
-	sf::Music				m_ambient;
-	sf::Music				m_music;
 	Player					m_player;
 	std::vector<Lane>		m_lanes;
 	TileMap					m_background;
@@ -29,7 +24,5 @@ public:
 	bool updateScore();
 	unsigned updateLevel();
 	bool is_game_over();
-	void pause();
 };
-bool initMusic(sf::Music&, const std::string& dir, float volume = 100, bool loop = true);
 #endif // !_World_h

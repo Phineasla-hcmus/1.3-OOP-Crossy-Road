@@ -7,10 +7,15 @@ state_playing::state_playing(Game& game)
 	, m_score_display(20, "SCORE")
 	, m_level_display(50, "LEVEL")
 	, m_gameover(game)
-{
-	random r;    
+{   
 	m_save.update_road(randomSaveInf(1));//level 1
 	m_world.initLane(m_save);
+
+	initMusic(m_ambient, AMBIENT_DIR, AMBIENT_VOL);
+	initMusic(m_music, MUSIC_DIR, MUSIC_VOL);
+	//add some randomness to ambient sound
+	sf::Time duration = m_ambient.getDuration();
+	m_ambient.setPlayingOffset(sf::seconds(mtrand::getFloat(0, duration.asSeconds())));
 }
 
 state_playing::state_playing(Game& game, const SaveInf& save):
@@ -30,11 +35,15 @@ state_playing::state_playing(Game& game, const SaveInf& save):
 
 void state_playing::handleEvent(sf::Event ev)
 {
-	if (ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Escape)
+	if (ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Escape) {
+		if (m_ambient.getStatus() == sf::Music::Playing) pauseAllSound();
+		else resumeAllSound();
 		m_pause_menu.changeState();
+	}
 	if (m_pause_menu.isPaused())
 		m_pause_menu.handleEvent(ev);
 	if (m_is_gameover) {
+		pauseAllSound();
 		m_gameover.handleEvent(ev);
 		if (m_gameover.GetState() == true)
 			game().popState();
@@ -59,6 +68,18 @@ void state_playing::draw(sf::RenderTarget& renderer)
 	if (m_is_gameover) {
 		m_gameover.draw(renderer);
 	}
+}
+
+void state_playing::pauseAllSound()
+{
+	m_ambient.pause();
+	m_music.pause();
+}
+
+void state_playing::resumeAllSound()
+{
+	m_ambient.play();
+	m_music.play();
 }
 
 std::vector<SaveInf::RoadInf> state_playing::randomSaveInf(unsigned lv)
@@ -92,8 +113,6 @@ void state_playing::update(sf::Time delta_time)
 		unsigned step_level = m_world.updateLevel();
 		if (step_level) {
 			m_level += step_level;
-			m_save.update_level(m_level);
-			m_save.update_score(m_score);
 			m_save.update_road(randomSaveInf(m_level));
 			m_world.resetWorld(m_save);
 		}
@@ -112,17 +131,16 @@ state_playing::display::display(float centreY, const std::string& _text)
 	label.setFillColor(sf::Color::White);
 	label.setOutlineColor(sf::Color::Black);
 }
+
 void state_playing::display::update(int newData) {
 	currentdata = newData;
 	updateDisplay();
 }
+
 void state_playing::display::draw(sf::RenderTarget& target) {
 	target.draw(label);
 }
-int state_playing::display::getCurrentDataDisplayed() const
-{
-	return currentdata;
-}
+
 void state_playing::display::updateDisplay()
 {
 	label.setString(text + "   " + std::to_string(currentdata));
