@@ -1,17 +1,14 @@
 #include "Road.h"
 
-
-
 Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	: m_vehicle_pos(road_pos)
 	, m_dir(dir)
 	, m_speed(speed)
 	, m_vehicles_texture(nullptr)
 	, m_light({ road_pos.x,road_pos.y + Y_DISTANCE_LIGHT_VS_LANE })
-{
-}
+{}
 
-void Lane::initVehicle(size_t size, random& rand)
+void Lane::initVehicle(size_t size)
 {
 	if (size >= 5)
 		size = 5;//max vehicle

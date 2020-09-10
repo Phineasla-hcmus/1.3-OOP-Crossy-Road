@@ -12,11 +12,13 @@ private:
 	size_t m_cur_track = 0;
 	bool m_repeat = true;
 public:
-	sf::Music& cur_track();
-	void add(const std::string& file_name);
-	void set_repeat(bool);
-	bool is_repeat() const;
+	sf::Music&	data();
+	void		play();
+	void		add(const std::string& file_name);
+	void		remove(const std::string& file_name);
+	void		set_loop(bool);
+	bool		is_loop() const;
 	std::string cur_track_name() const;
-	size_t size() const;
+	size_t		size() const;
 };
 #endif // !_music_manager

@@ -1,8 +1,13 @@
 #include"playlist.h"
 
-sf::Music& playlist::cur_track()
+sf::Music& playlist::data()
 {
 	return m_track;
+}
+
+void playlist::play()
+{
+
 }
 
 void playlist::add(const std::string& file_name)
@@ -10,12 +15,17 @@ void playlist::add(const std::string& file_name)
 	m_queue.push_back(file_name);
 }
 
-void playlist::set_repeat(bool repeat)
+void playlist::remove(const std::string& file_name)
+{
+	m_queue.erase(std::find(m_queue.begin(), m_queue.end(), file_name));
+}
+
+void playlist::set_loop(bool repeat)
 {
 	m_repeat = repeat;
 }
 
-bool playlist::is_repeat() const
+bool playlist::is_loop() const
 {
 	return m_repeat;
 }
