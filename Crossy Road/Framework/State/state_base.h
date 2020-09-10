@@ -1,6 +1,7 @@
 #ifndef _state_base
 #define _state_base
 #include"SFML/Graphics.hpp"
+#include"SFML//Audio.hpp"
 #include"../Util/no_copy.h"
 class Game;
 class state_base : public no_copy
@@ -18,5 +19,6 @@ public:
 	virtual void draw		(sf::RenderTarget&)		= 0;
 	virtual void handleInput() {}
 };
+bool initMusic(sf::Music&, const std::string& dir, float volume = 100, bool loop = true);
 #endif // !_state_base
 

@@ -6,10 +6,17 @@
 #include"state_pause.h"
 #include"state_game_over.h"
 constexpr auto LEVEL_CAP = 5;
+
+constexpr auto AMBIENT_DIR = "Assets/audio/ambient.ogg";
+constexpr auto AMBIENT_VOL = 60;
+constexpr auto MUSIC_DIR = "Assets/audio/background.ogg";
+constexpr auto MUSIC_VOL = 20;
 class state_playing :public state_base {
 private:
 	SaveInf		m_save;
 	World		m_world;
+	sf::Music	m_ambient;
+	sf::Music	m_music;
 	unsigned	m_level			= 1;
 	unsigned	m_score			= 0;
 	bool		m_is_gameover	= false;
@@ -27,7 +34,6 @@ private:
 		display(float centreY, const std::string& text);
 		void update(int newdata);
 		void draw(sf::RenderTarget& target);
-		int getCurrentDataDisplayed() const;
 	}m_score_display, m_level_display;
 public:
 	state_playing(Game&);//start at level 1
@@ -36,8 +42,9 @@ public:
 	void handleInput()							override;
 	void update(sf::Time delta_time)			override;	
 	void draw(sf::RenderTarget& renderer)		override;
+	void pauseAllSound();
+	void resumeAllSound();
 	
-
 	std::vector<SaveInf::RoadInf> randomSaveInf(unsigned lv);
 };
 #endif // !_state_playing/

@@ -204,7 +204,7 @@ void Player::update()
 {
 	if (this->m_player.getGlobalBounds().top > 600)
 		min_y_get_point = getPosition().y;		
-		
+	//PLEASE REMOVE THIS
 	//score 90,270,450,630    
 	if ((this->m_player.getGlobalBounds().top == 90
 		|| this->m_player.getGlobalBounds().top == 270
