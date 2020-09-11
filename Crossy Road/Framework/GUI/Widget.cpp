@@ -15,4 +15,19 @@ Widget::Text::Text(const std::string& font, const std::string& ext, unsigned siz
 	setFont(asset::font().get(font, ext));
 }
 
+void setOriginCenter(sf::Transformable& obj, const sf::FloatRect& local_bound)
+{
+	obj.setOrigin(local_bound.left + local_bound.width / 2.0f
+		, local_bound.top + local_bound.height / 2.0f);
+}
 
+void setPosCenter(sf::Transformable& obj, const sf::FloatRect& global_bound)
+{
+	obj.setPosition(getCenter(global_bound));
+}
+
+sf::Vector2f getCenter(const sf::FloatRect& global_bound)
+{
+	return { global_bound.left + global_bound.width / 2.0f
+		, global_bound.top + global_bound.height / 2.0f };
+}

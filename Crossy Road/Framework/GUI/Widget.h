@@ -26,5 +26,10 @@ public:
 			const sf::Color& fill);
 	};
 };
+//move origin point to the center of the object
+void setOriginCenter(sf::Transformable&, const sf::FloatRect& local_bound);
+//align object to the center of other object
+void setPosCenter(sf::Transformable&, const sf::FloatRect& global_bound);
 
+sf::Vector2f getCenter(const sf::FloatRect& global_bound);
 #endif //!_WIDGET_H_

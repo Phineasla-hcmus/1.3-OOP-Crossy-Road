@@ -25,7 +25,7 @@ state_save::state_save(Game& game, SaveInf& save)
 	save_menu.addWidget(std::move(name_textbox));
 	save_menu.addWidget(std::move(SaveBtn));
 	save_menu.addWidget(std::move(ReturnBtn));
-	save_menu.setTitle("     SAVE    GAME", game.get_window());
+	save_menu.setTitle("Save", game.get_window());
 
 }
 

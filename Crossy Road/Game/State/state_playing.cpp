@@ -16,6 +16,8 @@ state_playing::state_playing(Game& game)
 	//add some randomness to ambient sound
 	sf::Time duration = m_ambient.getDuration();
 	m_ambient.setPlayingOffset(sf::seconds(mtrand::getFloat(0, duration.asSeconds())));
+	duration = m_music.getDuration();
+	m_music.setPlayingOffset(sf::seconds(mtrand::getFloat(0, duration.asSeconds())));
 }
 
 state_playing::state_playing(Game& game, const SaveInf& save):

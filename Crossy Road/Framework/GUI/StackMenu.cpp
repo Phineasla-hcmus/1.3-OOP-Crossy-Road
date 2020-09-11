@@ -19,12 +19,10 @@ StackMenu::StackMenu(const sf::RenderWindow& window, float baseY, const sf::Text
 	_background.setSize(_base_size);
 	_background.setPosition(_base_pos.x - _base_size.x/2.f , baseY - 100);
 
-	_title_text.setPosition(_base_pos.x + 100 - (_base_size.x / 2.f), baseY - 100);
 	_title_text.setOutlineColor(sf::Color::Black);
 	_title_text.setFillColor(sf::Color::Yellow);
 	_title_text.setOutlineThickness(1);
 	_title_text.setCharacterSize(25);
-	   
 }
 
 StackMenu::StackMenu(const sf::Vector2f& position)
@@ -61,7 +59,7 @@ void StackMenu::addWidget(std::unique_ptr<Widget> w)
 void StackMenu::initWidget(Widget& widget)
 {
 	widget.setPosition({ _base_pos.x - widget.getSize().x / 2.f,
-						_base_pos.y - 40 });
+						_base_pos.y - 30 });
 	_base_pos.y += widget.getSize().y + 20;
 	_base_size.y += widget.getSize().y + 40;
 	_background.setSize(_base_size);
@@ -70,8 +68,9 @@ void StackMenu::initWidget(Widget& widget)
 void StackMenu::setTitle(const std::string& title, const sf::RenderTarget& target)
 {
 	_title_text.setString(title);
-	_title_text.setPosition((float)target.getSize().x-730,
-	_title_text.getPosition().y);
+	setOriginCenter(_title_text, _title_text.getLocalBounds());
+	//center text, with y + offset
+	_title_text.setPosition(_base_pos.x, _background.getPosition().y + 40);
 }
 
 void StackMenu::handleEvent(sf::Event e, const sf::RenderWindow& window)

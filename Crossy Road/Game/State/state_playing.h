@@ -10,7 +10,7 @@ constexpr auto LEVEL_CAP = 5;
 constexpr auto AMBIENT_DIR = "Assets/audio/ambient.ogg";
 constexpr auto AMBIENT_VOL = 60;
 constexpr auto MUSIC_DIR = "Assets/audio/background.ogg";
-constexpr auto MUSIC_VOL = 20;
+constexpr auto MUSIC_VOL = 40;
 class state_playing :public state_base {
 private:
 	SaveInf		m_save;
