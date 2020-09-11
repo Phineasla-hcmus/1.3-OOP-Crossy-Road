@@ -1,5 +1,5 @@
 #include "World.h"
-
+#include<iostream>
 World::World(const textureLookup& lookup)
 	: m_vehicle_set(lookup)
 	, m_background(&asset::texture().get("road_textures", "png"), sf::Vector2u(20, 20))//size base on the tileset.png
@@ -10,6 +10,14 @@ World::World(const textureLookup& lookup)
 	m_background.setMapSize(X_TILES+1, Y_TILES);
 	//scale the texture to TILE_SIZE (90)
 	m_background.create_map(tile_map, sf::Vector2u(TILE_SIZE, TILE_SIZE));
+
+	//TESTING HORN EFFECT
+	horn_set.emplace_back("car_horn1", "ogg");
+	horn_set.emplace_back("car_horn2", "ogg");
+	std::cout << m_honk_time << std::endl;
+	int rand_sound = mtrand::getInt(0, horn_set.size() - 1);
+	m_horn.setBuffer(asset::sound().get(horn_set[rand_sound].first, horn_set[rand_sound].second));
+	m_horn.setVolume(5);
 }
 
 void World::initLane(const SaveInf& save)
@@ -54,6 +62,15 @@ void World::update(float dt)
 	this->tryPlayerCollideWith();
 	for (auto& lane : this->m_lanes)
 		lane.update(dt);
+	float test = m_honk_clock.getElapsedTime().asSeconds();
+	if (test >= m_honk_time) {
+		int rand_sound = mtrand::getInt(0, horn_set.size() - 1);
+		m_horn.setBuffer(asset::sound().get(horn_set[rand_sound].first, horn_set[rand_sound].second));
+		m_honk_time = mtrand::getFloat(3f, 10.f);
+		std::cout << m_honk_time << std::endl;
+		m_honk_clock.restart();
+		m_horn.play();
+	}
 }
 
 bool World::updateScore()
