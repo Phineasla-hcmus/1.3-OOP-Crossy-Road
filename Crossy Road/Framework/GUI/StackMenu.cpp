@@ -19,7 +19,7 @@ StackMenu::StackMenu(const sf::RenderWindow& window, float baseY, const sf::Text
 	_background.setSize(_base_size);
 	_background.setPosition(_base_pos.x - _base_size.x/2.f , baseY - 100);
 
-	_title_text.setPosition(_base_pos.x +100- (_base_size.x / 2.f), baseY - 100);
+	_title_text.setPosition(_base_pos.x + 100 - (_base_size.x / 2.f), baseY - 100);
 	_title_text.setOutlineColor(sf::Color::Black);
 	_title_text.setFillColor(sf::Color::Yellow);
 	_title_text.setOutlineThickness(1);
@@ -61,9 +61,9 @@ void StackMenu::addWidget(std::unique_ptr<Widget> w)
 void StackMenu::initWidget(Widget& widget)
 {
 	widget.setPosition({ _base_pos.x - widget.getSize().x / 2.f,
-						_base_pos.y-70 });
-	_base_pos.y += widget.getSize().y +40;
-	_base_size.y += widget.getSize().y+40;
+						_base_pos.y - 40 });
+	_base_pos.y += widget.getSize().y + 20;
+	_base_size.y += widget.getSize().y + 40;
 	_background.setSize(_base_size);
 }
 

@@ -2,8 +2,8 @@
 
 Button::Button(ButtonSize s)
 {
-	_button.setFillColor({10,51,250});
-	_button.setTexture(&asset::texture().get("blue_panel", "png"));
+	//_button.setFillColor({10,51,250});
+	_button.setTexture(&asset::texture().get(BUTTON_TEXTURE, BUTTON_EXT));
 	switch (s) {
 	case ButtonSize::Wide:
 		_button.setSize({ 256, 64 });

@@ -3,6 +3,8 @@
 #include <functional>
 #include "../../Framework/GUI/Widget.h"
 #include"../AssetManager/asset.h"
+constexpr auto BUTTON_TEXTURE = "yellow_button00";
+constexpr auto BUTTON_EXT = "png";
 enum class ButtonSize
 {
 	Small,
