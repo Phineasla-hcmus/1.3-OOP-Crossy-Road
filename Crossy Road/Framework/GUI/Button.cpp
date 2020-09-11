@@ -65,7 +65,6 @@ void Button::setPosition(const sf::Vector2f& pos)
 
 void Button::updateText()
 {
-	
 	_text.setOrigin(_text.getLocalBounds().left + _text.getLocalBounds().width / 2.0f
 		, _text.getLocalBounds().top + _text.getLocalBounds().height / 2.0f);
 	_text.setPosition(_button.getGlobalBounds().left + _button.getGlobalBounds().width / 2.0f

@@ -12,9 +12,9 @@ class Button : public Widget
 {
 private:
 	void updateText();
-	sf::Vector2f    _pos;
-	Rectangle       _button;
-	Text            _text;
+	sf::Vector2f			   _pos;
+	sf::RectangleShape      _button;
+	Text                      _text;
 	std::function<void(void)> _function = []() {};//using lambdas function   
 public:
 	Button(ButtonSize size = ButtonSize::Wide);
