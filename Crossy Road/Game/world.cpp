@@ -66,7 +66,7 @@ void World::update(float dt)
 	if (test >= m_honk_time) {
 		int rand_sound = mtrand::getInt(0, horn_set.size() - 1);
 		m_horn.setBuffer(asset::sound().get(horn_set[rand_sound].first, horn_set[rand_sound].second));
-		m_honk_time = mtrand::getFloat(3f, 10.f);
+		m_honk_time = mtrand::getFloat(3.f, 10.f);
 		std::cout << m_honk_time << std::endl;
 		m_honk_clock.restart();
 		m_horn.play();
