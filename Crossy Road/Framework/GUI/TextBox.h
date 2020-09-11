@@ -12,7 +12,7 @@ private:
 	bool isBackspace(unsigned char keycode);
 
 	sf::Vector2f    _pos;
-	Rectangle       _rect;
+	sf::RectangleShape       _rect;
 	Text            _text;
 	Text            _label;
 	std::string* m_pModString;

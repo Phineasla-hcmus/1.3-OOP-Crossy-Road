@@ -13,7 +13,7 @@ state_main_menu::state_main_menu(Game& game)
 	, m_background(asset::texture().get("background768", "png"), { 768,448 }, { 8,12 }, sf::seconds(0.2f))
 	//, m_music()
 {
-	//open and play background music
+	//open and play background playlist
 	//open_music();
 	//Set up main menu
 	m_banner.setSize({ 780, 130 });

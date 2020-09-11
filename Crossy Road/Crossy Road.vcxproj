@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework\AssetManager\asset.cpp" />
+    <ClCompile Include="Framework\AssetManager\playlist.cpp" />
     <ClCompile Include="Framework\Game.cpp" />
     <ClCompile Include="Framework\GUI\Button.cpp" />
     <ClCompile Include="Framework\GUI\StackMenu.cpp" />
@@ -161,7 +162,7 @@
     <ClCompile Include="Game\Entity\Player.cpp" />
     <ClCompile Include="Game\Entity\Road.cpp" />
     <ClCompile Include="Game\Entity\TrafficLight.cpp" />
-    <ClCompile Include="Game\Entity\Vehicle.cpp" />
+    <ClCompile Include="Game\Entity\Obstacle.cpp" />
     <ClCompile Include="Game\SaveLevel.cpp" />
     <ClCompile Include="Game\State\state_game_over.cpp" />
     <ClCompile Include="Game\State\state_load.cpp" />
@@ -175,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="Framework\AssetManager\asset.h" />
     <ClInclude Include="Framework\AssetManager\asset_manager.h" />
+    <ClInclude Include="Framework\AssetManager\playlist.h" />
     <ClInclude Include="Framework\Game.h" />
     <ClInclude Include="Framework\GUI\Button.h" />
     <ClInclude Include="Framework\GUI\StackMenu.h" />
@@ -191,7 +193,7 @@
     <ClInclude Include="Game\Entity\Player.h" />
     <ClInclude Include="Game\Entity\Road.h" />
     <ClInclude Include="Game\Entity\TrafficLight.h" />
-    <ClInclude Include="Game\Entity\Vehicle.h" />
+    <ClInclude Include="Game\Entity\Obstacle.h" />
     <ClInclude Include="Game\SaveLevel.h" />
     <ClInclude Include="Game\State\state_game_over.h" />
     <ClInclude Include="Game\State\state_load.h" />

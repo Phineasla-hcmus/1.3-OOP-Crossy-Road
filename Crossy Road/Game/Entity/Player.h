@@ -8,21 +8,21 @@
 	Represents the player
 */
 constexpr auto START_X		= SCREEN_WIDTH / 2;
-constexpr auto START_Y		= SCREEN_HEIGHT - tile_size;
+constexpr auto START_Y		= SCREEN_HEIGHT - TILE_SIZE;
 constexpr auto MOVESPEED	= 3.f;
-constexpr auto PLAYER_SIZE	= tile_size - 10;
+constexpr auto PLAYER_SIZE	= TILE_SIZE - 10;
 class Player :public Collision
 {
 public:
 	Player();
 	void draw(sf::RenderTarget& target);
 	void update();
-	void input(); //keypress detection
-	void moving(); //moving if "walking" boolean is true
+	void input();	//keypress detection
+	void moving();	//moving if "walking" boolean is true
 	void onCollide(Collision& other) override;
 	void animationRenderer();
 	void restart();
-	void deathSoundPlaying() { if (!is_Alive)death_sound.play(); };
+	void deathSoundPlaying();
 	const sf::Vector2f& getPosition() const;
 	bool isAlive() const;
 	bool isGetScore()const;
@@ -41,14 +41,12 @@ private:
 	float	nextspot; //the next tilespot of the map
 
 	bool is_Alive = true;
-	sf::Texture& player_texture;
-	sf::Texture& explosion;
+	sf::Texture* player_texture;
+	sf::Texture* explosion;
 	float min_y_get_point;
 	bool m_passed = false;
 	bool m_get_score = false;
 
-	sf::IntRect frame;
-	animation death_animation;
 	sf::Sound death_sound;
 };
 

@@ -15,19 +15,4 @@ Widget::Text::Text(const std::string& font, const std::string& ext, unsigned siz
 	setFont(asset::font().get(font, ext));
 }
 
-bool Widget::Rectangle::isRolledOn(const sf::RenderWindow& window) const
-{
-	auto pos = sf::Mouse::getPosition(window);
-	return getGlobalBounds().contains((float)pos.x, (float)pos.y);
-}
-
-bool Widget::Rectangle::isClicked(sf::Event ev, const sf::RenderWindow& window)
-{
-	if (isRolledOn(window)) {
-		if (ev.type == sf::Event::MouseButtonPressed) {
-			return ev.mouseButton.button == sf::Mouse::Left;
-		}
-	}
-	return false;
-}
 

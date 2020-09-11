@@ -2,16 +2,15 @@
 #define _main_game
 #include<stack>
 #include<vector>
-#include<array>
 #include<SFML/Graphics.hpp>
 #include"Util/io_config.h"
 #include"Util/no_copy.h"
 #include"State/state_base.h"
 constexpr auto SCREEN_WIDTH		= 1280;
 constexpr auto SCREEN_HEIGHT	= 720;
-constexpr auto x_tiles			= 14;
-constexpr auto y_tiles			= 8;
-constexpr auto tile_size		= SCREEN_HEIGHT / y_tiles;
+constexpr auto X_TILES			= 14;
+constexpr auto Y_TILES			= 8;
+constexpr auto TILE_SIZE		= SCREEN_HEIGHT / Y_TILES;
 class Game : public no_copy
 {
 private:

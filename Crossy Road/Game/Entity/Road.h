@@ -1,7 +1,7 @@
 #ifndef _road_h
 #define _road_h
 #include "../../PCH.h"
-#include "Vehicle.h"
+#include "Obstacle.h"
 #include "TrafficLight.h"
 
 constexpr auto MIN_VEHICLE = 3;
@@ -24,10 +24,10 @@ BOUND			_____________				BOUND
 */
 
 constexpr float VEHICLE_SIZE	= 85;
-class Vehicle;
+class Obstacle;
 
 //function for init new vehicle
-using vehicle_func = std::function < std::unique_ptr<Vehicle>(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound) >;
+using vehicle_func = std::function < std::unique_ptr<Obstacle>(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound) >;
 class Lane {
 public:
 	enum class direction {
@@ -38,10 +38,10 @@ public:
 	Lane() = default;
 	Lane(Lane&&) = default;
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
-	void		initVehicle(size_t, random&);
+	void		initVehicle(size_t);
 	void		setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
 	size_t		getVehicleSize() const;
-	Vehicle&	getVehicle(size_t);
+	Obstacle&	getVehicle(size_t);
 	void		draw(sf::RenderTarget& target);
 
 	void		update(float dt);
@@ -53,7 +53,7 @@ private:
 	const sf::Vector2f						m_vehicle_pos		= { 0.f,0.f };
 	const direction							m_dir;
 	float									m_speed				= 0;
-	std::vector<std::unique_ptr<Vehicle>>	m_vehicles;
+	std::vector<std::unique_ptr<Obstacle>>	m_vehicles;
 	sf::Texture*							m_vehicles_texture	= nullptr;
 	sf::IntRect								m_texture_bound;
 	vehicle_func							m_init_func;

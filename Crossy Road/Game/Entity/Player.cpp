@@ -8,19 +8,15 @@ static int initY = 192;
 Player::Player() 
 	: Collision(PLAYER_SIZE/2, PLAYER_SIZE/2)
 	, m_player({ PLAYER_SIZE,PLAYER_SIZE })
-	, player_texture(asset::texture().get("player_sprite_2", "png"))
-	, explosion(asset::texture().get("explosion", "png"))
-	,death_animation(64,64)
+	, player_texture(&asset::texture().get("player_sprite_2", "png"))
+	, explosion(&asset::texture().get("explosion", "png"))
 	,min_y_get_point(0)
-	,nextspot(cur_pos.y - tile_size)
+	,nextspot(cur_pos.y - TILE_SIZE)
+	, death_sound((asset::sound().get("oofMinecraft", "ogg")))
 {
 	m_player.setPosition(this->origin_pos);
-	m_player.setTexture(&player_texture);
+	m_player.setTexture(player_texture);
 	m_player.setTextureRect(sf::IntRect{ 0,192,64,64 });
-	for (int index = 0; index < 5; index++) {
-		death_animation.add_frame(m_delay,0,index);
-	}
-	death_sound.setBuffer(asset::sound().get("oofMinecraft", "ogg"));
 	death_sound.setVolume(50);
 }
 
@@ -32,13 +28,13 @@ void Player::input()
 	{
 		if (is_walking == false)
 		{
-			nextspot = cur_pos.y - tile_size;
+			nextspot = cur_pos.y - TILE_SIZE;
 			moves[UP] = true;
 			is_walking = true;
 			initY = 192;
 			initX = 0;
 			m_player.setTextureRect({ initX,initY,64,64 });
-			if (nextspot == -tile_size) {
+			if (nextspot == -TILE_SIZE) {
 				nextspot = origin_pos.y;
 				cur_pos.y = SCREEN_HEIGHT;
 			}
@@ -48,9 +44,9 @@ void Player::input()
 	{
 		if (is_walking == false)
 		{
-			nextspot = cur_pos.y + tile_size;
+			nextspot = cur_pos.y + TILE_SIZE;
 			if (nextspot >= SCREEN_HEIGHT) {
-				nextspot = cur_pos.y - tile_size;
+				nextspot = cur_pos.y - TILE_SIZE;
 				moves[DOWN] = false;
 				is_walking = false;
 			}
@@ -67,9 +63,9 @@ void Player::input()
 	{
 		if (is_walking == false)
 		{
-			nextspot = cur_pos.x - tile_size;
-			if (nextspot <= tile_size * 2) {
-				nextspot = cur_pos.x + tile_size;
+			nextspot = cur_pos.x - TILE_SIZE;
+			if (nextspot <= TILE_SIZE * 2) {
+				nextspot = cur_pos.x + TILE_SIZE;
 				moves[DOWN] = false;
 				is_walking = false;;
 			}
@@ -86,9 +82,9 @@ void Player::input()
 	{
 		if (is_walking == false)
 		{
-			nextspot = cur_pos.x + tile_size;
-			if (nextspot >= SCREEN_WIDTH - tile_size * 3) {
-				nextspot = cur_pos.x - tile_size;
+			nextspot = cur_pos.x + TILE_SIZE;
+			if (nextspot >= SCREEN_WIDTH - TILE_SIZE * 3) {
+				nextspot = cur_pos.x - TILE_SIZE;
 				moves[DOWN] = false;
 				is_walking = false;;
 			}
@@ -158,17 +154,12 @@ const sf::Vector2f& Player::getPosition() const
 void Player::onCollide(Collision& other)
 {
 	is_walking = false;
-	m_player.setTexture(&explosion);
+	m_player.setTexture(explosion);
 	m_player.setScale(1.5f, 1.5f);
 	is_Alive = false;
 }
 
 void Player::animationRenderer() {
-	/*for (int col = 0; col < 4; col++) {
-		for (int row = 0; row < 4; row++) {
-			moveAnimation[row].add_frame(m_delay,row,col);
-		}
-	}*/
 	if (m_clock.getElapsedTime().asSeconds() > m_delay.asSeconds() && is_walking == true && is_Alive) {
 		if (initX > 192) {
 			initX = 0;
@@ -208,7 +199,7 @@ void Player::update()
 {
 	if (this->m_player.getGlobalBounds().top > 600)
 		min_y_get_point = getPosition().y;		
-		
+	//PLEASE REMOVE THIS
 	//score 90,270,450,630    
 	if ((this->m_player.getGlobalBounds().top == 90
 		|| this->m_player.getGlobalBounds().top == 270
@@ -235,4 +226,9 @@ void Player::restart()
 	m_passed = false;
 	m_get_score = false;
 	min_y_get_point = 720.f;
+}
+
+void Player::deathSoundPlaying()
+{
+	if (!is_Alive)death_sound.play();
 }

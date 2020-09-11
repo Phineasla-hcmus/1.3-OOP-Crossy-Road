@@ -4,9 +4,12 @@ state_save::state_save(Game& game, SaveInf& save)
 	, save_menu(game.get_window(), 300, &asset::texture().get("blue_panel", "png"))
 	, m_save(save)
 {
+
+	background.setTexture(&asset::texture().get("background2", "png"));
+	background.setSize({ 1280,720 });
+
 	auto name_textbox = makeTextBox(m_name);
 	name_textbox->setLabel("Name");
-
 
 	auto SaveBtn = makeButton();
 	SaveBtn->setText("Save Game");
@@ -29,10 +32,11 @@ state_save::state_save(Game& game, SaveInf& save)
 void state_save::handleEvent(sf::Event ev) {
 	save_menu.handleEvent(ev, this->game().get_window());
 }
-void state_save::update(sf::Time delta_time)
-{
 
-}
+void state_save::update(sf::Time delta_time)
+{}
+
 void state_save::draw(sf::RenderTarget& renderer) {
+	renderer.draw(background);
 	save_menu.render(renderer);
 }
