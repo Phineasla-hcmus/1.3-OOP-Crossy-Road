@@ -70,7 +70,7 @@ std::vector<SaveInf::RoadInf> state_playing::randomSaveInf(unsigned lv)
 	for (size_t i = 0; i < SAVE_LANE; ++i) {
 		direction   = -1 + r.getInt(0, 1) * 2;//left or right
 		vehicleType = r.getInt(0, maxVehicleType);//random base on how many type read from Config/
-		vehicleNum = lv < 5 ? (r.getInt(1, lv)) : (lv < 10 ? r.getInt(2, 5) : r.getInt(3, 5));
+		vehicleNum = lv < 5 ? (r.getInt(1, lv)) : (lv < 10 ? r.getInt(2, 4) : r.getInt(3, 4));
 		speed = lv > 2 ? (r.getFloat(-10.f, 10.f) + 10u * lv) : r.getFloat(40.f, 60.f);
 
 		lane.emplace_back(vehicleType, vehicleNum, direction, speed);
