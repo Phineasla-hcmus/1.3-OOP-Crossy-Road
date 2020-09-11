@@ -23,6 +23,7 @@ public:
 	void setScale(const sf::Vector2f&);
 	void draw(sf::RenderTarget&) const;
 	void move(float speed);
+	void resetPosition(sf::Vector2f position);
 };
 class Car :public Obstacle {
 public:

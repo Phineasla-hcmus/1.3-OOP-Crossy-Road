@@ -15,20 +15,39 @@ void Lane::initVehicle(size_t size)
 	m_num_vehicle = size;//init max vehicle
 	
 	if (m_init_func) {
-		float spacing = SCREEN_WIDTH / (float)size;		
-		float x = LEFT_BOUND;// +(float)rand.getDouble(-spacing, spacing);
-	
-		size += HIDDEN_VEHICLE;//increase size with extra vehicle
+		if (m_dir == direction::right) {
+			float spacing = SCREEN_WIDTH / (float)size;
+			float x = LEFT_BOUND;// +(float)rand.getDouble(-spacing, spacing);
 
-		m_vehicles.reserve(size);
-		for (size_t i = 0; i < size; ++i) {
-			x += spacing;
-			//create vehicle at x, lanePos.y
-			auto new_vehicle = m_init_func(sf::Vector2f(x, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
-			float scale = VEHICLE_SIZE / m_texture_bound.height;
-			new_vehicle->setScale(sf::Vector2f(scale, scale));
+			size += HIDDEN_VEHICLE;//increase size with extra vehicle
 
-			m_vehicles.push_back(std::move(new_vehicle));
+			m_vehicles.reserve(size);
+			for (size_t i = 0; i < size; ++i) {
+				x += spacing;
+				//create vehicle at x, lanePos.y
+				auto new_vehicle = m_init_func(sf::Vector2f(x, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
+				float scale = VEHICLE_SIZE / m_texture_bound.height;
+				new_vehicle->setScale(sf::Vector2f(scale, scale));
+
+				m_vehicles.push_back(std::move(new_vehicle));
+			}
+		}
+		else {
+			float spacing = SCREEN_WIDTH / (float)size;
+			float x = SCREEN_WIDTH - LEFT_BOUND;// +(float)rand.getDouble(-spacing, spacing);
+
+			size += HIDDEN_VEHICLE;//increase size with extra vehicle
+
+			m_vehicles.reserve(size);
+			for (size_t i = 0; i < size; ++i) {
+				x -= spacing;
+				//create vehicle at x, lanePos.y
+				auto new_vehicle = m_init_func(sf::Vector2f(x, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
+				float scale = VEHICLE_SIZE / m_texture_bound.height;
+				new_vehicle->setScale(sf::Vector2f(scale, scale));
+
+				m_vehicles.push_back(std::move(new_vehicle));
+			}
 		}
 	}
 }
@@ -66,22 +85,18 @@ void Lane::update(float dt)
 	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
 
 	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle);//space between 2 car
-
-	if (this->m_vehicles.size() <= m_num_vehicle)
-		spawnVehicle();
+		
 
 	if (m_light.getLightState() == (sf::Color::Green)) {
 		if (m_clock.getElapsedTime() <= (m_start_time_change_color + m_green_time)/*time green light*/) {
 			for (size_t i = 0; i < this->m_vehicles.size(); i++)
 			{
 				this->m_vehicles[i]->move(2.f*speed);
-				if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x >= SCREEN_WIDTH + spacing -  VEHICLE_SIZE) {
-
-					this->m_vehicles.erase(this->m_vehicles.begin() + i);
+				if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x+VEHICLE_SIZE >= SCREEN_WIDTH + spacing) {
+					this->m_vehicles[i]->resetPosition({ BASE_X - VEHICLE_SIZE, m_vehicle_pos.y });
 				}
-				if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x + this->m_vehicles[i]->getSize().x) <= -spacing + VEHICLE_SIZE) {
-
-					this->m_vehicles.erase(this->m_vehicles.begin() + i);
+				if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x ) <= -spacing ) {
+					this->m_vehicles[i]->resetPosition({ SCREEN_WIDTH, m_vehicle_pos.y });
 				}
 			}
 		}
@@ -103,21 +118,22 @@ void Lane::update(float dt)
 	}
 }
 
-void Lane::spawnVehicle()
-{	
-	if (this->m_dir == direction::left) {
-		auto new_vehicle = m_init_func(sf::Vector2f(BASE_X-VEHICLE_SIZE, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
-		float scale = VEHICLE_SIZE / m_texture_bound.height;
-		new_vehicle->setScale(sf::Vector2f(scale, scale));
-		m_vehicles.push_back(std::move(new_vehicle));
-	}
-	else {
-		auto new_vehicle = m_init_func(sf::Vector2f(SCREEN_WIDTH, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
-		float scale = VEHICLE_SIZE / m_texture_bound.height;
-		new_vehicle->setScale(sf::Vector2f(scale, scale));
-		m_vehicles.push_back(std::move(new_vehicle));
-	}
-}
+//void Lane::spawnVehicle()
+//{	
+//	if (this->m_dir == direction::left) {
+//		auto new_vehicle = m_init_func(sf::Vector2f(BASE_X-VEHICLE_SIZE, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
+//		float scale = VEHICLE_SIZE / m_texture_bound.height;
+//		new_vehicle->setScale(sf::Vector2f(scale, scale));
+//		m_vehicles.push_back(std::move(new_vehicle));
+//		
+//	}
+//	else {
+//		auto new_vehicle = m_init_func(sf::Vector2f(SCREEN_WIDTH, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
+//		float scale = VEHICLE_SIZE / m_texture_bound.height;
+//		new_vehicle->setScale(sf::Vector2f(scale, scale));
+//		m_vehicles.push_back(std::move(new_vehicle));
+//	}
+//}
 
 void Lane::pause()
 {

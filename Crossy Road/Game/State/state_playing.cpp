@@ -96,7 +96,7 @@ std::vector<SaveInf::RoadInf> state_playing::randomSaveInf(unsigned lv)
 
 		lane.emplace_back(vehicleType, vehicleNum, direction, speed);
 	}
-	return lane;//
+	return lane;
 }
 
 void state_playing::update(sf::Time delta_time)

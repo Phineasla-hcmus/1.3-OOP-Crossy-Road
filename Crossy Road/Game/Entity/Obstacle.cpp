@@ -65,6 +65,13 @@ void Obstacle::move(float speed)
 	m_sprite.move(speed, 0);
 }
 
+void Obstacle::resetPosition(sf::Vector2f position)
+{
+		this->m_sprite.setPosition(position);
+	
+}
+
+
 Car::Car(sf::Vector2f pos, const sf::Texture& texture)
 	: Obstacle(pos, texture)
 {}
