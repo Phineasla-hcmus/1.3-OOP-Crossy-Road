@@ -38,7 +38,7 @@ void state_playing::handleEvent(sf::Event ev)
 		m_pause_menu.changeState();
 	}
 	if (m_pause_menu.isPaused())
-		m_pause_menu.handleEvent(ev);
+		m_pause_menu.handleEvent(ev,this->game());
 	if (m_is_gameover) {
 		pauseAllSound();
 		m_gameover.handleEvent(ev);

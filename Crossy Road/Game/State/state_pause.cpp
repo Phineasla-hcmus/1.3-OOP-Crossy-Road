@@ -2,8 +2,7 @@
 #include"state_playing.h"
 #include"state_save.h"
 PauseMenu::PauseMenu(Game& game)
-	: state_base(game),
-	m_menu(game.get_window(), 250, &asset::texture().get("blue_panel", "png"))
+	: m_menu(game.get_window(), 250, &asset::texture().get("blue_panel", "png"))
 {
 
 	auto ResumeBtn = makeButton();
@@ -14,17 +13,17 @@ PauseMenu::PauseMenu(Game& game)
 	auto SaveGameBtn = makeButton();
 	SaveGameBtn->setText("Save Game");
 	SaveGameBtn->setFunction([&]() {
-		this->game().pushState(std::make_unique<state_save>(game, m_save));
+		game.pushState(std::make_unique<state_save>(game, m_save));
 		});
 	auto LoadGameBtn = makeButton();
 	LoadGameBtn->setText("Load Game");
 	LoadGameBtn->setFunction([&]() {
-		(this->game()).pushState(std::make_unique<state_load>(game));
+		game.pushState(std::make_unique<state_load>(game));
 		});
 	auto ExitGameBtn = makeButton();
 	ExitGameBtn->setText("Exit Game");
 	ExitGameBtn->setFunction([&]() {
-		this->game().popState();
+		game.popState();
 		});
 	m_menu.addWidget(std::move(ResumeBtn));
 	m_menu.addWidget(std::move(SaveGameBtn));
@@ -37,8 +36,8 @@ void PauseMenu::update(sf::Time dental_time) {}
 void PauseMenu::draw(sf::RenderTarget& target) {
 	m_menu.render(target);
 }
-void PauseMenu::handleEvent(sf::Event ev) {
-	m_menu.handleEvent(ev, this->game().get_window());
+void PauseMenu::handleEvent(sf::Event ev,Game& game) {
+	m_menu.handleEvent(ev, game.get_window());
 }
 bool PauseMenu::isPaused() {
 	return m_isPaused;

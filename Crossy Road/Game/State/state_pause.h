@@ -3,7 +3,7 @@
 
 #include "../../PCH.h"
 #include"../SaveLevel.h"
-class PauseMenu: public state_base {
+class PauseMenu {
 private:
 	StackMenu m_menu;
 	bool m_isPaused = false;
@@ -13,10 +13,10 @@ public:
 	
 	void changeState();
 	bool isPaused();
-	void draw(sf::RenderTarget& target)		override;
-	void handleEvent(sf::Event e)			override;
-	void update(sf::Time dental_time)		override;
-	void updateSaveInfo(SaveInf& save);
+	void draw(sf::RenderTarget& target)		;
+	void handleEvent(sf::Event e,Game&)		;
+	void update(sf::Time dental_time)		;
+	void updateSaveInfo(SaveInf& save)      ;
 };
 
 
