@@ -22,7 +22,7 @@ StackMenu::StackMenu(const sf::RenderWindow& window, float baseY, const sf::Text
 	_title_text.setOutlineColor(sf::Color::Black);
 	_title_text.setFillColor(sf::Color::Yellow);
 	_title_text.setOutlineThickness(1);
-	_title_text.setCharacterSize(25);
+	_title_text.setCharacterSize(30);
 }
 
 StackMenu::StackMenu(const sf::Vector2f& position)
