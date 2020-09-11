@@ -11,13 +11,7 @@ state_playing::state_playing(Game& game)
 	m_save.update_road(randomSaveInf(1));//level 1
 	m_world.initLane(m_save);
 
-	initMusic(m_ambient, AMBIENT_DIR, AMBIENT_VOL);
-	initMusic(m_music, MUSIC_DIR, MUSIC_VOL);
-	//add some randomness to ambient sound
-	sf::Time duration = m_ambient.getDuration();
-	m_ambient.setPlayingOffset(sf::seconds(mtrand::getFloat(0, duration.asSeconds())));
-	duration = m_music.getDuration();
-	m_music.setPlayingOffset(sf::seconds(mtrand::getFloat(0, duration.asSeconds())));
+	initAmbient();
 }
 
 state_playing::state_playing(Game& game, const SaveInf& save):
@@ -33,6 +27,7 @@ state_playing::state_playing(Game& game, const SaveInf& save):
 	m_level = m_save.get_level();
 	m_world.initLane(m_save);
 
+	initAmbient();
 }
 
 void state_playing::handleEvent(sf::Event ev)
@@ -70,6 +65,17 @@ void state_playing::draw(sf::RenderTarget& renderer)
 	if (m_is_gameover) {
 		m_gameover.draw(renderer);
 	}
+}
+
+void state_playing::initAmbient()
+{
+	initMusic(m_ambient, AMBIENT_DIR, AMBIENT_VOL);
+	initMusic(m_music, MUSIC_DIR, MUSIC_VOL);
+	//add some randomness to ambient sound
+	sf::Time duration = m_ambient.getDuration();
+	m_ambient.setPlayingOffset(sf::seconds(mtrand::getFloat(0, duration.asSeconds())));
+	duration = m_music.getDuration();
+	m_music.setPlayingOffset(sf::seconds(mtrand::getFloat(0, duration.asSeconds())));
 }
 
 void state_playing::pauseAllSound()

@@ -5,7 +5,6 @@
 #include "../World.h"
 #include"state_pause.h"
 #include"state_game_over.h"
-constexpr auto LEVEL_CAP = 5;
 
 constexpr auto AMBIENT_DIR = "Assets/audio/ambient.ogg";
 constexpr auto AMBIENT_VOL = 60;
@@ -42,6 +41,7 @@ public:
 	void handleInput()							override;
 	void update(sf::Time delta_time)			override;	
 	void draw(sf::RenderTarget& renderer)		override;
+	void initAmbient();//call on every constructor
 	void pauseAllSound();
 	void resumeAllSound();
 	
