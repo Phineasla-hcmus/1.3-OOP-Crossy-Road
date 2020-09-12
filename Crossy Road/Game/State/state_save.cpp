@@ -14,7 +14,8 @@ state_save::state_save(Game& game, SaveInf& save)
 	auto SaveBtn = makeButton();
 	SaveBtn->setText("Save Game");
 	SaveBtn->setFunction([&]() {
-		if(saveGame(m_name, m_save))this->game().popState();
+		if (saveGame(m_name, m_save))
+			this->game().popState();
 		});
 
 	auto ReturnBtn = makeButton();

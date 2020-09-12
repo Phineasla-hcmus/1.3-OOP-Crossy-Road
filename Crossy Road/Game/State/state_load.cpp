@@ -56,8 +56,7 @@ void state_load::handleEvent(sf::Event e)
 }
 
 void state_load::update(sf::Time delta_time)
-{
-}
+{}
 
 void state_load::draw(sf::RenderTarget& renderer)
 {

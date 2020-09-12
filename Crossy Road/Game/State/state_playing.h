@@ -3,8 +3,8 @@
 
 #include "../../PCH.h"
 #include "../World.h"
-#include"state_pause.h"
-#include"state_game_over.h"
+#include "state_pause.h"
+#include "state_game_over.h"
 
 class state_playing :public state_base {
 private:
