@@ -2,9 +2,6 @@
 #include "../world.h"
 #include <algorithm>
 
-static int initX = 0;
-static int initY = 192;
-
 Player::Player() 
 	: Collision(PLAYER_SIZE/2, PLAYER_SIZE/2)
 	, m_player({ PLAYER_SIZE,PLAYER_SIZE })
@@ -210,7 +207,7 @@ void Player::update()
 	}
 	else
 		m_get_score = false;
-	if (getPosition().y <= SCREEN_HEIGHT && getPosition().y > SCREEN_HEIGHT - 5) {
+	if (getPosition().y <= SCREEN_HEIGHT && getPosition().y > SCREEN_HEIGHT - 10) {
 		m_passed = true;
 		m_get_score = true;
 	}
