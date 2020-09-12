@@ -5,14 +5,13 @@
 #include"../SaveLevel.h"
 class PauseMenu {
 private:
-	StackMenu m_menu;
-	bool m_isPaused = false;
-	SaveInf m_save;
+	StackMenu					m_menu;
+	bool			m_isPaused = false;
+	SaveInf						m_save;
 public:
-	PauseMenu(Game&);
-	
-	void changeState();
-	bool isPaused();
+	PauseMenu(Game&)						;
+	void changeState()						;
+	bool isPaused()							;
 	void draw(sf::RenderTarget& target)		;
 	void handleEvent(sf::Event e,Game&)		;
 	void update(sf::Time dental_time)		;

@@ -16,11 +16,10 @@ private:
 public:
     StackMenu(const sf::RenderWindow& window, float baseY, const sf::Texture* texture = nullptr);
     StackMenu(const sf::Vector2f& position);
-    StackMenu(StackMenu&& other) noexcept;
-    StackMenu& operator =(StackMenu&& other) noexcept;
-    ~StackMenu() = default;
+    StackMenu(StackMenu&& other)                noexcept;
+    StackMenu& operator =(StackMenu&& other)    noexcept;
+    ~StackMenu()                               = default;
     void addWidget(std::unique_ptr<Widget> w);
-
     void setTitle(const std::string& title, const sf::RenderTarget& target);
     void handleEvent(sf::Event e, const sf::RenderWindow& window);
     void render(sf::RenderTarget& renderer);
