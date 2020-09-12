@@ -207,7 +207,7 @@ void Player::update()
 	}
 	else
 		m_get_score = false;
-	if (getPosition().y <= SCREEN_HEIGHT && getPosition().y > SCREEN_HEIGHT - 10) {
+	if (getPosition().y <= SCREEN_HEIGHT && getPosition().y > SCREEN_HEIGHT - movespeed * 2) {
 		m_passed = true;
 		m_get_score = true;
 	}
