@@ -9,8 +9,12 @@
 */
 constexpr auto START_X		= SCREEN_WIDTH / 2;
 constexpr auto START_Y		= SCREEN_HEIGHT - TILE_SIZE;
-constexpr auto MOVESPEED	= 3.f;
+constexpr auto MOVESPEED	= 5.f;
 constexpr auto PLAYER_SIZE	= TILE_SIZE - 10;
+
+static int initX = 0;
+static int initY = 192;
+
 class Player :public Collision
 {
 public:
