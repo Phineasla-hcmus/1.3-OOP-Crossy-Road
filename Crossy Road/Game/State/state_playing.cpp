@@ -131,10 +131,11 @@ void state_playing::update(sf::Time delta_time)
 			m_level += step_level;
 			m_save.update_road(randomSaveInf(m_level));
 			m_world.resetWorld(m_save);
-			m_save.update_Y(m_world.get_max_lane());
+		
 			
 		}
 	}
+	m_save.update_Y(m_world.get_max_lane());
 	m_pause_menu.updateSaveInfo(m_save);
 	m_is_gameover = m_world.is_game_over();
 }
