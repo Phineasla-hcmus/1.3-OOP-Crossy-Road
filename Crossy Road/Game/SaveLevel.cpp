@@ -67,7 +67,7 @@ bool saveGame(std::string& file_name, const SaveInf& save)
 	fout.write((char*)&lv, sizeof(lv));
 	fout.write((char*)&score, sizeof(score));
 	fout.write((char*)&size, sizeof(size));
-	fout.write((char*)&posittion, sizeof(posittion));
+	//fout.write((char*)&posittion, sizeof(posittion));
 	fout.write((char*)&maxY, sizeof(maxY));
 	fout.write((char*)&save.get_RoadInf(0), (long long)size * sizeof(SaveInf::RoadInf));
 	fout.close();
@@ -85,7 +85,7 @@ bool loadGame(std::string file_name, SaveInf& save)
 	fin.read((char*)&lv, sizeof(lv));
 	fin.read((char*)&score, sizeof(score));
 	fin.read((char*)&size, sizeof(size));
-	fin.read((char*)&position, sizeof(position));
+	//fin.read((char*)&position, sizeof(position));
 	fin.read((char*)&maxY, sizeof(maxY));
 	std::vector<SaveInf::RoadInf> lanes(size);
 	fin.read((char*)&lanes[0], (long long)size * sizeof(SaveInf::RoadInf));
@@ -95,7 +95,7 @@ bool loadGame(std::string file_name, SaveInf& save)
 }
 bool loadHighScore(int& highscore) {
 	std::string filename = "highscore";
-	std::ifstream fin(HIGHSCORE_DIR+filename+FILE_EXT, std::ios::binary);
+	std::ifstream fin(HIGHSCORE_DIR + filename + FILE_EXT, std::ios::binary);
 	if (!fin.is_open())return false;
 	fin.read((char*)&highscore, sizeof(int));
 	fin.close();
