@@ -113,13 +113,17 @@ std::vector<SaveInf::RoadInf> state_playing::randomSaveInf(unsigned lv)
 
 void state_playing::update(sf::Time delta_time)
 {    
-	m_pause_menu.updateSaveInfo(m_save);
+	m_save.update_level(m_level);
+	m_save.update_score(m_score);
+	m_save.update_position(m_world.getPosition());
+	
 	m_level_display.update(m_level);
 	m_score_display.update(m_score);
 	m_gameover.updateScore(m_score);
 
 	if (!m_is_gameover && !m_pause_menu.isPaused())
 	{
+
 		m_world.update(delta_time.asSeconds());
 		m_score += m_world.updateScore();
 		unsigned step_level = m_world.updateLevel();
@@ -127,11 +131,11 @@ void state_playing::update(sf::Time delta_time)
 			m_level += step_level;
 			m_save.update_road(randomSaveInf(m_level));
 			m_world.resetWorld(m_save);
+			m_save.update_Y(m_world.get_max_lane());
+			
 		}
 	}
-	m_save.update_level(m_level);
-	m_save.update_score(m_score);
-	m_save.update_position(m_world.getPosition());
+	m_pause_menu.updateSaveInfo(m_save);
 	m_is_gameover = m_world.is_game_over();
 }
 

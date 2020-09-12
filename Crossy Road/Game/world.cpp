@@ -25,6 +25,7 @@ void World::initLane(const SaveInf& save)
 	//function for init
 	m_lanes.reserve(SAVE_LANE);
 	m_player.setPosition(save.get_position());
+	m_best_lane = save.get_maxY();
 	vehicle_func initVehicleFunc[] = { new_vehicle<Truck> , new_vehicle<Car>};
 	for (size_t i = 0; i < SAVE_LANE; ++i) {
 		const float			lanePos = i * TILE_SIZE * 2.f;					
@@ -131,4 +132,9 @@ bool World::tryPlayerCollideWith() {
 sf::Vector2f World::getPosition() const
 {
 	return m_player.getPosition();
+}
+
+int World::get_max_lane() const
+{
+	return m_best_lane;
 }

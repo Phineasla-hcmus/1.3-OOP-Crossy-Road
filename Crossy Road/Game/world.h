@@ -30,5 +30,6 @@ public:
 	unsigned updateLevel();
 	bool is_game_over();
 	sf::Vector2f getPosition() const;
+	int     get_max_lane() const;
 };
 #endif // !_World_h
