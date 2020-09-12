@@ -7,15 +7,14 @@
 #include "../../PCH.h"
 #include "../Background.h"
 #include"state_load.h"
-constexpr auto BACKGROUND_MUSIC_DIR = "Assets/audio/Cold_Youth.ogg";
+
 class state_main_menu :public state_base {
 private:
 	sf::RectangleShape	m_container;
 	sf::RectangleShape	m_banner;
 	Background			m_background;
 	StackMenu			m_mainMenu;
-	//sf::Music			m_music;
-	//void				open_music(const std::string & = BACKGROUND_MUSIC_DIR);
+	sf::Music			m_music;
 public:
 	state_main_menu(Game&);
 

@@ -1,4 +1,8 @@
 #include "state_playing.h"
+constexpr auto AMBIENT_DIR = "Assets/audio/ambient.ogg";
+constexpr auto AMBIENT_VOL = 60;
+constexpr auto MUSIC_DIR = "Assets/audio/background.ogg";
+constexpr auto MUSIC_VOL = 40;
 state_playing::state_playing(Game& game)
 	: state_base(game)
 	, m_save()
@@ -14,8 +18,8 @@ state_playing::state_playing(Game& game)
 	initAmbient();
 }
 
-state_playing::state_playing(Game& game, const SaveInf& save):
-	state_base(game)
+state_playing::state_playing(Game& game, const SaveInf& save)
+	: state_base(game)
 	, m_save(save)
 	, m_world(game.get_texture_set())
 	, m_pause_menu(game)

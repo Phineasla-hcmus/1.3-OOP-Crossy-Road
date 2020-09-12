@@ -6,10 +6,6 @@
 #include"state_pause.h"
 #include"state_game_over.h"
 
-constexpr auto AMBIENT_DIR = "Assets/audio/ambient.ogg";
-constexpr auto AMBIENT_VOL = 60;
-constexpr auto MUSIC_DIR = "Assets/audio/background.ogg";
-constexpr auto MUSIC_VOL = 40;
 class state_playing :public state_base {
 private:
 	SaveInf		m_save;
