@@ -29,5 +29,6 @@ public:
 	bool updateScore();
 	unsigned updateLevel();
 	bool is_game_over();
+	sf::Vector2f getPosition() const;
 };
 #endif // !_World_h

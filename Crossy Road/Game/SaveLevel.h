@@ -16,18 +16,21 @@ public:
 		RoadInf(int vehicleType, int vehicleNum, int dir, float speed);
 	};
 	SaveInf() = default;
-	SaveInf(unsigned level, unsigned score, std::vector<RoadInf> roads);
+	SaveInf(unsigned level, unsigned score, std::vector<RoadInf> roads,sf::Vector2f);
 	unsigned	get_level() const;
 	unsigned	get_score() const;
 	unsigned	get_size()	const;
+	sf::Vector2f get_position() const;
 	const RoadInf& get_RoadInf(size_t)	const;
 	void		update_score(unsigned);
 	void		update_level(unsigned);
 	void		update_road(std::vector<RoadInf> new_roads);
+	void		update_position(sf::Vector2f);
 private:
 	unsigned						m_level = 1;
 	unsigned						m_score = 0;
 	std::vector<RoadInf>			m_road_arr;
+	sf::Vector2f                    m_position = {640,630};
 };
 bool saveGame(std::string& file_name, const SaveInf&);
 bool loadGame(std::string file_name, SaveInf&);

@@ -1,10 +1,14 @@
 #include "SaveLevel.h"
-SaveInf::SaveInf(unsigned level, unsigned score, std::vector<RoadInf> roads)
+SaveInf::SaveInf(unsigned level, unsigned score, std::vector<RoadInf> roads,sf::Vector2f position)
 	: m_level(level)
 	, m_score(score)
 	, m_road_arr(roads)
+	, m_position(position)
 {}
-
+sf::Vector2f  SaveInf::get_position() const 
+{
+	return m_position;
+}
 unsigned SaveInf::get_level() const
 {
 	return m_level;
@@ -40,15 +44,21 @@ void SaveInf::update_road(std::vector<RoadInf> new_roads)
 	m_road_arr = new_roads;
 }
 
+void SaveInf::update_position(sf::Vector2f position)
+{
+	m_position = position;
+}
 bool saveGame(std::string& file_name, const SaveInf& save)
 {
 	std::ofstream fout(SAVE_DIR + file_name + FILE_EXT, std::ios::binary);
 	if (!fout.is_open())
 		return false;
 	unsigned lv = save.get_level(), score = save.get_score(), size = save.get_size();
+	sf::Vector2f posittion = save.get_position();
 	fout.write((char*)&lv, sizeof(lv));
 	fout.write((char*)&score, sizeof(score));
 	fout.write((char*)&size, sizeof(size));
+	fout.write((char*)&posittion, sizeof(posittion));
 	fout.write((char*)&save.get_RoadInf(0), (long long)size * sizeof(SaveInf::RoadInf));
 	fout.close();
 	return true;
@@ -60,12 +70,14 @@ bool loadGame(std::string file_name, SaveInf& save)
 	if (!fin.is_open())
 		return false;
 	unsigned lv, score, size;
+	sf::Vector2f position;
 	fin.read((char*)&lv, sizeof(lv));
 	fin.read((char*)&score, sizeof(score));
 	fin.read((char*)&size, sizeof(size));
+	fin.read((char*)&position, sizeof(position));
 	std::vector<SaveInf::RoadInf> lanes(size);
 	fin.read((char*)&lanes[0], (long long)size * sizeof(SaveInf::RoadInf));
-	save = SaveInf(lv, score, lanes);
+	save = SaveInf(lv, score, lanes,position);
 	fin.close();
 	return true;
 }

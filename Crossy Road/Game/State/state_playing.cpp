@@ -131,7 +131,7 @@ void state_playing::update(sf::Time delta_time)
 	}
 	m_save.update_level(m_level);
 	m_save.update_score(m_score);
-	
+	m_save.update_position(m_world.getPosition());
 	m_is_gameover = m_world.is_game_over();
 }
 

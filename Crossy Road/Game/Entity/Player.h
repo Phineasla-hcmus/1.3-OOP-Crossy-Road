@@ -23,6 +23,7 @@ public:
 	void animationRenderer();
 	void restart();
 	void deathSoundPlaying();
+	void setPosition(sf::Vector2f);
 	const sf::Vector2f& getPosition() const;
 	bool isAlive() const;
 	bool isGetScore()const;

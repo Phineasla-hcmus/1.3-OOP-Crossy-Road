@@ -232,3 +232,9 @@ void Player::deathSoundPlaying()
 {
 	if (!is_Alive)death_sound.play();
 }
+
+void Player::setPosition(sf::Vector2f position)
+{
+	m_player.setPosition(position);
+	cur_pos = position;
+}
