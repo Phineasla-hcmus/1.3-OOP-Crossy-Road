@@ -7,8 +7,8 @@ Player::Player()
 	, m_player({ PLAYER_SIZE,PLAYER_SIZE })
 	, player_texture(&asset::texture().get("player_sprite_2", "png"))
 	, explosion(&asset::texture().get("explosion", "png"))
-	,min_y_get_point(0)
-	,nextspot(cur_pos.y - TILE_SIZE)
+	, min_y_get_point(0)
+	, nextspot(cur_pos.y - TILE_SIZE)
 	, death_sound((asset::sound().get("oofMinecraft", "ogg")))
 {
 	m_player.setPosition(this->origin_pos);

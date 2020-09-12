@@ -20,7 +20,7 @@ public:
 	unsigned	get_level() const;
 	unsigned	get_score() const;
 	unsigned	get_size()	const;
-	int			get_maxY() const;
+	int			getBestLane() const;
 	sf::Vector2f get_position() const;
 	const RoadInf& get_RoadInf(size_t)	const;
 	void		update_score(unsigned);

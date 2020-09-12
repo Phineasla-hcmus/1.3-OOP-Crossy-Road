@@ -1,8 +1,9 @@
 #include "World.h"
 #include<iostream>
-World::World(const textureLookup& lookup)
+World::World(const textureLookup& lookup, int best_lane)
 	: m_vehicle_set(lookup)
 	, m_background(&asset::texture().get("road_textures", "png"), sf::Vector2u(20, 20))//size base on the tileset.png
+	, m_best_lane(best_lane)
 {
 	//render background map(top to bottom)
 	const std::vector<unsigned> tile_map = { 1,0,1,0,1,0,1,0 };
@@ -24,8 +25,8 @@ void World::initLane(const SaveInf& save)
 {
 	//function for init
 	m_lanes.reserve(SAVE_LANE);
-	m_player.setPosition(save.get_position());
-	m_best_lane = save.get_maxY();
+	//m_player.setPosition(save.get_position());
+	//m_best_lane = save.getBestLane();
 	vehicle_func initVehicleFunc[] = { new_vehicle<Truck> , new_vehicle<Car>};
 	for (size_t i = 0; i < SAVE_LANE; ++i) {
 		const float			lanePos = i * TILE_SIZE * 2.f;					

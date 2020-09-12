@@ -14,7 +14,7 @@ unsigned SaveInf::get_level() const
 {
 	return m_level;
 }
-int SaveInf::get_maxY() const
+int SaveInf::getBestLane() const
 {
 	return m_y;
 }
@@ -62,7 +62,7 @@ bool saveGame(std::string& file_name, const SaveInf& save)
 	if (!fout.is_open())
 		return false;
 	unsigned lv = save.get_level(), score = save.get_score(), size = save.get_size();
-	int maxY = save.get_maxY();
+	int maxY = save.getBestLane();
 	sf::Vector2f posittion = save.get_position();
 	fout.write((char*)&lv, sizeof(lv));
 	fout.write((char*)&score, sizeof(score));
