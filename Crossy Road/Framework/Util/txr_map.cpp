@@ -1,4 +1,4 @@
-#include "io_config.h"
+#include "txr_map.h"
 
 bool textureSet::loadFromFile(const std::string& dir)
 {
@@ -50,7 +50,7 @@ sf::IntRect textureInf::getBounds(size_t idx) const
 	return sf::IntRect(sf::Vector2i(tu * size.x, tv * size.y), sf::Vector2i(size));
 }
 
-size_t textureInf::numTexture()
+size_t textureInf::numTexture() const
 {
 	return (fileDim.x / size.x) * (fileDim.y / size.y);
 }
@@ -89,7 +89,7 @@ bool config_file::loadFromFile(const std::string& dir)
 	return true;
 }
 
-bool textureLookup::loadNewSet(const std::string& file_dir)
+bool txr_map::loadNewSet(const std::string& file_dir)
 {
 	textureSet lookup;
 	if (!lookup.loadFromFile(file_dir))
@@ -98,12 +98,17 @@ bool textureLookup::loadNewSet(const std::string& file_dir)
 	return true;
 }
 
-size_t textureLookup::size() const
+size_t txr_map::size() const
 {
 	return m_set.size();
 }
 
-const textureSet& textureLookup::getSet(size_t idx) const
+const textureSet& txr_map::getSet(size_t idx) const
+{
+	return m_set[idx];
+}
+
+const textureSet& txr_map::operator[](size_t idx) const
 {
 	return m_set[idx];
 }

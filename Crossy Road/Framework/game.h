@@ -3,7 +3,7 @@
 #include<stack>
 #include<vector>
 #include<SFML/Graphics.hpp>
-#include"Util/io_config.h"
+#include"Util/txr_map.h"
 #include"Util/no_copy.h"
 #include"State/state_base.h"
 constexpr auto SCREEN_WIDTH		= 1280;
@@ -20,7 +20,7 @@ private:
 	bool									m_pop_pending = false;
 	bool									m_swap_pending = false;
 	std::unique_ptr<state_base>				m_swap_state;//hold state for swapping
-	textureLookup							m_vehicles_set;
+	txr_map							m_vehicles_set;//hold information about obstacle texture
 	
 	state_base& cur_state() const;
 	void pop();
@@ -40,7 +40,7 @@ public:
 
 	size_t getStateSize() const;
 	const sf::RenderWindow& get_window() const;
-	const textureLookup& get_texture_set() const;
+	const txr_map& get_texture_set() const;
 };
 #endif // !_main_game
 

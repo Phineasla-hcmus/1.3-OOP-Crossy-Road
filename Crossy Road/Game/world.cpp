@@ -1,7 +1,7 @@
 #include "World.h"
 #include<iostream>
-World::World(const textureLookup& lookup, int best_lane)
-	: m_vehicle_set(lookup)
+World::World(const txr_map& lookup, int best_lane)
+	: m_txr_inf(lookup)
 	, m_background(&asset::texture().get("road_textures", "png"), sf::Vector2u(20, 20))//size base on the tileset.png
 	, m_best_lane(best_lane)
 {
@@ -34,7 +34,7 @@ void World::initLane(const SaveInf& save)
 		m_lanes.emplace_back(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed);
 
 		/*use for set vInfo type and its texture*/
-		const textureSet&	set		= m_vehicle_set.getSet(laneInf.vehicleType);	//get a set of multiple texture of a vInfo type
+		const textureSet&	set		= m_txr_inf.getSet(laneInf.vehicleType);	//get a set of multiple texture of a vInfo type
 		unsigned			idx		= mtrand::getInt(0, set.size() - 1);			//random to choose a texture for vehicle in that road
 		const textureInf&	vInfo	= set.getFullInf(idx);							//get all info about texture
 		sf::Texture&		texture	= asset::texture().get(vInfo.name, vInfo.ext);
