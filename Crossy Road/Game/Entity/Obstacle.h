@@ -14,7 +14,7 @@ public:
 	Obstacle(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
 
 	const sf::Vector2f& getPosition()	const { return m_sprite.getPosition(); };
-	void	onCollide(Collision& other) { m_active = false; };
+	void onCollide(Collision& other) { m_active = false; };
 	const sf::Vector2f& getSize()		const;
 	void setTexture(const sf::Texture&, const sf::IntRect&);
 	void setTexture(const sf::Texture&, bool resetRect = false);
