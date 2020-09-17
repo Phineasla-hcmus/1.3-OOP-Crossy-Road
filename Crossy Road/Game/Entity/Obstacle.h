@@ -39,6 +39,11 @@ public:
 	Bird(sf::Vector2f pos, const sf::Texture&);
 	Bird(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
 };
+class Dino :public Obstacle {
+public:
+	Dino(sf::Vector2f pos, const sf::Texture&);
+	Dino(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
+};
 
 template<typename T>
 std::unique_ptr<Obstacle> new_obstacle(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)

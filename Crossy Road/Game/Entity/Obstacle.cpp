@@ -104,3 +104,11 @@ Bird::Bird(sf::Vector2f pos, const sf::Texture& texture)
 Bird::Bird(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
 	: Obstacle(pos, texture, textureBound)
 {}
+
+Dino::Dino(sf::Vector2f pos, const sf::Texture& texture)
+	: Obstacle(pos, texture)
+{}
+
+Dino::Dino(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
+	: Obstacle(pos, texture, textureBound)
+{}
