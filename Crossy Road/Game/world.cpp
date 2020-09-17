@@ -37,8 +37,8 @@ void World::initLane(const SaveInf& save)
 
 		/*use for set vInfo type and its texture*/
 		const txr_set&	set		= m_txr_inf["vehicle"][laneInf.obstacleType];	//get a set of multiple texture of a vInfo type
-		unsigned		idx		= mtrand::getInt(0, set.size() - 1);		//random to choose a texture for vehicle in that road
-		const txr_inf&	vInfo	= set.getFullInf(idx);						//get all info about texture
+		unsigned		idx		= mtrand::getInt(0, set.size() - 1);			//random to choose a texture for obstacle in that road
+		const txr_inf&	vInfo	= set.getFullInf(idx);							//get all info about texture
 		sf::Texture&		texture	= asset::texture().get(vInfo.name, vInfo.ext);
 		const sf::IntRect	bounds	= (laneInf.direction == (int)Lane::direction::left) 
 			? vInfo.getBounds(0) /*left texture*/

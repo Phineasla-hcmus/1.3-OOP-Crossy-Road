@@ -26,7 +26,7 @@ void Lane::initObstacle(size_t size)
 				x += spacing;
 				//create vehicle at x, lanePos.y
 				auto new_obstacle = m_init_func(sf::Vector2f(x, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
-				float scale = VEHICLE_SIZE / m_texture_bound.height;
+				float scale = OBSTACLE_SIZE / m_texture_bound.height;
 				new_obstacle->setScale(sf::Vector2f(scale, scale));
 
 				m_vehicles.push_back(std::move(new_obstacle));
@@ -43,7 +43,7 @@ void Lane::initObstacle(size_t size)
 				x -= spacing;
 				//create vehicle at x, lanePos.y
 				auto new_obstacle = m_init_func(sf::Vector2f(x, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
-				float scale = VEHICLE_SIZE / m_texture_bound.height;
+				float scale = OBSTACLE_SIZE / m_texture_bound.height;
 				new_obstacle->setScale(sf::Vector2f(scale, scale));
 
 				m_vehicles.push_back(std::move(new_obstacle));
@@ -78,8 +78,8 @@ void Lane::update(float dt)
 	for (size_t i = 0; i < this->m_vehicles.size(); i++)
 	{
 		this->m_vehicles[i]->move(2.f * speed);
-		if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x + VEHICLE_SIZE >= SCREEN_WIDTH + spacing) {
-			this->m_vehicles[i]->setPos({ BASE_X - VEHICLE_SIZE, m_vehicle_pos.y });
+		if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x + OBSTACLE_SIZE >= SCREEN_WIDTH + spacing) {
+			this->m_vehicles[i]->setPos({ BASE_X - OBSTACLE_SIZE, m_vehicle_pos.y });
 		}
 		if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x) <= -spacing) {
 			this->m_vehicles[i]->setPos({ SCREEN_WIDTH, m_vehicle_pos.y });

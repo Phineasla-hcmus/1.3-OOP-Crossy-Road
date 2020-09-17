@@ -113,6 +113,8 @@ std::vector<SaveInf::LaneInf> state_playing::randomSaveInf(unsigned lv)
 	int		direction;
 	float	speed;
 	std::vector<SaveInf::LaneInf> lane;
+	const unsigned bias_type[] = { 0,1,1,1,1,1,1 };
+	size_t bias_size = sizeof(bias_type) / sizeof(bias_type[0]);
 	const std::string typeName[] = { "vehicle" };
 	for (size_t i = 1; i < Y_TILES - 1; ++i) {//lane 0 and lane 7 is resting lane
 		/*
@@ -120,7 +122,7 @@ std::vector<SaveInf::LaneInf> state_playing::randomSaveInf(unsigned lv)
 			1 = vehicle lane
 			2 = animal lane
 		*/
-		if ((laneType = mtrand::getInt(0, 1)) != 0) {
+		if ((laneType = bias_type[mtrand::getInt(0, bias_size - 1)]) != 0) {
 			//get size of current txr_set
 			maxOstacle = game().get_txr_set().operator[](typeName[laneType - 1]).size() - 1;
 			lanePos = i;
