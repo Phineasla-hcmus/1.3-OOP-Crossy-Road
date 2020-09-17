@@ -1,1 +1,1 @@
-zubat_texture	png	60	51	60	74
+zubat_texture     png     51     51     51     74
