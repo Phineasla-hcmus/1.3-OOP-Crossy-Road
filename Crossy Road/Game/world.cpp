@@ -1,6 +1,6 @@
 #include "World.h"
 #include<iostream>
-World::World(const txr_map& lookup, int best_lane)
+World::World(const txr_lookup& lookup, int best_lane)
 	: m_txr_inf(lookup)
 	, m_background(&asset::texture().get("road_textures", "png"), sf::Vector2u(20, 20))//size base on the tileset.png
 	, m_best_lane(best_lane)
@@ -9,8 +9,8 @@ World::World(const txr_map& lookup, int best_lane)
 	const std::vector<unsigned> tile_map = { 1,0,1,0,1,0,1,0 };
 	//render Y_TILES+1 to fill whole screen
 	m_background.setMapSize(X_TILES+1, Y_TILES);
-	//scale the texture to TILE_SIZE (90)
-	m_background.create_map(tile_map, sf::Vector2u(TILE_SIZE, TILE_SIZE));
+	////scale the texture to TILE_SIZE (90)
+	//m_background.create_map(tile_map, sf::Vector2u(TILE_SIZE, TILE_SIZE));
 
 	//TESTING HORN EFFECT
 	horn_set.emplace_back("car_horn1", "ogg");
@@ -25,27 +25,30 @@ void World::initLane(const SaveInf& save)
 {
 	//function for init
 	m_lanes.reserve(SAVE_LANE);
-	//m_player.setPosition(save.get_position());
-	//m_best_lane = save.getBestLane();
+	//array for rendering background map
+	std::vector<unsigned> tile_map(Y_TILES);
 	obstacle_ptr initVehicleFunc[] = { new_obstacle<Truck> , new_obstacle<Car>};
-	for (size_t i = 0; i < SAVE_LANE; ++i) {
-		const float			lanePos = i * TILE_SIZE * 2.f;					
-		const auto&			laneInf = save.get_RoadInf(i);						//get each laneInf from save file
+	for (size_t i = 0; i < save.get_size(); ++i) {
+		const auto&			laneInf = save.get_RoadInf(i);					//get each laneInf from save file
+		if (laneInf.laneType != 0)
+			tile_map[laneInf.lanePos] = 1;
+		const float			lanePos = (float)laneInf.lanePos * TILE_SIZE;
 		m_lanes.emplace_back(new_lane<D_Lane>(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed));
 
 		/*use for set vInfo type and its texture*/
-		const textureSet&	set		= m_txr_inf.getSet(laneInf.vehicleType);	//get a set of multiple texture of a vInfo type
-		unsigned			idx		= mtrand::getInt(0, set.size() - 1);		//random to choose a texture for vehicle in that road
-		const textureInf&	vInfo	= set.getFullInf(idx);						//get all info about texture
+		const txr_set&	set		= m_txr_inf["vehicle"][laneInf.obstacleType];	//get a set of multiple texture of a vInfo type
+		unsigned		idx		= mtrand::getInt(0, set.size() - 1);		//random to choose a texture for vehicle in that road
+		const txr_inf&	vInfo	= set.getFullInf(idx);						//get all info about texture
 		sf::Texture&		texture	= asset::texture().get(vInfo.name, vInfo.ext);
 		const sf::IntRect	bounds	= (laneInf.direction == (int)Lane::direction::left) 
 			? vInfo.getBounds(0) /*left texture*/
 			: vInfo.getBounds(1);/*right texture*/
 		/*set function for init, texture and texture bounds*/
 		Lane& newLane = *m_lanes.back();
-		newLane.setVehicleType(initVehicleFunc[laneInf.vehicleType], texture, bounds);
-		newLane.initVehicle(laneInf.vehicleNum);
+		newLane.setType(initVehicleFunc[laneInf.obstacleType], texture, bounds);
+		newLane.initObstacle(laneInf.obstacleNum);
 	}
+	m_background.create_map(tile_map, sf::Vector2u(TILE_SIZE, TILE_SIZE));
 }
 
 void World::input()
@@ -55,7 +58,7 @@ void World::input()
 	}
 }
 
-bool World::is_game_over() {
+bool World::is_game_over() const {
 	return m_game_over;
 }
 

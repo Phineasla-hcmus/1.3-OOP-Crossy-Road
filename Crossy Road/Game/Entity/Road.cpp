@@ -8,7 +8,7 @@ Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	, m_vehicles_texture(nullptr)	
 {}
 
-void Lane::initVehicle(size_t size)
+void Lane::initObstacle(size_t size)
 {
 	if (size >= 5)
 		size = 5;//max vehicle
@@ -52,7 +52,7 @@ void Lane::initVehicle(size_t size)
 	}
 }
 
-void Lane::setVehicleType(obstacle_ptr funct, sf::Texture& vehicle, sf::IntRect texture_bound)
+void Lane::setType(obstacle_ptr funct, sf::Texture& vehicle, sf::IntRect texture_bound)
 {
 	m_init_func = funct;
 	m_vehicles_texture = &vehicle;
@@ -123,7 +123,6 @@ void D_Lane::update(float dt)
 		}
 	}
 	else {
-
 		if (m_clock.getElapsedTime() >= (m_start_time_change_color + m_red_time)) {
 			m_light.turnGreen();
 			float green_time = 5.f + mtrand::getFloat(0, 2);
@@ -152,4 +151,3 @@ void A_Lane::draw(sf::RenderTarget& target)
 {
 	Lane::draw(target);
 }
-

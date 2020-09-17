@@ -41,6 +41,6 @@ public:
 	void pauseAllSound();
 	void resumeAllSound();
 	
-	std::vector<SaveInf::RoadInf> randomSaveInf(unsigned lv);
+	std::vector<SaveInf::LaneInf> randomSaveInf(unsigned lv);
 };
 #endif // !_state_playing/

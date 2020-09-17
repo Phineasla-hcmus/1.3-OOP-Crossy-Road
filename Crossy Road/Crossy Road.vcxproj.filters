@@ -113,7 +113,7 @@
     <ClCompile Include="Framework\AssetManager\playlist.cpp">
       <Filter>Source Files\Framework\AssetManager</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Util\txr_map.cpp">
+    <ClCompile Include="Framework\Util\txr_lookup.cpp">
       <Filter>Source Files\Framework\Util</Filter>
     </ClCompile>
   </ItemGroup>
@@ -202,7 +202,7 @@
     <ClInclude Include="Framework\AssetManager\playlist.h">
       <Filter>Source Files\Framework\AssetManager</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Util\txr_map.h">
+    <ClInclude Include="Framework\Util\txr_lookup.h">
       <Filter>Source Files\Framework\Util</Filter>
     </ClInclude>
   </ItemGroup>

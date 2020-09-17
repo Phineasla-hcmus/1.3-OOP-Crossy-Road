@@ -6,7 +6,7 @@ constexpr auto MUSIC_VOL = 40;
 state_playing::state_playing(Game& game)
 	: state_base(game)
 	, m_save()
-	, m_world(game.get_texture_set())
+	, m_world(game.get_txr_set())
 	, m_pause_menu(game)
 	, m_score_display(20, "SCORE")
 	, m_level_display(50, "LEVEL")
@@ -21,7 +21,7 @@ state_playing::state_playing(Game& game)
 state_playing::state_playing(Game& game, const SaveInf& save)
 	: state_base(game)
 	, m_save(save)
-	, m_world(game.get_texture_set(), save.getBestLane())
+	, m_world(game.get_txr_set(), save.getBestLane())
 	, m_pause_menu(game)
 	, m_score_display(20, "SCORE")
 	, m_level_display(50, "LEVEL")
@@ -94,19 +94,42 @@ void state_playing::resumeAllSound()
 	m_music.play();
 }
 
-std::vector<SaveInf::RoadInf> state_playing::randomSaveInf(unsigned lv)
+std::vector<SaveInf::LaneInf> state_playing::randomSaveInf(unsigned lv)
 {
-	random r;
-	int vehicleType, vehicleNum, direction, maxVehicleType = game().get_texture_set().size() - 1;
-	float speed;
-	std::vector<SaveInf::RoadInf> lane;    
-	for (size_t i = 0; i < SAVE_LANE; ++i) {
-		direction   = -1 + r.getInt(0, 1) * 2;//left or right
-		vehicleType = r.getInt(0, maxVehicleType);//random base on how many type read from Config/
-		vehicleNum = lv < 5 ? (r.getInt(1, lv)) : (lv < 10 ? r.getInt(2, 4) : r.getInt(3, 4));
-		speed = lv > 2 ? (r.getFloat(-10.f, 10.f) + 10u * lv) : r.getFloat(40.f, 60.f);
+	//int obstacleType, obstacleNum, direction, maxObstacleType = game().get_txr_set().size() - 1;
+	//float speed;
+	//std::vector<SaveInf::LaneInf> lane;    
+	//for (size_t i = 0; i < 4; ++i) {
+	//	direction		= -1 + mtrand::getInt(0, 1) * 2;//left or right
+	//	obstacleType	= mtrand::getInt(0, maxObstacleType);//random base on how many type read from Config/
+	//	obstacleNum		= lv < 5 ? (mtrand::getInt(1, lv)) : (lv < 10 ? mtrand::getInt(2, 4) : mtrand::getInt(3, 4));
+	//	speed = lv > 2 ? (mtrand::getFloat(-10.f, 10.f) + 10u * lv) : mtrand::getFloat(40.f, 60.f);
+	//	lane.emplace_back(1, 1, obstacleType, obstacleNum, direction, speed);
+	//}
+	//return lane;
 
-		lane.emplace_back(vehicleType, vehicleNum, direction, speed);
+	int		laneType, lanePos;
+	int		obstacleType, obstacleNum, maxOstacle;
+	int		direction;
+	float	speed;
+	std::vector<SaveInf::LaneInf> lane;
+	const std::string typeName[] = { "vehicle" };
+	for (size_t i = 1; i < Y_TILES - 1; ++i) {//lane 0 and lane 7 is resting lane
+		/*
+			0 = resting lane
+			1 = vehicle lane
+			2 = animal lane
+		*/
+		if ((laneType = mtrand::getInt(0, 1)) != 0) {
+			//get size of current txr_set
+			maxOstacle = game().get_txr_set().operator[](typeName[laneType - 1]).size() - 1;
+			lanePos = i;
+			obstacleType = mtrand::getInt(0, maxOstacle);
+			obstacleNum = lv < 5 ? (mtrand::getInt(1, lv)) : (lv < 10 ? mtrand::getInt(2, 4) : mtrand::getInt(3, 4));
+			direction = -1 + mtrand::getInt(0, 1) * 2;//left or right
+			speed = lv > 2 ? (mtrand::getFloat(-10.f, 10.f) + 10u * lv) : mtrand::getFloat(40.f, 60.f);
+			lane.emplace_back(laneType, lanePos, obstacleType, obstacleNum, direction, speed);
+		}
 	}
 	return lane;
 }
@@ -115,7 +138,6 @@ void state_playing::update(sf::Time delta_time)
 {    
 	m_save.update_level(m_level);
 	m_save.update_score(m_score);
-	m_save.update_position(m_world.getPosition());
 	
 	m_level_display.update(m_level);
 	m_score_display.update(m_score);
@@ -123,7 +145,6 @@ void state_playing::update(sf::Time delta_time)
 
 	if (!m_is_gameover && !m_pause_menu.isPaused())
 	{
-
 		m_world.update(delta_time.asSeconds());
 		m_score += m_world.updateScore();
 		unsigned step_level = m_world.updateLevel();
@@ -131,11 +152,9 @@ void state_playing::update(sf::Time delta_time)
 			m_level += step_level;
 			m_save.update_road(randomSaveInf(m_level));
 			m_world.resetWorld(m_save);
-		
-			
 		}
 	}
-	m_save.update_Y(m_world.get_max_lane());
+	m_save.update_best_player_y(m_world.get_max_lane());
 	m_pause_menu.updateSaveInfo(m_save);
 	m_is_gameover = m_world.is_game_over();
 }

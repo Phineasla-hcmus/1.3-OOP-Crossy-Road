@@ -1,22 +1,27 @@
 #include "SaveLevel.h"
-SaveInf::SaveInf(int max_y, unsigned level, unsigned score, std::vector<RoadInf> roads, sf::Vector2f position)
+SaveInf::SaveInf(int max_y, unsigned level, unsigned score, std::vector<LaneInf> roads)
 	: m_level(level)
 	, m_score(score)
 	, m_road_arr(roads)
-	, m_position(position)
-	, m_y(max_y)
+	, m_best_player_y(max_y)
 {}
-sf::Vector2f  SaveInf::get_position() const 
-{
-	return m_position;
-}
+
+SaveInf::LaneInf::LaneInf(int laneType, int lanePos, int obstacleType, int obstacleNum, int dir, float speed)
+	: laneType(laneType)
+	, lanePos(lanePos)
+	, obstacleType(obstacleType)
+	, obstacleNum(obstacleNum)
+	, direction(dir)
+	, speed(speed)
+{}
+
 unsigned SaveInf::get_level() const
 {
 	return m_level;
 }
 int SaveInf::getBestLane() const
 {
-	return m_y;
+	return m_best_player_y;
 }
 unsigned SaveInf::get_score() const
 {
@@ -28,7 +33,7 @@ unsigned SaveInf::get_size() const
 	return m_road_arr.size();
 }
 
-const SaveInf::RoadInf& SaveInf::get_RoadInf(size_t idx) const
+const SaveInf::LaneInf& SaveInf::get_RoadInf(size_t idx) const
 {
 	return m_road_arr.at(idx);
 }
@@ -43,19 +48,35 @@ void SaveInf::update_level(unsigned level)
 	m_level = level;
 }
 
-void SaveInf::update_road(std::vector<RoadInf> new_roads)
+void SaveInf::update_road(std::vector<LaneInf> new_roads)
 {
 	m_road_arr = new_roads;
 }
 
-void SaveInf::update_position(sf::Vector2f position)
+void SaveInf::update_best_player_y(int maxY)
 {
-	m_position = position;
+	m_best_player_y = maxY;
 }
-void SaveInf::update_Y(int maxY)
-{
-	m_y = maxY;
-}
+
+//void SaveInf::generate_LaneInf(unsigned level)
+//{
+//	int		laneType, lanePos;
+//	//int		obstacleType, obstacleNum;
+//	//int		direction, speed;
+//	m_road_arr.clear();
+//	for (size_t i = 1; i < Y_TILES - 1; ++i) {//lane 0 and lane 7 is resting lane
+//		/*
+//			0 = resting lane
+//			1 = vehicle lane
+//			2 = animal lane
+//		*/
+//		if ((laneType = mtrand::getInt(0, 2)) != 0) {
+//			lanePos = i;
+//
+//		}
+//	}
+//}
+
 bool saveGame(std::string& file_name, const SaveInf& save)
 {
 	std::ofstream fout(SAVE_DIR + file_name + FILE_EXT, std::ios::binary);
@@ -63,13 +84,11 @@ bool saveGame(std::string& file_name, const SaveInf& save)
 		return false;
 	unsigned lv = save.get_level(), score = save.get_score(), size = save.get_size();
 	int maxY = save.getBestLane();
-	sf::Vector2f posittion = save.get_position();
 	fout.write((char*)&lv, sizeof(lv));
 	fout.write((char*)&score, sizeof(score));
-	fout.write((char*)&size, sizeof(size));
-	//fout.write((char*)&posittion, sizeof(posittion));
 	fout.write((char*)&maxY, sizeof(maxY));
-	fout.write((char*)&save.get_RoadInf(0), (long long)size * sizeof(SaveInf::RoadInf));
+	fout.write((char*)&size, sizeof(size));
+	fout.write((char*)&save.get_RoadInf(0), (long long)size * sizeof(SaveInf::LaneInf));
 	fout.close();
 	return true;
 }
@@ -84,12 +103,11 @@ bool loadGame(std::string file_name, SaveInf& save)
 	sf::Vector2f position;
 	fin.read((char*)&lv, sizeof(lv));
 	fin.read((char*)&score, sizeof(score));
-	fin.read((char*)&size, sizeof(size));
-	//fin.read((char*)&position, sizeof(position));
 	fin.read((char*)&maxY, sizeof(maxY));
-	std::vector<SaveInf::RoadInf> lanes(size);
-	fin.read((char*)&lanes[0], (long long)size * sizeof(SaveInf::RoadInf));
-	save = SaveInf(maxY,lv, score, lanes,position);
+	fin.read((char*)&size, sizeof(size));
+	std::vector<SaveInf::LaneInf> lanes(size);
+	fin.read((char*)&lanes[0], (long long)size * sizeof(SaveInf::LaneInf));
+	save = SaveInf(maxY, lv, score, lanes);
 	fin.close();
 	return true;
 }
@@ -109,10 +127,3 @@ bool saveHighScore(const int& highscore) {
 	fout.close();
 	return true;
 }
-
-SaveInf::RoadInf::RoadInf(int vehicleType, int vehicleNum, int dir, float speed)
-	: vehicleType(vehicleType)
-	, vehicleNum(vehicleNum)
-	, direction(dir)
-	, speed(speed)
-{}

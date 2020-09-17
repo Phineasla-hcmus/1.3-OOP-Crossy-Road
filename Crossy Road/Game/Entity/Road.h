@@ -39,8 +39,8 @@ public:
 	Lane() = default;
 	Lane(Lane&&) = default;
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
-	void			initVehicle(size_t);
-	void			setVehicleType(obstacle_ptr, sf::Texture& vehicle, sf::IntRect vehicle_bound);
+	void			initObstacle(size_t);
+	void			setType(obstacle_ptr, sf::Texture& vehicle, sf::IntRect vehicle_bound);
 	size_t			getVehicleSize() const;
 	Obstacle&		getVehicle(size_t);
 

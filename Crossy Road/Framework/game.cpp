@@ -25,9 +25,12 @@ Game::Game()
 	//set icon for window, skip if failed
 	if (icon.loadFromFile("Assets/icon.png"))
 		m_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-	//Load all texture name
-	m_vehicles_set.loadNewSet("Config/car.txt");
-	m_vehicles_set.loadNewSet("Config/truck.txt");
+	//Load all texture names
+	m_txr_set.add_type("vehicle");
+	m_txr_set.load_set("Config/car.txt", "vehicle");
+	m_txr_set.load_set("Config/truck.txt", "vehicle");
+
+	m_txr_set.add_type("animal");
 	//push first state here
 	pushState(std::make_unique<state_main_menu>(*this));
 }
@@ -95,9 +98,9 @@ const sf::RenderWindow& Game::get_window() const
 	return m_window;
 }
 
-const txr_map& Game::get_texture_set() const
+const txr_lookup& Game::get_txr_set() const
 {
-	return m_vehicles_set;
+	return m_txr_set;
 }
 
 sf::Time Game::update_dt_clock()

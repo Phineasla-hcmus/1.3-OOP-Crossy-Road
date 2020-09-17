@@ -24,7 +24,7 @@ class mtrand : public no_copy {
 private:
 	mtrand() = default;
 	random seed;
-	static mtrand& get();
+	static random& get();
 public:
 	static int		getInt(int	low, int	high);
 	static double	getDouble(double low, double high);

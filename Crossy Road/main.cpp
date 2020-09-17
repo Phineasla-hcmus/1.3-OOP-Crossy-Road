@@ -4,5 +4,3 @@ int main()
 	Game Game;
 	Game.run();
 }
-
-

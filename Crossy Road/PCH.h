@@ -9,7 +9,7 @@
 #include "Framework/AssetManager/asset.h"
 #include "Framework/Util/animation.h"
 #include "Framework/Util/no_copy.h"
-#include "Framework/Util/txr_map.h"
+#include "Framework/Util/txr_lookup.h"
 #include "Framework/Util/random.h"
 #include "Framework/Util/tilemap.h"
 #include "Framework/State/state_base.h"
