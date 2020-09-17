@@ -32,6 +32,7 @@ state_main_menu::state_main_menu(Game& game)
 	LoadGameBtn->setText("Load Game");
 	LoadGameBtn->setFunction([&]() {
 		(this->game()).pushState(std::make_unique<state_load>(game));
+		m_music.pause();
 		});
 
 	auto exitBtn = makeButton();
