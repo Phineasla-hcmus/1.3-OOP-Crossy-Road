@@ -28,29 +28,30 @@ void World::initLane(const SaveInf& save)
 	//array for rendering background map
 	std::vector<unsigned> tile_map(Y_TILES);
 	obstacle_ptr initObstacleFunc[2][2] = { {new_obstacle<Truck> , new_obstacle<Car>},{new_obstacle<Bird> , new_obstacle<Dino>} };
-	lane_ptr initLaneFunc[] = { new_lane<D_Lane>,new_lane<A_Lane> };
-	const std::string types[] = { "vehicle" , "animal" };
+	lane_ptr initLaneFunc[]		= { new_lane<D_Lane>,new_lane<A_Lane> };
+	const std::string types[]	= { "vehicle" , "animal" };
 	for (size_t i = 0; i < save.get_size(); ++i) {
-		const auto&			laneInf = save.get_RoadInf(i);					//get each laneInf from save file
-		if (laneInf.laneType != -1)
-			tile_map[laneInf.lanePos] = 1;
-		const float	lanePos		= (float)laneInf.lanePos * TILE_SIZE;
-		size_t type_idx			= laneInf.laneType;//exclude resting lane
+		const auto&		laneInf = save.get_RoadInf(i);					//get each laneInf from save file
+		float lanePos			= (float)laneInf.lanePos * TILE_SIZE;
+		size_t type_idx			= laneInf.laneType;
 		m_lanes.emplace_back(initLaneFunc[type_idx](sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed));
 
 		const std::string& type = types[type_idx];
 		/*use for set vInfo type and its texture*/
-		const txr_set&	set		= m_txr_inf[type][laneInf.obstacleType];		//get a set of multiple texture of a vInfo type
-		unsigned		idx		= mtrand::getInt(0, set.size() - 1);			//random to choose a texture for obstacle in that road
-		const txr_inf&	vInfo	= set.getFullInf(idx);							//get all info about texture
+		const txr_set&	set		= m_txr_inf[type][laneInf.obstacleType];	//get a set of multiple texture of a vInfo type
+		unsigned		idx		= mtrand::getInt(0, set.size() - 1);		//random to choose a texture for obstacle in that road
+		const txr_inf&	vInfo	= set.getFullInf(idx);						//get all info about texture
 		sf::Texture&		texture	= asset::texture().get(vInfo.name, vInfo.ext);
 		const sf::IntRect	bounds	= (laneInf.direction == (int)Lane::direction::left) 
 			? vInfo.getBounds(0) /*left texture*/
 			: vInfo.getBounds(1);/*right texture*/
+
 		/*set function for init, texture and texture bounds*/
 		Lane& newLane = *m_lanes.back();
 		newLane.setType(initObstacleFunc[type_idx][laneInf.obstacleType], texture, bounds);
 		newLane.initObstacle(laneInf.obstacleNum);
+
+		tile_map[laneInf.lanePos] = 1;
 	}
 	m_background.create_map(tile_map, sf::Vector2u(TILE_SIZE, TILE_SIZE));
 }

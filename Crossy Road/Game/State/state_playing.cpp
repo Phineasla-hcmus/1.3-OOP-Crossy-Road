@@ -107,10 +107,10 @@ std::vector<SaveInf::LaneInf> state_playing::randomSaveInf(unsigned lv)
 	//	lane.emplace_back(1, 1, obstacleType, obstacleNum, direction, speed);
 	//}
 	//return lane;
-	int		laneType, lanePos;
-	int		obstacleType, obstacleNum, maxOstacle;
-	int		direction;
-	float	speed;
+	unsigned		laneType, lanePos;
+	unsigned		obstacleType, obstacleNum, maxOstacle;
+	int				direction;
+	float			speed;
 	std::vector<SaveInf::LaneInf> lane;
 	/*
 	-1 = resting lane
@@ -121,6 +121,7 @@ std::vector<SaveInf::LaneInf> state_playing::randomSaveInf(unsigned lv)
 	size_t bias_size = sizeof(bias_type) / sizeof(bias_type[0]);
 	const std::string typeName[] = { "vehicle" , "animal" };
 	for (size_t i = 1; i < Y_TILES - 1; ++i) {//lane 0 and lane 7 is resting lane
+		//only save that is not resting lane
 		if ((laneType = bias_type[mtrand::getInt(0, bias_size - 1)]) != -1) {
 			//get size of current txr_set
 			maxOstacle = game().get_txr_set().operator[](typeName[laneType]).size() - 1;
