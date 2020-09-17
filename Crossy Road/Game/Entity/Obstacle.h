@@ -42,7 +42,7 @@ public:
 };
 
 template<typename T>
-std::unique_ptr<Obstacle> new_vehicle(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
+std::unique_ptr<Obstacle> new_obstacle(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
 {
 	return std::make_unique<T>(pos, texture, textureBound);
 }

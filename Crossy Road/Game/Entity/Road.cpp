@@ -25,11 +25,11 @@ void Lane::initVehicle(size_t size)
 			for (size_t i = 0; i < size; ++i) {
 				x += spacing;
 				//create vehicle at x, lanePos.y
-				auto new_vehicle = m_init_func(sf::Vector2f(x, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
+				auto new_obstacle = m_init_func(sf::Vector2f(x, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
 				float scale = VEHICLE_SIZE / m_texture_bound.height;
-				new_vehicle->setScale(sf::Vector2f(scale, scale));
+				new_obstacle->setScale(sf::Vector2f(scale, scale));
 
-				m_vehicles.push_back(std::move(new_vehicle));
+				m_vehicles.push_back(std::move(new_obstacle));
 			}
 		}
 		else {
@@ -42,17 +42,17 @@ void Lane::initVehicle(size_t size)
 			for (size_t i = 0; i < size; ++i) {
 				x -= spacing;
 				//create vehicle at x, lanePos.y
-				auto new_vehicle = m_init_func(sf::Vector2f(x, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
+				auto new_obstacle = m_init_func(sf::Vector2f(x, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
 				float scale = VEHICLE_SIZE / m_texture_bound.height;
-				new_vehicle->setScale(sf::Vector2f(scale, scale));
+				new_obstacle->setScale(sf::Vector2f(scale, scale));
 
-				m_vehicles.push_back(std::move(new_vehicle));
+				m_vehicles.push_back(std::move(new_obstacle));
 			}
 		}
 	}
 }
 
-void Lane::setVehicleType(vehicle_func funct, sf::Texture& vehicle, sf::IntRect texture_bound)
+void Lane::setVehicleType(obstacle_ptr funct, sf::Texture& vehicle, sf::IntRect texture_bound)
 {
 	m_init_func = funct;
 	m_vehicles_texture = &vehicle;

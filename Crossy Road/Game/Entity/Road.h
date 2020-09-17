@@ -27,7 +27,7 @@ constexpr float VEHICLE_SIZE	= 85;
 class Obstacle;
 
 //function for init new vehicle
-using vehicle_func = std::function < std::unique_ptr<Obstacle>(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound) >;
+using obstacle_ptr = std::function < std::unique_ptr<Obstacle>(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound) >;
 
 class Lane {
 public:
@@ -40,7 +40,7 @@ public:
 	Lane(Lane&&) = default;
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
 	void			initVehicle(size_t);
-	void			setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
+	void			setVehicleType(obstacle_ptr, sf::Texture& vehicle, sf::IntRect vehicle_bound);
 	size_t			getVehicleSize() const;
 	Obstacle&		getVehicle(size_t);
 	void			draw(sf::RenderTarget& target);
@@ -54,13 +54,11 @@ protected:
 	std::vector<std::unique_ptr<Obstacle>>	m_vehicles;
 	sf::Texture*							m_vehicles_texture = nullptr;
 	sf::IntRect								m_texture_bound;
-	vehicle_func							m_init_func;
+	obstacle_ptr							m_init_func;
 	size_t									m_num_vehicle = MIN_VEHICLE;
 	bool									is_paused = false;
 	
 };//base class
-
-
 
 class D_Lane:public Lane {
 public:	
@@ -89,8 +87,9 @@ public:
 	void	update(float dt);
 };
 
-
-
-
-
+template<typename T>
+std::unique_ptr<Lane> new_lane(const sf::Vector2f road_pos, const Lane::direction dir, float speed)
+{
+	return std::make_unique<T>(road_pos, dir, speed);
+}
 #endif // !_road_h
