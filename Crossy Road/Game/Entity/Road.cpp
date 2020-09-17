@@ -69,6 +69,24 @@ Obstacle& Lane::getVehicle(size_t idx)
 	return *m_vehicles[idx];
 }
 
+void Lane::update(float dt)
+{
+	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
+
+	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle);//space between 2 car
+
+	for (size_t i = 0; i < this->m_vehicles.size(); i++)
+	{
+		this->m_vehicles[i]->move(2.f * speed);
+		if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x + VEHICLE_SIZE >= SCREEN_WIDTH + spacing) {
+			this->m_vehicles[i]->setPos({ BASE_X - VEHICLE_SIZE, m_vehicle_pos.y });
+		}
+		if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x) <= -spacing) {
+			this->m_vehicles[i]->setPos({ SCREEN_WIDTH, m_vehicle_pos.y });
+		}
+	}
+}
+
 void Lane::draw(sf::RenderTarget& target)
 {
 	for (auto& e : this->m_vehicles) {
@@ -88,29 +106,14 @@ bool Lane::isPause()const
 
 D_Lane::D_Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	: Lane(road_pos,dir,speed),
-	m_light({ road_pos.x,road_pos.y + Y_DISTANCE_LIGHT_VS_LANE }) {
-
-}
+	m_light({ road_pos.x,road_pos.y + Y_DISTANCE_LIGHT_VS_LANE }) 
+{}
 
 void D_Lane::update(float dt)
-{
-	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
-
-	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle);//space between 2 car
-		
-
+{	
 	if (m_light.getLightState() == (sf::Color::Green)) {
 		if (m_clock.getElapsedTime() <= (m_start_time_change_color + m_green_time)/*time green light*/) {
-			for (size_t i = 0; i < this->m_vehicles.size(); i++)
-			{
-				this->m_vehicles[i]->move(2.f*speed);
-				if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x+VEHICLE_SIZE >= SCREEN_WIDTH + spacing) {
-					this->m_vehicles[i]->setPos({ BASE_X - VEHICLE_SIZE, m_vehicle_pos.y });
-				}
-				if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x ) <= -spacing ) {
-					this->m_vehicles[i]->setPos({ SCREEN_WIDTH, m_vehicle_pos.y });
-				}
-			}
+			Lane::update(dt);
 		}
 		else {
 			m_light.turnRed();//turn red light
@@ -142,20 +145,7 @@ A_Lane::A_Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 
 void A_Lane::update(float dt)
 {
-	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
-
-	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle);//space between 2 car
-
-	for (size_t i = 0; i < this->m_vehicles.size(); i++)
-	{
-		this->m_vehicles[i]->move(2.f * speed);
-		if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x + VEHICLE_SIZE >= SCREEN_WIDTH + spacing) {
-			this->m_vehicles[i]->setPos({ BASE_X - VEHICLE_SIZE, m_vehicle_pos.y });
-		}
-		if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x) <= -spacing) {
-			this->m_vehicles[i]->setPos({ SCREEN_WIDTH, m_vehicle_pos.y });
-		}
-	}
+	Lane::update(dt);
 }
 
 void A_Lane::draw(sf::RenderTarget& target)
