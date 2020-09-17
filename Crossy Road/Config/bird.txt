@@ -1,0 +1,1 @@
+zubat_texture     png     60     51     60     74
