@@ -10,20 +10,20 @@ private:
 	bool m_active;
 	sf::RectangleShape m_sprite;
 public:
+	Obstacle(sf::Vector2f pos);
 	Obstacle(sf::Vector2f pos, const sf::Texture&);
 	Obstacle(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
 
-	const sf::Vector2f& getPosition()	const { return m_sprite.getPosition(); };
-	void onCollide(Collision& other) { m_active = false; };
-	const sf::Vector2f& getSize()		const;
 	void setTexture(const sf::Texture&, const sf::IntRect&);
 	void setTexture(const sf::Texture&, bool resetRect = false);
 	void setTextureRec(const sf::IntRect&);
+	void setPos(sf::Vector2f position);
 	void setSize(const sf::Vector2f&);
 	void setScale(const sf::Vector2f&);
-	void draw(sf::RenderTarget&) const;
 	void move(float speed);
-	void resetPosition(sf::Vector2f position);
+	const sf::Vector2f& getPosition()		const;
+	const sf::Vector2f& getSize()		const;
+	void draw(sf::RenderTarget&)		const;
 };
 class Car :public Obstacle {
 public:
@@ -35,10 +35,10 @@ public:
 	Truck(sf::Vector2f pos, const sf::Texture&);
 	Truck(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
 };
-class Animal :public Obstacle {
+class Bird :public Obstacle {
 public:
-	Animal(sf::Vector2f pos, const sf::Texture&);
-	Animal(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
+	Bird(sf::Vector2f pos, const sf::Texture&);
+	Bird(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
 };
 
 template<typename T>

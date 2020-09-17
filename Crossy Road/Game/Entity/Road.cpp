@@ -108,10 +108,10 @@ void D_Lane::update(float dt)
 			{
 				this->m_vehicles[i]->move(2.f*speed);
 				if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x+VEHICLE_SIZE >= SCREEN_WIDTH + spacing) {
-					this->m_vehicles[i]->resetPosition({ BASE_X - VEHICLE_SIZE, m_vehicle_pos.y });
+					this->m_vehicles[i]->setPos({ BASE_X - VEHICLE_SIZE, m_vehicle_pos.y });
 				}
 				if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x ) <= -spacing ) {
-					this->m_vehicles[i]->resetPosition({ SCREEN_WIDTH, m_vehicle_pos.y });
+					this->m_vehicles[i]->setPos({ SCREEN_WIDTH, m_vehicle_pos.y });
 				}
 			}
 		}
@@ -147,10 +147,10 @@ void A_Lane::update(float dt)
 	{
 		this->m_vehicles[i]->move(2.f * speed);
 		if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x + VEHICLE_SIZE >= SCREEN_WIDTH + spacing) {
-			this->m_vehicles[i]->resetPosition({ BASE_X - VEHICLE_SIZE, m_vehicle_pos.y });
+			this->m_vehicles[i]->setPos({ BASE_X - VEHICLE_SIZE, m_vehicle_pos.y });
 		}
 		if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x) <= -spacing) {
-			this->m_vehicles[i]->resetPosition({ SCREEN_WIDTH, m_vehicle_pos.y });
+			this->m_vehicles[i]->setPos({ SCREEN_WIDTH, m_vehicle_pos.y });
 		}
 	}
 }
