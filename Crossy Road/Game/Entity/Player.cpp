@@ -14,7 +14,7 @@ Player::Player()
 	m_player.setPosition(this->origin_pos);
 	m_player.setTexture(player_texture);
 	m_player.setTextureRect(sf::IntRect{ 0,192,64,64 });
-	death_sound.setVolume(50);
+	death_sound.setVolume(50);//
 }
 
 

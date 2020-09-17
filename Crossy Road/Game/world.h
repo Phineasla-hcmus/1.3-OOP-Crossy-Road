@@ -5,10 +5,13 @@
 #include"Entity/Road.h"
 #include "SaveLevel.h"
 
+//function for init new vehicle
+using lane_ptr = std::function < std::unique_ptr<Lane>(const sf::Vector2f road_pos, const Lane::direction dir, float speed) >;
+
 class World {
 private:
+	std::vector<std::unique_ptr<Lane>> m_lanes;
 	Player					m_player;
-	std::vector<Lane>		m_lanes;
 	TileMap					m_background;
 	bool					m_game_over = false;
 	int						m_best_lane;//the highest lane player walked on in a level (the lowest y pos)

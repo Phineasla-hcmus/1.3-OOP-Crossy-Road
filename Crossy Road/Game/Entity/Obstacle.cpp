@@ -1,10 +1,14 @@
 #include "Obstacle.h"
 
+Obstacle::Obstacle(sf::Vector2f pos)
+	: Collision()
+{
+	m_sprite.setPosition(pos);
+}
 
 Obstacle::Obstacle(sf::Vector2f pos, const sf::Texture& texture)
 	: Collision((float)texture.getSize().x, (float)texture.getSize().y)
 	, m_sprite(sf::Vector2f((float)texture.getSize().x, (float)texture.getSize().y))
-	, m_active(true)
 {
 	m_sprite.setPosition(pos);
 	setTexture(texture);
@@ -18,20 +22,17 @@ Obstacle::Obstacle(sf::Vector2f pos , const sf::Texture& texture, sf::IntRect te
 	setTexture(texture, textureBound);
 }
 
-const sf::Vector2f& Obstacle::getSize() const
-{
-	return m_sprite.getSize();
-}
-
 void Obstacle::setTexture(const sf::Texture& texture, const sf::IntRect& bounds)
 {
 	m_sprite.setTexture(&texture);
 	m_sprite.setTextureRect(bounds);
+	Collision::setSize((float)bounds.width, (float)bounds.height);
 }
 
 void Obstacle::setTexture(const sf::Texture& texture, bool resetRect)
 {
 	m_sprite.setTexture(&texture, resetRect);
+	Collision::setSize((float)texture.getSize().x, (float)texture.getSize().y);
 }
 
 void Obstacle::setTextureRec(const sf::IntRect& bounds)
@@ -55,6 +56,11 @@ void Obstacle::setScale(const sf::Vector2f& scale)
 	Collision::setSize({ spriteSize.x * spriteScale.x,spriteSize.y * spriteScale.y });
 }
 
+void Obstacle::setPos(sf::Vector2f position)
+{
+	this->m_sprite.setPosition(position);
+}
+
 void Obstacle::draw(sf::RenderTarget& render) const
 {
 	render.draw(m_sprite);
@@ -65,10 +71,14 @@ void Obstacle::move(float speed)
 	m_sprite.move(speed, 0);
 }
 
-void Obstacle::resetPosition(sf::Vector2f position)
+const sf::Vector2f& Obstacle::getPosition() const
 {
-		this->m_sprite.setPosition(position);
-	
+	return m_sprite.getPosition();
+}
+
+const sf::Vector2f& Obstacle::getSize() const
+{
+	return m_sprite.getSize();
 }
 
 
@@ -84,5 +94,13 @@ Truck::Truck(sf::Vector2f pos, const sf::Texture& texture)
 {}
 
 Truck::Truck(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
+	: Obstacle(pos, texture, textureBound)
+{}
+
+Bird::Bird(sf::Vector2f pos, const sf::Texture& texture)
+	: Obstacle(pos, texture)
+{}
+
+Bird::Bird(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
 	: Obstacle(pos, texture, textureBound)
 {}

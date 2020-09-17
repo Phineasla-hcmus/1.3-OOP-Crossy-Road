@@ -27,22 +27,22 @@ void World::initLane(const SaveInf& save)
 	m_lanes.reserve(SAVE_LANE);
 	//m_player.setPosition(save.get_position());
 	//m_best_lane = save.getBestLane();
-	vehicle_func initVehicleFunc[] = { new_vehicle<Truck> , new_vehicle<Car>};
+	obstacle_ptr initVehicleFunc[] = { new_obstacle<Truck> , new_obstacle<Car>};
 	for (size_t i = 0; i < SAVE_LANE; ++i) {
 		const float			lanePos = i * TILE_SIZE * 2.f;					
-		const auto&			laneInf = save.get_RoadInf(i);							//get each laneInf from save file
-		m_lanes.emplace_back(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed);
+		const auto&			laneInf = save.get_RoadInf(i);						//get each laneInf from save file
+		m_lanes.emplace_back(new_lane<D_Lane>(sf::Vector2f(0, lanePos), (Lane::direction)laneInf.direction, laneInf.speed));
 
 		/*use for set vInfo type and its texture*/
 		const textureSet&	set		= m_txr_inf.getSet(laneInf.vehicleType);	//get a set of multiple texture of a vInfo type
-		unsigned			idx		= mtrand::getInt(0, set.size() - 1);			//random to choose a texture for vehicle in that road
-		const textureInf&	vInfo	= set.getFullInf(idx);							//get all info about texture
+		unsigned			idx		= mtrand::getInt(0, set.size() - 1);		//random to choose a texture for vehicle in that road
+		const textureInf&	vInfo	= set.getFullInf(idx);						//get all info about texture
 		sf::Texture&		texture	= asset::texture().get(vInfo.name, vInfo.ext);
 		const sf::IntRect	bounds	= (laneInf.direction == (int)Lane::direction::left) 
-			? vInfo.getBounds(0) 
-			: vInfo.getBounds(1);
+			? vInfo.getBounds(0) /*left texture*/
+			: vInfo.getBounds(1);/*right texture*/
 		/*set function for init, texture and texture bounds*/
-		Lane& newLane = m_lanes.back();
+		Lane& newLane = *m_lanes.back();
 		newLane.setVehicleType(initVehicleFunc[laneInf.vehicleType], texture, bounds);
 		newLane.initVehicle(laneInf.vehicleNum);
 	}
@@ -64,7 +64,7 @@ void World::update(float dt)
 	m_player.update();
 	this->tryPlayerCollideWith();
 	for (auto& lane : this->m_lanes)
-		lane.update(dt);
+		lane->update(dt);
 	float test = m_honk_clock.getElapsedTime().asSeconds();
 	if (test >= m_honk_time) {
 		int rand_sound = mtrand::getInt(0, horn_set.size() - 1);
@@ -107,7 +107,7 @@ void World::draw(sf::RenderTarget& target)
 {
 	target.draw(m_background);
 	for (auto& lane : m_lanes) {
-		lane.draw(target);
+		lane->draw(target);
 	}
 	m_player.moving();
 	m_player.animationRenderer();
@@ -118,8 +118,8 @@ bool World::tryPlayerCollideWith() {
 	for (size_t i = 0; i < m_lanes.size(); i++) {
 		if (!m_player.isAlive())
 			continue;
-		for (int j = m_lanes[i].getVehicleSize() - 1; j >= 0; j--) {
-			if (m_player.tryCollideWith(m_lanes[i].getVehicle(j))) {
+		for (int j = m_lanes[i]->getVehicleSize() - 1; j >= 0; j--) {
+			if (m_player.tryCollideWith(m_lanes[i]->getVehicle(j))) {
 				//std::cout << "Collided!\n";
 				m_player.deathSoundPlaying();
 				m_game_over = true;

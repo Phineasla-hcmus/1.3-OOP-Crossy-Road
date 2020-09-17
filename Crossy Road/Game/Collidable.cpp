@@ -28,6 +28,9 @@ void Collision::setSize(float width, float height)
     m_size = { width,height };
 }
 
+void Collision::onCollide(Collision& other)
+{}
+
 sf::FloatRect Collision::getBox(int delta_X) const
 {
     return
