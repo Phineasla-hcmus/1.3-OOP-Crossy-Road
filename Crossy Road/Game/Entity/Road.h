@@ -66,12 +66,9 @@ public:
 	D_Lane()		 = default;
 	D_Lane(D_Lane&&) = default;
 	D_Lane(const sf::Vector2f road_pos, const direction, float speed);
-
 	void		update(float dt);	
-	
 private:	
 	TrafficLight							m_light;	
-	
 	sf::Time								m_red_time				= sf::seconds(1.5f + mtrand::getFloat(0, 1));
 	sf::Time								m_green_time			= sf::seconds(4.f + mtrand::getFloat(0, 1));
 	sf::Clock								m_clock;
@@ -83,7 +80,6 @@ public:
 	A_Lane() = default;
 	A_Lane(A_Lane&&) = default;
 	A_Lane(const sf::Vector2f road_pos, const direction, float speed);
-
 	void	update(float dt);
 };
 
