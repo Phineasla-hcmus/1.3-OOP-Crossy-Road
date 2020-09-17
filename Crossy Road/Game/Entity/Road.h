@@ -44,8 +44,7 @@ public:
 	Obstacle&	getVehicle(size_t);
 	void		draw(sf::RenderTarget& target);
 
-	void		update(float dt);
-	void		spawnVehicle();
+	void		update(float dt);	
 	bool 		isPause() const;
 	void		pause();
 	void		unPause();
