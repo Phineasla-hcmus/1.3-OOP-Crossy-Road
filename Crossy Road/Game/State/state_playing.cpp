@@ -113,9 +113,9 @@ std::vector<SaveInf::LaneInf> state_playing::randomSaveInf(unsigned lv)
 	int		direction;
 	float	speed;
 	std::vector<SaveInf::LaneInf> lane;
-	const unsigned bias_type[] = { 0,1,1,1,1,1,1 };
+	const unsigned bias_type[] = { 0,1,1,1,2,2,2 };
 	size_t bias_size = sizeof(bias_type) / sizeof(bias_type[0]);
-	const std::string typeName[] = { "vehicle" };
+	const std::string typeName[] = { "vehicle" , "animal" };
 	for (size_t i = 1; i < Y_TILES - 1; ++i) {//lane 0 and lane 7 is resting lane
 		/*
 			0 = resting lane

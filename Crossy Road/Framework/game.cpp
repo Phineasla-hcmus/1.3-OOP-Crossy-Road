@@ -31,6 +31,8 @@ Game::Game()
 	m_txr_set.load_set("Config/truck.txt", "vehicle");
 
 	m_txr_set.add_type("animal");
+	m_txr_set.load_set("Config/bird.txt", "animal");
+	m_txr_set.load_set("Config/dino.txt", "animal");
 	//push first state here
 	pushState(std::make_unique<state_main_menu>(*this));
 }
