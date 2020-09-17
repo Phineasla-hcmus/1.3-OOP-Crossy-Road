@@ -23,7 +23,7 @@ BOUND			_____________				BOUND
 <---------------EXTEND_WIDTH----------------->
 */
 
-constexpr float VEHICLE_SIZE	= 85;
+constexpr float OBSTACLE_SIZE	= 85;
 class Obstacle;
 
 //function for init new vehicle
