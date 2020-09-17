@@ -1,11 +1,11 @@
 #include "Road.h"
 
+
 Lane::Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	: m_vehicle_pos(road_pos)
 	, m_dir(dir)
 	, m_speed(speed)
-	, m_vehicles_texture(nullptr)
-	, m_light({ road_pos.x,road_pos.y + Y_DISTANCE_LIGHT_VS_LANE })
+	, m_vehicles_texture(nullptr)	
 {}
 
 void Lane::initVehicle(size_t size)
@@ -13,7 +13,7 @@ void Lane::initVehicle(size_t size)
 	if (size >= 5)
 		size = 5;//max vehicle
 	m_num_vehicle = size;//init max vehicle
-	
+
 	if (m_init_func) {
 		if (m_dir == direction::right) {
 			float spacing = SCREEN_WIDTH / (float)size;
@@ -54,9 +54,9 @@ void Lane::initVehicle(size_t size)
 
 void Lane::setVehicleType(vehicle_func funct, sf::Texture& vehicle, sf::IntRect texture_bound)
 {
-	m_init_func			= funct;
-	m_vehicles_texture	= &vehicle;
-	m_texture_bound		= texture_bound;
+	m_init_func = funct;
+	m_vehicles_texture = &vehicle;
+	m_texture_bound = texture_bound;
 }
 
 size_t Lane::getVehicleSize() const
@@ -71,15 +71,40 @@ Obstacle& Lane::getVehicle(size_t idx)
 
 void Lane::draw(sf::RenderTarget& target)
 {
-	m_light.draw(target);//draw traffic light
-	
+	//m_light.draw(target);//draw traffic light
+
 	for (auto& e : this->m_vehicles) {
 		e->draw(target);
 	}
-	
+
 }
 
-void Lane::update(float dt)
+void Lane::pause()
+{
+	is_paused = true;
+}
+
+void Lane::unPause()
+{
+	is_paused = false;
+}
+
+bool Lane::isPause()const
+{
+	return is_paused;
+}
+
+
+
+
+
+D_Lane::D_Lane(const sf::Vector2f road_pos, const direction dir, float speed)
+	: Lane(road_pos,dir,speed),
+	m_light({ road_pos.x,road_pos.y + Y_DISTANCE_LIGHT_VS_LANE }) {
+
+}
+
+void D_Lane::update(float dt)
 {
 
 	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
@@ -118,36 +143,26 @@ void Lane::update(float dt)
 	}
 }
 
-//void Lane::spawnVehicle()
-//{	
-//	if (this->m_dir == direction::left) {
-//		auto new_vehicle = m_init_func(sf::Vector2f(BASE_X-VEHICLE_SIZE, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
-//		float scale = VEHICLE_SIZE / m_texture_bound.height;
-//		new_vehicle->setScale(sf::Vector2f(scale, scale));
-//		m_vehicles.push_back(std::move(new_vehicle));
-//		
-//	}
-//	else {
-//		auto new_vehicle = m_init_func(sf::Vector2f(SCREEN_WIDTH, m_vehicle_pos.y), *m_vehicles_texture, m_texture_bound);
-//		float scale = VEHICLE_SIZE / m_texture_bound.height;
-//		new_vehicle->setScale(sf::Vector2f(scale, scale));
-//		m_vehicles.push_back(std::move(new_vehicle));
-//	}
-//}
 
-void Lane::pause()
+
+A_Lane::A_Lane(const sf::Vector2f road_pos, const direction dir, float speed)
+	: Lane(road_pos, dir, speed){}
+
+void A_Lane::update(float dt)
 {
-	is_paused = true;
-}
+	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
 
-void Lane::unPause()
-{
-	is_paused = false;
-}
+	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle);//space between 2 car
 
-bool Lane::isPause()const
-{
-	return is_paused;
+	for (size_t i = 0; i < this->m_vehicles.size(); i++)
+	{
+		this->m_vehicles[i]->move(2.f * speed);
+		if (this->m_dir == direction::left && this->m_vehicles[i]->getPosition().x + VEHICLE_SIZE >= SCREEN_WIDTH + spacing) {
+			this->m_vehicles[i]->resetPosition({ BASE_X - VEHICLE_SIZE, m_vehicle_pos.y });
+		}
+		if (this->m_dir == direction::right && (this->m_vehicles[i]->getPosition().x) <= -spacing) {
+			this->m_vehicles[i]->resetPosition({ SCREEN_WIDTH, m_vehicle_pos.y });
+		}
+	}
 }
-
 

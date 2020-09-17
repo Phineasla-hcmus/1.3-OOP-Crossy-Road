@@ -35,35 +35,64 @@ public:
 		right = -1,
 	};
 	//Force moves constructor
-	Lane()		 = default;
+	Lane() = default;
 	Lane(Lane&&) = default;
 	Lane(const sf::Vector2f road_pos, const direction, float speed);
-	void		initVehicle(size_t);
-	void		setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
-	size_t		getVehicleSize() const;
-	Obstacle&	getVehicle(size_t);
-	void		draw(sf::RenderTarget& target);
+	void			initVehicle(size_t);
+	void			setVehicleType(vehicle_func, sf::Texture& vehicle, sf::IntRect vehicle_bound);
+	size_t			getVehicleSize() const;
+	Obstacle&		getVehicle(size_t);
+	void			draw(sf::RenderTarget& target);
 
-	void		update(float dt);	
-	bool 		isPause() const;
-	void		pause();
-	void		unPause();
-private:
-	const sf::Vector2f						m_vehicle_pos		= { 0.f,0.f };
+	virtual void	update(float dt)=0;
+	bool 			isPause() const;
+	void			pause();
+	void			unPause();
+protected:
+	const sf::Vector2f						m_vehicle_pos = { 0.f,0.f };
 	const direction							m_dir;
-	float									m_speed				= 0;
+	float									m_speed = 0;
 	std::vector<std::unique_ptr<Obstacle>>	m_vehicles;
-	sf::Texture*							m_vehicles_texture	= nullptr;
+	sf::Texture* m_vehicles_texture = nullptr;
 	sf::IntRect								m_texture_bound;
 	vehicle_func							m_init_func;
-	TrafficLight							m_light;
 	size_t									m_num_vehicle = MIN_VEHICLE;
-	
 	bool									is_paused = false;
+
+	
+};//base class
+
+
+
+class D_Lane:public Lane {
+public:	
+	//Force moves constructor
+	D_Lane()		 = default;
+	D_Lane(D_Lane&&) = default;
+	D_Lane(const sf::Vector2f road_pos, const direction, float speed);
+
+	void		update(float dt);	
+	
+private:	
+	TrafficLight							m_light;	
 	
 	sf::Time								m_red_time				= sf::seconds(1.5f + mtrand::getFloat(0, 1));
 	sf::Time								m_green_time			= sf::seconds(4.f + mtrand::getFloat(0, 1));
 	sf::Clock								m_clock;
 	sf::Time								m_start_time_change_color = m_clock.getElapsedTime();//time start change color light
 };
+
+class A_Lane:public Lane {
+public:
+	A_Lane() = default;
+	A_Lane(A_Lane&&) = default;
+	A_Lane(const sf::Vector2f road_pos, const direction, float speed);
+
+	void	update(float dt);
+};
+
+
+
+
+
 #endif // !_road_h

@@ -35,6 +35,11 @@ public:
 	Truck(sf::Vector2f pos, const sf::Texture&);
 	Truck(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
 };
+class Animal :public Obstacle {
+public:
+	Animal(sf::Vector2f pos, const sf::Texture&);
+	Animal(sf::Vector2f pos, const sf::Texture&, sf::IntRect textureBound);
+};
 
 template<typename T>
 std::unique_ptr<Obstacle> new_vehicle(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)

@@ -8,7 +8,7 @@
 class World {
 private:
 	Player					m_player;
-	std::vector<Lane>		m_lanes;
+	std::vector<D_Lane>		m_lanes;
 	TileMap					m_background;
 	bool					m_game_over = false;
 	int						m_best_lane;//the highest lane player walked on in a level (the lowest y pos)

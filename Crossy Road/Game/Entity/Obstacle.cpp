@@ -86,3 +86,11 @@ Truck::Truck(sf::Vector2f pos, const sf::Texture& texture)
 Truck::Truck(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
 	: Obstacle(pos, texture, textureBound)
 {}
+
+Animal::Animal(sf::Vector2f pos, const sf::Texture& texture)
+	: Obstacle(pos, texture)
+{}
+
+Animal::Animal(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound)
+	: Obstacle(pos, texture, textureBound)
+{}
