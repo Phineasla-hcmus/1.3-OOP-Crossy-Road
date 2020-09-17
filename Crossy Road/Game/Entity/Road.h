@@ -28,6 +28,7 @@ class Obstacle;
 
 //function for init new vehicle
 using vehicle_func = std::function < std::unique_ptr<Obstacle>(sf::Vector2f pos, const sf::Texture& texture, sf::IntRect textureBound) >;
+
 class Lane {
 public:
 	enum class direction {
@@ -43,22 +44,19 @@ public:
 	size_t			getVehicleSize() const;
 	Obstacle&		getVehicle(size_t);
 	void			draw(sf::RenderTarget& target);
-
 	virtual void	update(float dt)=0;
 	bool 			isPause() const;
-	void			pause();
-	void			unPause();
+	void			pause(bool = true);
 protected:
 	const sf::Vector2f						m_vehicle_pos = { 0.f,0.f };
 	const direction							m_dir;
 	float									m_speed = 0;
 	std::vector<std::unique_ptr<Obstacle>>	m_vehicles;
-	sf::Texture* m_vehicles_texture = nullptr;
+	sf::Texture*							m_vehicles_texture = nullptr;
 	sf::IntRect								m_texture_bound;
 	vehicle_func							m_init_func;
 	size_t									m_num_vehicle = MIN_VEHICLE;
 	bool									is_paused = false;
-
 	
 };//base class
 

@@ -79,24 +79,15 @@ void Lane::draw(sf::RenderTarget& target)
 
 }
 
-void Lane::pause()
+void Lane::pause(bool setPause)
 {
-	is_paused = true;
-}
-
-void Lane::unPause()
-{
-	is_paused = false;
+	is_paused = setPause;
 }
 
 bool Lane::isPause()const
 {
 	return is_paused;
 }
-
-
-
-
 
 D_Lane::D_Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	: Lane(road_pos,dir,speed),
@@ -106,7 +97,6 @@ D_Lane::D_Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 
 void D_Lane::update(float dt)
 {
-
 	float speed = m_speed * (int)m_dir * dt;//set speed for vehicle
 
 	float spacing = SCREEN_WIDTH / (float)(m_num_vehicle);//space between 2 car
@@ -143,10 +133,9 @@ void D_Lane::update(float dt)
 	}
 }
 
-
-
 A_Lane::A_Lane(const sf::Vector2f road_pos, const direction dir, float speed)
-	: Lane(road_pos, dir, speed){}
+	: Lane(road_pos, dir, speed)
+{}
 
 void A_Lane::update(float dt)
 {
