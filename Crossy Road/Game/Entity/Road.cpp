@@ -71,12 +71,9 @@ Obstacle& Lane::getVehicle(size_t idx)
 
 void Lane::draw(sf::RenderTarget& target)
 {
-	//m_light.draw(target);//draw traffic light
-
 	for (auto& e : this->m_vehicles) {
 		e->draw(target);
 	}
-
 }
 
 void Lane::pause(bool setPause)
@@ -133,6 +130,12 @@ void D_Lane::update(float dt)
 	}
 }
 
+void D_Lane::draw(sf::RenderTarget& target)
+{
+	m_light.draw(target);//draw traffic light
+	Lane::draw(target);
+}
+
 A_Lane::A_Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	: Lane(road_pos, dir, speed)
 {}
@@ -153,5 +156,10 @@ void A_Lane::update(float dt)
 			this->m_vehicles[i]->setPos({ SCREEN_WIDTH, m_vehicle_pos.y });
 		}
 	}
+}
+
+void A_Lane::draw(sf::RenderTarget& target)
+{
+	Lane::draw(target);
 }
 

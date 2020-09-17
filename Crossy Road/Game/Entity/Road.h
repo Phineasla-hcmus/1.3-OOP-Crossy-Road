@@ -43,8 +43,10 @@ public:
 	void			setVehicleType(obstacle_ptr, sf::Texture& vehicle, sf::IntRect vehicle_bound);
 	size_t			getVehicleSize() const;
 	Obstacle&		getVehicle(size_t);
-	void			draw(sf::RenderTarget& target);
-	virtual void	update(float dt)=0;
+
+	virtual void	update(float dt) = 0;
+	virtual void	draw(sf::RenderTarget&) = 0;
+
 	bool 			isPause() const;
 	void			pause(bool = true);
 protected:
@@ -57,7 +59,6 @@ protected:
 	obstacle_ptr							m_init_func;
 	size_t									m_num_vehicle = MIN_VEHICLE;
 	bool									is_paused = false;
-	
 };//base class
 
 class D_Lane:public Lane {
@@ -66,7 +67,9 @@ public:
 	D_Lane()		 = default;
 	D_Lane(D_Lane&&) = default;
 	D_Lane(const sf::Vector2f road_pos, const direction, float speed);
-	void		update(float dt);	
+
+	void update(float dt);	
+	void draw(sf::RenderTarget&);
 private:	
 	TrafficLight							m_light;	
 	sf::Time								m_red_time				= sf::seconds(1.5f + mtrand::getFloat(0, 1));
@@ -80,7 +83,9 @@ public:
 	A_Lane() = default;
 	A_Lane(A_Lane&&) = default;
 	A_Lane(const sf::Vector2f road_pos, const direction, float speed);
-	void	update(float dt);
+
+	void update(float dt);
+	void draw(sf::RenderTarget&);
 };
 
 template<typename T>

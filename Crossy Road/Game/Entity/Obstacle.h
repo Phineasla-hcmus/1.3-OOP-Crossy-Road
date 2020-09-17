@@ -7,7 +7,6 @@
 
 class Obstacle : public Collision {
 private:
-	bool m_active;
 	sf::RectangleShape m_sprite;
 public:
 	Obstacle(sf::Vector2f pos);
@@ -21,7 +20,7 @@ public:
 	void setSize(const sf::Vector2f&);
 	void setScale(const sf::Vector2f&);
 	void move(float speed);
-	const sf::Vector2f& getPosition()		const;
+	const sf::Vector2f& getPosition()	const;
 	const sf::Vector2f& getSize()		const;
 	void draw(sf::RenderTarget&)		const;
 };

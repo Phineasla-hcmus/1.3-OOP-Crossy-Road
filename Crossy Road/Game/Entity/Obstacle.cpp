@@ -9,7 +9,6 @@ Obstacle::Obstacle(sf::Vector2f pos)
 Obstacle::Obstacle(sf::Vector2f pos, const sf::Texture& texture)
 	: Collision((float)texture.getSize().x, (float)texture.getSize().y)
 	, m_sprite(sf::Vector2f((float)texture.getSize().x, (float)texture.getSize().y))
-	, m_active(true)
 {
 	m_sprite.setPosition(pos);
 	setTexture(texture);
