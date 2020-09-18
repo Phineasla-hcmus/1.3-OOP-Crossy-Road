@@ -106,7 +106,7 @@ bool Lane::isPause()const
 
 D_Lane::D_Lane(const sf::Vector2f road_pos, const direction dir, float speed)
 	: Lane(road_pos,dir,speed),
-	m_light({ road_pos.x,road_pos.y + Y_DISTANCE_LIGHT_VS_LANE }) 
+	m_light(road_pos) 
 {}
 
 void D_Lane::update(float dt)
