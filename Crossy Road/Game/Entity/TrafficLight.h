@@ -9,7 +9,7 @@ private:
 	sf::Texture* Red_Light;
 	sf::Texture* Green_Light;
 	sf::RectangleShape light;
-	sf::Vector2f size = { 30.f,30.f };
+	sf::Vector2f size = { 45.f,45.f };
 	sf::Color state=(sf::Color::Green);
 	sf::Clock time;	
 public:

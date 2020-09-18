@@ -95,17 +95,7 @@ void state_playing::resumeAllSound()
 
 std::vector<SaveInf::LaneInf> state_playing::randomSaveInf(unsigned lv)
 {
-	//int obstacleType, obstacleNum, direction, maxObstacleType = game().get_txr_set().size() - 1;
-	//float speed;
-	//std::vector<SaveInf::LaneInf> lane;    
-	//for (size_t i = 0; i < 4; ++i) {
-	//	direction		= -1 + mtrand::getInt(0, 1) * 2;//left or right
-	//	obstacleType	= mtrand::getInt(0, maxObstacleType);//random base on how many type read from Config/
-	//	obstacleNum		= lv < 5 ? (mtrand::getInt(1, lv)) : (lv < 10 ? mtrand::getInt(2, 4) : mtrand::getInt(3, 4));
-	//	speed = lv > 2 ? (mtrand::getFloat(-10.f, 10.f) + 10u * lv) : mtrand::getFloat(40.f, 60.f);
-	//	lane.emplace_back(1, 1, obstacleType, obstacleNum, direction, speed);
-	//}
-	//return lane;
+	
 	unsigned		laneType, lanePos;
 	unsigned		obstacleType, obstacleNum, maxOstacle;
 	int				direction;
