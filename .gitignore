@@ -350,4 +350,4 @@ MigrationBackup/
 .ionide/
 
 # Save file
-Crossy Road/Save/
+Crossy Road/Save/*.bin
