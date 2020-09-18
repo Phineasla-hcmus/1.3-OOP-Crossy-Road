@@ -17,8 +17,8 @@ void Lane::initObstacle(size_t size)
 	if (m_init_func) {
 		if (m_dir == direction::right) {
 			float spacing = SCREEN_WIDTH / (float)size;
-			float x = LEFT_BOUND + (float)mtrand::getDouble(-spacing, spacing);
-
+			//float x = LEFT_BOUND + (float)mtrand::getDouble(320-spacing, 320);
+			float x = LEFT_BOUND+(float)mtrand::getDouble(0,150);
 			size += HIDDEN_VEHICLE;//increase size with extra vehicle
 
 			m_vehicles.reserve(size);
@@ -34,7 +34,7 @@ void Lane::initObstacle(size_t size)
 		}
 		else {
 			float spacing = SCREEN_WIDTH / (float)size;
-			float x = SCREEN_WIDTH - LEFT_BOUND + (float)mtrand::getDouble(-spacing, spacing);
+			float x = SCREEN_WIDTH - LEFT_BOUND- (float)mtrand::getDouble(0, 150);
 
 			size += HIDDEN_VEHICLE;//increase size with extra vehicle
 
