@@ -26,18 +26,17 @@ public:
 	const std::string&	getExt(size_t)		const;
 	const txr_inf&		getFullInf(size_t)	const;
 };
-
 //Contain multiple file names of multiple texture objects
 class txr_lookup : public no_copy {
-private:
-	std::map<std::string, std::vector<txr_set>> m_set;//e.g: car, truck...
-	//std::vector<txr_set> m_set;
 public:
 	void	add_type(const std::string&);
 	//load new set of textures to available type (use add_type to add new type)
 	bool	load_set(const std::string& file_dir, const std::string& type);
 	size_t	size() const;
 	const std::vector<txr_set>& operator[](const std::string&) const;
+private:
+	std::map<std::string, std::vector<txr_set>> m_set;//e.g: car, truck...
+	//std::vector<txr_set> m_set;
 };
 
 //DEPRECATED
