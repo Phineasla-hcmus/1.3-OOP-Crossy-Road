@@ -58,24 +58,7 @@ void SaveInf::update_best_player_y(int maxY)
 	m_best_player_y = maxY;
 }
 
-//void SaveInf::generate_LaneInf(unsigned level)
-//{
-//	int		laneType, lanePos;
-//	//int		obstacleType, obstacleNum;
-//	//int		direction, speed;
-//	m_road_arr.clear();
-//	for (size_t i = 1; i < Y_TILES - 1; ++i) {//lane 0 and lane 7 is resting lane
-//		/*
-//			0 = resting lane
-//			1 = vehicle lane
-//			2 = animal lane
-//		*/
-//		if ((laneType = mtrand::getInt(0, 2)) != 0) {
-//			lanePos = i;
-//
-//		}
-//	}
-//}
+
 
 bool saveGame(std::string& file_name, const SaveInf& save)
 {
