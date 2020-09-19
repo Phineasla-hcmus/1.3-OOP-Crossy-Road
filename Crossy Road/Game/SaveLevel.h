@@ -23,8 +23,6 @@ public:
 	void		update_level(unsigned);
 	void		update_road(std::vector<LaneInf> new_roads);
 	void		update_best_player_y(int);
-	//random data for new level creation
-	void		generate_LaneInf(unsigned level);
 
 	unsigned	get_level()				const;
 	unsigned	get_score()				const;

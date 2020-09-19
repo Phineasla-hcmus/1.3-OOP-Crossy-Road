@@ -26,9 +26,9 @@ private:
 	random seed;
 	static random& get();
 public:
-	static int		getInt(int	low, int	high);
-	static double	getDouble(double low, double high);
-	static float	getFloat(float	low, float	high);
+	static int		getInt		(int	low, int	high);
+	static double	getDouble	(double low, double high);
+	static float	getFloat	(float	low, float	high);
 };
-#endif // !_random
+#endif 
 
