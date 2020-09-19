@@ -14,9 +14,9 @@ public:
 	virtual void	setSize(float width, float height);		//overwrite previous size
 
 	virtual void	onCollide(Collision& other);
-	virtual const sf::Vector2f& getPosition() const = 0;
+	virtual const   sf::Vector2f& getPosition() const = 0;
 
-	sf::FloatRect				getBox(int delta_X) const;
+	sf::FloatRect	getBox(int delta_X) const;
 private:
 	sf::Vector2f m_size = { 0,0 };
 };
