@@ -30,5 +30,5 @@ public:
 	static double	getDouble	(double low, double high);
 	static float	getFloat	(float	low, float	high);
 };
-#endif // !_random
+#endif 
 
