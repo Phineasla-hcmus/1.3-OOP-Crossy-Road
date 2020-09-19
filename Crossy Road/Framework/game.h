@@ -20,7 +20,7 @@ private:
 	bool									m_pop_pending = false;
 	bool									m_swap_pending = false;
 	std::unique_ptr<state_base>				m_swap_state;//hold state for swapping
-	txr_lookup									m_txr_set;//hold information about obstacle texture
+	txr_lookup								m_txr_set;//hold information about obstacle texture
 	
 	state_base& cur_state() const;
 	void pop();

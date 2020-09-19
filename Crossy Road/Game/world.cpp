@@ -15,7 +15,7 @@ World::World(const txr_lookup& lookup, int best_lane)
 	//TESTING HORN EFFECT
 	horn_set.emplace_back("car_horn1", "ogg");
 	horn_set.emplace_back("car_horn2", "ogg");
-	std::cout << m_honk_time << std::endl;
+	//std::cout << m_honk_time << std::endl;
 	int rand_sound = mtrand::getInt(0, horn_set.size() - 1);
 	m_horn.setBuffer(asset::sound().get(horn_set[rand_sound].first, horn_set[rand_sound].second));
 	m_horn.setVolume(5);
@@ -78,7 +78,7 @@ void World::update(float dt)
 		int rand_sound = mtrand::getInt(0, horn_set.size() - 1);
 		m_horn.setBuffer(asset::sound().get(horn_set[rand_sound].first, horn_set[rand_sound].second));
 		m_honk_time = mtrand::getFloat(3.f, 10.f);
-		std::cout << m_honk_time << std::endl;
+		//std::cout << m_honk_time << std::endl;
 		m_honk_clock.restart();
 		m_horn.play();
 	}
